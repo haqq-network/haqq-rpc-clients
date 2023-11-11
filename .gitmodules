@@ -1,0 +1,6 @@
+[submodule "haqq-node"]
+	path = haqq-node
+	url = https://github.com/haqq-network/haqq.git
+[submodule "cosmos-sdk"]
+	path = cosmos-sdk
+	url = https://github.com/evmos/cosmos-sdk

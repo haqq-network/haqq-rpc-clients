@@ -1,0 +1,6 @@
+version: v1
+directories:
+   - haqq-node/proto
+   - cosmos-sdk/proto
+   # - proto
+   # - haqq-node/third_party/proto

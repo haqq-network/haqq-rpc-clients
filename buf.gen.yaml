@@ -1,0 +1,47 @@
+version: v1
+managed:
+  enabled: true
+  # for openapi
+  go_package_prefix:
+    default: github.com/haqq-network/haqq-rs
+    except:
+      - buf.build/googleapis/googleapis
+plugins:
+  - plugin: buf.build/community/neoeinstein-prost:v0.2.3
+    out: src/gen
+    opt:
+      # all messages with builder pattern
+      - message_attribute=.=#[derive(::derive_builder::Builder)]
+      # TODO: do shims to re-export third-party based wkt?
+      # https://github.com/provenance-io/provwasm/blob/9d1070c28c0a32723ac8f192cea5af7594960d0a/packages/proto-build/third-party.buf.gen.yaml#L3
+      - bytes=.
+      # - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
+      # https://github.com/tokio-rs/prost/issues/672
+      - extern_path=.google.protobuf=::prost-wkt-types
+      - compile_well_known_types
+
+  - plugin: buf.build/community/neoeinstein-prost-serde:v0.2.3
+    out: src/gen
+    opt:
+  
+  - plugin: buf.build/community/neoeinstein-tonic:v0.3.0
+    out: src/gen
+    opt:
+
+  - plugin: buf.build/community/neoeinstein-prost-crate:v0.3.1
+    out: .
+    opt:
+      - include_file=src/gen/mod.rs
+      - no_features
+
+  - plugin: buf.build/grpc-ecosystem/openapiv2:v2.18.1
+    out: openapi
+    # https://github.com/grpc-ecosystem/grpc-gateway/blob/main/protoc-gen-openapiv2/main.go
+    opt:
+      # - openapi_naming_strategy=simple
+      - allow_merge=true
+      # https://github.com/cosmos/cosmos-sdk/blob/main/proto/buf.gen.swagger.yaml
+      - fqn_for_openapi_name=true
+      - simple_operation_ids=true
+      # - Mcosmos/app/v1alpha1=github.com/cosmos/cosmos-sdk/api/cosmos/app/v1alpha1
+      # - paths=source_relative
