@@ -33,9 +33,14 @@ rec {
   languages.rust.enable = true;
 
   scripts.ci.exec = ''
+    set -e
+    
     cargo run -p haqq-build
     cargo test --workspace
-    
-    git diff --exit-code
+
+    if ! git diff --exit-code; then
+      echo "Directory is not clean after code generation"
+      exit 1
+    fi
   '';
 }
