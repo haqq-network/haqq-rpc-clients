@@ -26,11 +26,12 @@ plugins:
     opt:
       - no_server=true
 
-  - plugin: buf.build/community/neoeinstein-prost-crate:v0.3.1
+  - plugin: prost-crate
     out: .
+    strategy: all
     opt:
       - include_file=src/gen/mod.rs
-      - no_features
+      - gen_crate
 
   - plugin: buf.build/grpc-ecosystem/openapiv2:v2.18.1
     out: openapi

@@ -27,6 +27,8 @@ rec {
     
     openssl
     pkg-config
+
+    (pkgs.callPackage ./nix/protoc-gen-prost-crate.nix {})
   ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
     CoreFoundation
     SystemConfiguration
