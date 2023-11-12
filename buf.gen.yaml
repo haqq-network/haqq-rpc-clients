@@ -12,7 +12,7 @@ plugins:
     opt:
       - message_attribute=.=#[derive(::derive_builder::Builder)]
       - bytes=.
-      # - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
+      # - extern_path=.=::cosmos_sdk_proto::cosmos
       # https://github.com/tokio-rs/prost/issues/672
       - extern_path=.google.protobuf=::prost-wkt-types
       - compile_well_known_types

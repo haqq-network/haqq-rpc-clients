@@ -22,7 +22,6 @@ rec {
     grpcurl
     sccache
     openapi-generator-cli
-    swagger-cli
     git
     
     openssl
