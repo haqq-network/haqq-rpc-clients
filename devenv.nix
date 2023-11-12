@@ -11,24 +11,27 @@ rec {
 
   # https://devenv.sh/packages/
   packages = with pkgs;
-    [
-      buf
-      grpc
-      cargo
-      cargo-watch
-      grpcurl
-      sccache
-      openapi-generator-cli
-      swagger-cli
-      git
-      
-      openssl
-      pkg-config
-    ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
-      CoreFoundation
-      SystemConfiguration
-      Security
-    ]));
+  [
+    protobuf
+    buf
+    grpc
+    
+    cargo
+    cargo-watch
+    
+    grpcurl
+    sccache
+    openapi-generator-cli
+    swagger-cli
+    git
+    
+    openssl
+    pkg-config
+  ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
+    CoreFoundation
+    SystemConfiguration
+    Security
+  ]));
 
   # https://devenv.sh/languages/
   languages.nix.enable = true;
@@ -41,8 +44,8 @@ rec {
     cargo test --workspace
 
     if ! git diff --exit-code; then
-      echo "Directory is not clean after code generation"
-      exit 1
+    echo "Directory is not clean after code generation"
+    exit 1
     fi
   '';
 }
