@@ -10,10 +10,7 @@ plugins:
   - plugin: buf.build/community/neoeinstein-prost:v0.2.3
     out: src/gen
     opt:
-      # all messages with builder pattern
       - message_attribute=.=#[derive(::derive_builder::Builder)]
-      # TODO: do shims to re-export third-party based wkt?
-      # https://github.com/provenance-io/provwasm/blob/9d1070c28c0a32723ac8f192cea5af7594960d0a/packages/proto-build/third-party.buf.gen.yaml#L3
       - bytes=.
       # - extern_path=.cosmos=::cosmos_sdk_proto::cosmos
       # https://github.com/tokio-rs/prost/issues/672
@@ -27,6 +24,7 @@ plugins:
   - plugin: buf.build/community/neoeinstein-tonic:v0.3.0
     out: src/gen
     opt:
+      - no_server=true
 
   - plugin: buf.build/community/neoeinstein-prost-crate:v0.3.1
     out: .

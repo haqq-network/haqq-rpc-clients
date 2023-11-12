@@ -16,7 +16,7 @@ async fn test_grpc() -> Result<()> {
     let mut client = vesting::query_client::QueryClient::connect(node_url.clone()).await?;
 
     // Haqq Vesting Balance
-    
+
     let rsp = client
         .balances(
             vesting::QueryBalancesRequestBuilder::default()
