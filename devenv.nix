@@ -21,7 +21,9 @@ rec {
       openapi-generator-cli
       swagger-cli
       git
+      
       openssl
+      pkg-config
     ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
       CoreFoundation
       SystemConfiguration
