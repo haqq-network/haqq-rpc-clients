@@ -37,7 +37,7 @@ jobs:
           name: devenv
           cachixArgs: -j 8 --accept-flake-config
       - name: Install devenv.sh
-        run: nix profile install tarball+https://install.devenv.sh/latest
+        run: nix profile install tarball+https://install.devenv.sh/latest --accept-flake-config
       - name: Run restore cache
         uses: actions/cache@v3
         with:
