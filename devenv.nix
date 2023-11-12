@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-{
+rec {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
   env.RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
@@ -14,11 +14,13 @@
     [
       buf
       grpc
+      cargo
       cargo-watch
       grpcurl
       sccache
       openapi-generator-cli
       swagger-cli
+      git
     ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
       CoreFoundation
       SystemConfiguration
@@ -29,11 +31,10 @@
   languages.nix.enable = true;
   languages.rust.enable = true;
 
-  # https://devenv.sh/pre-commit-hooks/
-  # pre-commit.hooks.shellcheck.enable = true;
-
-  # https://devenv.sh/processes/
-  # processes.ping.exec = "ping example.com";
-
-  # See full reference at https://devenv.sh/reference/options/
+  scripts.ci.exec = ''
+    cargo run -p haqq-build
+    cargo test --workspace
+    
+    git diff --exit-code
+  '';
 }
