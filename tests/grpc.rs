@@ -27,9 +27,21 @@ async fn test_grpc() -> Result<()> {
 
     println!("{:?}", rsp);
 
-    // Cosmos Balance
+    // Cosmos Balance (default pattern)
 
     let mut client = bank::query_client::QueryClient::connect(node_url).await?;
+
+    let rsp = client
+        .balance(bank::QueryBalanceRequest {
+            address: addr.clone(),
+            denom: "aISLM".to_string(),
+            ..Default::default()
+        })
+        .await?;
+
+    println!("{:?}", rsp);
+
+    // Cosmos Balance (builder pattern)
 
     let rsp = client
         .balance(
