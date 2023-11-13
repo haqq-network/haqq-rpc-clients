@@ -1,73 +1,79 @@
 // include!("gen/mod.rs");
 mod gen;
-use std::{num::ParseIntError, str::FromStr};
-
-use ethnum::U256;
 pub use gen::*;
 
-pub type ClientChannel = tonic::transport::Channel;
-pub use tonic;
+pub mod prelude {
+    use std::{num::ParseIntError, str::FromStr};
 
-use cosmos::base::v1beta1::Coin;
+    use super::*;
+    use ethnum::U256;
 
-pub trait CoinExt<'a> {
-    fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin>;
-}
+    pub type ClientChannel = tonic::transport::Channel;
+    pub use tonic;
 
-// impl<'a, I> CoinOptionExt<'a> for I
-// where
-//     I: AsRef<[Coin]>,
-// {
-//     fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
-//         let denom = denom.into();
-//         self.as_ref().iter().find(move |c| c.denom == denom)
-//     }
-// }
+    use cosmos::base::v1beta1::Coin;
 
-impl<'a> CoinExt<'a> for Option<Coin> {
-    fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
-        self.as_ref().filter(|c| c.denom == denom.into())
+    pub trait CoinExt<'a> {
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin>;
     }
-}
 
-impl<'a> CoinExt<'a> for Vec<Coin> {
-    fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
-        let denom = denom.into();
-        for coin in self.iter() {
-            if coin.denom == denom {
-                return Some(&coin);
-            }
+    // impl<'a, I> CoinOptionExt<'a> for I
+    // where
+    //     I: AsRef<[Coin]>,
+    // {
+    //     fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
+    //         let denom = denom.into();
+    //         self.as_ref().iter().find(move |c| c.denom == denom)
+    //     }
+    // }
+
+    impl<'a> CoinExt<'a> for Option<Coin> {
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
+            self.as_ref().filter(|c| c.denom == denom.into())
         }
-        None
     }
-}
 
-pub trait AmountExt {
-    fn to_u256(&self) -> Result<U256, ParseIntError>;
-}
-
-impl AmountExt for String {
-    fn to_u256(&self) -> Result<U256, ParseIntError> {
-        U256::from_str(&self)
+    impl<'a> CoinExt<'a> for Vec<Coin> {
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
+            let denom = denom.into();
+            for coin in self.iter() {
+                if coin.denom == denom {
+                    return Some(&coin);
+                }
+            }
+            None
+        }
     }
-}
 
-impl<'a> AmountExt for &'a str {
-    fn to_u256(&self) -> Result<U256, ParseIntError> {
-        U256::from_str(&self)
+    pub trait AmountExt {
+        fn to_u256(&self) -> Result<U256, ParseIntError>;
     }
-}
 
-impl AmountExt for Coin {
-    fn to_u256(&self) -> Result<U256, ParseIntError> {
-        self.amount.to_u256()
+    impl AmountExt for String {
+        fn to_u256(&self) -> Result<U256, ParseIntError> {
+            U256::from_str(&self)
+        }
+    }
+
+    impl<'a> AmountExt for &'a str {
+        fn to_u256(&self) -> Result<U256, ParseIntError> {
+            U256::from_str(&self)
+        }
+    }
+
+    impl AmountExt for Coin {
+        fn to_u256(&self) -> Result<U256, ParseIntError> {
+            self.amount.to_u256()
+        }
     }
 }
 
 #[cfg(test)]
 mod test {
-    use super::*;
+    use super::cosmos::base::v1beta1::Coin;
+    use super::prelude::*;
     use ethnum::U256;
+    use std::str::FromStr;
 
     #[test]
     fn coin_option_ext() {
