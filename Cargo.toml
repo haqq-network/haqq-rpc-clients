@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 derive_builder = "0.12.0"
+ethnum = {version = "1.5.0", features = ["serde"]}
 pbjson = "0.6.0"
 prost = "0.12.1"
 prost-wkt-types = "0.5.0"
