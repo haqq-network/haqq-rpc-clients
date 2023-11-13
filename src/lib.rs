@@ -10,7 +10,7 @@ pub use tonic;
 
 use cosmos::base::v1beta1::Coin;
 
-pub trait CoinOptionExt<'a> {
+pub trait CoinExt<'a> {
     fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin>;
 }
 
@@ -24,13 +24,13 @@ pub trait CoinOptionExt<'a> {
 //     }
 // }
 
-impl<'a> CoinOptionExt<'a> for Option<Coin> {
+impl<'a> CoinExt<'a> for Option<Coin> {
     fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
         self.as_ref().filter(|c| c.denom == denom.into())
     }
 }
 
-impl<'a> CoinOptionExt<'a> for Vec<Coin> {
+impl<'a> CoinExt<'a> for Vec<Coin> {
     fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
         let denom = denom.into();
         for coin in self.iter() {
@@ -42,13 +42,25 @@ impl<'a> CoinOptionExt<'a> for Vec<Coin> {
     }
 }
 
-pub trait CoinExt {
+pub trait AmountExt {
     fn to_u256(&self) -> Result<U256, ParseIntError>;
 }
 
-impl CoinExt for Coin {
+impl AmountExt for String {
     fn to_u256(&self) -> Result<U256, ParseIntError> {
-        U256::from_str(&self.amount)
+        U256::from_str(&self)
+    }
+}
+
+impl<'a> AmountExt for &'a str {
+    fn to_u256(&self) -> Result<U256, ParseIntError> {
+        U256::from_str(&self)
+    }
+}
+
+impl AmountExt for Coin {
+    fn to_u256(&self) -> Result<U256, ParseIntError> {
+        self.amount.to_u256()
     }
 }
 
@@ -79,5 +91,11 @@ mod test {
 
         coin.amount = "12345".to_string();
         assert_eq!(coin.to_u256().unwrap(), U256::from_str("12345").unwrap());
+
+        assert_eq!(
+            "12345".to_string().to_u256().unwrap(),
+            U256::from_str("12345").unwrap()
+        );
+        assert_eq!("12345".to_u256().unwrap(), U256::from_str("12345").unwrap());
     }
 }
