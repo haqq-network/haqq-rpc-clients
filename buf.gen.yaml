@@ -42,5 +42,17 @@ plugins:
       # https://github.com/cosmos/cosmos-sdk/blob/main/proto/buf.gen.swagger.yaml
       - fqn_for_openapi_name=true
       - simple_operation_ids=true
-      # - Mcosmos/app/v1alpha1=github.com/cosmos/cosmos-sdk/api/cosmos/app/v1alpha1
-      # - paths=source_relative
+
+  - plugin: buf.build/bufbuild/es:v1.3.1
+    out: web/gen/proto/connect-web
+    opt: target=ts
+
+  - plugin: buf.build/connectrpc/es:v1.1.3
+    out: web/gen/proto/connect-web
+    opt: target=ts
+
+  # - plugin: buf.build/grpc/web:v1.5.0
+  #   out: web/gen/proto/grpc-web
+  #   opt:
+  #     - import_style=typescript
+  #     - mode=grpcweb

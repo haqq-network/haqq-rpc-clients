@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-rec {
+{
   # https://devenv.sh/basics/
   env.GREET = "devenv";
   env.RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
@@ -11,28 +11,29 @@ rec {
 
   # https://devenv.sh/packages/
   packages = with pkgs;
-  [
-    protobuf
-    buf
-    grpc
-    
-    cargo
-    cargo-watch
-    
-    grpcurl
-    sccache
-    openapi-generator-cli
-    git
-    
-    openssl
-    pkg-config
+    [
+      protobuf
+      buf
 
-    (pkgs.callPackage ./nix/protoc-gen-prost-crate.nix {})
-  ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
-    CoreFoundation
-    SystemConfiguration
-    Security
-  ]));
+      nodejs
+
+      cargo
+      cargo-watch
+
+      grpcurl
+      sccache
+      openapi-generator-cli
+      git
+
+      openssl
+      pkg-config
+
+      (pkgs.callPackage ./nix/protoc-gen-prost-crate.nix { })
+    ] ++ (lib.optionals pkgs.stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [
+      CoreFoundation
+      SystemConfiguration
+      Security
+    ]));
 
   # https://devenv.sh/languages/
   languages.nix.enable = true;
