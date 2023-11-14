@@ -17,5 +17,5 @@ Currently only structs are generated in [web](web) folder.
 
 TODO:
 
-[ ] package.json and other packaging-related files
-[ ] tests with usage examples
+- [ ] package.json and other packaging-related files
+- [ ] tests with usage examples
