@@ -4,7 +4,7 @@ This repo contains RPC clients &mdash; generated with [buf.build](https://buf.bu
 
 ## Rust Client
 
-Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-rpc-clients/blob/master/tests/grpc.rs) and [Rest](https://github.com/haqq-network/haqq-rpc-clients/blob/master/tests/rest.rs) enpoints.
+Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-rpc-clients/blob/master/tests/grpc.rs) and [REST](https://github.com/haqq-network/haqq-rpc-clients/blob/master/tests/rest.rs) enpoints.
 
 Not published in crates yet but will be any time soon. In order to use, add to your project's `Cargo.toml`:
 
@@ -15,7 +15,7 @@ Not published in crates yet but will be any time soon. In order to use, add to y
 
 Currently only structs are generated in [web](web) folder.
 
-**TODO:**
+*TODO:**
 
 - [ ] package.json and other packaging-related files
 - [ ] tests with usage examples
