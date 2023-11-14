@@ -15,7 +15,7 @@ Not published in crates yet but will be any time soon. In order to use, add to y
 
 Currently only structs are generated in [web](web) folder.
 
-TODO:
+**TODO:**
 
 - [ ] package.json and other packaging-related files
 - [ ] tests with usage examples
