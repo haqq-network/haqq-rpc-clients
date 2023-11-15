@@ -11,11 +11,11 @@ Not published in crates yet but will be any time soon. In order to use, add to y
 * `haqq-proto = {git = "https://github.com/haqq-network/haqq-clients"}` &mdash; for gRPC endpoints
 * `haqq-rest = {git = "https://github.com/haqq-network/haqq-clients"}` &mdash; for REST endpoints
 
-## TypeScript Client
+## TypeScript gRPC-Web Client
 
 Currently only structs are generated in [web](web) folder.
 
-**TODO:**
+**TODO**:
 
 - [ ] package.json and other packaging-related files
 - [ ] tests with usage examples
