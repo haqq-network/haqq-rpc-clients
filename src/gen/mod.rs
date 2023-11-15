@@ -252,14 +252,6 @@ pub mod cosmos {
             // @@protoc_insertion_point(cosmos.msg.v1)
         }
     }
-    pub mod nft {
-        #[cfg(feature = "cosmos_nft_v1beta1")]
-        // @@protoc_insertion_point(attribute:cosmos.nft.v1beta1)
-        pub mod v1beta1 {
-            include!("cosmos.nft.v1beta1.rs");
-            // @@protoc_insertion_point(cosmos.nft.v1beta1)
-        }
-    }
     pub mod orm {
         pub mod module {
             #[cfg(feature = "cosmos_orm_module_v1alpha1")]

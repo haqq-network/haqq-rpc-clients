@@ -48,15 +48,12 @@ Class | Method | HTTP request | Description
 *QueryApi* | [**applied_plan**](docs/QueryApi.md#applied_plan) | **GET** /cosmos/upgrade/v1beta1/applied_plan/{name} | AppliedPlan queries a previously applied upgrade plan by its name.
 *QueryApi* | [**authority**](docs/QueryApi.md#authority) | **GET** /cosmos/upgrade/v1beta1/authority | Returns the account with authority to conduct upgrades
 *QueryApi* | [**balance**](docs/QueryApi.md#balance) | **GET** /cosmos/bank/v1beta1/balances/{address}/by_denom | Balance queries the balance of a single coin for a single account.
-*QueryApi* | [**balance_0**](docs/QueryApi.md#balance_0) | **GET** /cosmos/nft/v1beta1/balance/{owner}/{classId} | Balance queries the number of NFTs of a given class owned by the owner, same as balanceOf in ERC721
-*QueryApi* | [**balance_1**](docs/QueryApi.md#balance_1) | **GET** /evmos/evm/v1/balances/{address} | Balance queries the balance of a the EVM denomination for a single EthAccount.
+*QueryApi* | [**balance_0**](docs/QueryApi.md#balance_0) | **GET** /evmos/evm/v1/balances/{address} | Balance queries the balance of a the EVM denomination for a single EthAccount.
 *QueryApi* | [**balances**](docs/QueryApi.md#balances) | **GET** /haqq/vesting/v1/balances/{address} | Balances retrieves the unvested, vested and locked tokens for a vesting account
 *QueryApi* | [**base_fee**](docs/QueryApi.md#base_fee) | **GET** /evmos/evm/v1/base_fee | BaseFee queries the base fee of the parent block of the current block, it's similar to feemarket module's method, but also checks london hardfork status.
 *QueryApi* | [**base_fee_0**](docs/QueryApi.md#base_fee_0) | **GET** /evmos/feemarket/v1/base_fee | BaseFee queries the base fee of the parent block of the current block.
 *QueryApi* | [**bech32_prefix**](docs/QueryApi.md#bech32_prefix) | **GET** /cosmos/auth/v1beta1/bech32 | Bech32Prefix queries bech32Prefix
 *QueryApi* | [**block_gas**](docs/QueryApi.md#block_gas) | **GET** /evmos/feemarket/v1/block_gas | BlockGas queries the gas used at a given block height
-*QueryApi* | [**class**](docs/QueryApi.md#class) | **GET** /cosmos/nft/v1beta1/classes/{classId} | Class queries an NFT class based on its id
-*QueryApi* | [**classes**](docs/QueryApi.md#classes) | **GET** /cosmos/nft/v1beta1/classes | Classes queries all NFT classes
 *QueryApi* | [**code**](docs/QueryApi.md#code) | **GET** /evmos/evm/v1/codes/{address} | Code queries the balance of all coins for a single account.
 *QueryApi* | [**community_pool**](docs/QueryApi.md#community_pool) | **GET** /cosmos/distribution/v1beta1/community_pool | CommunityPool queries the community pool coins.
 *QueryApi* | [**cosmos_account**](docs/QueryApi.md#cosmos_account) | **GET** /evmos/evm/v1/cosmos_account/{address} | CosmosAccount queries an Ethereum account's Cosmos Address.
@@ -102,9 +99,6 @@ Class | Method | HTTP request | Description
 *QueryApi* | [**module_account_by_name**](docs/QueryApi.md#module_account_by_name) | **GET** /cosmos/auth/v1beta1/module_accounts/{name} | ModuleAccountByName returns the module account info by module name
 *QueryApi* | [**module_accounts**](docs/QueryApi.md#module_accounts) | **GET** /cosmos/auth/v1beta1/module_accounts | ModuleAccounts returns all the existing module accounts.
 *QueryApi* | [**module_versions**](docs/QueryApi.md#module_versions) | **GET** /cosmos/upgrade/v1beta1/module_versions | ModuleVersions queries the list of module versions from state.
-*QueryApi* | [**n_ft**](docs/QueryApi.md#n_ft) | **GET** /cosmos/nft/v1beta1/nfts/{classId}/{id} | NFT queries an NFT based on its class and id.
-*QueryApi* | [**n_fts**](docs/QueryApi.md#n_fts) | **GET** /cosmos/nft/v1beta1/nfts | NFTs queries all NFTs of a given class or owner,choose at least one of the two, similar to tokenByIndex in ERC721Enumerable
-*QueryApi* | [**owner**](docs/QueryApi.md#owner) | **GET** /cosmos/nft/v1beta1/owner/{classId}/{id} | Owner queries the owner of the NFT based on its class and id, same as ownerOf in ERC721
 *QueryApi* | [**params**](docs/QueryApi.md#params) | **GET** /cosmos/auth/v1beta1/params | Params queries all parameters.
 *QueryApi* | [**params_0**](docs/QueryApi.md#params_0) | **GET** /cosmos/bank/v1beta1/params | Params queries the parameters of x/bank module.
 *QueryApi* | [**params_1**](docs/QueryApi.md#params_1) | **GET** /cosmos/distribution/v1beta1/params | Params queries params of the distribution module.
@@ -131,7 +125,6 @@ Class | Method | HTTP request | Description
 *QueryApi* | [**spendable_balances**](docs/QueryApi.md#spendable_balances) | **GET** /cosmos/bank/v1beta1/spendable_balances/{address} | SpendableBalances queries the spenable balance of all coins for a single account.
 *QueryApi* | [**storage**](docs/QueryApi.md#storage) | **GET** /evmos/evm/v1/storage/{address}/{key} | Storage queries the balance of all coins for a single account.
 *QueryApi* | [**subspaces**](docs/QueryApi.md#subspaces) | **GET** /cosmos/params/v1beta1/subspaces | Subspaces queries for all registered subspaces and all keys for a subspace.
-*QueryApi* | [**supply**](docs/QueryApi.md#supply) | **GET** /cosmos/nft/v1beta1/supply/{classId} | Supply queries the number of NFTs from the given class, same as totalSupply of ERC721.
 *QueryApi* | [**supply_of**](docs/QueryApi.md#supply_of) | **GET** /cosmos/bank/v1beta1/supply/by_denom | SupplyOf queries the supply of a single coin.
 *QueryApi* | [**tally_result**](docs/QueryApi.md#tally_result) | **GET** /cosmos/gov/v1/proposals/{proposalId}/tally | TallyResult queries the tally of a proposal vote.
 *QueryApi* | [**tally_result_0**](docs/QueryApi.md#tally_result_0) | **GET** /cosmos/gov/v1beta1/proposals/{proposalId}/tally | TallyResult queries the tally of a proposal vote.
@@ -364,15 +357,6 @@ Class | Method | HTTP request | Description
  - [CosmosPeriodMintPeriodV1beta1PeriodQueryAnnualProvisionsResponse](docs/CosmosPeriodMintPeriodV1beta1PeriodQueryAnnualProvisionsResponse.md)
  - [CosmosPeriodMintPeriodV1beta1PeriodQueryInflationResponse](docs/CosmosPeriodMintPeriodV1beta1PeriodQueryInflationResponse.md)
  - [CosmosPeriodMintPeriodV1beta1PeriodQueryParamsResponse](docs/CosmosPeriodMintPeriodV1beta1PeriodQueryParamsResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodClass](docs/CosmosPeriodNftPeriodV1beta1PeriodClass.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodNft](docs/CosmosPeriodNftPeriodV1beta1PeriodNft.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryBalanceResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryBalanceResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryClassResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryClassResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryClassesResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryClassesResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryNftResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryNftResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryNftsResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryNftsResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQueryOwnerResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQueryOwnerResponse.md)
- - [CosmosPeriodNftPeriodV1beta1PeriodQuerySupplyResponse](docs/CosmosPeriodNftPeriodV1beta1PeriodQuerySupplyResponse.md)
  - [CosmosPeriodParamsPeriodV1beta1PeriodParamChange](docs/CosmosPeriodParamsPeriodV1beta1PeriodParamChange.md)
  - [CosmosPeriodParamsPeriodV1beta1PeriodQueryParamsResponse](docs/CosmosPeriodParamsPeriodV1beta1PeriodQueryParamsResponse.md)
  - [CosmosPeriodParamsPeriodV1beta1PeriodQuerySubspacesResponse](docs/CosmosPeriodParamsPeriodV1beta1PeriodQuerySubspacesResponse.md)

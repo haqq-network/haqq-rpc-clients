@@ -19,15 +19,12 @@ Method | HTTP request | Description
 [**applied_plan**](QueryApi.md#applied_plan) | **GET** /cosmos/upgrade/v1beta1/applied_plan/{name} | AppliedPlan queries a previously applied upgrade plan by its name.
 [**authority**](QueryApi.md#authority) | **GET** /cosmos/upgrade/v1beta1/authority | Returns the account with authority to conduct upgrades
 [**balance**](QueryApi.md#balance) | **GET** /cosmos/bank/v1beta1/balances/{address}/by_denom | Balance queries the balance of a single coin for a single account.
-[**balance_0**](QueryApi.md#balance_0) | **GET** /cosmos/nft/v1beta1/balance/{owner}/{classId} | Balance queries the number of NFTs of a given class owned by the owner, same as balanceOf in ERC721
-[**balance_1**](QueryApi.md#balance_1) | **GET** /evmos/evm/v1/balances/{address} | Balance queries the balance of a the EVM denomination for a single EthAccount.
+[**balance_0**](QueryApi.md#balance_0) | **GET** /evmos/evm/v1/balances/{address} | Balance queries the balance of a the EVM denomination for a single EthAccount.
 [**balances**](QueryApi.md#balances) | **GET** /haqq/vesting/v1/balances/{address} | Balances retrieves the unvested, vested and locked tokens for a vesting account
 [**base_fee**](QueryApi.md#base_fee) | **GET** /evmos/evm/v1/base_fee | BaseFee queries the base fee of the parent block of the current block, it's similar to feemarket module's method, but also checks london hardfork status.
 [**base_fee_0**](QueryApi.md#base_fee_0) | **GET** /evmos/feemarket/v1/base_fee | BaseFee queries the base fee of the parent block of the current block.
 [**bech32_prefix**](QueryApi.md#bech32_prefix) | **GET** /cosmos/auth/v1beta1/bech32 | Bech32Prefix queries bech32Prefix
 [**block_gas**](QueryApi.md#block_gas) | **GET** /evmos/feemarket/v1/block_gas | BlockGas queries the gas used at a given block height
-[**class**](QueryApi.md#class) | **GET** /cosmos/nft/v1beta1/classes/{classId} | Class queries an NFT class based on its id
-[**classes**](QueryApi.md#classes) | **GET** /cosmos/nft/v1beta1/classes | Classes queries all NFT classes
 [**code**](QueryApi.md#code) | **GET** /evmos/evm/v1/codes/{address} | Code queries the balance of all coins for a single account.
 [**community_pool**](QueryApi.md#community_pool) | **GET** /cosmos/distribution/v1beta1/community_pool | CommunityPool queries the community pool coins.
 [**cosmos_account**](QueryApi.md#cosmos_account) | **GET** /evmos/evm/v1/cosmos_account/{address} | CosmosAccount queries an Ethereum account's Cosmos Address.
@@ -73,9 +70,6 @@ Method | HTTP request | Description
 [**module_account_by_name**](QueryApi.md#module_account_by_name) | **GET** /cosmos/auth/v1beta1/module_accounts/{name} | ModuleAccountByName returns the module account info by module name
 [**module_accounts**](QueryApi.md#module_accounts) | **GET** /cosmos/auth/v1beta1/module_accounts | ModuleAccounts returns all the existing module accounts.
 [**module_versions**](QueryApi.md#module_versions) | **GET** /cosmos/upgrade/v1beta1/module_versions | ModuleVersions queries the list of module versions from state.
-[**n_ft**](QueryApi.md#n_ft) | **GET** /cosmos/nft/v1beta1/nfts/{classId}/{id} | NFT queries an NFT based on its class and id.
-[**n_fts**](QueryApi.md#n_fts) | **GET** /cosmos/nft/v1beta1/nfts | NFTs queries all NFTs of a given class or owner,choose at least one of the two, similar to tokenByIndex in ERC721Enumerable
-[**owner**](QueryApi.md#owner) | **GET** /cosmos/nft/v1beta1/owner/{classId}/{id} | Owner queries the owner of the NFT based on its class and id, same as ownerOf in ERC721
 [**params**](QueryApi.md#params) | **GET** /cosmos/auth/v1beta1/params | Params queries all parameters.
 [**params_0**](QueryApi.md#params_0) | **GET** /cosmos/bank/v1beta1/params | Params queries the parameters of x/bank module.
 [**params_1**](QueryApi.md#params_1) | **GET** /cosmos/distribution/v1beta1/params | Params queries params of the distribution module.
@@ -102,7 +96,6 @@ Method | HTTP request | Description
 [**spendable_balances**](QueryApi.md#spendable_balances) | **GET** /cosmos/bank/v1beta1/spendable_balances/{address} | SpendableBalances queries the spenable balance of all coins for a single account.
 [**storage**](QueryApi.md#storage) | **GET** /evmos/evm/v1/storage/{address}/{key} | Storage queries the balance of all coins for a single account.
 [**subspaces**](QueryApi.md#subspaces) | **GET** /cosmos/params/v1beta1/subspaces | Subspaces queries for all registered subspaces and all keys for a subspace.
-[**supply**](QueryApi.md#supply) | **GET** /cosmos/nft/v1beta1/supply/{classId} | Supply queries the number of NFTs from the given class, same as totalSupply of ERC721.
 [**supply_of**](QueryApi.md#supply_of) | **GET** /cosmos/bank/v1beta1/supply/by_denom | SupplyOf queries the supply of a single coin.
 [**tally_result**](QueryApi.md#tally_result) | **GET** /cosmos/gov/v1/proposals/{proposalId}/tally | TallyResult queries the tally of a proposal vote.
 [**tally_result_0**](QueryApi.md#tally_result_0) | **GET** /cosmos/gov/v1beta1/proposals/{proposalId}/tally | TallyResult queries the tally of a proposal vote.
@@ -587,36 +580,7 @@ No authorization required
 
 ## balance_0
 
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryBalanceResponse balance_0(owner, class_id)
-Balance queries the number of NFTs of a given class owned by the owner, same as balanceOf in ERC721
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**owner** | **String** |  | [required] |
-**class_id** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryBalanceResponse**](cosmos.nft.v1beta1.QueryBalanceResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## balance_1
-
-> crate::models::EthermintPeriodEvmPeriodV1PeriodQueryBalanceResponse balance_1(address)
+> crate::models::EthermintPeriodEvmPeriodV1PeriodQueryBalanceResponse balance_0(address)
 Balance queries the balance of a the EVM denomination for a single EthAccount.
 
 ### Parameters
@@ -759,66 +723,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**crate::models::EthermintPeriodFeemarketPeriodV1PeriodQueryBlockGasResponse**](ethermint.feemarket.v1.QueryBlockGasResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## class
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassResponse class(class_id)
-Class queries an NFT class based on its id
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**class_id** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassResponse**](cosmos.nft.v1beta1.QueryClassResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## classes
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassesResponse classes(pagination_period_key, pagination_period_offset, pagination_period_limit, pagination_period_count_total, pagination_period_reverse)
-Classes queries all NFT classes
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**pagination_period_key** | Option<**String**> | key is a value returned in PageResponse.next_key to begin querying the next page most efficiently. Only one of offset or key should be set. |  |
-**pagination_period_offset** | Option<**String**> | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set. |  |
-**pagination_period_limit** | Option<**String**> | limit is the total number of results to be returned in the result page. If left empty it will default to a value to be set by each app. |  |
-**pagination_period_count_total** | Option<**bool**> | count_total is set to true  to indicate that the result set should include a count of the total number of items available for pagination in UIs. count_total is only respected when offset is used. It is ignored when key is set. |  |
-**pagination_period_reverse** | Option<**bool**> | reverse is set to true if results are to be returned in the descending order.  Since: cosmos-sdk 0.43 |  |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassesResponse**](cosmos.nft.v1beta1.QueryClassesResponse.md)
 
 ### Authorization
 
@@ -2175,98 +2079,6 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## n_ft
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftResponse n_ft(class_id, id)
-NFT queries an NFT based on its class and id.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**class_id** | **String** |  | [required] |
-**id** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftResponse**](cosmos.nft.v1beta1.QueryNFTResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## n_fts
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftsResponse n_fts(class_id, owner, pagination_period_key, pagination_period_offset, pagination_period_limit, pagination_period_count_total, pagination_period_reverse)
-NFTs queries all NFTs of a given class or owner,choose at least one of the two, similar to tokenByIndex in ERC721Enumerable
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**class_id** | Option<**String**> |  |  |
-**owner** | Option<**String**> |  |  |
-**pagination_period_key** | Option<**String**> | key is a value returned in PageResponse.next_key to begin querying the next page most efficiently. Only one of offset or key should be set. |  |
-**pagination_period_offset** | Option<**String**> | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set. |  |
-**pagination_period_limit** | Option<**String**> | limit is the total number of results to be returned in the result page. If left empty it will default to a value to be set by each app. |  |
-**pagination_period_count_total** | Option<**bool**> | count_total is set to true  to indicate that the result set should include a count of the total number of items available for pagination in UIs. count_total is only respected when offset is used. It is ignored when key is set. |  |
-**pagination_period_reverse** | Option<**bool**> | reverse is set to true if results are to be returned in the descending order.  Since: cosmos-sdk 0.43 |  |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftsResponse**](cosmos.nft.v1beta1.QueryNFTsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## owner
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryOwnerResponse owner(class_id, id)
-Owner queries the owner of the NFT based on its class and id, same as ownerOf in ERC721
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**class_id** | **String** |  | [required] |
-**id** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryOwnerResponse**](cosmos.nft.v1beta1.QueryOwnerResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## params
 
 > crate::models::CosmosPeriodAuthPeriodV1beta1PeriodQueryParamsResponse params()
@@ -2987,34 +2799,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**crate::models::CosmosPeriodParamsPeriodV1beta1PeriodQuerySubspacesResponse**](cosmos.params.v1beta1.QuerySubspacesResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## supply
-
-> crate::models::CosmosPeriodNftPeriodV1beta1PeriodQuerySupplyResponse supply(class_id)
-Supply queries the number of NFTs from the given class, same as totalSupply of ERC721.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**class_id** | **String** |  | [required] |
-
-### Return type
-
-[**crate::models::CosmosPeriodNftPeriodV1beta1PeriodQuerySupplyResponse**](cosmos.nft.v1beta1.QuerySupplyResponse.md)
 
 ### Authorization
 

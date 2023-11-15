@@ -143,14 +143,6 @@ pub enum Balance0Error {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`balance_1`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum Balance1Error {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`balances`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -187,22 +179,6 @@ pub enum Bech32PrefixError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum BlockGasError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`class`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ClassError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`classes`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ClassesError {
     DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
     UnknownValue(serde_json::Value),
 }
@@ -567,30 +543,6 @@ pub enum ModuleVersionsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`n_ft`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum NFtError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`n_fts`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum NFtsError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`owner`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OwnerError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`params`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -795,14 +747,6 @@ pub enum StorageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SubspacesError {
-    DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`supply`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum SupplyError {
     DefaultResponse(crate::models::GooglePeriodRpcPeriodStatus),
     UnknownValue(serde_json::Value),
 }
@@ -1521,34 +1465,7 @@ pub async fn balance(configuration: &configuration::Configuration, address: &str
     }
 }
 
-pub async fn balance_0(configuration: &configuration::Configuration, owner: &str, class_id: &str) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryBalanceResponse, Error<Balance0Error>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/balance/{owner}/{classId}", local_var_configuration.base_path, owner=crate::apis::urlencode(owner), classId=crate::apis::urlencode(class_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<Balance0Error> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn balance_1(configuration: &configuration::Configuration, address: &str) -> Result<crate::models::EthermintPeriodEvmPeriodV1PeriodQueryBalanceResponse, Error<Balance1Error>> {
+pub async fn balance_0(configuration: &configuration::Configuration, address: &str) -> Result<crate::models::EthermintPeriodEvmPeriodV1PeriodQueryBalanceResponse, Error<Balance0Error>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1569,7 +1486,7 @@ pub async fn balance_1(configuration: &configuration::Configuration, address: &s
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<Balance1Error> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<Balance0Error> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -1706,75 +1623,6 @@ pub async fn block_gas(configuration: &configuration::Configuration, ) -> Result
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<BlockGasError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn class(configuration: &configuration::Configuration, class_id: &str) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassResponse, Error<ClassError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/classes/{classId}", local_var_configuration.base_path, classId=crate::apis::urlencode(class_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ClassError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn classes(configuration: &configuration::Configuration, pagination_period_key: Option<String>, pagination_period_offset: Option<&str>, pagination_period_limit: Option<&str>, pagination_period_count_total: Option<bool>, pagination_period_reverse: Option<bool>) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryClassesResponse, Error<ClassesError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/classes", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = pagination_period_key {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.key", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_offset {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.offset", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_limit {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_count_total {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.countTotal", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_reverse {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.reverse", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ClassesError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -3295,108 +3143,6 @@ pub async fn module_versions(configuration: &configuration::Configuration, modul
     }
 }
 
-pub async fn n_ft(configuration: &configuration::Configuration, class_id: &str, id: &str) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftResponse, Error<NFtError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/nfts/{classId}/{id}", local_var_configuration.base_path, classId=crate::apis::urlencode(class_id), id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<NFtError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn n_fts(configuration: &configuration::Configuration, class_id: Option<&str>, owner: Option<&str>, pagination_period_key: Option<String>, pagination_period_offset: Option<&str>, pagination_period_limit: Option<&str>, pagination_period_count_total: Option<bool>, pagination_period_reverse: Option<bool>) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryNftsResponse, Error<NFtsError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/nfts", local_var_configuration.base_path);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = class_id {
-        local_var_req_builder = local_var_req_builder.query(&[("classId", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = owner {
-        local_var_req_builder = local_var_req_builder.query(&[("owner", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_key {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.key", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_offset {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.offset", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_limit {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_count_total {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.countTotal", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pagination_period_reverse {
-        local_var_req_builder = local_var_req_builder.query(&[("pagination.reverse", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<NFtsError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn owner(configuration: &configuration::Configuration, class_id: &str, id: &str) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQueryOwnerResponse, Error<OwnerError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/owner/{classId}/{id}", local_var_configuration.base_path, classId=crate::apis::urlencode(class_id), id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<OwnerError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
 pub async fn params(configuration: &configuration::Configuration, ) -> Result<crate::models::CosmosPeriodAuthPeriodV1beta1PeriodQueryParamsResponse, Error<ParamsError>> {
     let local_var_configuration = configuration;
 
@@ -4216,33 +3962,6 @@ pub async fn subspaces(configuration: &configuration::Configuration, ) -> Result
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<SubspacesError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn supply(configuration: &configuration::Configuration, class_id: &str) -> Result<crate::models::CosmosPeriodNftPeriodV1beta1PeriodQuerySupplyResponse, Error<SupplyError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/cosmos/nft/v1beta1/supply/{classId}", local_var_configuration.base_path, classId=crate::apis::urlencode(class_id));
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<SupplyError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

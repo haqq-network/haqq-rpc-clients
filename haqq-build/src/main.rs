@@ -19,7 +19,7 @@ fn main() {
     let stderr = Stdio::inherit();
 
     let mut cmd = Command::new("buf");
-    cmd.arg("generate");
+    cmd.args(["generate", "--exclude-path", "cosmos-sdk/proto/cosmos/nft"]);
 
     cmd.stdout(stdout).stderr(stderr);
 
