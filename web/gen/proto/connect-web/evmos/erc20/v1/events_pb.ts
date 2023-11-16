@@ -56,7 +56,8 @@ export class EventRegisterPair extends Message<EventRegisterPair> {
 }
 
 /**
- * EventToggleTokenConversion is an event emitted when a coin's token conversion is toggled.
+ * EventToggleTokenConversion is an event emitted when a coin's token conversion
+ * is toggled.
  *
  * @generated from message evmos.erc20.v1.EventToggleTokenConversion
  */
@@ -212,7 +213,8 @@ export class EventConvertERC20 extends Message<EventConvertERC20> {
   denom = "";
 
   /**
-   * contract_address of an ERC20 token contract, that is registered in a token pair
+   * contract_address of an ERC20 token contract, that is registered in a token
+   * pair
    *
    * @generated from field: string contract_address = 5;
    */

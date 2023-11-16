@@ -7,8 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 
 /**
- * EpochInfo defines the message interface containing the relevant informations about
- * an epoch.
+ * EpochInfo defines the message interface containing the relevant informations
+ * about an epoch.
  *
  * @generated from message evmos.epochs.v1.EpochInfo
  */

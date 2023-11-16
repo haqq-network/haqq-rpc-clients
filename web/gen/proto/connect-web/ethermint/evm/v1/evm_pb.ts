@@ -111,7 +111,8 @@ export class ChainConfig extends Message<ChainConfig> {
   daoForkBlock = "";
 
   /**
-   * dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork
+   * dao_fork_support defines whether the nodes supports or opposes the DAO
+   * hard-fork
    *
    * @generated from field: bool dao_fork_support = 3;
    */
@@ -126,7 +127,8 @@ export class ChainConfig extends Message<ChainConfig> {
   eip150Block = "";
 
   /**
-   * eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed)
+   * eip150_hash: EIP150 HF hash (needed for header only clients as only gas
+   * pricing changed)
    *
    * @generated from field: string eip150_hash = 5;
    */
@@ -147,14 +149,16 @@ export class ChainConfig extends Message<ChainConfig> {
   eip158Block = "";
 
   /**
-   * byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium)
+   * byzantium_block: Byzantium switch block (nil no fork, 0 = already on
+   * byzantium)
    *
    * @generated from field: string byzantium_block = 8;
    */
   byzantiumBlock = "";
 
   /**
-   * constantinople_block: Constantinople switch block (nil no fork, 0 = already activated)
+   * constantinople_block: Constantinople switch block (nil no fork, 0 = already
+   * activated)
    *
    * @generated from field: string constantinople_block = 9;
    */
@@ -168,14 +172,16 @@ export class ChainConfig extends Message<ChainConfig> {
   petersburgBlock = "";
 
   /**
-   * istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul)
+   * istanbul_block: Istanbul switch block (nil no fork, 0 = already on
+   * istanbul)
    *
    * @generated from field: string istanbul_block = 11;
    */
   istanbulBlock = "";
 
   /**
-   * muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)
+   * muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 =
+   * already activated)
    *
    * @generated from field: string muir_glacier_block = 12;
    */
@@ -196,21 +202,24 @@ export class ChainConfig extends Message<ChainConfig> {
   londonBlock = "";
 
   /**
-   * arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   * arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 =
+   * already activated)
    *
    * @generated from field: string arrow_glacier_block = 18;
    */
   arrowGlacierBlock = "";
 
   /**
-   * gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   * gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 =
+   * already activated)
    *
    * @generated from field: string gray_glacier_block = 20;
    */
   grayGlacierBlock = "";
 
   /**
-   * merge_netsplit_block: Virtual fork after The Merge to use as a network splitter
+   * merge_netsplit_block: Virtual fork after The Merge to use as a network
+   * splitter
    *
    * @generated from field: string merge_netsplit_block = 21;
    */
@@ -635,8 +644,8 @@ export class TraceConfig extends Message<TraceConfig> {
   tracer = "";
 
   /**
-   * timeout overrides the default timeout of 5 seconds for JavaScript-based tracing
-   * calls
+   * timeout overrides the default timeout of 5 seconds for JavaScript-based
+   * tracing calls
    *
    * @generated from field: string timeout = 2;
    */

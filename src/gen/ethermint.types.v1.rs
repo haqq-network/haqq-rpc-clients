@@ -12,12 +12,14 @@ pub struct EthAccount {
     #[prost(string, tag="2")]
     pub code_hash: ::prost::alloc::string::String,
 }
-/// ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx
+/// ExtensionOptionDynamicFeeTx is an extension option that specifies the
+/// maxPrioPrice for cosmos tx
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ExtensionOptionDynamicFeeTx {
-    /// max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559 spec
+    /// max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559
+    /// spec
     #[prost(string, tag="1")]
     pub max_priority_price: ::prost::alloc::string::String,
 }
@@ -51,8 +53,8 @@ pub struct TxResult {
     #[prost(uint64, tag="7")]
     pub cumulative_gas_used: u64,
 }
-/// ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
-/// the fee payer as well as its signature data.
+/// ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain
+/// id, the fee payer as well as its signature data.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

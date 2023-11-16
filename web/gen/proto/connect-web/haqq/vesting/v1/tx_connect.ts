@@ -61,7 +61,8 @@ export const Msg = {
       kind: MethodKind.Unary,
     },
     /**
-     * ConvertIntoVestingAccount converts a Eth account to a ClawbackVestingAccount
+     * ConvertIntoVestingAccount converts a Eth account to a
+     * ClawbackVestingAccount
      *
      * @generated from rpc haqq.vesting.v1.Msg.ConvertIntoVestingAccount
      */

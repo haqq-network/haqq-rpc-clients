@@ -107,7 +107,8 @@ export class QueryBalancesResponse extends Message<QueryBalancesResponse> {
 }
 
 /**
- * QueryTotalLockedRequest is the request type for the Query/TotalLocked RPC method.
+ * QueryTotalLockedRequest is the request type for the Query/TotalLocked RPC
+ * method.
  *
  * @generated from message haqq.vesting.v1.QueryTotalLockedRequest
  */
@@ -140,7 +141,8 @@ export class QueryTotalLockedRequest extends Message<QueryTotalLockedRequest> {
 }
 
 /**
- * QueryTotalLockedResponse is the response type for the Query/TotalLocked RPC method.
+ * QueryTotalLockedResponse is the response type for the Query/TotalLocked RPC
+ * method.
  *
  * @generated from message haqq.vesting.v1.QueryTotalLockedResponse
  */

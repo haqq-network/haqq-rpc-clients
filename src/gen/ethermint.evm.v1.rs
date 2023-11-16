@@ -97,14 +97,16 @@ pub struct ChainConfig {
     /// dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork)
     #[prost(string, tag="2")]
     pub dao_fork_block: ::prost::alloc::string::String,
-    /// dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork
+    /// dao_fork_support defines whether the nodes supports or opposes the DAO
+    /// hard-fork
     #[prost(bool, tag="3")]
     pub dao_fork_support: bool,
     /// eip150_block: EIP150 implements the Gas price changes
     /// (<https://github.com/ethereum/EIPs/issues/150>) EIP150 HF block (nil no fork)
     #[prost(string, tag="4")]
     pub eip150_block: ::prost::alloc::string::String,
-    /// eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed)
+    /// eip150_hash: EIP150 HF hash (needed for header only clients as only gas
+    /// pricing changed)
     #[prost(string, tag="5")]
     pub eip150_hash: ::prost::alloc::string::String,
     /// eip155_block: EIP155Block HF block
@@ -113,19 +115,23 @@ pub struct ChainConfig {
     /// eip158_block: EIP158 HF block
     #[prost(string, tag="7")]
     pub eip158_block: ::prost::alloc::string::String,
-    /// byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium)
+    /// byzantium_block: Byzantium switch block (nil no fork, 0 = already on
+    /// byzantium)
     #[prost(string, tag="8")]
     pub byzantium_block: ::prost::alloc::string::String,
-    /// constantinople_block: Constantinople switch block (nil no fork, 0 = already activated)
+    /// constantinople_block: Constantinople switch block (nil no fork, 0 = already
+    /// activated)
     #[prost(string, tag="9")]
     pub constantinople_block: ::prost::alloc::string::String,
     /// petersburg_block: Petersburg switch block (nil same as Constantinople)
     #[prost(string, tag="10")]
     pub petersburg_block: ::prost::alloc::string::String,
-    /// istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul)
+    /// istanbul_block: Istanbul switch block (nil no fork, 0 = already on
+    /// istanbul)
     #[prost(string, tag="11")]
     pub istanbul_block: ::prost::alloc::string::String,
-    /// muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)
+    /// muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 =
+    /// already activated)
     #[prost(string, tag="12")]
     pub muir_glacier_block: ::prost::alloc::string::String,
     /// berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin)
@@ -134,13 +140,16 @@ pub struct ChainConfig {
     /// london_block: London switch block (nil = no fork, 0 = already on london)
     #[prost(string, tag="17")]
     pub london_block: ::prost::alloc::string::String,
-    /// arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
+    /// arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 =
+    /// already activated)
     #[prost(string, tag="18")]
     pub arrow_glacier_block: ::prost::alloc::string::String,
-    /// gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
+    /// gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 =
+    /// already activated)
     #[prost(string, tag="20")]
     pub gray_glacier_block: ::prost::alloc::string::String,
-    /// merge_netsplit_block: Virtual fork after The Merge to use as a network splitter
+    /// merge_netsplit_block: Virtual fork after The Merge to use as a network
+    /// splitter
     #[prost(string, tag="21")]
     pub merge_netsplit_block: ::prost::alloc::string::String,
     /// shanghai_block switch block (nil = no fork, 0 = already on shanghai)
@@ -263,8 +272,8 @@ pub struct TraceConfig {
     /// tracer is a custom javascript tracer
     #[prost(string, tag="1")]
     pub tracer: ::prost::alloc::string::String,
-    /// timeout overrides the default timeout of 5 seconds for JavaScript-based tracing
-    /// calls
+    /// timeout overrides the default timeout of 5 seconds for JavaScript-based
+    /// tracing calls
     #[prost(string, tag="2")]
     pub timeout: ::prost::alloc::string::String,
     /// reexec defines the number of blocks the tracer is willing to go back
@@ -338,8 +347,8 @@ pub struct MsgEthereumTx {
     /// hash of the transaction in hex format
     #[prost(string, tag="3")]
     pub hash: ::prost::alloc::string::String,
-    /// from is the ethereum signer address in hex format. This address value is checked
-    /// against the address derived from the signature (V, R, S) using the
+    /// from is the ethereum signer address in hex format. This address value is
+    /// checked against the address derived from the signature (V, R, S) using the
     /// secp256k1 elliptic curve
     #[prost(string, tag="4")]
     pub from: ::prost::alloc::string::String,
@@ -480,8 +489,8 @@ pub struct MsgEthereumTxResponse {
     /// logs.
     #[prost(message, repeated, tag="2")]
     pub logs: ::prost::alloc::vec::Vec<Log>,
-    /// ret is the returned data from evm function (result or data supplied with revert
-    /// opcode)
+    /// ret is the returned data from evm function (result or data supplied with
+    /// revert opcode)
     #[prost(bytes="bytes", tag="3")]
     pub ret: ::prost::bytes::Bytes,
     /// vm_error is the error returned by vm execution

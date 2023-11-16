@@ -4,12 +4,15 @@ This repo contains RPC clients &mdash; generated with [buf.build](https://buf.bu
 
 ## Rust Client
 
-Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-clients/blob/master/tests/grpc.rs) and [REST](https://github.com/haqq-network/haqq-clients/blob/master/tests/rest.rs) enpoints.
+Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-clients/blob/master/tests/grpc.rs).
 
 Not published in crates yet but will be any time soon. In order to use, add to your project's `Cargo.toml`:
 
 * `haqq-proto = {git = "https://github.com/haqq-network/haqq-clients"}` &mdash; for gRPC endpoints
-* `haqq-rest = {git = "https://github.com/haqq-network/haqq-clients"}` &mdash; for REST endpoints
+
+**TODO**:
+
+- [ ] REST endpoints (openapi-generator-cli is very buggy for rust)
 
 ## TypeScript gRPC-Web Client
 

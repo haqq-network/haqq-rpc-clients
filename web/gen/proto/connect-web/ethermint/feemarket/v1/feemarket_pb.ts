@@ -36,7 +36,8 @@ export class Params extends Message<Params> {
   elasticityMultiplier = 0;
 
   /**
-   * enable_height defines at which block height the base fee calculation is enabled.
+   * enable_height defines at which block height the base fee calculation is
+   * enabled.
    *
    * @generated from field: int64 enable_height = 5;
    */
@@ -50,7 +51,8 @@ export class Params extends Message<Params> {
   baseFee = "";
 
   /**
-   * min_gas_price defines the minimum gas price value for cosmos and eth transactions
+   * min_gas_price defines the minimum gas price value for cosmos and eth
+   * transactions
    *
    * @generated from field: string min_gas_price = 7;
    */

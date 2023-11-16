@@ -237,7 +237,8 @@ export class MsgUpdateVestingFunder extends Message<MsgUpdateVestingFunder> {
   funderAddress = "";
 
   /**
-   * new_funder_address is the new address to replace the existing funder_address
+   * new_funder_address is the new address to replace the existing
+   * funder_address
    *
    * @generated from field: string new_funder_address = 2;
    */
@@ -315,7 +316,8 @@ export class MsgUpdateVestingFunderResponse extends Message<MsgUpdateVestingFund
 }
 
 /**
- * MsgConvertVestingAccount defines a message that enables converting a vesting account to a eth account
+ * MsgConvertVestingAccount defines a message that enables converting a vesting
+ * account to a eth account
  *
  * @generated from message haqq.vesting.v1.MsgConvertVestingAccount
  */
@@ -356,7 +358,8 @@ export class MsgConvertVestingAccount extends Message<MsgConvertVestingAccount> 
 }
 
 /**
- * MsgConvertVestingAccountResponse defines the MsgConvertVestingAccount response type.
+ * MsgConvertVestingAccountResponse defines the MsgConvertVestingAccount
+ * response type.
  *
  * @generated from message haqq.vesting.v1.MsgConvertVestingAccountResponse
  */
@@ -389,7 +392,8 @@ export class MsgConvertVestingAccountResponse extends Message<MsgConvertVestingA
 }
 
 /**
- * MsgConvertIntoVestingAccount defines a message that enables converting a eth account to a vesting account
+ * MsgConvertIntoVestingAccount defines a message that enables converting a eth
+ * account to a vesting account
  *
  * @generated from message haqq.vesting.v1.MsgConvertIntoVestingAccount
  */
@@ -442,8 +446,8 @@ export class MsgConvertIntoVestingAccount extends Message<MsgConvertIntoVestingA
   merge = false;
 
   /**
-   * stake specifies a the post-creation flow. If true, delegate the total amount to a specified
-   * validator. If false, do nothing.
+   * stake specifies a the post-creation flow. If true, delegate the total
+   * amount to a specified validator. If false, do nothing.
    *
    * @generated from field: bool stake = 7;
    */
@@ -492,7 +496,8 @@ export class MsgConvertIntoVestingAccount extends Message<MsgConvertIntoVestingA
 }
 
 /**
- * MsgConvertIntoVestingAccountResponse defines the MsgConvertIntoVestingAccount response type.
+ * MsgConvertIntoVestingAccountResponse defines the MsgConvertIntoVestingAccount
+ * response type.
  *
  * @generated from message haqq.vesting.v1.MsgConvertIntoVestingAccountResponse
  */

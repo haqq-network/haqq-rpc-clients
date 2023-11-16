@@ -2,4 +2,3 @@ version: v1
 directories:
    - haqq-node/proto
    - cosmos-sdk/proto
-

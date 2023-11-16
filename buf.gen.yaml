@@ -33,15 +33,15 @@ plugins:
       - include_file=src/gen/mod.rs
       - gen_crate
 
-  - plugin: buf.build/grpc-ecosystem/openapiv2:v2.18.1
-    out: openapi
-    # https://github.com/grpc-ecosystem/grpc-gateway/blob/main/protoc-gen-openapiv2/main.go
-    opt:
-      # - openapi_naming_strategy=simple
-      - allow_merge=true
-      # https://github.com/cosmos/cosmos-sdk/blob/main/proto/buf.gen.swagger.yaml
-      - fqn_for_openapi_name=true
-      - simple_operation_ids=true
+  # - plugin: buf.build/grpc-ecosystem/openapiv2:v2.18.1
+  #   out: openapi
+  #   # https://github.com/grpc-ecosystem/grpc-gateway/blob/main/protoc-gen-openapiv2/main.go
+  #   opt:
+  #     # - openapi_naming_strategy=simple
+  #     - allow_merge=true
+  #     # https://github.com/cosmos/cosmos-sdk/blob/main/proto/buf.gen.swagger.yaml
+  #     - fqn_for_openapi_name=true
+  #     - simple_operation_ids=true
 
   - plugin: buf.build/bufbuild/es:v1.3.1
     out: web/gen/proto/connect-web

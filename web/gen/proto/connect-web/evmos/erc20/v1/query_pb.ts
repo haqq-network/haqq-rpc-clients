@@ -151,7 +151,8 @@ export class QueryTokenPairRequest extends Message<QueryTokenPairRequest> {
  */
 export class QueryTokenPairResponse extends Message<QueryTokenPairResponse> {
   /**
-   * token_pairs returns the info about a registered token pair for the erc20 module
+   * token_pairs returns the info about a registered token pair for the erc20
+   * module
    *
    * @generated from field: evmos.erc20.v1.TokenPair token_pair = 1;
    */

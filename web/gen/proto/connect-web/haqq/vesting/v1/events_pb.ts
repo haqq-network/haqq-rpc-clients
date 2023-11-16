@@ -138,7 +138,8 @@ export class EventClawback extends Message<EventClawback> {
 }
 
 /**
- * EventUpdateVestingFunder defines the event type for updating the vesting funder
+ * EventUpdateVestingFunder defines the event type for updating the vesting
+ * funder
  *
  * @generated from message haqq.vesting.v1.EventUpdateVestingFunder
  */

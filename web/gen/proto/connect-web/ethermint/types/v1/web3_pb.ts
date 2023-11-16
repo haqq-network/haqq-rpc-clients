@@ -7,8 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
- * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
- * the fee payer as well as its signature data.
+ * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain
+ * id, the fee payer as well as its signature data.
  *
  * @generated from message ethermint.types.v1.ExtensionOptionsWeb3Tx
  */

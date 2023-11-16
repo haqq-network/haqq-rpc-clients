@@ -35,8 +35,8 @@ export class MsgEthereumTx extends Message<MsgEthereumTx> {
   hash = "";
 
   /**
-   * from is the ethereum signer address in hex format. This address value is checked
-   * against the address derived from the signature (V, R, S) using the
+   * from is the ethereum signer address in hex format. This address value is
+   * checked against the address derived from the signature (V, R, S) using the
    * secp256k1 elliptic curve
    *
    * @generated from field: string from = 4;
@@ -488,8 +488,8 @@ export class MsgEthereumTxResponse extends Message<MsgEthereumTxResponse> {
   logs: Log[] = [];
 
   /**
-   * ret is the returned data from evm function (result or data supplied with revert
-   * opcode)
+   * ret is the returned data from evm function (result or data supplied with
+   * revert opcode)
    *
    * @generated from field: bytes ret = 3;
    */

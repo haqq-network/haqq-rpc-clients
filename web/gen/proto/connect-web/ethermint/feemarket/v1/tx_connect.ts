@@ -15,8 +15,9 @@ export const Msg = {
   typeName: "ethermint.feemarket.v1.Msg",
   methods: {
     /**
-     * UpdateParams defined a governance operation for updating the x/feemarket module parameters.
-     * The authority is hard-coded to the Cosmos SDK x/gov module account
+     * UpdateParams defined a governance operation for updating the x/feemarket
+     * module parameters. The authority is hard-coded to the Cosmos SDK x/gov
+     * module account
      *
      * @generated from rpc ethermint.feemarket.v1.Msg.UpdateParams
      */

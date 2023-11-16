@@ -15,7 +15,8 @@ export const Query = {
   typeName: "haqq.vesting.v1.Query",
   methods: {
     /**
-     * Balances retrieves the unvested, vested and locked tokens for a vesting account
+     * Balances retrieves the unvested, vested and locked tokens for a vesting
+     * account
      *
      * @generated from rpc haqq.vesting.v1.Query.Balances
      */
@@ -26,7 +27,8 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * TotalLocked retrieves the total summary of all unvested, vested and locked tokens
+     * TotalLocked retrieves the total summary of all unvested, vested and locked
+     * tokens
      *
      * @generated from rpc haqq.vesting.v1.Query.TotalLocked
      */

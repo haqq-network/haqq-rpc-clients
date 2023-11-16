@@ -39,8 +39,9 @@ export const Msg = {
       kind: MethodKind.Unary,
     },
     /**
-     * UpdateParams defined a governance operation for updating the x/erc20 module parameters.
-     * The authority is hard-coded to the Cosmos SDK x/gov module account
+     * UpdateParams defined a governance operation for updating the x/erc20 module
+     * parameters. The authority is hard-coded to the Cosmos SDK x/gov module
+     * account
      *
      * @generated from rpc evmos.erc20.v1.Msg.UpdateParams
      */

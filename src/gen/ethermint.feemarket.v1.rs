@@ -36,13 +36,15 @@ pub struct Params {
     /// have.
     #[prost(uint32, tag="3")]
     pub elasticity_multiplier: u32,
-    /// enable_height defines at which block height the base fee calculation is enabled.
+    /// enable_height defines at which block height the base fee calculation is
+    /// enabled.
     #[prost(int64, tag="5")]
     pub enable_height: i64,
     /// base_fee for EIP-1559 blocks.
     #[prost(string, tag="6")]
     pub base_fee: ::prost::alloc::string::String,
-    /// min_gas_price defines the minimum gas price value for cosmos and eth transactions
+    /// min_gas_price defines the minimum gas price value for cosmos and eth
+    /// transactions
     #[prost(string, tag="7")]
     pub min_gas_price: ::prost::alloc::string::String,
     /// min_gas_multiplier bounds the minimum gas used to be charged

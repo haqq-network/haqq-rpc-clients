@@ -128,7 +128,8 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * TraceBlock implements the `debug_traceBlockByNumber` and `debug_traceBlockByHash` rpc api
+     * TraceBlock implements the `debug_traceBlockByNumber` and
+     * `debug_traceBlockByHash` rpc api
      *
      * @generated from rpc ethermint.evm.v1.Query.TraceBlock
      */
@@ -140,7 +141,8 @@ export const Query = {
     },
     /**
      * BaseFee queries the base fee of the parent block of the current block,
-     * it's similar to feemarket module's method, but also checks london hardfork status.
+     * it's similar to feemarket module's method, but also checks london hardfork
+     * status.
      *
      * @generated from rpc ethermint.evm.v1.Query.BaseFee
      */

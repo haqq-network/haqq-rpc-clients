@@ -15,8 +15,8 @@ import { Params } from "./genesis_pb.js";
  */
 export class MsgConvertCoin extends Message<MsgConvertCoin> {
   /**
-   * coin is a Cosmos coin whose denomination is registered in a token pair. The coin
-   * amount defines the amount of coins to convert.
+   * coin is a Cosmos coin whose denomination is registered in a token pair. The
+   * coin amount defines the amount of coins to convert.
    *
    * @generated from field: cosmos.base.v1beta1.Coin coin = 1;
    */
@@ -30,7 +30,8 @@ export class MsgConvertCoin extends Message<MsgConvertCoin> {
   receiver = "";
 
   /**
-   * sender is the cosmos bech32 address from the owner of the given Cosmos coins
+   * sender is the cosmos bech32 address from the owner of the given Cosmos
+   * coins
    *
    * @generated from field: string sender = 3;
    */
@@ -107,7 +108,8 @@ export class MsgConvertCoinResponse extends Message<MsgConvertCoinResponse> {
  */
 export class MsgConvertERC20 extends Message<MsgConvertERC20> {
   /**
-   * contract_address of an ERC20 token contract, that is registered in a token pair
+   * contract_address of an ERC20 token contract, that is registered in a token
+   * pair
    *
    * @generated from field: string contract_address = 1;
    */

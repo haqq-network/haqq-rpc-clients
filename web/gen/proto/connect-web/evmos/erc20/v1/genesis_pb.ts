@@ -63,15 +63,17 @@ export class GenesisState extends Message<GenesisState> {
  */
 export class Params extends Message<Params> {
   /**
-   * enable_erc20 is the parameter to enable the conversion of Cosmos coins <--> ERC20 tokens.
+   * enable_erc20 is the parameter to enable the conversion of Cosmos coins <-->
+   * ERC20 tokens.
    *
    * @generated from field: bool enable_erc20 = 1;
    */
   enableErc20 = false;
 
   /**
-   * enable_evm_hook is the parameter to enable the EVM hook that converts an ERC20 token to a Cosmos
-   * Coin by transferring the Tokens through a MsgEthereumTx to the ModuleAddress Ethereum address.
+   * enable_evm_hook is the parameter to enable the EVM hook that converts an
+   * ERC20 token to a Cosmos Coin by transferring the Tokens through a
+   * MsgEthereumTx to the ModuleAddress Ethereum address.
    *
    * @generated from field: bool enable_evm_hook = 2;
    */

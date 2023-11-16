@@ -36,7 +36,8 @@ pub struct EventClawback {
     #[prost(string, tag="3")]
     pub destination: ::prost::alloc::string::String,
 }
-/// EventUpdateVestingFunder defines the event type for updating the vesting funder
+/// EventUpdateVestingFunder defines the event type for updating the vesting
+/// funder
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -76,13 +77,15 @@ pub struct QueryBalancesResponse {
     #[prost(message, repeated, tag="3")]
     pub vested: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
 }
-/// QueryTotalLockedRequest is the request type for the Query/TotalLocked RPC method.
+/// QueryTotalLockedRequest is the request type for the Query/TotalLocked RPC
+/// method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTotalLockedRequest {
 }
-/// QueryTotalLockedResponse is the response type for the Query/TotalLocked RPC method.
+/// QueryTotalLockedResponse is the response type for the Query/TotalLocked RPC
+/// method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -168,7 +171,8 @@ pub struct MsgUpdateVestingFunder {
     /// funder_address is the current funder address of the ClawbackVestingAccount
     #[prost(string, tag="1")]
     pub funder_address: ::prost::alloc::string::String,
-    /// new_funder_address is the new address to replace the existing funder_address
+    /// new_funder_address is the new address to replace the existing
+    /// funder_address
     #[prost(string, tag="2")]
     pub new_funder_address: ::prost::alloc::string::String,
     /// vesting_address is the address of the ClawbackVestingAccount being updated
@@ -182,7 +186,8 @@ pub struct MsgUpdateVestingFunder {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgUpdateVestingFunderResponse {
 }
-/// MsgConvertVestingAccount defines a message that enables converting a vesting account to a eth account
+/// MsgConvertVestingAccount defines a message that enables converting a vesting
+/// account to a eth account
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -191,13 +196,15 @@ pub struct MsgConvertVestingAccount {
     #[prost(string, tag="1")]
     pub vesting_address: ::prost::alloc::string::String,
 }
-/// MsgConvertVestingAccountResponse defines the MsgConvertVestingAccount response type.
+/// MsgConvertVestingAccountResponse defines the MsgConvertVestingAccount
+/// response type.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgConvertVestingAccountResponse {
 }
-/// MsgConvertIntoVestingAccount defines a message that enables converting a eth account to a vesting account
+/// MsgConvertIntoVestingAccount defines a message that enables converting a eth
+/// account to a vesting account
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -225,15 +232,16 @@ pub struct MsgConvertIntoVestingAccount {
     /// same from_address.
     #[prost(bool, tag="6")]
     pub merge: bool,
-    /// stake specifies a the post-creation flow. If true, delegate the total amount to a specified
-    /// validator. If false, do nothing.
+    /// stake specifies a the post-creation flow. If true, delegate the total
+    /// amount to a specified validator. If false, do nothing.
     #[prost(bool, tag="7")]
     pub stake: bool,
     /// validator_address specifies the validator to delegate tokens to.
     #[prost(string, tag="8")]
     pub validator_address: ::prost::alloc::string::String,
 }
-/// MsgConvertIntoVestingAccountResponse defines the MsgConvertIntoVestingAccount response type.
+/// MsgConvertIntoVestingAccountResponse defines the MsgConvertIntoVestingAccount
+/// response type.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

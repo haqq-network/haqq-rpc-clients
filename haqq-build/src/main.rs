@@ -36,7 +36,6 @@ fn main() {
     std::mem::drop(f);
 
     apply_proto_patches(Path::new(PROTO_GEN_DIR));
-    apply_openapi_patches(Path::new(OPENAPI_SPEC_GEN_DIR));
 
     let stdout = Stdio::inherit();
     let stderr = Stdio::inherit();
@@ -45,41 +44,71 @@ fn main() {
         fs::remove_dir_all(OPENAPI_GEN_DIR).unwrap();
     }
 
-    let mut cmd = Command::new("openapi-generator-cli");
-    cmd.args([
-        "generate",
-        "-i",
-        &format!("{}/apidocs.swagger.json", OPENAPI_SPEC_GEN_DIR),
-        "-g",
-        "rust",
-        "-o",
-        OPENAPI_GEN_DIR,
-        "--skip-validate-spec",
-        "--package-name",
-        "haqq-rest",
-    ]);
+    // let mut cmd = Command::new("openapi-generator-cli");
+    // cmd.args([
+    //     "generate",
+    //     "-i",
+    //     "haqq-node/client/docs/swagger-ui/swagger.json",
+    //     "-g",
+    //     "rust",
+    //     // "--enum-name-mappings",
+    //     // "Option=Opt,option=opt",
+    //     "-o",
+    //     OPENAPI_GEN_DIR,
+    //     "--skip-validate-spec",
+    //     "--package-name",
+    //     "haqq-rest",
+    // ]);
 
-    cmd.stdout(stdout).stderr(stderr);
+    // cmd.stdout(stdout).stderr(stderr);
 
-    let output = cmd.output().unwrap();
-    assert!(output.status.success());
+    // let output = cmd.output().unwrap();
+    // assert!(output.status.success());
+
+    // apply_rest_patches();
 }
 
 // https://github.com/cosmos/cosmos-rust/blob/08353cb090aea4ad1569c5962a1a92d6327cd2d1/proto-build/src/main.rs#L396
 fn patch_file(path: impl AsRef<Path>, pattern: &Regex, replacement: &str) -> io::Result<()> {
     let mut contents = fs::read_to_string(&path)?;
     contents = pattern.replace_all(&contents, replacement).to_string();
-    fs::write(path, &contents)
+    fs::write(&path, &contents)
 }
 
-fn apply_openapi_patches(openapi_dir: &Path) {
-    patch_file(
-        openapi_dir.join("apidocs.swagger.json"),
-        &Regex::new("version not set").unwrap(),
-        OPENAPI_VERSION,
-    )
-    .expect("error patching apidocs.swagger.json");
-}
+// fn patch_files(paths: Vec<impl AsRef<Path>>, pattern: &Regex, replacement: &str) -> io::Result<()> {
+//     for path in paths {
+//         if let Err(e) = patch_file(path, pattern, replacement) {
+//             return Err(e);
+//         }
+//     }
+
+//     Ok(())
+// }
+
+// fn apply_rest_patches() {
+//     for (pattern, replacement) in [
+//         ("Option<", "core::option::Option<"),
+//         ("Option::is_", "core::option::Option::is_"),
+//     ] {
+//         // FIXME: figure out a way how to rename Option in enum
+//         // there is --enum-name-mappings option in openapi-generator-cli
+//         // but apparently it's currently only supported by java generators
+//         // patch_files(
+//         //     vec![
+//         //         "rest/src/models/cosmos_period_gov_period_v1_period_weighted_vote_option.rs",
+//         //         "rest/src/models/cosmos_period_gov_period_v1beta1_period_vote.rs",
+//         //         "rest/src/models/cosmos_period_gov_period_v1beta1_period_weighted_vote_option.rs",
+//         //         "rest/src/models/gov_v1_votes_200_response_votes_inner_options_inner.rs",
+//         //         "rest/src/models/votes_200_response_votes_inner_options_inner.rs",
+//         //         "rest/src/models/votes_200_response_votes_inner.rs",
+//         //         "rest/src/models/vote_200_response_vote.rs",
+//         //     ],
+//         //     &Regex::new(pattern).unwrap(),
+//         //     replacement,
+//         // )
+//         // .expect("error patching rest file");
+//     }
+// }
 
 /// Fix clashing type names in prost-generated code. See cosmos/cosmos-rust#154.
 fn apply_proto_patches(proto_dir: &Path) {

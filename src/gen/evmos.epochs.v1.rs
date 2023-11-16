@@ -1,6 +1,6 @@
 // @generated
-/// EpochInfo defines the message interface containing the relevant informations about
-/// an epoch.
+/// EpochInfo defines the message interface containing the relevant informations
+/// about an epoch.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

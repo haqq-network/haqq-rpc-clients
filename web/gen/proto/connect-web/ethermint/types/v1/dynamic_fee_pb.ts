@@ -7,13 +7,15 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
- * ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx
+ * ExtensionOptionDynamicFeeTx is an extension option that specifies the
+ * maxPrioPrice for cosmos tx
  *
  * @generated from message ethermint.types.v1.ExtensionOptionDynamicFeeTx
  */
 export class ExtensionOptionDynamicFeeTx extends Message<ExtensionOptionDynamicFeeTx> {
   /**
-   * max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559 spec
+   * max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559
+   * spec
    *
    * @generated from field: string max_priority_price = 1;
    */

@@ -70,7 +70,8 @@ export class TokenPair extends Message<TokenPair> {
   enabled = false;
 
   /**
-   * contract_owner is the an ENUM specifying the type of ERC20 owner (0 invalid, 1 ModuleAccount, 2 external address)
+   * contract_owner is the an ENUM specifying the type of ERC20 owner (0
+   * invalid, 1 ModuleAccount, 2 external address)
    *
    * @generated from field: evmos.erc20.v1.Owner contract_owner = 4;
    */

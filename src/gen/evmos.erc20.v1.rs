@@ -14,7 +14,8 @@ pub struct TokenPair {
     /// enabled defines the token mapping enable status
     #[prost(bool, tag="3")]
     pub enabled: bool,
-    /// contract_owner is the an ENUM specifying the type of ERC20 owner (0 invalid, 1 ModuleAccount, 2 external address)
+    /// contract_owner is the an ENUM specifying the type of ERC20 owner (0
+    /// invalid, 1 ModuleAccount, 2 external address)
     #[prost(enumeration="Owner", tag="4")]
     pub contract_owner: i32,
 }
@@ -122,7 +123,8 @@ pub struct EventRegisterPair {
     #[prost(string, tag="2")]
     pub erc20_address: ::prost::alloc::string::String,
 }
-/// EventToggleTokenConversion is an event emitted when a coin's token conversion is toggled.
+/// EventToggleTokenConversion is an event emitted when a coin's token conversion
+/// is toggled.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -172,7 +174,8 @@ pub struct EventConvertErc20 {
     /// denom is the coin's denomination.
     #[prost(string, tag="4")]
     pub denom: ::prost::alloc::string::String,
-    /// contract_address of an ERC20 token contract, that is registered in a token pair
+    /// contract_address of an ERC20 token contract, that is registered in a token
+    /// pair
     #[prost(string, tag="5")]
     pub contract_address: ::prost::alloc::string::String,
 }
@@ -193,11 +196,13 @@ pub struct GenesisState {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Params {
-    /// enable_erc20 is the parameter to enable the conversion of Cosmos coins <--> ERC20 tokens.
+    /// enable_erc20 is the parameter to enable the conversion of Cosmos coins <-->
+    /// ERC20 tokens.
     #[prost(bool, tag="1")]
     pub enable_erc20: bool,
-    /// enable_evm_hook is the parameter to enable the EVM hook that converts an ERC20 token to a Cosmos
-    /// Coin by transferring the Tokens through a MsgEthereumTx to the ModuleAddress Ethereum address.
+    /// enable_evm_hook is the parameter to enable the EVM hook that converts an
+    /// ERC20 token to a Cosmos Coin by transferring the Tokens through a
+    /// MsgEthereumTx to the ModuleAddress Ethereum address.
     #[prost(bool, tag="2")]
     pub enable_evm_hook: bool,
 }
@@ -240,7 +245,8 @@ pub struct QueryTokenPairRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryTokenPairResponse {
-    /// token_pairs returns the info about a registered token pair for the erc20 module
+    /// token_pairs returns the info about a registered token pair for the erc20
+    /// module
     #[prost(message, optional, tag="1")]
     pub token_pair: ::core::option::Option<TokenPair>,
 }
@@ -265,14 +271,15 @@ pub struct QueryParamsResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgConvertCoin {
-    /// coin is a Cosmos coin whose denomination is registered in a token pair. The coin
-    /// amount defines the amount of coins to convert.
+    /// coin is a Cosmos coin whose denomination is registered in a token pair. The
+    /// coin amount defines the amount of coins to convert.
     #[prost(message, optional, tag="1")]
     pub coin: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
     /// receiver is the hex address to receive ERC20 token
     #[prost(string, tag="2")]
     pub receiver: ::prost::alloc::string::String,
-    /// sender is the cosmos bech32 address from the owner of the given Cosmos coins
+    /// sender is the cosmos bech32 address from the owner of the given Cosmos
+    /// coins
     #[prost(string, tag="3")]
     pub sender: ::prost::alloc::string::String,
 }
@@ -288,7 +295,8 @@ pub struct MsgConvertCoinResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgConvertErc20 {
-    /// contract_address of an ERC20 token contract, that is registered in a token pair
+    /// contract_address of an ERC20 token contract, that is registered in a token
+    /// pair
     #[prost(string, tag="1")]
     pub contract_address: ::prost::alloc::string::String,
     /// amount of ERC20 tokens to convert
