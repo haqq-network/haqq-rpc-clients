@@ -16,7 +16,7 @@ fn main() {
     if std::path::Path::new(PROTO_GEN_DIR).exists() {
         fs::remove_dir_all(PROTO_GEN_DIR).unwrap();
         fs::remove_dir_all(PROTO_WEB_DIR).unwrap();
-        fs::remove_dir_all(PROTO_TMP_DIR).unwrap();
+        fs::remove_dir_all(PROTO_TMP_DIR).ok();
     }
 
     run_command("mkdir", ["-p", "tmp-proto/proto"]);
