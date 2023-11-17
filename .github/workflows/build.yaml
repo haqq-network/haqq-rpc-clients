@@ -31,8 +31,7 @@ jobs:
           submodules: 'true'
       - uses: haqq-network/nix-action@master
         with:
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-          extraPullNames: devenv
+          useMagicNixCache: true
       - name: Install devenv.sh
         run: nix profile install tarball+https://install.devenv.sh/latest --accept-flake-config
       - name: Run restore cache
