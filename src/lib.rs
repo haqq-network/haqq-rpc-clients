@@ -5,6 +5,8 @@ pub use gen::*;
 pub mod prelude {
     use std::{num::ParseIntError, str::FromStr};
 
+    use crate::cosmos::base::v1beta1::DecCoin;
+
     use super::*;
     use ethnum::U256;
 
@@ -14,7 +16,7 @@ pub mod prelude {
     use cosmos::base::v1beta1::Coin;
 
     pub trait CoinExt<'a> {
-        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin>;
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str>;
     }
 
     // impl<'a, I> CoinOptionExt<'a> for I
@@ -28,17 +30,31 @@ pub mod prelude {
     // }
 
     impl<'a> CoinExt<'a> for Option<Coin> {
-        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
-            self.as_ref().filter(|c| c.denom == denom.into())
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str> {
+            self.as_ref()
+                .filter(|c| c.denom == denom.into())
+                .map(|c| c.denom.as_str())
         }
     }
 
     impl<'a> CoinExt<'a> for Vec<Coin> {
-        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a Coin> {
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str> {
             let denom = denom.into();
             for coin in self.iter() {
                 if coin.denom == denom {
-                    return Some(&coin);
+                    return Some(coin.amount.as_str());
+                }
+            }
+            None
+        }
+    }
+
+    impl<'a> CoinExt<'a> for Vec<DecCoin> {
+        fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str> {
+            let denom = denom.into();
+            for coin in self.iter() {
+                if coin.denom == denom {
+                    return Some(coin.amount.as_str());
                 }
             }
             None
