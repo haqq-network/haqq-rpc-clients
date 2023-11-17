@@ -144,6 +144,82 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
 }
 
 /**
+ * QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method.
+ *
+ * Since: cosmos-sdk 0.46
+ *
+ * @generated from message cosmos.auth.v1beta1.QueryModuleAccountsRequest
+ */
+export class QueryModuleAccountsRequest extends Message<QueryModuleAccountsRequest> {
+  constructor(data?: PartialMessage<QueryModuleAccountsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.auth.v1beta1.QueryModuleAccountsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryModuleAccountsRequest {
+    return new QueryModuleAccountsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryModuleAccountsRequest {
+    return new QueryModuleAccountsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryModuleAccountsRequest {
+    return new QueryModuleAccountsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryModuleAccountsRequest | PlainMessage<QueryModuleAccountsRequest> | undefined, b: QueryModuleAccountsRequest | PlainMessage<QueryModuleAccountsRequest> | undefined): boolean {
+    return proto3.util.equals(QueryModuleAccountsRequest, a, b);
+  }
+}
+
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ *
+ * @generated from message cosmos.auth.v1beta1.QueryParamsResponse
+ */
+export class QueryParamsResponse extends Message<QueryParamsResponse> {
+  /**
+   * params defines the parameters of the module.
+   *
+   * @generated from field: cosmos.auth.v1beta1.Params params = 1;
+   */
+  params?: Params;
+
+  constructor(data?: PartialMessage<QueryParamsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.auth.v1beta1.QueryParamsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "params", kind: "message", T: Params },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
+    return new QueryParamsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+    return new QueryParamsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+    return new QueryParamsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+    return proto3.util.equals(QueryParamsResponse, a, b);
+  }
+}
+
+/**
  * QueryAccountResponse is the response type for the Query/Account RPC method.
  *
  * @generated from message cosmos.auth.v1beta1.QueryAccountResponse
@@ -218,82 +294,6 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
 }
 
 /**
- * QueryParamsResponse is the response type for the Query/Params RPC method.
- *
- * @generated from message cosmos.auth.v1beta1.QueryParamsResponse
- */
-export class QueryParamsResponse extends Message<QueryParamsResponse> {
-  /**
-   * params defines the parameters of the module.
-   *
-   * @generated from field: cosmos.auth.v1beta1.Params params = 1;
-   */
-  params?: Params;
-
-  constructor(data?: PartialMessage<QueryParamsResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.auth.v1beta1.QueryParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
-    return new QueryParamsResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryParamsResponse {
-    return new QueryParamsResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
-    return new QueryParamsResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
-    return proto3.util.equals(QueryParamsResponse, a, b);
-  }
-}
-
-/**
- * QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method.
- *
- * Since: cosmos-sdk 0.46
- *
- * @generated from message cosmos.auth.v1beta1.QueryModuleAccountsRequest
- */
-export class QueryModuleAccountsRequest extends Message<QueryModuleAccountsRequest> {
-  constructor(data?: PartialMessage<QueryModuleAccountsRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.auth.v1beta1.QueryModuleAccountsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryModuleAccountsRequest {
-    return new QueryModuleAccountsRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryModuleAccountsRequest {
-    return new QueryModuleAccountsRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryModuleAccountsRequest {
-    return new QueryModuleAccountsRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryModuleAccountsRequest | PlainMessage<QueryModuleAccountsRequest> | undefined, b: QueryModuleAccountsRequest | PlainMessage<QueryModuleAccountsRequest> | undefined): boolean {
-    return proto3.util.equals(QueryModuleAccountsRequest, a, b);
-  }
-}
-
-/**
  * QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method.
  *
  * Since: cosmos-sdk 0.46
@@ -331,84 +331,6 @@ export class QueryModuleAccountsResponse extends Message<QueryModuleAccountsResp
 
   static equals(a: QueryModuleAccountsResponse | PlainMessage<QueryModuleAccountsResponse> | undefined, b: QueryModuleAccountsResponse | PlainMessage<QueryModuleAccountsResponse> | undefined): boolean {
     return proto3.util.equals(QueryModuleAccountsResponse, a, b);
-  }
-}
-
-/**
- * QueryModuleAccountByNameRequest is the request type for the Query/ModuleAccountByName RPC method.
- *
- * @generated from message cosmos.auth.v1beta1.QueryModuleAccountByNameRequest
- */
-export class QueryModuleAccountByNameRequest extends Message<QueryModuleAccountByNameRequest> {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name = "";
-
-  constructor(data?: PartialMessage<QueryModuleAccountByNameRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.auth.v1beta1.QueryModuleAccountByNameRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryModuleAccountByNameRequest {
-    return new QueryModuleAccountByNameRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryModuleAccountByNameRequest {
-    return new QueryModuleAccountByNameRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryModuleAccountByNameRequest {
-    return new QueryModuleAccountByNameRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryModuleAccountByNameRequest | PlainMessage<QueryModuleAccountByNameRequest> | undefined, b: QueryModuleAccountByNameRequest | PlainMessage<QueryModuleAccountByNameRequest> | undefined): boolean {
-    return proto3.util.equals(QueryModuleAccountByNameRequest, a, b);
-  }
-}
-
-/**
- * QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method.
- *
- * @generated from message cosmos.auth.v1beta1.QueryModuleAccountByNameResponse
- */
-export class QueryModuleAccountByNameResponse extends Message<QueryModuleAccountByNameResponse> {
-  /**
-   * @generated from field: google.protobuf.Any account = 1;
-   */
-  account?: Any;
-
-  constructor(data?: PartialMessage<QueryModuleAccountByNameResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.auth.v1beta1.QueryModuleAccountByNameResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account", kind: "message", T: Any },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryModuleAccountByNameResponse {
-    return new QueryModuleAccountByNameResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryModuleAccountByNameResponse {
-    return new QueryModuleAccountByNameResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryModuleAccountByNameResponse {
-    return new QueryModuleAccountByNameResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryModuleAccountByNameResponse | PlainMessage<QueryModuleAccountByNameResponse> | undefined, b: QueryModuleAccountByNameResponse | PlainMessage<QueryModuleAccountByNameResponse> | undefined): boolean {
-    return proto3.util.equals(QueryModuleAccountByNameResponse, a, b);
   }
 }
 
@@ -655,16 +577,10 @@ export class AddressStringToBytesResponse extends Message<AddressStringToBytesRe
 /**
  * QueryAccountAddressByIDRequest is the request type for AccountAddressByID rpc method
  *
- * Since: cosmos-sdk 0.46.2
- *
  * @generated from message cosmos.auth.v1beta1.QueryAccountAddressByIDRequest
  */
 export class QueryAccountAddressByIDRequest extends Message<QueryAccountAddressByIDRequest> {
   /**
-   * id is the account number of the address to be queried. This field
-   * should have been an uint64 (like all account numbers), and will be
-   * updated to uint64 in a future version of the auth query.
-   *
    * @generated from field: int64 id = 1;
    */
   id = protoInt64.zero;
@@ -699,8 +615,6 @@ export class QueryAccountAddressByIDRequest extends Message<QueryAccountAddressB
 
 /**
  * QueryAccountAddressByIDResponse is the response type for AccountAddressByID rpc method
- *
- * Since: cosmos-sdk 0.46.2
  *
  * @generated from message cosmos.auth.v1beta1.QueryAccountAddressByIDResponse
  */

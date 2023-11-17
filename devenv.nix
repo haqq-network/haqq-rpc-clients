@@ -25,6 +25,8 @@
       openapi-generator-cli
       git
 
+      yq
+
       openssl
       pkg-config
 

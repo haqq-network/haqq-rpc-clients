@@ -31,8 +31,6 @@ export class MsgCreateVestingAccount extends Message<MsgCreateVestingAccount> {
   amount: Coin[] = [];
 
   /**
-   * end of vesting as unix time (in seconds).
-   *
    * @generated from field: int64 end_time = 4;
    */
   endTime = protoInt64.zero;
@@ -216,8 +214,6 @@ export class MsgCreatePeriodicVestingAccount extends Message<MsgCreatePeriodicVe
   toAddress = "";
 
   /**
-   * start of vesting as unix time (in seconds).
-   *
    * @generated from field: int64 start_time = 3;
    */
   startTime = protoInt64.zero;

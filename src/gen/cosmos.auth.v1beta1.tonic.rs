@@ -211,33 +211,6 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmos.auth.v1beta1.Query", "ModuleAccounts"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn module_account_by_name(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryModuleAccountByNameRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryModuleAccountByNameResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.auth.v1beta1.Query/ModuleAccountByName",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(
-                    GrpcMethod::new("cosmos.auth.v1beta1.Query", "ModuleAccountByName"),
-                );
-            self.inner.unary(req, path, codec).await
-        }
         pub async fn bech32_prefix(
             &mut self,
             request: impl tonic::IntoRequest<super::Bech32PrefixRequest>,

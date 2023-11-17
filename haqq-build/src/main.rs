@@ -6,25 +6,43 @@ use std::{fs, io};
 use regex::Regex;
 
 const PROTO_GEN_DIR: &str = "src/gen";
-const OPENAPI_SPEC_GEN_DIR: &str = "openapi";
-const OPENAPI_VERSION: &str = "0.1.0";
-const OPENAPI_GEN_DIR: &str = "rest";
+const PROTO_WEB_DIR: &str = "web/gen";
+const PROTO_TMP_DIR: &str = "tmp-proto";
+// const OPENAPI_SPEC_GEN_DIR: &str = "openapi";
+// const OPENAPI_VERSION: &str = "0.1.0";
+// const OPENAPI_GEN_DIR: &str = "rest";
 
 fn main() {
     if std::path::Path::new(PROTO_GEN_DIR).exists() {
         fs::remove_dir_all(PROTO_GEN_DIR).unwrap();
+        fs::remove_dir_all(PROTO_WEB_DIR).unwrap();
+        fs::remove_dir_all(PROTO_TMP_DIR).unwrap();
     }
 
-    let stdout = Stdio::inherit();
-    let stderr = Stdio::inherit();
+    run_command("mkdir", ["-p", "tmp-proto/proto"]);
 
-    let mut cmd = Command::new("buf");
-    cmd.args(["generate", "--exclude-path", "cosmos-sdk/proto/cosmos/nft"]);
+    let yq = r#"cat haqq-node/proto/buf.yaml | yq '.deps | map( "buf export " + . + " -o 'tmp-proto/proto'") | join(" && ")' | xargs bash -c"#;
+    run_command("bash", ["-c", yq]);
+    run_command(
+        "bash",
+        ["-c", "buf export haqq-node/proto -o tmp-proto/proto"],
+    );
 
-    cmd.stdout(stdout).stderr(stderr);
+    // run_command("bash", ["-c", "cp buf.yaml tmp-proto"]);
+    // run_command("bash", ["-c", "cp buf.lock tmp-proto"]);
 
-    let output = cmd.output().unwrap();
-    assert!(output.status.success());
+    run_command(
+        "buf",
+        [
+            "generate",
+            "--exclude-path",
+            "tmp-proto/proto/google",
+            "--exclude-path",
+            "tmp-proto/proto/gogoproto",
+            "--exclude-path",
+            "tmp-proto/proto/cosmos/nft",
+        ],
+    );
 
     let mut f = std::fs::OpenOptions::new()
         .create(true)
@@ -37,12 +55,9 @@ fn main() {
 
     apply_proto_patches(Path::new(PROTO_GEN_DIR));
 
-    let stdout = Stdio::inherit();
-    let stderr = Stdio::inherit();
-
-    if std::path::Path::new(OPENAPI_GEN_DIR).exists() {
-        fs::remove_dir_all(OPENAPI_GEN_DIR).unwrap();
-    }
+    // if std::path::Path::new(OPENAPI_GEN_DIR).exists() {
+    //     fs::remove_dir_all(OPENAPI_GEN_DIR).unwrap();
+    // }
 
     // let mut cmd = Command::new("openapi-generator-cli");
     // cmd.args([
@@ -144,4 +159,21 @@ fn apply_proto_patches(proto_dir: &Path) {
         )
         .expect("error patching cosmos.staking.v1beta1.serde.rs");
     }
+}
+
+fn run_command<I, S>(cmd: &str, args: I)
+where
+    I: IntoIterator<Item = S>,
+    S: AsRef<std::ffi::OsStr>,
+{
+    let stdout = Stdio::inherit();
+    let stderr = Stdio::inherit();
+
+    let mut cmd = Command::new(cmd);
+    cmd.args(args);
+
+    cmd.stdout(stdout).stderr(stderr);
+
+    let output = cmd.output().unwrap();
+    assert!(output.status.success());
 }

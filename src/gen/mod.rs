@@ -57,14 +57,6 @@ pub mod cosmos {
                 // @@protoc_insertion_point(cosmos.base.kv.v1beta1)
             }
         }
-        pub mod node {
-            #[cfg(feature = "cosmos_base_node_v1beta1")]
-            // @@protoc_insertion_point(attribute:cosmos.base.node.v1beta1)
-            pub mod v1beta1 {
-                include!("cosmos.base.node.v1beta1.rs");
-                // @@protoc_insertion_point(cosmos.base.node.v1beta1)
-            }
-        }
         pub mod query {
             #[cfg(feature = "cosmos_base_query_v1beta1")]
             // @@protoc_insertion_point(attribute:cosmos.base.query.v1beta1)
@@ -330,6 +322,12 @@ pub mod cosmos {
             // @@protoc_insertion_point(cosmos.vesting.v1beta1)
         }
     }
+}
+#[cfg(feature = "cosmos_proto")]
+// @@protoc_insertion_point(attribute:cosmos_proto)
+pub mod cosmos_proto {
+    include!("cosmos_proto.rs");
+    // @@protoc_insertion_point(cosmos_proto)
 }
 pub mod ethermint {
     pub mod crypto {

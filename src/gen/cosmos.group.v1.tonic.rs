@@ -415,31 +415,6 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmos.group.v1.Query", "TallyResult"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn groups(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryGroupsRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryGroupsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.group.v1.Query/Groups",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("cosmos.group.v1.Query", "Groups"));
-            self.inner.unary(req, path, codec).await
-        }
     }
 }
 /// Generated client implementations.

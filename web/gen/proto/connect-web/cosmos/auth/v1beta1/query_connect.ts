@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AddressBytesToStringRequest, AddressBytesToStringResponse, AddressStringToBytesRequest, AddressStringToBytesResponse, Bech32PrefixRequest, Bech32PrefixResponse, QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse, QueryAccountRequest, QueryAccountResponse, QueryAccountsRequest, QueryAccountsResponse, QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponse, QueryModuleAccountsRequest, QueryModuleAccountsResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import { AddressBytesToStringRequest, AddressBytesToStringResponse, AddressStringToBytesRequest, AddressStringToBytesResponse, Bech32PrefixRequest, Bech32PrefixResponse, QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse, QueryAccountRequest, QueryAccountResponse, QueryAccountsRequest, QueryAccountsResponse, QueryModuleAccountsRequest, QueryModuleAccountsResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -39,9 +39,7 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * AccountAddressByID returns account address based on account number.
-     *
-     * Since: cosmos-sdk 0.46.2
+     * AccountAddressByID returns account address based on account id 
      *
      * @generated from rpc cosmos.auth.v1beta1.Query.AccountAddressByID
      */
@@ -73,17 +71,6 @@ export const Query = {
       name: "ModuleAccounts",
       I: QueryModuleAccountsRequest,
       O: QueryModuleAccountsResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * ModuleAccountByName returns the module account info by module name
-     *
-     * @generated from rpc cosmos.auth.v1beta1.Query.ModuleAccountByName
-     */
-    moduleAccountByName: {
-      name: "ModuleAccountByName",
-      I: QueryModuleAccountByNameRequest,
-      O: QueryModuleAccountByNameResponse,
       kind: MethodKind.Unary,
     },
     /**

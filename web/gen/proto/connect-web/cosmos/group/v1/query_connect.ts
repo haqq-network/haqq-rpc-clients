@@ -5,7 +5,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryGroupInfoRequest, QueryGroupInfoResponse, QueryGroupMembersRequest, QueryGroupMembersResponse, QueryGroupPoliciesByAdminRequest, QueryGroupPoliciesByAdminResponse, QueryGroupPoliciesByGroupRequest, QueryGroupPoliciesByGroupResponse, QueryGroupPolicyInfoRequest, QueryGroupPolicyInfoResponse, QueryGroupsByAdminRequest, QueryGroupsByAdminResponse, QueryGroupsByMemberRequest, QueryGroupsByMemberResponse, QueryGroupsRequest, QueryGroupsResponse, QueryProposalRequest, QueryProposalResponse, QueryProposalsByGroupPolicyRequest, QueryProposalsByGroupPolicyResponse, QueryTallyResultRequest, QueryTallyResultResponse, QueryVoteByProposalVoterRequest, QueryVoteByProposalVoterResponse, QueryVotesByProposalRequest, QueryVotesByProposalResponse, QueryVotesByVoterRequest, QueryVotesByVoterResponse } from "./query_pb.js";
+import { QueryGroupInfoRequest, QueryGroupInfoResponse, QueryGroupMembersRequest, QueryGroupMembersResponse, QueryGroupPoliciesByAdminRequest, QueryGroupPoliciesByAdminResponse, QueryGroupPoliciesByGroupRequest, QueryGroupPoliciesByGroupResponse, QueryGroupPolicyInfoRequest, QueryGroupPolicyInfoResponse, QueryGroupsByAdminRequest, QueryGroupsByAdminResponse, QueryGroupsByMemberRequest, QueryGroupsByMemberResponse, QueryProposalRequest, QueryProposalResponse, QueryProposalsByGroupPolicyRequest, QueryProposalsByGroupPolicyResponse, QueryTallyResultRequest, QueryTallyResultResponse, QueryVoteByProposalVoterRequest, QueryVoteByProposalVoterResponse, QueryVotesByProposalRequest, QueryVotesByProposalResponse, QueryVotesByVoterRequest, QueryVotesByVoterResponse } from "./query_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -161,19 +161,6 @@ export const Query = {
       name: "TallyResult",
       I: QueryTallyResultRequest,
       O: QueryTallyResultResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * Groups queries all groups in state.
-     *
-     * Since: cosmos-sdk 0.47.1
-     *
-     * @generated from rpc cosmos.group.v1.Query.Groups
-     */
-    groups: {
-      name: "Groups",
-      I: QueryGroupsRequest,
-      O: QueryGroupsResponse,
       kind: MethodKind.Unary,
     },
   }

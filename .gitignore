@@ -16,3 +16,4 @@ devenv.local.nix
 /target
 
 result
+tmp-proto

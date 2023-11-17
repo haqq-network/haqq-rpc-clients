@@ -1473,7 +1473,7 @@ export class ResponseCheckTx extends Message<ResponseCheckTx> {
   priority = protoInt64.zero;
 
   /**
-   * mempool_error is set by CometBFT.
+   * mempool_error is set by Tendermint.
    * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
    *
    * @generated from field: string mempool_error = 11;

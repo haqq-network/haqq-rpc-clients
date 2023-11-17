@@ -305,30 +305,6 @@ pub struct QueryParamsResponse {
     #[prost(message, optional, tag="1")]
     pub params: ::core::option::Option<Params>,
 }
-/// QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryValidatorDistributionInfoRequest {
-    /// validator_address defines the validator address to query for.
-    #[prost(string, tag="1")]
-    pub validator_address: ::prost::alloc::string::String,
-}
-/// QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryValidatorDistributionInfoResponse {
-    /// operator_address defines the validator operator address.
-    #[prost(string, tag="1")]
-    pub operator_address: ::prost::alloc::string::String,
-    /// self_bond_rewards defines the self delegations rewards.
-    #[prost(message, repeated, tag="2")]
-    pub self_bond_rewards: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
-    /// commission defines the commision the validator received.
-    #[prost(message, repeated, tag="3")]
-    pub commission: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
-}
 /// QueryValidatorOutstandingRewardsRequest is the request type for the
 /// Query/ValidatorOutstandingRewards RPC method.
 #[derive(::derive_builder::Builder)]

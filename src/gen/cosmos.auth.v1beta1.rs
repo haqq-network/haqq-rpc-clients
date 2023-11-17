@@ -89,6 +89,23 @@ pub struct QueryAccountRequest {
     #[prost(string, tag="1")]
     pub address: ::prost::alloc::string::String,
 }
+/// QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method.
+///
+/// Since: cosmos-sdk 0.46
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryModuleAccountsRequest {
+}
+/// QueryParamsResponse is the response type for the Query/Params RPC method.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryParamsResponse {
+    /// params defines the parameters of the module.
+    #[prost(message, optional, tag="1")]
+    pub params: ::core::option::Option<Params>,
+}
 /// QueryAccountResponse is the response type for the Query/Account RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -104,23 +121,6 @@ pub struct QueryAccountResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsRequest {
 }
-/// QueryParamsResponse is the response type for the Query/Params RPC method.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryParamsResponse {
-    /// params defines the parameters of the module.
-    #[prost(message, optional, tag="1")]
-    pub params: ::core::option::Option<Params>,
-}
-/// QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method.
-///
-/// Since: cosmos-sdk 0.46
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryModuleAccountsRequest {
-}
 /// QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method.
 ///
 /// Since: cosmos-sdk 0.46
@@ -130,22 +130,6 @@ pub struct QueryModuleAccountsRequest {
 pub struct QueryModuleAccountsResponse {
     #[prost(message, repeated, tag="1")]
     pub accounts: ::prost::alloc::vec::Vec<::prost_wkt_types::Any>,
-}
-/// QueryModuleAccountByNameRequest is the request type for the Query/ModuleAccountByName RPC method.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryModuleAccountByNameRequest {
-    #[prost(string, tag="1")]
-    pub name: ::prost::alloc::string::String,
-}
-/// QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryModuleAccountByNameResponse {
-    #[prost(message, optional, tag="1")]
-    pub account: ::core::option::Option<::prost_wkt_types::Any>,
 }
 /// Bech32PrefixRequest is the request type for Bech32Prefix rpc method.
 ///
@@ -206,21 +190,14 @@ pub struct AddressStringToBytesResponse {
     pub address_bytes: ::prost::bytes::Bytes,
 }
 /// QueryAccountAddressByIDRequest is the request type for AccountAddressByID rpc method
-///
-/// Since: cosmos-sdk 0.46.2
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryAccountAddressByIdRequest {
-    /// id is the account number of the address to be queried. This field
-    /// should have been an uint64 (like all account numbers), and will be
-    /// updated to uint64 in a future version of the auth query.
     #[prost(int64, tag="1")]
     pub id: i64,
 }
 /// QueryAccountAddressByIDResponse is the response type for AccountAddressByID rpc method
-///
-/// Since: cosmos-sdk 0.46.2
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

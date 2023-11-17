@@ -65,7 +65,7 @@ pub struct BlockId {
 }
 // --------------------------------
 
-/// Header defines the structure of a block header.
+/// Header defines the structure of a Tendermint block header.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

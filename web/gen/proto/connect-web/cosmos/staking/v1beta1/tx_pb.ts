@@ -503,7 +503,7 @@ export class MsgCancelUnbondingDelegation extends Message<MsgCancelUnbondingDele
   validatorAddress = "";
 
   /**
-   * amount is always less than or equal to unbonding delegation entry balance
+   * amount is always less than or equal to unbonding delegation entry balance 
    *
    * @generated from field: cosmos.base.v1beta1.Coin amount = 3;
    */

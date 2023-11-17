@@ -7,7 +7,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ProposalExecutorResult, ProposalStatus, TallyResult } from "./types_pb.js";
+import { ProposalExecutorResult } from "./types_pb.js";
 
 /**
  * EventCreateGroup is an event emitted when a group is created.
@@ -399,63 +399,6 @@ export class EventLeaveGroup extends Message<EventLeaveGroup> {
 
   static equals(a: EventLeaveGroup | PlainMessage<EventLeaveGroup> | undefined, b: EventLeaveGroup | PlainMessage<EventLeaveGroup> | undefined): boolean {
     return proto3.util.equals(EventLeaveGroup, a, b);
-  }
-}
-
-/**
- * EventProposalPruned is an event emitted when a proposal is pruned.
- *
- * @generated from message cosmos.group.v1.EventProposalPruned
- */
-export class EventProposalPruned extends Message<EventProposalPruned> {
-  /**
-   * proposal_id is the unique ID of the proposal.
-   *
-   * @generated from field: uint64 proposal_id = 1;
-   */
-  proposalId = protoInt64.zero;
-
-  /**
-   * status is the proposal status (UNSPECIFIED, SUBMITTED, ACCEPTED, REJECTED, ABORTED, WITHDRAWN).
-   *
-   * @generated from field: cosmos.group.v1.ProposalStatus status = 2;
-   */
-  status = ProposalStatus.UNSPECIFIED;
-
-  /**
-   * tally_result is the proposal tally result (when applicable).
-   *
-   * @generated from field: cosmos.group.v1.TallyResult tally_result = 3;
-   */
-  tallyResult?: TallyResult;
-
-  constructor(data?: PartialMessage<EventProposalPruned>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.group.v1.EventProposalPruned";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "proposal_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "status", kind: "enum", T: proto3.getEnumType(ProposalStatus) },
-    { no: 3, name: "tally_result", kind: "message", T: TallyResult },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventProposalPruned {
-    return new EventProposalPruned().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventProposalPruned {
-    return new EventProposalPruned().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventProposalPruned {
-    return new EventProposalPruned().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: EventProposalPruned | PlainMessage<EventProposalPruned> | undefined, b: EventProposalPruned | PlainMessage<EventProposalPruned> | undefined): boolean {
-    return proto3.util.equals(EventProposalPruned, a, b);
   }
 }
 

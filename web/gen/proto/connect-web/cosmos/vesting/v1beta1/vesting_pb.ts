@@ -36,8 +36,6 @@ export class BaseVestingAccount extends Message<BaseVestingAccount> {
   delegatedVesting: Coin[] = [];
 
   /**
-   * Vesting end time, as unix timestamp (in seconds).
-   *
    * @generated from field: int64 end_time = 5;
    */
   endTime = protoInt64.zero;
@@ -87,8 +85,6 @@ export class ContinuousVestingAccount extends Message<ContinuousVestingAccount> 
   baseVestingAccount?: BaseVestingAccount;
 
   /**
-   * Vesting start time, as unix timestamp (in seconds).
-   *
    * @generated from field: int64 start_time = 2;
    */
   startTime = protoInt64.zero;
@@ -170,8 +166,6 @@ export class DelayedVestingAccount extends Message<DelayedVestingAccount> {
  */
 export class Period extends Message<Period> {
   /**
-   * Period duration in seconds.
-   *
    * @generated from field: int64 length = 1;
    */
   length = protoInt64.zero;
