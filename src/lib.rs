@@ -10,9 +10,6 @@ pub mod prelude {
     use super::*;
     use ethnum::U256;
 
-    pub type ClientChannel = tonic::transport::Channel;
-    pub use tonic;
-
     use cosmos::base::v1beta1::Coin;
 
     pub trait CoinExt<'a> {
