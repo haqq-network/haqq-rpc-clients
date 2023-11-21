@@ -9,6 +9,7 @@ ethnum = {version = "1.5.0", features = ["serde"]}
 pbjson = "0.6.0"
 prost = "0.12.1"
 prost-wkt-types = "0.5.0"
+rust_decimal = "1.33.1"
 serde = "1.0.192"
 tonic = "0.10.2"
 
