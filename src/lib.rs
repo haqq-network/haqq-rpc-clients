@@ -90,7 +90,7 @@ pub mod prelude {
     }
 
     impl Denom {
-        pub fn pair(&self) -> Option<(Self, U256, U256)> {
+        pub fn conversion_pair(&self) -> Option<(Self, U256, U256)> {
             match self {
                 Self::aISLM => Some((Self::ISLM, U256::new(1), U256::pow(U256::new(10), 18))),
                 Self::ISLM => Some((Self::aISLM, U256::pow(U256::new(10), 18), U256::new(1))),
@@ -129,11 +129,11 @@ mod test {
             U256::from_str(&format!("1{}", (0..18).map(|_| "0").collect::<String>())).unwrap();
         let oneislm_in_islm = U256::from_str("1").unwrap();
 
-        let (denom, mul, div) = Denom::aISLM.pair().unwrap();
+        let (denom, mul, div) = Denom::aISLM.conversion_pair().unwrap();
         assert_eq!(denom, Denom::ISLM);
         assert_eq!(oneislm_in_islm, oneislm_in_aislm * mul / div);
 
-        let (denom, mul, div) = Denom::ISLM.pair().unwrap();
+        let (denom, mul, div) = Denom::ISLM.conversion_pair().unwrap();
         assert_eq!(denom, Denom::aISLM);
         assert_eq!(oneislm_in_aislm, oneislm_in_islm * mul / div);
     }
