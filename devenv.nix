@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # https://devenv.sh/basics/
@@ -51,5 +51,9 @@
     echo "Directory is not clean after code generation"
     exit 1
     fi
+  '';
+
+  scripts.release-pr.exec = ''
+    release-plz or 
   '';
 }
