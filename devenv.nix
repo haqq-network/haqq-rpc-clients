@@ -19,7 +19,6 @@
 
       cargo
       cargo-watch
-      cargo-release
 
       grpcurl
       sccache
