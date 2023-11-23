@@ -1,6 +1,8 @@
 [workspace]
 publish = false
+changelog_update = false
 
 [[package]]
 name = "haqq-grpc"
 publish = true
+changelog_update = true
