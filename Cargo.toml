@@ -2,6 +2,14 @@
 name = "haqq-grpc"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+keywords = ["haqq", "cosmos", "evmos", "grpc", "proto"]
+categories = ["finance", "cryptography::cryptocurrencies", "api-bindings", "asynchronous"]
+description = "gRPC client for Haqq nodes"
+documentation = "https://docs.rs/haqq-grpc"
+repository = "https://github.com/haqq-network/haqq-clients"
+readme = "README.md"
+homepage = "https://haqq.network"
 
 [dependencies]
 derive_builder = "0.12.0"
