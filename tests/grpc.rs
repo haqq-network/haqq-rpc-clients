@@ -35,7 +35,6 @@ async fn test_grpc() -> Result<()> {
         .balance(bank::QueryBalanceRequest {
             address: addr.clone(),
             denom: "aISLM".to_string(),
-            ..Default::default()
         })
         .await?;
 
