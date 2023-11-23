@@ -1,8 +1,10 @@
 [workspace]
 publish = false
 changelog_update = false
+git_release_enable = false
 
 [[package]]
 name = "haqq-grpc"
 publish = true
 changelog_update = true
+git_release_enable = true
