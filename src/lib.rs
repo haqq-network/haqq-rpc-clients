@@ -1,4 +1,6 @@
 // include!("gen/mod.rs");
+
+#[allow(clippy::all)]
 mod gen;
 pub use gen::*;
 
@@ -65,13 +67,13 @@ pub mod prelude {
 
     impl AmountExt for String {
         fn to_u256(&self) -> Result<U256, ParseIntError> {
-            U256::from_str(&self)
+            U256::from_str(self)
         }
     }
 
     impl<'a> AmountExt for &'a str {
         fn to_u256(&self) -> Result<U256, ParseIntError> {
-            U256::from_str(&self)
+            U256::from_str(self)
         }
     }
 
