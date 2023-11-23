@@ -2,9 +2,9 @@ mod init;
 
 use init::*;
 
-use ::haqq_proto::cosmos::bank::v1beta1 as bank;
-use ::haqq_proto::haqq::vesting::v1 as vesting;
 use color_eyre::*;
+use haqq_grpc::cosmos::bank::v1beta1 as bank;
+use haqq_grpc::haqq::vesting::v1 as vesting;
 
 #[tokio::test]
 async fn test_grpc() -> Result<()> {
