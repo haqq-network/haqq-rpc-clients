@@ -50,5 +50,7 @@
     echo "Directory is not clean after code generation"
     exit 1
     fi
+
+    cargo test --workspace
   '';
 }
