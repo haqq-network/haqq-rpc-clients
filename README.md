@@ -4,11 +4,10 @@ This repo contains RPC clients &mdash; generated with [buf.build](https://buf.bu
 
 ## Rust Client
 
+![docs.rs](https://img.shields.io/docsrs/haqq-grpc)
+![Crates.io](https://img.shields.io/crates/l/haqq-grpc)
+
 Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-clients/blob/master/tests/grpc.rs).
-
-Not published in crates yet but will be any time soon. In order to use, add to your project's `Cargo.toml`:
-
-* `haqq-proto = {git = "https://github.com/haqq-network/haqq-clients"}` &mdash; for gRPC endpoints
 
 **TODO**:
 
