@@ -20,6 +20,7 @@ prost-wkt-types = { version = "0.5.0", features = ["vendored-protox"] }
 rust_decimal = "1.33.1"
 serde = "1.0.192"
 tonic = "0.10.2"
+tracing = "0.1.40"
 
 [dev-dependencies]
 color-eyre = "0.6"

@@ -15,6 +15,8 @@ pub mod prelude {
 
     use cosmos::base::v1beta1::Coin;
 
+    pub const HEIGHT_METADATA_KEY: &str = "x-cosmos-block-height";
+
     pub trait CoinExt<'a> {
         fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str>;
     }
@@ -109,6 +111,15 @@ pub mod prelude {
                 Denom::Other(d) => write!(f, "{}", d),
             }
         }
+    }
+
+    pub fn req_with_height<T>(req: T, height: u64) -> tonic::Request<T> {
+        tracing::trace!("Request with height: {}", height);
+        let mut req = tonic::Request::new(req);
+        req.metadata_mut()
+            .insert(HEIGHT_METADATA_KEY, height.into());
+
+        req
     }
 
     // struct Denom<'a>(&'a str);
