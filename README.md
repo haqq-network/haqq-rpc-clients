@@ -4,7 +4,7 @@ This repo contains RPC clients &mdash; generated with [buf.build](https://buf.bu
 
 ## Rust Client
 
-![docs.rs](https://img.shields.io/docsrs/haqq-grpc)
+![docs.rs](https://img.shields.io/docsrs/haqq-grpc?link=https%3A%2F%2Fdocs.rs%2Fhaqq-grpc)
 ![Crates.io](https://img.shields.io/crates/l/haqq-grpc)
 
 Rust client is fully functional, supports [gRPC](https://github.com/haqq-network/haqq-clients/blob/master/tests/grpc.rs).
