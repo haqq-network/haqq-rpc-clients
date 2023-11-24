@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2](https://github.com/haqq-network/haqq-clients/compare/haqq-grpc-v0.1.1...haqq-grpc-v0.1.2) - 2023-11-24
+
+### Added
+- better with_height
+- get_head and with_head
+- req_with_height
+- grpc cargo feature for clients
+
+### Other
+- cargo test
+- remove codecov due to https://github.com/xd009642/tarpaulin/issues/517
+- codecov
+- badges fix
+- fix badge link
+- badges
+- git-release only for haqq-grpc
+
 ## [0.1.1](https://github.com/haqq-network/haqq-clients/compare/haqq-grpc-v0.1.0...haqq-grpc-v0.1.1) - 2023-11-23
 
 ### Other
