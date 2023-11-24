@@ -19,6 +19,7 @@
 
       cargo
       cargo-watch
+      cargo-tarpaulin
 
       grpcurl
       sccache
@@ -45,15 +46,9 @@
     set -e
     
     cargo run -p haqq-build
-    cargo test --workspace
-
     if ! git diff --exit-code; then
     echo "Directory is not clean after code generation"
     exit 1
     fi
-  '';
-
-  scripts.release-pr.exec = ''
-    release-plz or 
   '';
 }
