@@ -1,5 +1,6 @@
 // @generated
 /// Generated client implementations.
+#[cfg(feature = "grpc")]
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;

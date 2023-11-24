@@ -25,7 +25,8 @@ plugins:
     out: src/gen
     opt:
       - no_server=true
-
+      - client_mod_attribute=.=#[cfg(feature = "grpc")]
+      
   - plugin: prost-crate
     out: .
     strategy: all
