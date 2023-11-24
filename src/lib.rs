@@ -14,6 +14,7 @@ pub mod prelude {
     use ethnum::U256;
 
     use cosmos::base::v1beta1::Coin;
+    use tonic::metadata::{Ascii, MetadataValue};
 
     pub const HEIGHT_METADATA_KEY: &str = "x-cosmos-block-height";
 
@@ -113,20 +114,27 @@ pub mod prelude {
         }
     }
 
-    pub fn req_with_height<T>(req: T, height: u64) -> tonic::Request<T> {
-        tracing::trace!("Request with height: {}", height);
-        let mut req = tonic::Request::new(req);
-        req.metadata_mut()
-            .insert(HEIGHT_METADATA_KEY, height.into());
-
-        req
+    pub trait CosmosRequest<T> {
+        fn with_height(&mut self, height: MetadataValue<Ascii>) -> &mut Self;
     }
 
-    // struct Denom<'a>(&'a str);
+    impl<T> CosmosRequest<T> for tonic::Request<T> {
+        fn with_height(&mut self, height: MetadataValue<Ascii>) -> &mut Self {
+            self.metadata_mut().insert(HEIGHT_METADATA_KEY, height);
 
-    // impl Denom {
-    // 	fn convert()
-    // }
+            self
+        }
+    }
+
+    pub trait CosmosResponse<T> {
+        fn get_height(&self) -> Option<&MetadataValue<Ascii>>;
+    }
+
+    impl<T> CosmosResponse<T> for tonic::Response<T> {
+        fn get_height(&self) -> Option<&MetadataValue<Ascii>> {
+            self.metadata().get(HEIGHT_METADATA_KEY)
+        }
+    }
 }
 
 #[cfg(test)]
