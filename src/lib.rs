@@ -114,17 +114,18 @@ pub mod prelude {
         }
     }
 
-    pub trait CosmosRequest<T> {
-        fn with_height(&mut self, height: MetadataValue<Ascii>) -> &mut Self;
-    }
-
-    impl<T> CosmosRequest<T> for tonic::Request<T> {
-        fn with_height(&mut self, height: MetadataValue<Ascii>) -> &mut Self {
-            self.metadata_mut().insert(HEIGHT_METADATA_KEY, height);
-
-            self
+    pub trait CosmosMessage {
+        fn with_height(self, height: MetadataValue<Ascii>) -> tonic::Request<Self>
+        where
+            Self: Sized,
+        {
+            let mut req = tonic::Request::new(self);
+            req.metadata_mut().insert(HEIGHT_METADATA_KEY, height);
+            req
         }
     }
+
+    impl<T> CosmosMessage for T {}
 
     pub trait CosmosResponse<T> {
         fn get_height(&self) -> Option<&MetadataValue<Ascii>>;
