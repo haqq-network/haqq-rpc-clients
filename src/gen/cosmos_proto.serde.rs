@@ -76,25 +76,25 @@ impl<'de> serde::Deserialize<'de> for InterfaceDescriptor {
                 formatter.write_str("struct cosmos_proto.InterfaceDescriptor")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<InterfaceDescriptor, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<InterfaceDescriptor, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut name__ = None;
                 let mut description__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -133,8 +133,8 @@ impl serde::Serialize for ScalarDescriptor {
         }
         if !self.field_type.is_empty() {
             let v = self.field_type.iter().cloned().map(|v| {
-                ScalarType::from_i32(v)
-                    .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", v)))
+                ScalarType::try_from(v)
+                    .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", v)))
                 }).collect::<Result<Vec<_>, _>>()?;
             struct_ser.serialize_field("fieldType", &v)?;
         }
@@ -198,32 +198,32 @@ impl<'de> serde::Deserialize<'de> for ScalarDescriptor {
                 formatter.write_str("struct cosmos_proto.ScalarDescriptor")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ScalarDescriptor, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ScalarDescriptor, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut name__ = None;
                 let mut description__ = None;
                 let mut field_type__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::FieldType => {
                             if field_type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fieldType"));
                             }
-                            field_type__ = Some(map.next_value::<Vec<ScalarType>>()?.into_iter().map(|x| x as i32).collect());
+                            field_type__ = Some(map_.next_value::<Vec<ScalarType>>()?.into_iter().map(|x| x as i32).collect());
                         }
                     }
                 }
@@ -276,10 +276,9 @@ impl<'de> serde::Deserialize<'de> for ScalarType {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(ScalarType::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -289,10 +288,9 @@ impl<'de> serde::Deserialize<'de> for ScalarType {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(ScalarType::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })

@@ -16,16 +16,22 @@ import { VoteOption, WeightedVoteOption } from "./gov_pb.js";
  */
 export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
   /**
+   * content is the proposal's content.
+   *
    * @generated from field: google.protobuf.Any content = 1;
    */
   content?: Any;
 
   /**
+   * initial_deposit is the deposit value that must be paid at proposal submission.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin initial_deposit = 2;
    */
   initialDeposit: Coin[] = [];
 
   /**
+   * proposer is the account address of the proposer.
+   *
    * @generated from field: string proposer = 3;
    */
   proposer = "";
@@ -67,6 +73,8 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
  */
 export class MsgSubmitProposalResponse extends Message<MsgSubmitProposalResponse> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
@@ -106,16 +114,22 @@ export class MsgSubmitProposalResponse extends Message<MsgSubmitProposalResponse
  */
 export class MsgVote extends Message<MsgVote> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address for the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
 
   /**
+   * option defines the vote option.
+   *
    * @generated from field: cosmos.gov.v1beta1.VoteOption option = 3;
    */
   option = VoteOption.UNSPECIFIED;
@@ -192,16 +206,22 @@ export class MsgVoteResponse extends Message<MsgVoteResponse> {
  */
 export class MsgVoteWeighted extends Message<MsgVoteWeighted> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address for the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
 
   /**
+   * options defines the weighted vote options. 
+   *
    * @generated from field: repeated cosmos.gov.v1beta1.WeightedVoteOption options = 3;
    */
   options: WeightedVoteOption[] = [];
@@ -278,16 +298,22 @@ export class MsgVoteWeightedResponse extends Message<MsgVoteWeightedResponse> {
  */
 export class MsgDeposit extends Message<MsgDeposit> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * depositor defines the deposit addresses from the proposals.
+   *
    * @generated from field: string depositor = 2;
    */
   depositor = "";
 
   /**
+   * amount to be deposited by depositor.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin amount = 3;
    */
   amount: Coin[] = [];

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { BroadcastTxRequest, BroadcastTxResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse, GetTxRequest, GetTxResponse, GetTxsEventRequest, GetTxsEventResponse, SimulateRequest, SimulateResponse } from "./service_pb.js";
+import { BroadcastTxRequest, BroadcastTxResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse, GetTxRequest, GetTxResponse, GetTxsEventRequest, GetTxsEventResponse, SimulateRequest, SimulateResponse, TxDecodeAminoRequest, TxDecodeAminoResponse, TxDecodeRequest, TxDecodeResponse, TxEncodeAminoRequest, TxEncodeAminoResponse, TxEncodeRequest, TxEncodeResponse } from "./service_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -69,6 +69,58 @@ export const Service = {
       name: "GetBlockWithTxs",
       I: GetBlockWithTxsRequest,
       O: GetBlockWithTxsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * TxDecode decodes the transaction.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.tx.v1beta1.Service.TxDecode
+     */
+    txDecode: {
+      name: "TxDecode",
+      I: TxDecodeRequest,
+      O: TxDecodeResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * TxEncode encodes the transaction.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.tx.v1beta1.Service.TxEncode
+     */
+    txEncode: {
+      name: "TxEncode",
+      I: TxEncodeRequest,
+      O: TxEncodeResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * TxEncodeAmino encodes an Amino transaction from JSON to encoded bytes.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.tx.v1beta1.Service.TxEncodeAmino
+     */
+    txEncodeAmino: {
+      name: "TxEncodeAmino",
+      I: TxEncodeAminoRequest,
+      O: TxEncodeAminoResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * TxDecodeAmino decodes an Amino transaction from encoded bytes to JSON.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.tx.v1beta1.Service.TxDecodeAmino
+     */
+    txDecodeAmino: {
+      name: "TxDecodeAmino",
+      I: TxDecodeAminoRequest,
+      O: TxDecodeAminoResponse,
       kind: MethodKind.Unary,
     },
   }

@@ -76,25 +76,25 @@ impl<'de> serde::Deserialize<'de> for EventBlockGas {
                 formatter.write_str("struct ethermint.feemarket.v1.EventBlockGas")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventBlockGas, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventBlockGas, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut height__ = None;
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
-                            height__ = Some(map.next_value()?);
+                            height__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -176,18 +176,18 @@ impl<'de> serde::Deserialize<'de> for EventFeeMarket {
                 formatter.write_str("struct ethermint.feemarket.v1.EventFeeMarket")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventFeeMarket, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventFeeMarket, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseFee => {
                             if base_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseFee"));
                             }
-                            base_fee__ = Some(map.next_value()?);
+                            base_fee__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -218,6 +218,7 @@ impl serde::Serialize for GenesisState {
             struct_ser.serialize_field("params", v)?;
         }
         if self.block_gas != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("blockGas", ToString::to_string(&self.block_gas).as_str())?;
         }
         struct_ser.end()
@@ -277,26 +278,26 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 formatter.write_str("struct ethermint.feemarket.v1.GenesisState")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GenesisState, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
                 let mut block_gas__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                         GeneratedField::BlockGas => {
                             if block_gas__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockGas"));
                             }
                             block_gas__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -387,25 +388,25 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 formatter.write_str("struct ethermint.feemarket.v1.MsgUpdateParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -475,12 +476,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
                 formatter.write_str("struct ethermint.feemarket.v1.MsgUpdateParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateParamsResponse {
                 })
@@ -529,6 +530,7 @@ impl serde::Serialize for Params {
             struct_ser.serialize_field("elasticityMultiplier", &self.elasticity_multiplier)?;
         }
         if self.enable_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("enableHeight", ToString::to_string(&self.enable_height).as_str())?;
         }
         if !self.base_fee.is_empty() {
@@ -618,7 +620,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 formatter.write_str("struct ethermint.feemarket.v1.Params")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Params, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -629,20 +631,20 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut base_fee__ = None;
                 let mut min_gas_price__ = None;
                 let mut min_gas_multiplier__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::NoBaseFee => {
                             if no_base_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("noBaseFee"));
                             }
-                            no_base_fee__ = Some(map.next_value()?);
+                            no_base_fee__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BaseFeeChangeDenominator => {
                             if base_fee_change_denominator__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseFeeChangeDenominator"));
                             }
                             base_fee_change_denominator__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ElasticityMultiplier => {
@@ -650,7 +652,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                                 return Err(serde::de::Error::duplicate_field("elasticityMultiplier"));
                             }
                             elasticity_multiplier__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::EnableHeight => {
@@ -658,26 +660,26 @@ impl<'de> serde::Deserialize<'de> for Params {
                                 return Err(serde::de::Error::duplicate_field("enableHeight"));
                             }
                             enable_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BaseFee => {
                             if base_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseFee"));
                             }
-                            base_fee__ = Some(map.next_value()?);
+                            base_fee__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MinGasPrice => {
                             if min_gas_price__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("minGasPrice"));
                             }
-                            min_gas_price__ = Some(map.next_value()?);
+                            min_gas_price__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MinGasMultiplier => {
                             if min_gas_multiplier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("minGasMultiplier"));
                             }
-                            min_gas_multiplier__ = Some(map.next_value()?);
+                            min_gas_multiplier__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -752,12 +754,12 @@ impl<'de> serde::Deserialize<'de> for QueryBaseFeeRequest {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryBaseFeeRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBaseFeeRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBaseFeeRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryBaseFeeRequest {
                 })
@@ -835,18 +837,18 @@ impl<'de> serde::Deserialize<'de> for QueryBaseFeeResponse {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryBaseFeeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBaseFeeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBaseFeeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_fee__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseFee => {
                             if base_fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseFee"));
                             }
-                            base_fee__ = Some(map.next_value()?);
+                            base_fee__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -915,12 +917,12 @@ impl<'de> serde::Deserialize<'de> for QueryBlockGasRequest {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryBlockGasRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBlockGasRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBlockGasRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryBlockGasRequest {
                 })
@@ -942,6 +944,7 @@ impl serde::Serialize for QueryBlockGasResponse {
         }
         let mut struct_ser = serializer.serialize_struct("ethermint.feemarket.v1.QueryBlockGasResponse", len)?;
         if self.gas != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("gas", ToString::to_string(&self.gas).as_str())?;
         }
         struct_ser.end()
@@ -997,19 +1000,19 @@ impl<'de> serde::Deserialize<'de> for QueryBlockGasResponse {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryBlockGasResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBlockGasResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBlockGasResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut gas__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Gas => {
                             if gas__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("gas"));
                             }
                             gas__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1079,12 +1082,12 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryParamsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryParamsRequest {
                 })
@@ -1161,18 +1164,18 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 formatter.write_str("struct ethermint.feemarket.v1.QueryParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }

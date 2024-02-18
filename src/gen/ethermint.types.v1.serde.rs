@@ -78,25 +78,25 @@ impl<'de> serde::Deserialize<'de> for EthAccount {
                 formatter.write_str("struct ethermint.types.v1.EthAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EthAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EthAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_account__ = None;
                 let mut code_hash__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseAccount => {
                             if base_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseAccount"));
                             }
-                            base_account__ = map.next_value()?;
+                            base_account__ = map_.next_value()?;
                         }
                         GeneratedField::CodeHash => {
                             if code_hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("codeHash"));
                             }
-                            code_hash__ = Some(map.next_value()?);
+                            code_hash__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -178,18 +178,18 @@ impl<'de> serde::Deserialize<'de> for ExtensionOptionDynamicFeeTx {
                 formatter.write_str("struct ethermint.types.v1.ExtensionOptionDynamicFeeTx")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ExtensionOptionDynamicFeeTx, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ExtensionOptionDynamicFeeTx, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut max_priority_price__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::MaxPriorityPrice => {
                             if max_priority_price__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxPriorityPrice"));
                             }
-                            max_priority_price__ = Some(map.next_value()?);
+                            max_priority_price__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -220,12 +220,14 @@ impl serde::Serialize for ExtensionOptionsWeb3Tx {
         }
         let mut struct_ser = serializer.serialize_struct("ethermint.types.v1.ExtensionOptionsWeb3Tx", len)?;
         if self.typed_data_chain_id != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("typedDataChainId", ToString::to_string(&self.typed_data_chain_id).as_str())?;
         }
         if !self.fee_payer.is_empty() {
             struct_ser.serialize_field("feePayer", &self.fee_payer)?;
         }
         if !self.fee_payer_sig.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("feePayerSig", pbjson::private::base64::encode(&self.fee_payer_sig).as_str())?;
         }
         struct_ser.end()
@@ -290,35 +292,35 @@ impl<'de> serde::Deserialize<'de> for ExtensionOptionsWeb3Tx {
                 formatter.write_str("struct ethermint.types.v1.ExtensionOptionsWeb3Tx")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ExtensionOptionsWeb3Tx, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ExtensionOptionsWeb3Tx, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut typed_data_chain_id__ = None;
                 let mut fee_payer__ = None;
                 let mut fee_payer_sig__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TypedDataChainId => {
                             if typed_data_chain_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("typedDataChainId"));
                             }
                             typed_data_chain_id__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::FeePayer => {
                             if fee_payer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("feePayer"));
                             }
-                            fee_payer__ = Some(map.next_value()?);
+                            fee_payer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::FeePayerSig => {
                             if fee_payer_sig__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("feePayerSig"));
                             }
                             fee_payer_sig__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -364,6 +366,7 @@ impl serde::Serialize for TxResult {
         }
         let mut struct_ser = serializer.serialize_struct("ethermint.types.v1.TxResult", len)?;
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if self.tx_index != 0 {
@@ -379,9 +382,11 @@ impl serde::Serialize for TxResult {
             struct_ser.serialize_field("failed", &self.failed)?;
         }
         if self.gas_used != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("gasUsed", ToString::to_string(&self.gas_used).as_str())?;
         }
         if self.cumulative_gas_used != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("cumulativeGasUsed", ToString::to_string(&self.cumulative_gas_used).as_str())?;
         }
         struct_ser.end()
@@ -460,7 +465,7 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                 formatter.write_str("struct ethermint.types.v1.TxResult")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<TxResult, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxResult, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -471,14 +476,14 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                 let mut failed__ = None;
                 let mut gas_used__ = None;
                 let mut cumulative_gas_used__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::TxIndex => {
@@ -486,7 +491,7 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                                 return Err(serde::de::Error::duplicate_field("txIndex"));
                             }
                             tx_index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::MsgIndex => {
@@ -494,7 +499,7 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                                 return Err(serde::de::Error::duplicate_field("msgIndex"));
                             }
                             msg_index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::EthTxIndex => {
@@ -502,21 +507,21 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                                 return Err(serde::de::Error::duplicate_field("ethTxIndex"));
                             }
                             eth_tx_index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Failed => {
                             if failed__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("failed"));
                             }
-                            failed__ = Some(map.next_value()?);
+                            failed__ = Some(map_.next_value()?);
                         }
                         GeneratedField::GasUsed => {
                             if gas_used__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("gasUsed"));
                             }
                             gas_used__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::CumulativeGasUsed => {
@@ -524,7 +529,7 @@ impl<'de> serde::Deserialize<'de> for TxResult {
                                 return Err(serde::de::Error::duplicate_field("cumulativeGasUsed"));
                             }
                             cumulative_gas_used__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }

@@ -10,16 +10,16 @@ pub struct EpochInfo {
     pub identifier: ::prost::alloc::string::String,
     /// start_time of the epoch
     #[prost(message, optional, tag="2")]
-    pub start_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// duration of the epoch
     #[prost(message, optional, tag="3")]
-    pub duration: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub duration: ::core::option::Option<::pbjson_types::Duration>,
     /// current_epoch is the integer identifier of the epoch
     #[prost(int64, tag="4")]
     pub current_epoch: i64,
     /// current_epoch_start_time defines the timestamp of the start of the epoch
     #[prost(message, optional, tag="5")]
-    pub current_epoch_start_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub current_epoch_start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// epoch_counting_started reflects if the counting for the epoch has started
     #[prost(bool, tag="6")]
     pub epoch_counting_started: bool,

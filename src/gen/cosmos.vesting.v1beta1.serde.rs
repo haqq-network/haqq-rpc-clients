@@ -36,6 +36,7 @@ impl serde::Serialize for BaseVestingAccount {
             struct_ser.serialize_field("delegatedVesting", &self.delegated_vesting)?;
         }
         if self.end_time != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("endTime", ToString::to_string(&self.end_time).as_str())?;
         }
         struct_ser.end()
@@ -108,7 +109,7 @@ impl<'de> serde::Deserialize<'de> for BaseVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.BaseVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BaseVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BaseVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -117,38 +118,38 @@ impl<'de> serde::Deserialize<'de> for BaseVestingAccount {
                 let mut delegated_free__ = None;
                 let mut delegated_vesting__ = None;
                 let mut end_time__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseAccount => {
                             if base_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseAccount"));
                             }
-                            base_account__ = map.next_value()?;
+                            base_account__ = map_.next_value()?;
                         }
                         GeneratedField::OriginalVesting => {
                             if original_vesting__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("originalVesting"));
                             }
-                            original_vesting__ = Some(map.next_value()?);
+                            original_vesting__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DelegatedFree => {
                             if delegated_free__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatedFree"));
                             }
-                            delegated_free__ = Some(map.next_value()?);
+                            delegated_free__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DelegatedVesting => {
                             if delegated_vesting__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatedVesting"));
                             }
-                            delegated_vesting__ = Some(map.next_value()?);
+                            delegated_vesting__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EndTime => {
                             if end_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endTime"));
                             }
                             end_time__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -184,6 +185,7 @@ impl serde::Serialize for ContinuousVestingAccount {
             struct_ser.serialize_field("baseVestingAccount", v)?;
         }
         if self.start_time != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("startTime", ToString::to_string(&self.start_time).as_str())?;
         }
         struct_ser.end()
@@ -244,26 +246,26 @@ impl<'de> serde::Deserialize<'de> for ContinuousVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.ContinuousVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ContinuousVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ContinuousVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_vesting_account__ = None;
                 let mut start_time__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseVestingAccount => {
                             if base_vesting_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseVestingAccount"));
                             }
-                            base_vesting_account__ = map.next_value()?;
+                            base_vesting_account__ = map_.next_value()?;
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
                             start_time__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -346,18 +348,18 @@ impl<'de> serde::Deserialize<'de> for DelayedVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.DelayedVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DelayedVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DelayedVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_vesting_account__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseVestingAccount => {
                             if base_vesting_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseVestingAccount"));
                             }
-                            base_vesting_account__ = map.next_value()?;
+                            base_vesting_account__ = map_.next_value()?;
                         }
                     }
                 }
@@ -397,6 +399,7 @@ impl serde::Serialize for MsgCreatePeriodicVestingAccount {
             struct_ser.serialize_field("toAddress", &self.to_address)?;
         }
         if self.start_time != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("startTime", ToString::to_string(&self.start_time).as_str())?;
         }
         if !self.vesting_periods.is_empty() {
@@ -468,7 +471,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePeriodicVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreatePeriodicVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreatePeriodicVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -476,33 +479,33 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePeriodicVestingAccount {
                 let mut to_address__ = None;
                 let mut start_time__ = None;
                 let mut vesting_periods__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FromAddress => {
                             if from_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fromAddress"));
                             }
-                            from_address__ = Some(map.next_value()?);
+                            from_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ToAddress => {
                             if to_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("toAddress"));
                             }
-                            to_address__ = Some(map.next_value()?);
+                            to_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
                             start_time__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::VestingPeriods => {
                             if vesting_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingPeriods"));
                             }
-                            vesting_periods__ = Some(map.next_value()?);
+                            vesting_periods__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -574,12 +577,12 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePeriodicVestingAccountResponse {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreatePeriodicVestingAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreatePeriodicVestingAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCreatePeriodicVestingAccountResponse {
                 })
@@ -676,32 +679,32 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePermanentLockedAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreatePermanentLockedAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreatePermanentLockedAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut from_address__ = None;
                 let mut to_address__ = None;
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FromAddress => {
                             if from_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fromAddress"));
                             }
-                            from_address__ = Some(map.next_value()?);
+                            from_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ToAddress => {
                             if to_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("toAddress"));
                             }
-                            to_address__ = Some(map.next_value()?);
+                            to_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -772,12 +775,12 @@ impl<'de> serde::Deserialize<'de> for MsgCreatePermanentLockedAccountResponse {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreatePermanentLockedAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreatePermanentLockedAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCreatePermanentLockedAccountResponse {
                 })
@@ -820,6 +823,7 @@ impl serde::Serialize for MsgCreateVestingAccount {
             struct_ser.serialize_field("amount", &self.amount)?;
         }
         if self.end_time != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("endTime", ToString::to_string(&self.end_time).as_str())?;
         }
         if self.delayed {
@@ -893,7 +897,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreateVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -902,39 +906,39 @@ impl<'de> serde::Deserialize<'de> for MsgCreateVestingAccount {
                 let mut amount__ = None;
                 let mut end_time__ = None;
                 let mut delayed__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FromAddress => {
                             if from_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fromAddress"));
                             }
-                            from_address__ = Some(map.next_value()?);
+                            from_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ToAddress => {
                             if to_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("toAddress"));
                             }
-                            to_address__ = Some(map.next_value()?);
+                            to_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EndTime => {
                             if end_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("endTime"));
                             }
                             end_time__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Delayed => {
                             if delayed__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delayed"));
                             }
-                            delayed__ = Some(map.next_value()?);
+                            delayed__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1007,12 +1011,12 @@ impl<'de> serde::Deserialize<'de> for MsgCreateVestingAccountResponse {
                 formatter.write_str("struct cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateVestingAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateVestingAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCreateVestingAccountResponse {
                 })
@@ -1037,6 +1041,7 @@ impl serde::Serialize for Period {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.vesting.v1beta1.Period", len)?;
         if self.length != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("length", ToString::to_string(&self.length).as_str())?;
         }
         if !self.amount.is_empty() {
@@ -1098,27 +1103,27 @@ impl<'de> serde::Deserialize<'de> for Period {
                 formatter.write_str("struct cosmos.vesting.v1beta1.Period")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Period, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Period, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut length__ = None;
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Length => {
                             if length__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("length"));
                             }
                             length__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1153,6 +1158,7 @@ impl serde::Serialize for PeriodicVestingAccount {
             struct_ser.serialize_field("baseVestingAccount", v)?;
         }
         if self.start_time != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("startTime", ToString::to_string(&self.start_time).as_str())?;
         }
         if !self.vesting_periods.is_empty() {
@@ -1220,34 +1226,34 @@ impl<'de> serde::Deserialize<'de> for PeriodicVestingAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.PeriodicVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PeriodicVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PeriodicVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_vesting_account__ = None;
                 let mut start_time__ = None;
                 let mut vesting_periods__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseVestingAccount => {
                             if base_vesting_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseVestingAccount"));
                             }
-                            base_vesting_account__ = map.next_value()?;
+                            base_vesting_account__ = map_.next_value()?;
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
                             start_time__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::VestingPeriods => {
                             if vesting_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingPeriods"));
                             }
-                            vesting_periods__ = Some(map.next_value()?);
+                            vesting_periods__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1330,18 +1336,18 @@ impl<'de> serde::Deserialize<'de> for PermanentLockedAccount {
                 formatter.write_str("struct cosmos.vesting.v1beta1.PermanentLockedAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PermanentLockedAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PermanentLockedAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut base_vesting_account__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseVestingAccount => {
                             if base_vesting_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseVestingAccount"));
                             }
-                            base_vesting_account__ = map.next_value()?;
+                            base_vesting_account__ = map_.next_value()?;
                         }
                     }
                 }

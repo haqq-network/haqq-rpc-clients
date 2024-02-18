@@ -17,7 +17,7 @@ pub struct ValidatorSigningInfo {
     pub index_offset: i64,
     /// Timestamp until which the validator is jailed due to liveness downtime.
     #[prost(message, optional, tag="4")]
-    pub jailed_until: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub jailed_until: ::core::option::Option<::pbjson_types::Timestamp>,
     /// Whether or not a validator has been tombstoned (killed out of validator set). It is set
     /// once the validator commits an equivocation or for any other configured misbehiavor.
     #[prost(bool, tag="5")]
@@ -37,7 +37,7 @@ pub struct Params {
     #[prost(bytes="bytes", tag="2")]
     pub min_signed_per_window: ::prost::bytes::Bytes,
     #[prost(message, optional, tag="3")]
-    pub downtime_jail_duration: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub downtime_jail_duration: ::core::option::Option<::pbjson_types::Duration>,
     #[prost(bytes="bytes", tag="4")]
     pub slash_fraction_double_sign: ::prost::bytes::Bytes,
     #[prost(bytes="bytes", tag="5")]
@@ -48,7 +48,7 @@ pub struct Params {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
-    /// params defines all the paramaters of related to deposit.
+    /// params defines all the parameters of the module.
     #[prost(message, optional, tag="1")]
     pub params: ::core::option::Option<Params>,
     /// signing_infos represents a map between validator addresses and their
@@ -165,6 +165,31 @@ pub struct MsgUnjail {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgUnjailResponse {
+}
+/// MsgUpdateParams is the Msg/UpdateParams request type.
+///
+/// Since: cosmos-sdk 0.47
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParams {
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
+    #[prost(string, tag="1")]
+    pub authority: ::prost::alloc::string::String,
+    /// params defines the x/slashing parameters to update.
+    ///
+    /// NOTE: All parameters must be supplied.
+    #[prost(message, optional, tag="2")]
+    pub params: ::core::option::Option<Params>,
+}
+/// MsgUpdateParamsResponse defines the response structure for executing a
+/// MsgUpdateParams message.
+///
+/// Since: cosmos-sdk 0.47
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateParamsResponse {
 }
 include!("cosmos.slashing.v1beta1.serde.rs");
 include!("cosmos.slashing.v1beta1.tonic.rs");

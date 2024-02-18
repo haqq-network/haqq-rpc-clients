@@ -14,7 +14,7 @@ import { Params, ValidatorSigningInfo } from "./slashing_pb.js";
  */
 export class GenesisState extends Message<GenesisState> {
   /**
-   * params defines all the paramaters of related to deposit.
+   * params defines all the parameters of the module.
    *
    * @generated from field: cosmos.slashing.v1beta1.Params params = 1;
    */

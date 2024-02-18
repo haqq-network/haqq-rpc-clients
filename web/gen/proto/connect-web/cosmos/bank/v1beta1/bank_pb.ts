@@ -14,7 +14,14 @@ import { Coin } from "../../base/v1beta1/coin_pb.js";
  */
 export class Params extends Message<Params> {
   /**
-   * @generated from field: repeated cosmos.bank.v1beta1.SendEnabled send_enabled = 1;
+   * Deprecated: Use of SendEnabled in params is deprecated.
+   * For genesis, use the newly added send_enabled field in the genesis object.
+   * Storage, lookup, and manipulation of this information is now in the keeper.
+   *
+   * As of cosmos-sdk 0.47, this only exists for backwards compatibility of genesis files.
+   *
+   * @generated from field: repeated cosmos.bank.v1beta1.SendEnabled send_enabled = 1 [deprecated = true];
+   * @deprecated
    */
   sendEnabled: SendEnabled[] = [];
 

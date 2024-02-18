@@ -94,7 +94,7 @@ impl<'de> serde::Deserialize<'de> for CommunityPoolSpendProposal {
                 formatter.write_str("struct cosmos.distribution.v1beta1.CommunityPoolSpendProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CommunityPoolSpendProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CommunityPoolSpendProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -102,31 +102,31 @@ impl<'de> serde::Deserialize<'de> for CommunityPoolSpendProposal {
                 let mut description__ = None;
                 let mut recipient__ = None;
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -245,7 +245,7 @@ impl<'de> serde::Deserialize<'de> for CommunityPoolSpendProposalWithDeposit {
                 formatter.write_str("struct cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CommunityPoolSpendProposalWithDeposit, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CommunityPoolSpendProposalWithDeposit, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -254,37 +254,37 @@ impl<'de> serde::Deserialize<'de> for CommunityPoolSpendProposalWithDeposit {
                 let mut recipient__ = None;
                 let mut amount__ = None;
                 let mut deposit__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Recipient => {
                             if recipient__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("recipient"));
                             }
-                            recipient__ = Some(map.next_value()?);
+                            recipient__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Deposit => {
                             if deposit__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("deposit"));
                             }
-                            deposit__ = Some(map.next_value()?);
+                            deposit__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -378,25 +378,25 @@ impl<'de> serde::Deserialize<'de> for DelegationDelegatorReward {
                 formatter.write_str("struct cosmos.distribution.v1beta1.DelegationDelegatorReward")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DelegationDelegatorReward, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DelegationDelegatorReward, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
                 let mut reward__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reward => {
                             if reward__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reward"));
                             }
-                            reward__ = Some(map.next_value()?);
+                            reward__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -428,12 +428,14 @@ impl serde::Serialize for DelegatorStartingInfo {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.DelegatorStartingInfo", len)?;
         if self.previous_period != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("previousPeriod", ToString::to_string(&self.previous_period).as_str())?;
         }
         if !self.stake.is_empty() {
             struct_ser.serialize_field("stake", &self.stake)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         struct_ser.end()
@@ -496,35 +498,35 @@ impl<'de> serde::Deserialize<'de> for DelegatorStartingInfo {
                 formatter.write_str("struct cosmos.distribution.v1beta1.DelegatorStartingInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DelegatorStartingInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DelegatorStartingInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut previous_period__ = None;
                 let mut stake__ = None;
                 let mut height__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::PreviousPeriod => {
                             if previous_period__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("previousPeriod"));
                             }
                             previous_period__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Stake => {
                             if stake__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("stake"));
                             }
-                            stake__ = Some(map.next_value()?);
+                            stake__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -628,32 +630,32 @@ impl<'de> serde::Deserialize<'de> for DelegatorStartingInfoRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.DelegatorStartingInfoRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DelegatorStartingInfoRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DelegatorStartingInfoRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
                 let mut validator_address__ = None;
                 let mut starting_info__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartingInfo => {
                             if starting_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startingInfo"));
                             }
-                            starting_info__ = map.next_value()?;
+                            starting_info__ = map_.next_value()?;
                         }
                     }
                 }
@@ -746,25 +748,25 @@ impl<'de> serde::Deserialize<'de> for DelegatorWithdrawInfo {
                 formatter.write_str("struct cosmos.distribution.v1beta1.DelegatorWithdrawInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DelegatorWithdrawInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DelegatorWithdrawInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
                 let mut withdraw_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::WithdrawAddress => {
                             if withdraw_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("withdrawAddress"));
                             }
-                            withdraw_address__ = Some(map.next_value()?);
+                            withdraw_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -846,18 +848,18 @@ impl<'de> serde::Deserialize<'de> for FeePool {
                 formatter.write_str("struct cosmos.distribution.v1beta1.FeePool")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<FeePool, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<FeePool, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut community_pool__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CommunityPool => {
                             if community_pool__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("communityPool"));
                             }
-                            community_pool__ = Some(map.next_value()?);
+                            community_pool__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1027,7 +1029,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 formatter.write_str("struct cosmos.distribution.v1beta1.GenesisState")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GenesisState, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1041,67 +1043,67 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 let mut validator_current_rewards__ = None;
                 let mut delegator_starting_infos__ = None;
                 let mut validator_slash_events__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                         GeneratedField::FeePool => {
                             if fee_pool__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("feePool"));
                             }
-                            fee_pool__ = map.next_value()?;
+                            fee_pool__ = map_.next_value()?;
                         }
                         GeneratedField::DelegatorWithdrawInfos => {
                             if delegator_withdraw_infos__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorWithdrawInfos"));
                             }
-                            delegator_withdraw_infos__ = Some(map.next_value()?);
+                            delegator_withdraw_infos__ = Some(map_.next_value()?);
                         }
                         GeneratedField::PreviousProposer => {
                             if previous_proposer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("previousProposer"));
                             }
-                            previous_proposer__ = Some(map.next_value()?);
+                            previous_proposer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OutstandingRewards => {
                             if outstanding_rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("outstandingRewards"));
                             }
-                            outstanding_rewards__ = Some(map.next_value()?);
+                            outstanding_rewards__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorAccumulatedCommissions => {
                             if validator_accumulated_commissions__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAccumulatedCommissions"));
                             }
-                            validator_accumulated_commissions__ = Some(map.next_value()?);
+                            validator_accumulated_commissions__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorHistoricalRewards => {
                             if validator_historical_rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorHistoricalRewards"));
                             }
-                            validator_historical_rewards__ = Some(map.next_value()?);
+                            validator_historical_rewards__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorCurrentRewards => {
                             if validator_current_rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorCurrentRewards"));
                             }
-                            validator_current_rewards__ = Some(map.next_value()?);
+                            validator_current_rewards__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DelegatorStartingInfos => {
                             if delegator_starting_infos__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorStartingInfos"));
                             }
-                            delegator_starting_infos__ = Some(map.next_value()?);
+                            delegator_starting_infos__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorSlashEvents => {
                             if validator_slash_events__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorSlashEvents"));
                             }
-                            validator_slash_events__ = Some(map.next_value()?);
+                            validator_slash_events__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1120,6 +1122,202 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             }
         }
         deserializer.deserialize_struct("cosmos.distribution.v1beta1.GenesisState", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgCommunityPoolSpend {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.authority.is_empty() {
+            len += 1;
+        }
+        if !self.recipient.is_empty() {
+            len += 1;
+        }
+        if !self.amount.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.MsgCommunityPoolSpend", len)?;
+        if !self.authority.is_empty() {
+            struct_ser.serialize_field("authority", &self.authority)?;
+        }
+        if !self.recipient.is_empty() {
+            struct_ser.serialize_field("recipient", &self.recipient)?;
+        }
+        if !self.amount.is_empty() {
+            struct_ser.serialize_field("amount", &self.amount)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgCommunityPoolSpend {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "authority",
+            "recipient",
+            "amount",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Authority,
+            Recipient,
+            Amount,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "authority" => Ok(GeneratedField::Authority),
+                            "recipient" => Ok(GeneratedField::Recipient),
+                            "amount" => Ok(GeneratedField::Amount),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgCommunityPoolSpend;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.MsgCommunityPoolSpend")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCommunityPoolSpend, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut authority__ = None;
+                let mut recipient__ = None;
+                let mut amount__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Authority => {
+                            if authority__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("authority"));
+                            }
+                            authority__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Recipient => {
+                            if recipient__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("recipient"));
+                            }
+                            recipient__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Amount => {
+                            if amount__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("amount"));
+                            }
+                            amount__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(MsgCommunityPoolSpend {
+                    authority: authority__.unwrap_or_default(),
+                    recipient: recipient__.unwrap_or_default(),
+                    amount: amount__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.MsgCommunityPoolSpend", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgCommunityPoolSpendResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let len = 0;
+        let struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse", len)?;
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgCommunityPoolSpendResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                            Err(serde::de::Error::unknown_field(value, FIELDS))
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgCommunityPoolSpendResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCommunityPoolSpendResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                }
+                Ok(MsgCommunityPoolSpendResponse {
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgFundCommunityPool {
@@ -1199,25 +1397,25 @@ impl<'de> serde::Deserialize<'de> for MsgFundCommunityPool {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgFundCommunityPool")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgFundCommunityPool, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgFundCommunityPool, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut amount__ = None;
                 let mut depositor__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Depositor => {
                             if depositor__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("depositor"));
                             }
-                            depositor__ = Some(map.next_value()?);
+                            depositor__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1287,12 +1485,12 @@ impl<'de> serde::Deserialize<'de> for MsgFundCommunityPoolResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgFundCommunityPoolResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgFundCommunityPoolResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgFundCommunityPoolResponse {
                 })
@@ -1380,25 +1578,25 @@ impl<'de> serde::Deserialize<'de> for MsgSetWithdrawAddress {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgSetWithdrawAddress")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSetWithdrawAddress, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSetWithdrawAddress, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
                 let mut withdraw_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::WithdrawAddress => {
                             if withdraw_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("withdrawAddress"));
                             }
-                            withdraw_address__ = Some(map.next_value()?);
+                            withdraw_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1468,18 +1666,197 @@ impl<'de> serde::Deserialize<'de> for MsgSetWithdrawAddressResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSetWithdrawAddressResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSetWithdrawAddressResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSetWithdrawAddressResponse {
                 })
             }
         }
         deserializer.deserialize_struct("cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgUpdateParams {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.authority.is_empty() {
+            len += 1;
+        }
+        if self.params.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.MsgUpdateParams", len)?;
+        if !self.authority.is_empty() {
+            struct_ser.serialize_field("authority", &self.authority)?;
+        }
+        if let Some(v) = self.params.as_ref() {
+            struct_ser.serialize_field("params", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "authority",
+            "params",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Authority,
+            Params,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "authority" => Ok(GeneratedField::Authority),
+                            "params" => Ok(GeneratedField::Params),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateParams;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.MsgUpdateParams")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParams, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut authority__ = None;
+                let mut params__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Authority => {
+                            if authority__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("authority"));
+                            }
+                            authority__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Params => {
+                            if params__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("params"));
+                            }
+                            params__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(MsgUpdateParams {
+                    authority: authority__.unwrap_or_default(),
+                    params: params__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.MsgUpdateParams", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgUpdateParamsResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let len = 0;
+        let struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.MsgUpdateParamsResponse", len)?;
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                            Err(serde::de::Error::unknown_field(value, FIELDS))
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateParamsResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.MsgUpdateParamsResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                }
+                Ok(MsgUpdateParamsResponse {
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.MsgUpdateParamsResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgWithdrawDelegatorReward {
@@ -1561,25 +1938,25 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawDelegatorReward {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgWithdrawDelegatorReward, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgWithdrawDelegatorReward, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1660,18 +2037,18 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawDelegatorRewardResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgWithdrawDelegatorRewardResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgWithdrawDelegatorRewardResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1752,18 +2129,18 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawValidatorCommission {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgWithdrawValidatorCommission, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgWithdrawValidatorCommission, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1843,18 +2220,18 @@ impl<'de> serde::Deserialize<'de> for MsgWithdrawValidatorCommissionResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgWithdrawValidatorCommissionResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgWithdrawValidatorCommissionResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut amount__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1965,7 +2342,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 formatter.write_str("struct cosmos.distribution.v1beta1.Params")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Params, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1973,31 +2350,31 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut base_proposer_reward__ = None;
                 let mut bonus_proposer_reward__ = None;
                 let mut withdraw_addr_enabled__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CommunityTax => {
                             if community_tax__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("communityTax"));
                             }
-                            community_tax__ = Some(map.next_value()?);
+                            community_tax__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BaseProposerReward => {
                             if base_proposer_reward__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseProposerReward"));
                             }
-                            base_proposer_reward__ = Some(map.next_value()?);
+                            base_proposer_reward__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BonusProposerReward => {
                             if bonus_proposer_reward__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bonusProposerReward"));
                             }
-                            bonus_proposer_reward__ = Some(map.next_value()?);
+                            bonus_proposer_reward__ = Some(map_.next_value()?);
                         }
                         GeneratedField::WithdrawAddrEnabled => {
                             if withdraw_addr_enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("withdrawAddrEnabled"));
                             }
-                            withdraw_addr_enabled__ = Some(map.next_value()?);
+                            withdraw_addr_enabled__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2069,12 +2446,12 @@ impl<'de> serde::Deserialize<'de> for QueryCommunityPoolRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryCommunityPoolRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCommunityPoolRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCommunityPoolRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryCommunityPoolRequest {
                 })
@@ -2151,18 +2528,18 @@ impl<'de> serde::Deserialize<'de> for QueryCommunityPoolResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryCommunityPoolResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCommunityPoolResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCommunityPoolResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pool__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pool => {
                             if pool__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pool"));
                             }
-                            pool__ = Some(map.next_value()?);
+                            pool__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2253,25 +2630,25 @@ impl<'de> serde::Deserialize<'de> for QueryDelegationRewardsRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegationRewardsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegationRewardsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegationRewardsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2352,18 +2729,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegationRewardsResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegationRewardsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegationRewardsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegationRewardsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = Some(map.next_value()?);
+                            rewards__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2444,18 +2821,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegationTotalRewardsRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegationTotalRewardsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegationTotalRewardsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2544,25 +2921,25 @@ impl<'de> serde::Deserialize<'de> for QueryDelegationTotalRewardsResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegationTotalRewardsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegationTotalRewardsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut rewards__ = None;
                 let mut total__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = Some(map.next_value()?);
+                            rewards__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Total => {
                             if total__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("total"));
                             }
-                            total__ = Some(map.next_value()?);
+                            total__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2644,18 +3021,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegatorValidatorsRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegatorValidatorsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegatorValidatorsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2735,18 +3112,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegatorValidatorsResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegatorValidatorsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegatorValidatorsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validators__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Validators => {
                             if validators__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validators"));
                             }
-                            validators__ = Some(map.next_value()?);
+                            validators__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2827,18 +3204,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegatorWithdrawAddressRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegatorWithdrawAddressRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegatorWithdrawAddressRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut delegator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DelegatorAddress => {
                             if delegator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("delegatorAddress"));
                             }
-                            delegator_address__ = Some(map.next_value()?);
+                            delegator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2919,18 +3296,18 @@ impl<'de> serde::Deserialize<'de> for QueryDelegatorWithdrawAddressResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryDelegatorWithdrawAddressResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryDelegatorWithdrawAddressResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut withdraw_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::WithdrawAddress => {
                             if withdraw_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("withdrawAddress"));
                             }
-                            withdraw_address__ = Some(map.next_value()?);
+                            withdraw_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2999,12 +3376,12 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryParamsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryParamsRequest {
                 })
@@ -3081,18 +3458,18 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3173,18 +3550,18 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorCommissionRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorCommissionRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorCommissionRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorCommissionRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3264,18 +3641,18 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorCommissionResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorCommissionResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorCommissionResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorCommissionResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut commission__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Commission => {
                             if commission__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("commission"));
                             }
-                            commission__ = map.next_value()?;
+                            commission__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3285,6 +3662,225 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorCommissionResponse {
             }
         }
         deserializer.deserialize_struct("cosmos.distribution.v1beta1.QueryValidatorCommissionResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for QueryValidatorDistributionInfoRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.validator_address.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest", len)?;
+        if !self.validator_address.is_empty() {
+            struct_ser.serialize_field("validatorAddress", &self.validator_address)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for QueryValidatorDistributionInfoRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "validator_address",
+            "validatorAddress",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            ValidatorAddress,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "validatorAddress" | "validator_address" => Ok(GeneratedField::ValidatorAddress),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryValidatorDistributionInfoRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorDistributionInfoRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut validator_address__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::ValidatorAddress => {
+                            if validator_address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("validatorAddress"));
+                            }
+                            validator_address__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(QueryValidatorDistributionInfoRequest {
+                    validator_address: validator_address__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for QueryValidatorDistributionInfoResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.operator_address.is_empty() {
+            len += 1;
+        }
+        if !self.self_bond_rewards.is_empty() {
+            len += 1;
+        }
+        if !self.commission.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse", len)?;
+        if !self.operator_address.is_empty() {
+            struct_ser.serialize_field("operatorAddress", &self.operator_address)?;
+        }
+        if !self.self_bond_rewards.is_empty() {
+            struct_ser.serialize_field("selfBondRewards", &self.self_bond_rewards)?;
+        }
+        if !self.commission.is_empty() {
+            struct_ser.serialize_field("commission", &self.commission)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for QueryValidatorDistributionInfoResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "operator_address",
+            "operatorAddress",
+            "self_bond_rewards",
+            "selfBondRewards",
+            "commission",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            OperatorAddress,
+            SelfBondRewards,
+            Commission,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "operatorAddress" | "operator_address" => Ok(GeneratedField::OperatorAddress),
+                            "selfBondRewards" | "self_bond_rewards" => Ok(GeneratedField::SelfBondRewards),
+                            "commission" => Ok(GeneratedField::Commission),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = QueryValidatorDistributionInfoResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorDistributionInfoResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut operator_address__ = None;
+                let mut self_bond_rewards__ = None;
+                let mut commission__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::OperatorAddress => {
+                            if operator_address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("operatorAddress"));
+                            }
+                            operator_address__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::SelfBondRewards => {
+                            if self_bond_rewards__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("selfBondRewards"));
+                            }
+                            self_bond_rewards__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Commission => {
+                            if commission__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("commission"));
+                            }
+                            commission__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(QueryValidatorDistributionInfoResponse {
+                    operator_address: operator_address__.unwrap_or_default(),
+                    self_bond_rewards: self_bond_rewards__.unwrap_or_default(),
+                    commission: commission__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryValidatorOutstandingRewardsRequest {
@@ -3356,18 +3952,18 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorOutstandingRewardsRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorOutstandingRewardsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorOutstandingRewardsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3447,18 +4043,18 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorOutstandingRewardsResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorOutstandingRewardsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorOutstandingRewardsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = map.next_value()?;
+                            rewards__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3495,9 +4091,11 @@ impl serde::Serialize for QueryValidatorSlashesRequest {
             struct_ser.serialize_field("validatorAddress", &self.validator_address)?;
         }
         if self.starting_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("startingHeight", ToString::to_string(&self.starting_height).as_str())?;
         }
         if self.ending_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("endingHeight", ToString::to_string(&self.ending_height).as_str())?;
         }
         if let Some(v) = self.pagination.as_ref() {
@@ -3568,7 +4166,7 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorSlashesRequest {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorSlashesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorSlashesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorSlashesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3576,20 +4174,20 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorSlashesRequest {
                 let mut starting_height__ = None;
                 let mut ending_height__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartingHeight => {
                             if starting_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startingHeight"));
                             }
                             starting_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::EndingHeight => {
@@ -3597,14 +4195,14 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorSlashesRequest {
                                 return Err(serde::de::Error::duplicate_field("endingHeight"));
                             }
                             ending_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3696,25 +4294,25 @@ impl<'de> serde::Deserialize<'de> for QueryValidatorSlashesResponse {
                 formatter.write_str("struct cosmos.distribution.v1beta1.QueryValidatorSlashesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryValidatorSlashesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryValidatorSlashesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut slashes__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Slashes => {
                             if slashes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("slashes"));
                             }
-                            slashes__ = Some(map.next_value()?);
+                            slashes__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3795,18 +4393,18 @@ impl<'de> serde::Deserialize<'de> for ValidatorAccumulatedCommission {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorAccumulatedCommission")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorAccumulatedCommission, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorAccumulatedCommission, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut commission__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Commission => {
                             if commission__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("commission"));
                             }
-                            commission__ = Some(map.next_value()?);
+                            commission__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3896,25 +4494,25 @@ impl<'de> serde::Deserialize<'de> for ValidatorAccumulatedCommissionRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorAccumulatedCommissionRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorAccumulatedCommissionRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
                 let mut accumulated__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Accumulated => {
                             if accumulated__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("accumulated"));
                             }
-                            accumulated__ = map.next_value()?;
+                            accumulated__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3946,6 +4544,7 @@ impl serde::Serialize for ValidatorCurrentRewards {
             struct_ser.serialize_field("rewards", &self.rewards)?;
         }
         if self.period != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("period", ToString::to_string(&self.period).as_str())?;
         }
         struct_ser.end()
@@ -4004,26 +4603,26 @@ impl<'de> serde::Deserialize<'de> for ValidatorCurrentRewards {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorCurrentRewards")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorCurrentRewards, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorCurrentRewards, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut rewards__ = None;
                 let mut period__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = Some(map.next_value()?);
+                            rewards__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Period => {
                             if period__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("period"));
                             }
                             period__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -4115,25 +4714,25 @@ impl<'de> serde::Deserialize<'de> for ValidatorCurrentRewardsRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorCurrentRewardsRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorCurrentRewardsRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
                 let mut rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = map.next_value()?;
+                            rewards__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4225,26 +4824,26 @@ impl<'de> serde::Deserialize<'de> for ValidatorHistoricalRewards {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorHistoricalRewards")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorHistoricalRewards, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorHistoricalRewards, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut cumulative_reward_ratio__ = None;
                 let mut reference_count__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CumulativeRewardRatio => {
                             if cumulative_reward_ratio__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("cumulativeRewardRatio"));
                             }
-                            cumulative_reward_ratio__ = Some(map.next_value()?);
+                            cumulative_reward_ratio__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ReferenceCount => {
                             if reference_count__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("referenceCount"));
                             }
                             reference_count__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -4280,6 +4879,7 @@ impl serde::Serialize for ValidatorHistoricalRewardsRecord {
             struct_ser.serialize_field("validatorAddress", &self.validator_address)?;
         }
         if self.period != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("period", ToString::to_string(&self.period).as_str())?;
         }
         if let Some(v) = self.rewards.as_ref() {
@@ -4345,34 +4945,34 @@ impl<'de> serde::Deserialize<'de> for ValidatorHistoricalRewardsRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorHistoricalRewardsRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorHistoricalRewardsRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
                 let mut period__ = None;
                 let mut rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Period => {
                             if period__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("period"));
                             }
                             period__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = map.next_value()?;
+                            rewards__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4454,18 +5054,18 @@ impl<'de> serde::Deserialize<'de> for ValidatorOutstandingRewards {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorOutstandingRewards")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorOutstandingRewards, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorOutstandingRewards, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Rewards => {
                             if rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rewards"));
                             }
-                            rewards__ = Some(map.next_value()?);
+                            rewards__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4556,25 +5156,25 @@ impl<'de> serde::Deserialize<'de> for ValidatorOutstandingRewardsRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorOutstandingRewardsRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorOutstandingRewardsRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_address__ = None;
                 let mut outstanding_rewards__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::OutstandingRewards => {
                             if outstanding_rewards__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("outstandingRewards"));
                             }
-                            outstanding_rewards__ = Some(map.next_value()?);
+                            outstanding_rewards__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4603,6 +5203,7 @@ impl serde::Serialize for ValidatorSlashEvent {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.distribution.v1beta1.ValidatorSlashEvent", len)?;
         if self.validator_period != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("validatorPeriod", ToString::to_string(&self.validator_period).as_str())?;
         }
         if !self.fraction.is_empty() {
@@ -4665,27 +5266,27 @@ impl<'de> serde::Deserialize<'de> for ValidatorSlashEvent {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorSlashEvent")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorSlashEvent, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorSlashEvent, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_period__ = None;
                 let mut fraction__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorPeriod => {
                             if validator_period__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorPeriod"));
                             }
                             validator_period__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Fraction => {
                             if fraction__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fraction"));
                             }
-                            fraction__ = Some(map.next_value()?);
+                            fraction__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -4723,9 +5324,11 @@ impl serde::Serialize for ValidatorSlashEventRecord {
             struct_ser.serialize_field("validatorAddress", &self.validator_address)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if self.period != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("period", ToString::to_string(&self.period).as_str())?;
         }
         if let Some(v) = self.validator_slash_event.as_ref() {
@@ -4795,7 +5398,7 @@ impl<'de> serde::Deserialize<'de> for ValidatorSlashEventRecord {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorSlashEventRecord")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorSlashEventRecord, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorSlashEventRecord, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -4803,20 +5406,20 @@ impl<'de> serde::Deserialize<'de> for ValidatorSlashEventRecord {
                 let mut height__ = None;
                 let mut period__ = None;
                 let mut validator_slash_event__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Period => {
@@ -4824,14 +5427,14 @@ impl<'de> serde::Deserialize<'de> for ValidatorSlashEventRecord {
                                 return Err(serde::de::Error::duplicate_field("period"));
                             }
                             period__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ValidatorSlashEvent => {
                             if validator_slash_event__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorSlashEvent"));
                             }
-                            validator_slash_event__ = map.next_value()?;
+                            validator_slash_event__ = map_.next_value()?;
                         }
                     }
                 }
@@ -4915,18 +5518,18 @@ impl<'de> serde::Deserialize<'de> for ValidatorSlashEvents {
                 formatter.write_str("struct cosmos.distribution.v1beta1.ValidatorSlashEvents")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorSlashEvents, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorSlashEvents, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_slash_events__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorSlashEvents => {
                             if validator_slash_events__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorSlashEvents"));
                             }
-                            validator_slash_events__ = Some(map.next_value()?);
+                            validator_slash_events__ = Some(map_.next_value()?);
                         }
                     }
                 }

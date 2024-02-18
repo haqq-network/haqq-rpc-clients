@@ -207,5 +207,105 @@ pub mod service_client {
                 .insert(GrpcMethod::new("cosmos.tx.v1beta1.Service", "GetBlockWithTxs"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn tx_decode(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TxDecodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TxDecodeResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.tx.v1beta1.Service/TxDecode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.tx.v1beta1.Service", "TxDecode"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn tx_encode(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TxEncodeRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TxEncodeResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.tx.v1beta1.Service/TxEncode",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.tx.v1beta1.Service", "TxEncode"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn tx_encode_amino(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TxEncodeAminoRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TxEncodeAminoResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.tx.v1beta1.Service/TxEncodeAmino",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.tx.v1beta1.Service", "TxEncodeAmino"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn tx_decode_amino(
+            &mut self,
+            request: impl tonic::IntoRequest<super::TxDecodeAminoRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::TxDecodeAminoResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.tx.v1beta1.Service/TxDecodeAmino",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.tx.v1beta1.Service", "TxDecodeAmino"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }

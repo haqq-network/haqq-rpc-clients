@@ -21,6 +21,16 @@ export class SendAuthorization extends Message<SendAuthorization> {
    */
   spendLimit: Coin[] = [];
 
+  /**
+   * allow_list specifies an optional list of addresses to whom the grantee can send tokens on behalf of the
+   * granter. If omitted, any recipient is allowed.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: repeated string allow_list = 2;
+   */
+  allowList: string[] = [];
+
   constructor(data?: PartialMessage<SendAuthorization>) {
     super();
     proto3.util.initPartial(data, this);
@@ -30,6 +40,7 @@ export class SendAuthorization extends Message<SendAuthorization> {
   static readonly typeName = "cosmos.bank.v1beta1.SendAuthorization";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "spend_limit", kind: "message", T: Coin, repeated: true },
+    { no: 2, name: "allow_list", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SendAuthorization {

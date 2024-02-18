@@ -81,9 +81,9 @@ export const Service = {
       kind: MethodKind.Unary,
     },
     /**
-     * ABCIQuery defines a query handler that supports ABCI queries directly to
-     * the application, bypassing Tendermint completely. The ABCI query must
-     * contain a valid and supported path, including app, custom, p2p, and store.
+     * ABCIQuery defines a query handler that supports ABCI queries directly to the
+     * application, bypassing Tendermint completely. The ABCI query must contain
+     * a valid and supported path, including app, custom, p2p, and store.
      *
      * Since: cosmos-sdk 0.46
      *

@@ -104,7 +104,7 @@ impl<'de> serde::Deserialize<'de> for EventConvertCoin {
                 formatter.write_str("struct evmos.erc20.v1.EventConvertCoin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventConvertCoin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventConvertCoin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -113,37 +113,37 @@ impl<'de> serde::Deserialize<'de> for EventConvertCoin {
                 let mut amount__ = None;
                 let mut denom__ = None;
                 let mut erc20_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Receiver => {
                             if receiver__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("receiver"));
                             }
-                            receiver__ = Some(map.next_value()?);
+                            receiver__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Erc20Address => {
                             if erc20_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("erc20Address"));
                             }
-                            erc20_address__ = Some(map.next_value()?);
+                            erc20_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -264,7 +264,7 @@ impl<'de> serde::Deserialize<'de> for EventConvertErc20 {
                 formatter.write_str("struct evmos.erc20.v1.EventConvertERC20")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventConvertErc20, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventConvertErc20, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -273,37 +273,37 @@ impl<'de> serde::Deserialize<'de> for EventConvertErc20 {
                 let mut amount__ = None;
                 let mut denom__ = None;
                 let mut contract_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Receiver => {
                             if receiver__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("receiver"));
                             }
-                            receiver__ = Some(map.next_value()?);
+                            receiver__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ContractAddress => {
                             if contract_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contractAddress"));
                             }
-                            contract_address__ = Some(map.next_value()?);
+                            contract_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -397,25 +397,25 @@ impl<'de> serde::Deserialize<'de> for EventRegisterPair {
                 formatter.write_str("struct evmos.erc20.v1.EventRegisterPair")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventRegisterPair, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventRegisterPair, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut denom__ = None;
                 let mut erc20_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Erc20Address => {
                             if erc20_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("erc20Address"));
                             }
-                            erc20_address__ = Some(map.next_value()?);
+                            erc20_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -506,25 +506,25 @@ impl<'de> serde::Deserialize<'de> for EventToggleTokenConversion {
                 formatter.write_str("struct evmos.erc20.v1.EventToggleTokenConversion")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventToggleTokenConversion, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventToggleTokenConversion, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut denom__ = None;
                 let mut erc20_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Erc20Address => {
                             if erc20_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("erc20Address"));
                             }
-                            erc20_address__ = Some(map.next_value()?);
+                            erc20_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -615,25 +615,25 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 formatter.write_str("struct evmos.erc20.v1.GenesisState")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GenesisState, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
                 let mut token_pairs__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                         GeneratedField::TokenPairs => {
                             if token_pairs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tokenPairs"));
                             }
-                            token_pairs__ = Some(map.next_value()?);
+                            token_pairs__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -732,32 +732,32 @@ impl<'de> serde::Deserialize<'de> for MsgConvertCoin {
                 formatter.write_str("struct evmos.erc20.v1.MsgConvertCoin")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertCoin, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertCoin, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut coin__ = None;
                 let mut receiver__ = None;
                 let mut sender__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Coin => {
                             if coin__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("coin"));
                             }
-                            coin__ = map.next_value()?;
+                            coin__ = map_.next_value()?;
                         }
                         GeneratedField::Receiver => {
                             if receiver__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("receiver"));
                             }
-                            receiver__ = Some(map.next_value()?);
+                            receiver__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -828,12 +828,12 @@ impl<'de> serde::Deserialize<'de> for MsgConvertCoinResponse {
                 formatter.write_str("struct evmos.erc20.v1.MsgConvertCoinResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertCoinResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertCoinResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgConvertCoinResponse {
                 })
@@ -938,7 +938,7 @@ impl<'de> serde::Deserialize<'de> for MsgConvertErc20 {
                 formatter.write_str("struct evmos.erc20.v1.MsgConvertERC20")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertErc20, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertErc20, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -946,31 +946,31 @@ impl<'de> serde::Deserialize<'de> for MsgConvertErc20 {
                 let mut amount__ = None;
                 let mut receiver__ = None;
                 let mut sender__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ContractAddress => {
                             if contract_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contractAddress"));
                             }
-                            contract_address__ = Some(map.next_value()?);
+                            contract_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Receiver => {
                             if receiver__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("receiver"));
                             }
-                            receiver__ = Some(map.next_value()?);
+                            receiver__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1042,12 +1042,12 @@ impl<'de> serde::Deserialize<'de> for MsgConvertErc20Response {
                 formatter.write_str("struct evmos.erc20.v1.MsgConvertERC20Response")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertErc20Response, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertErc20Response, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgConvertErc20Response {
                 })
@@ -1133,25 +1133,25 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
                 formatter.write_str("struct evmos.erc20.v1.MsgUpdateParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1221,12 +1221,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
                 formatter.write_str("struct evmos.erc20.v1.MsgUpdateParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateParamsResponse {
                 })
@@ -1274,10 +1274,9 @@ impl<'de> serde::Deserialize<'de> for Owner {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(Owner::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1287,10 +1286,9 @@ impl<'de> serde::Deserialize<'de> for Owner {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(Owner::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1390,25 +1388,25 @@ impl<'de> serde::Deserialize<'de> for Params {
                 formatter.write_str("struct evmos.erc20.v1.Params")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Params, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut enable_erc20__ = None;
                 let mut enable_evm_hook__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::EnableErc20 => {
                             if enable_erc20__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enableErc20"));
                             }
-                            enable_erc20__ = Some(map.next_value()?);
+                            enable_erc20__ = Some(map_.next_value()?);
                         }
                         GeneratedField::EnableEvmHook => {
                             if enable_evm_hook__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enableEvmHook"));
                             }
-                            enable_evm_hook__ = Some(map.next_value()?);
+                            enable_evm_hook__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1489,18 +1487,18 @@ impl<'de> serde::Deserialize<'de> for ProposalMetadata {
                 formatter.write_str("struct evmos.erc20.v1.ProposalMetadata")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProposalMetadata, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProposalMetadata, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1569,12 +1567,12 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 formatter.write_str("struct evmos.erc20.v1.QueryParamsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryParamsRequest {
                 })
@@ -1651,18 +1649,18 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 formatter.write_str("struct evmos.erc20.v1.QueryParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1742,18 +1740,18 @@ impl<'de> serde::Deserialize<'de> for QueryTokenPairRequest {
                 formatter.write_str("struct evmos.erc20.v1.QueryTokenPairRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTokenPairRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTokenPairRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut token__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Token => {
                             if token__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("token"));
                             }
-                            token__ = Some(map.next_value()?);
+                            token__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1834,18 +1832,18 @@ impl<'de> serde::Deserialize<'de> for QueryTokenPairResponse {
                 formatter.write_str("struct evmos.erc20.v1.QueryTokenPairResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTokenPairResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTokenPairResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut token_pair__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TokenPair => {
                             if token_pair__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tokenPair"));
                             }
-                            token_pair__ = map.next_value()?;
+                            token_pair__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1925,18 +1923,18 @@ impl<'de> serde::Deserialize<'de> for QueryTokenPairsRequest {
                 formatter.write_str("struct evmos.erc20.v1.QueryTokenPairsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTokenPairsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTokenPairsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2026,25 +2024,25 @@ impl<'de> serde::Deserialize<'de> for QueryTokenPairsResponse {
                 formatter.write_str("struct evmos.erc20.v1.QueryTokenPairsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTokenPairsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTokenPairsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut token_pairs__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TokenPairs => {
                             if token_pairs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tokenPairs"));
                             }
-                            token_pairs__ = Some(map.next_value()?);
+                            token_pairs__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2143,32 +2141,32 @@ impl<'de> serde::Deserialize<'de> for RegisterCoinProposal {
                 formatter.write_str("struct evmos.erc20.v1.RegisterCoinProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<RegisterCoinProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<RegisterCoinProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut metadata__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Metadata => {
                             if metadata__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("metadata"));
                             }
-                            metadata__ = Some(map.next_value()?);
+                            metadata__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2268,32 +2266,32 @@ impl<'de> serde::Deserialize<'de> for RegisterErc20Proposal {
                 formatter.write_str("struct evmos.erc20.v1.RegisterERC20Proposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<RegisterErc20Proposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<RegisterErc20Proposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut erc20addresses__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Erc20addresses => {
                             if erc20addresses__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("erc20addresses"));
                             }
-                            erc20addresses__ = Some(map.next_value()?);
+                            erc20addresses__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2393,32 +2391,32 @@ impl<'de> serde::Deserialize<'de> for ToggleTokenConversionProposal {
                 formatter.write_str("struct evmos.erc20.v1.ToggleTokenConversionProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ToggleTokenConversionProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ToggleTokenConversionProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut token__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Token => {
                             if token__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("token"));
                             }
-                            token__ = Some(map.next_value()?);
+                            token__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2463,8 +2461,8 @@ impl serde::Serialize for TokenPair {
             struct_ser.serialize_field("enabled", &self.enabled)?;
         }
         if self.contract_owner != 0 {
-            let v = Owner::from_i32(self.contract_owner)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.contract_owner)))?;
+            let v = Owner::try_from(self.contract_owner)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.contract_owner)))?;
             struct_ser.serialize_field("contractOwner", &v)?;
         }
         struct_ser.end()
@@ -2531,7 +2529,7 @@ impl<'de> serde::Deserialize<'de> for TokenPair {
                 formatter.write_str("struct evmos.erc20.v1.TokenPair")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<TokenPair, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TokenPair, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2539,31 +2537,31 @@ impl<'de> serde::Deserialize<'de> for TokenPair {
                 let mut denom__ = None;
                 let mut enabled__ = None;
                 let mut contract_owner__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Erc20Address => {
                             if erc20_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("erc20Address"));
                             }
-                            erc20_address__ = Some(map.next_value()?);
+                            erc20_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Denom => {
                             if denom__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("denom"));
                             }
-                            denom__ = Some(map.next_value()?);
+                            denom__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Enabled => {
                             if enabled__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("enabled"));
                             }
-                            enabled__ = Some(map.next_value()?);
+                            enabled__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ContractOwner => {
                             if contract_owner__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("contractOwner"));
                             }
-                            contract_owner__ = Some(map.next_value::<Owner>()? as i32);
+                            contract_owner__ = Some(map_.next_value::<Owner>()? as i32);
                         }
                     }
                 }

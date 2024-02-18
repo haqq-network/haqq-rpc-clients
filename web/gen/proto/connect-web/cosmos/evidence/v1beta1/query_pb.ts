@@ -15,10 +15,21 @@ import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination_p
 export class QueryEvidenceRequest extends Message<QueryEvidenceRequest> {
   /**
    * evidence_hash defines the hash of the requested evidence.
+   * Deprecated: Use hash, a HEX encoded string, instead.
    *
-   * @generated from field: bytes evidence_hash = 1;
+   * @generated from field: bytes evidence_hash = 1 [deprecated = true];
+   * @deprecated
    */
   evidenceHash = new Uint8Array(0);
+
+  /**
+   * hash defines the evidence hash of the requested evidence.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string hash = 2;
+   */
+  hash = "";
 
   constructor(data?: PartialMessage<QueryEvidenceRequest>) {
     super();
@@ -29,6 +40,7 @@ export class QueryEvidenceRequest extends Message<QueryEvidenceRequest> {
   static readonly typeName = "cosmos.evidence.v1beta1.QueryEvidenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "evidence_hash", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEvidenceRequest {

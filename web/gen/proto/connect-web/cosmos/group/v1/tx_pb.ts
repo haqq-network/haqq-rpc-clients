@@ -572,6 +572,39 @@ export class MsgUpdateGroupPolicyAdmin extends Message<MsgUpdateGroupPolicyAdmin
 }
 
 /**
+ * MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type.
+ *
+ * @generated from message cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse
+ */
+export class MsgUpdateGroupPolicyAdminResponse extends Message<MsgUpdateGroupPolicyAdminResponse> {
+  constructor(data?: PartialMessage<MsgUpdateGroupPolicyAdminResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateGroupPolicyAdminResponse {
+    return new MsgUpdateGroupPolicyAdminResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateGroupPolicyAdminResponse {
+    return new MsgUpdateGroupPolicyAdminResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateGroupPolicyAdminResponse {
+    return new MsgUpdateGroupPolicyAdminResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgUpdateGroupPolicyAdminResponse | PlainMessage<MsgUpdateGroupPolicyAdminResponse> | undefined, b: MsgUpdateGroupPolicyAdminResponse | PlainMessage<MsgUpdateGroupPolicyAdminResponse> | undefined): boolean {
+    return proto3.util.equals(MsgUpdateGroupPolicyAdminResponse, a, b);
+  }
+}
+
+/**
  * MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type.
  *
  * @generated from message cosmos.group.v1.MsgCreateGroupWithPolicy
@@ -703,39 +736,6 @@ export class MsgCreateGroupWithPolicyResponse extends Message<MsgCreateGroupWith
 }
 
 /**
- * MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type.
- *
- * @generated from message cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse
- */
-export class MsgUpdateGroupPolicyAdminResponse extends Message<MsgUpdateGroupPolicyAdminResponse> {
-  constructor(data?: PartialMessage<MsgUpdateGroupPolicyAdminResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateGroupPolicyAdminResponse {
-    return new MsgUpdateGroupPolicyAdminResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateGroupPolicyAdminResponse {
-    return new MsgUpdateGroupPolicyAdminResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateGroupPolicyAdminResponse {
-    return new MsgUpdateGroupPolicyAdminResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: MsgUpdateGroupPolicyAdminResponse | PlainMessage<MsgUpdateGroupPolicyAdminResponse> | undefined, b: MsgUpdateGroupPolicyAdminResponse | PlainMessage<MsgUpdateGroupPolicyAdminResponse> | undefined): boolean {
-    return proto3.util.equals(MsgUpdateGroupPolicyAdminResponse, a, b);
-  }
-}
-
-/**
  * MsgUpdateGroupPolicyDecisionPolicy is the Msg/UpdateGroupPolicyDecisionPolicy request type.
  *
  * @generated from message cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy
@@ -846,7 +846,7 @@ export class MsgUpdateGroupPolicyMetadata extends Message<MsgUpdateGroupPolicyMe
   groupPolicyAddress = "";
 
   /**
-   * metadata is the updated group policy metadata.
+   * metadata is the group policy metadata to be updated.
    *
    * @generated from field: string metadata = 3;
    */
@@ -937,7 +937,7 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
   proposers: string[] = [];
 
   /**
-   * metadata is any arbitrary metadata to attached to the proposal.
+   * metadata is any arbitrary metadata attached to the proposal.
    *
    * @generated from field: string metadata = 3;
    */
@@ -959,6 +959,24 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
    */
   exec = Exec.UNSPECIFIED;
 
+  /**
+   * title is the title of the proposal.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string title = 6;
+   */
+  title = "";
+
+  /**
+   * summary is the summary of the proposal.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string summary = 7;
+   */
+  summary = "";
+
   constructor(data?: PartialMessage<MsgSubmitProposal>) {
     super();
     proto3.util.initPartial(data, this);
@@ -972,6 +990,8 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
     { no: 3, name: "metadata", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "messages", kind: "message", T: Any, repeated: true },
     { no: 5, name: "exec", kind: "enum", T: proto3.getEnumType(Exec) },
+    { no: 6, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSubmitProposal {
@@ -1142,7 +1162,7 @@ export class MsgVote extends Message<MsgVote> {
   option = VoteOption.UNSPECIFIED;
 
   /**
-   * metadata is any arbitrary metadata to attached to the vote.
+   * metadata is any arbitrary metadata attached to the vote.
    *
    * @generated from field: string metadata = 4;
    */

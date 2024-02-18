@@ -16,12 +16,12 @@ pub struct GenericAuthorization {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Grant {
     #[prost(message, optional, tag="1")]
-    pub authorization: ::core::option::Option<::prost_wkt_types::Any>,
+    pub authorization: ::core::option::Option<::pbjson_types::Any>,
     /// time when the grant will expire and will be pruned. If null, then the grant
     /// doesn't have a time expiration (other conditions  in `authorization`
     /// may apply to invalidate the grant)
     #[prost(message, optional, tag="2")]
-    pub expiration: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub expiration: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// GrantAuthorization extends a grant with both the addresses of the grantee and granter.
 /// It is used in genesis.proto and query.proto
@@ -34,9 +34,9 @@ pub struct GrantAuthorization {
     #[prost(string, tag="2")]
     pub grantee: ::prost::alloc::string::String,
     #[prost(message, optional, tag="3")]
-    pub authorization: ::core::option::Option<::prost_wkt_types::Any>,
+    pub authorization: ::core::option::Option<::pbjson_types::Any>,
     #[prost(message, optional, tag="4")]
-    pub expiration: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub expiration: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// GrantQueueItem contains the list of TypeURL of a sdk.Msg.
 #[derive(::derive_builder::Builder)]
@@ -189,11 +189,11 @@ pub struct MsgExecResponse {
 pub struct MsgExec {
     #[prost(string, tag="1")]
     pub grantee: ::prost::alloc::string::String,
-    /// Authorization Msg requests to execute. Each msg must implement Authorization interface
+    /// Execute Msg.
     /// The x/authz will try to find a grant matching (msg.signers\[0\], grantee, MsgTypeURL(msg))
     /// triple and validate it.
     #[prost(message, repeated, tag="2")]
-    pub msgs: ::prost::alloc::vec::Vec<::prost_wkt_types::Any>,
+    pub msgs: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
 }
 /// MsgGrantResponse defines the Msg/MsgGrant response type.
 #[derive(::derive_builder::Builder)]

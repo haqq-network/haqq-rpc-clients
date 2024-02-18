@@ -24,12 +24,15 @@ impl serde::Serialize for PageRequest {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.base.query.v1beta1.PageRequest", len)?;
         if !self.key.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", pbjson::private::base64::encode(&self.key).as_str())?;
         }
         if self.offset != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("offset", ToString::to_string(&self.offset).as_str())?;
         }
         if self.limit != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("limit", ToString::to_string(&self.limit).as_str())?;
         }
         if self.count_total {
@@ -104,7 +107,7 @@ impl<'de> serde::Deserialize<'de> for PageRequest {
                 formatter.write_str("struct cosmos.base.query.v1beta1.PageRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PageRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PageRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -113,14 +116,14 @@ impl<'de> serde::Deserialize<'de> for PageRequest {
                 let mut limit__ = None;
                 let mut count_total__ = None;
                 let mut reverse__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Offset => {
@@ -128,7 +131,7 @@ impl<'de> serde::Deserialize<'de> for PageRequest {
                                 return Err(serde::de::Error::duplicate_field("offset"));
                             }
                             offset__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Limit => {
@@ -136,20 +139,20 @@ impl<'de> serde::Deserialize<'de> for PageRequest {
                                 return Err(serde::de::Error::duplicate_field("limit"));
                             }
                             limit__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::CountTotal => {
                             if count_total__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("countTotal"));
                             }
-                            count_total__ = Some(map.next_value()?);
+                            count_total__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Reverse => {
                             if reverse__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("reverse"));
                             }
-                            reverse__ = Some(map.next_value()?);
+                            reverse__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -181,9 +184,11 @@ impl serde::Serialize for PageResponse {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.base.query.v1beta1.PageResponse", len)?;
         if !self.next_key.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("nextKey", pbjson::private::base64::encode(&self.next_key).as_str())?;
         }
         if self.total != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("total", ToString::to_string(&self.total).as_str())?;
         }
         struct_ser.end()
@@ -243,20 +248,20 @@ impl<'de> serde::Deserialize<'de> for PageResponse {
                 formatter.write_str("struct cosmos.base.query.v1beta1.PageResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PageResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PageResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut next_key__ = None;
                 let mut total__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::NextKey => {
                             if next_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("nextKey"));
                             }
                             next_key__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Total => {
@@ -264,7 +269,7 @@ impl<'de> serde::Deserialize<'de> for PageResponse {
                                 return Err(serde::de::Error::duplicate_field("total"));
                             }
                             total__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }

@@ -39,6 +39,7 @@ impl serde::Serialize for EpochInfo {
             struct_ser.serialize_field("duration", v)?;
         }
         if self.current_epoch != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("currentEpoch", ToString::to_string(&self.current_epoch).as_str())?;
         }
         if let Some(v) = self.current_epoch_start_time.as_ref() {
@@ -48,6 +49,7 @@ impl serde::Serialize for EpochInfo {
             struct_ser.serialize_field("epochCountingStarted", &self.epoch_counting_started)?;
         }
         if self.current_epoch_start_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("currentEpochStartHeight", ToString::to_string(&self.current_epoch_start_height).as_str())?;
         }
         struct_ser.end()
@@ -126,7 +128,7 @@ impl<'de> serde::Deserialize<'de> for EpochInfo {
                 formatter.write_str("struct evmos.epochs.v1.EpochInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EpochInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EpochInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -137,52 +139,52 @@ impl<'de> serde::Deserialize<'de> for EpochInfo {
                 let mut current_epoch_start_time__ = None;
                 let mut epoch_counting_started__ = None;
                 let mut current_epoch_start_height__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Identifier => {
                             if identifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("identifier"));
                             }
-                            identifier__ = Some(map.next_value()?);
+                            identifier__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
-                            start_time__ = map.next_value()?;
+                            start_time__ = map_.next_value()?;
                         }
                         GeneratedField::Duration => {
                             if duration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("duration"));
                             }
-                            duration__ = map.next_value()?;
+                            duration__ = map_.next_value()?;
                         }
                         GeneratedField::CurrentEpoch => {
                             if current_epoch__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("currentEpoch"));
                             }
                             current_epoch__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::CurrentEpochStartTime => {
                             if current_epoch_start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("currentEpochStartTime"));
                             }
-                            current_epoch_start_time__ = map.next_value()?;
+                            current_epoch_start_time__ = map_.next_value()?;
                         }
                         GeneratedField::EpochCountingStarted => {
                             if epoch_counting_started__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("epochCountingStarted"));
                             }
-                            epoch_counting_started__ = Some(map.next_value()?);
+                            epoch_counting_started__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CurrentEpochStartHeight => {
                             if current_epoch_start_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("currentEpochStartHeight"));
                             }
                             current_epoch_start_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -269,18 +271,18 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 formatter.write_str("struct evmos.epochs.v1.GenesisState")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GenesisState, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut epochs__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Epochs => {
                             if epochs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("epochs"));
                             }
-                            epochs__ = Some(map.next_value()?);
+                            epochs__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -360,18 +362,18 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentEpochRequest {
                 formatter.write_str("struct evmos.epochs.v1.QueryCurrentEpochRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCurrentEpochRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCurrentEpochRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut identifier__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Identifier => {
                             if identifier__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("identifier"));
                             }
-                            identifier__ = Some(map.next_value()?);
+                            identifier__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -396,6 +398,7 @@ impl serde::Serialize for QueryCurrentEpochResponse {
         }
         let mut struct_ser = serializer.serialize_struct("evmos.epochs.v1.QueryCurrentEpochResponse", len)?;
         if self.current_epoch != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("currentEpoch", ToString::to_string(&self.current_epoch).as_str())?;
         }
         struct_ser.end()
@@ -452,19 +455,19 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentEpochResponse {
                 formatter.write_str("struct evmos.epochs.v1.QueryCurrentEpochResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCurrentEpochResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCurrentEpochResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut current_epoch__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::CurrentEpoch => {
                             if current_epoch__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("currentEpoch"));
                             }
                             current_epoch__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -545,18 +548,18 @@ impl<'de> serde::Deserialize<'de> for QueryEpochsInfoRequest {
                 formatter.write_str("struct evmos.epochs.v1.QueryEpochsInfoRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryEpochsInfoRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryEpochsInfoRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -645,25 +648,25 @@ impl<'de> serde::Deserialize<'de> for QueryEpochsInfoResponse {
                 formatter.write_str("struct evmos.epochs.v1.QueryEpochsInfoResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryEpochsInfoResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryEpochsInfoResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut epochs__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Epochs => {
                             if epochs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("epochs"));
                             }
-                            epochs__ = Some(map.next_value()?);
+                            epochs__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }

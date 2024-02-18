@@ -149,13 +149,15 @@ export class SnapshotItem extends Message<SnapshotItem> {
     case: "extensionPayload";
   } | {
     /**
-     * @generated from field: cosmos.base.snapshots.v1beta1.SnapshotKVItem kv = 5;
+     * @generated from field: cosmos.base.snapshots.v1beta1.SnapshotKVItem kv = 5 [deprecated = true];
+     * @deprecated
      */
     value: SnapshotKVItem;
     case: "kv";
   } | {
     /**
-     * @generated from field: cosmos.base.snapshots.v1beta1.SnapshotSchema schema = 6;
+     * @generated from field: cosmos.base.snapshots.v1beta1.SnapshotSchema schema = 6 [deprecated = true];
+     * @deprecated
      */
     value: SnapshotSchema;
     case: "schema";
@@ -390,8 +392,10 @@ export class SnapshotExtensionPayload extends Message<SnapshotExtensionPayload> 
  * SnapshotKVItem is an exported Key/Value Pair
  *
  * Since: cosmos-sdk 0.46
+ * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
  *
  * @generated from message cosmos.base.snapshots.v1beta1.SnapshotKVItem
+ * @deprecated
  */
 export class SnapshotKVItem extends Message<SnapshotKVItem> {
   /**
@@ -437,8 +441,10 @@ export class SnapshotKVItem extends Message<SnapshotKVItem> {
  * SnapshotSchema is an exported schema of smt store
  *
  * Since: cosmos-sdk 0.46
+ * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
  *
  * @generated from message cosmos.base.snapshots.v1beta1.SnapshotSchema
+ * @deprecated
  */
 export class SnapshotSchema extends Message<SnapshotSchema> {
   /**

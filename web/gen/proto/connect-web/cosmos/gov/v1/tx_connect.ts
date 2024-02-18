@@ -5,7 +5,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgDeposit, MsgDepositResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgSubmitProposal, MsgSubmitProposalResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse } from "./tx_pb.js";
+import { MsgDeposit, MsgDepositResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgSubmitProposal, MsgSubmitProposalResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -17,7 +17,7 @@ export const Msg = {
   typeName: "cosmos.gov.v1.Msg",
   methods: {
     /**
-     * SubmitProposal defines a method to create new proposal given a content.
+     * SubmitProposal defines a method to create new proposal given the messages.
      *
      * @generated from rpc cosmos.gov.v1.Msg.SubmitProposal
      */
@@ -70,6 +70,20 @@ export const Msg = {
       name: "Deposit",
       I: MsgDeposit,
       O: MsgDepositResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UpdateParams defines a governance operation for updating the x/gov module
+     * parameters. The authority is defined in the keeper.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.gov.v1.Msg.UpdateParams
+     */
+    updateParams: {
+      name: "UpdateParams",
+      I: MsgUpdateParams,
+      O: MsgUpdateParamsResponse,
       kind: MethodKind.Unary,
     },
   }

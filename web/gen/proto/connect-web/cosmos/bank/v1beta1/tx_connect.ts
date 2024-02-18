@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgMultiSend, MsgMultiSendResponse, MsgSend, MsgSendResponse } from "./tx_pb.js";
+import { MsgMultiSend, MsgMultiSendResponse, MsgSend, MsgSendResponse, MsgSetSendEnabled, MsgSetSendEnabledResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -34,6 +34,36 @@ export const Msg = {
       name: "MultiSend",
       I: MsgMultiSend,
       O: MsgMultiSendResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UpdateParams defines a governance operation for updating the x/bank module parameters.
+     * The authority is defined in the keeper.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.bank.v1beta1.Msg.UpdateParams
+     */
+    updateParams: {
+      name: "UpdateParams",
+      I: MsgUpdateParams,
+      O: MsgUpdateParamsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * SetSendEnabled is a governance operation for setting the SendEnabled flag
+     * on any number of Denoms. Only the entries to add or update should be
+     * included. Entries that already exist in the store, but that aren't
+     * included in this message, will be left unchanged.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.bank.v1beta1.Msg.SetSendEnabled
+     */
+    setSendEnabled: {
+      name: "SetSendEnabled",
+      I: MsgSetSendEnabled,
+      O: MsgSetSendEnabledResponse,
       kind: MethodKind.Unary,
     },
   }

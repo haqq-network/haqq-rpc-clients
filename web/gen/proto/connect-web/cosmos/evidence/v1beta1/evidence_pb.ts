@@ -14,21 +14,29 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
  */
 export class Equivocation extends Message<Equivocation> {
   /**
+   * height is the equivocation height.
+   *
    * @generated from field: int64 height = 1;
    */
   height = protoInt64.zero;
 
   /**
+   * time is the equivocation time.
+   *
    * @generated from field: google.protobuf.Timestamp time = 2;
    */
   time?: Timestamp;
 
   /**
+   * power is the equivocation validator power.
+   *
    * @generated from field: int64 power = 3;
    */
   power = protoInt64.zero;
 
   /**
+   * consensus_address is the equivocation validator consensus address.
+   *
    * @generated from field: string consensus_address = 4;
    */
   consensusAddress = "";

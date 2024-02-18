@@ -7,7 +7,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Deposit, DepositParams, Proposal, TallyParams, Vote, VotingParams } from "./gov_pb.js";
+import { Deposit, DepositParams, Params, Proposal, TallyParams, Vote, VotingParams } from "./gov_pb.js";
 
 /**
  * GenesisState defines the gov module's genesis state.
@@ -44,25 +44,40 @@ export class GenesisState extends Message<GenesisState> {
   proposals: Proposal[] = [];
 
   /**
-   * params defines all the paramaters of related to deposit.
+   * Deprecated: Prefer to use `params` instead.
+   * deposit_params defines all the paramaters of related to deposit.
    *
-   * @generated from field: cosmos.gov.v1.DepositParams deposit_params = 5;
+   * @generated from field: cosmos.gov.v1.DepositParams deposit_params = 5 [deprecated = true];
+   * @deprecated
    */
   depositParams?: DepositParams;
 
   /**
-   * params defines all the paramaters of related to voting.
+   * Deprecated: Prefer to use `params` instead.
+   * voting_params defines all the paramaters of related to voting.
    *
-   * @generated from field: cosmos.gov.v1.VotingParams voting_params = 6;
+   * @generated from field: cosmos.gov.v1.VotingParams voting_params = 6 [deprecated = true];
+   * @deprecated
    */
   votingParams?: VotingParams;
 
   /**
-   * params defines all the paramaters of related to tally.
+   * Deprecated: Prefer to use `params` instead.
+   * tally_params defines all the paramaters of related to tally.
    *
-   * @generated from field: cosmos.gov.v1.TallyParams tally_params = 7;
+   * @generated from field: cosmos.gov.v1.TallyParams tally_params = 7 [deprecated = true];
+   * @deprecated
    */
   tallyParams?: TallyParams;
+
+  /**
+   * params defines all the paramaters of x/gov module.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: cosmos.gov.v1.Params params = 8;
+   */
+  params?: Params;
 
   constructor(data?: PartialMessage<GenesisState>) {
     super();
@@ -79,6 +94,7 @@ export class GenesisState extends Message<GenesisState> {
     { no: 5, name: "deposit_params", kind: "message", T: DepositParams },
     { no: 6, name: "voting_params", kind: "message", T: VotingParams },
     { no: 7, name: "tally_params", kind: "message", T: TallyParams },
+    { no: 8, name: "params", kind: "message", T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {

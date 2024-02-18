@@ -17,6 +17,9 @@ export const Query = {
     /**
      * Validators queries all validators that match the given status.
      *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
+     *
      * @generated from rpc cosmos.staking.v1beta1.Query.Validators
      */
     validators: {
@@ -39,6 +42,9 @@ export const Query = {
     /**
      * ValidatorDelegations queries delegate info for given validator.
      *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
+     *
      * @generated from rpc cosmos.staking.v1beta1.Query.ValidatorDelegations
      */
     validatorDelegations: {
@@ -49,6 +55,9 @@ export const Query = {
     },
     /**
      * ValidatorUnbondingDelegations queries unbonding delegations of a validator.
+     *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
      *
      * @generated from rpc cosmos.staking.v1beta1.Query.ValidatorUnbondingDelegations
      */
@@ -84,6 +93,9 @@ export const Query = {
     /**
      * DelegatorDelegations queries all delegations of a given delegator address.
      *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
+     *
      * @generated from rpc cosmos.staking.v1beta1.Query.DelegatorDelegations
      */
     delegatorDelegations: {
@@ -96,6 +108,9 @@ export const Query = {
      * DelegatorUnbondingDelegations queries all unbonding delegations of a given
      * delegator address.
      *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
+     *
      * @generated from rpc cosmos.staking.v1beta1.Query.DelegatorUnbondingDelegations
      */
     delegatorUnbondingDelegations: {
@@ -106,6 +121,9 @@ export const Query = {
     },
     /**
      * Redelegations queries redelegations of given address.
+     *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
      *
      * @generated from rpc cosmos.staking.v1beta1.Query.Redelegations
      */
@@ -118,6 +136,9 @@ export const Query = {
     /**
      * DelegatorValidators queries all validators info for given delegator
      * address.
+     *
+     * When called from another module, this query might consume a high amount of
+     * gas if the pagination field is incorrectly set.
      *
      * @generated from rpc cosmos.staking.v1beta1.Query.DelegatorValidators
      */

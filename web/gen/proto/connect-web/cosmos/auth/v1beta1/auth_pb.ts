@@ -117,6 +117,58 @@ export class ModuleAccount extends Message<ModuleAccount> {
 }
 
 /**
+ * ModuleCredential represents a unclaimable pubkey for base accounts controlled by modules.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.auth.v1beta1.ModuleCredential
+ */
+export class ModuleCredential extends Message<ModuleCredential> {
+  /**
+   * module_name is the name of the module used for address derivation (passed into address.Module).
+   *
+   * @generated from field: string module_name = 1;
+   */
+  moduleName = "";
+
+  /**
+   * derivation_keys is for deriving a module account address (passed into address.Module)
+   * adding more keys creates sub-account addresses (passed into address.Derive)
+   *
+   * @generated from field: repeated bytes derivation_keys = 2;
+   */
+  derivationKeys: Uint8Array[] = [];
+
+  constructor(data?: PartialMessage<ModuleCredential>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.auth.v1beta1.ModuleCredential";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "module_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "derivation_keys", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleCredential {
+    return new ModuleCredential().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModuleCredential {
+    return new ModuleCredential().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleCredential {
+    return new ModuleCredential().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ModuleCredential | PlainMessage<ModuleCredential> | undefined, b: ModuleCredential | PlainMessage<ModuleCredential> | undefined): boolean {
+    return proto3.util.equals(ModuleCredential, a, b);
+  }
+}
+
+/**
  * Params defines the parameters for the auth module.
  *
  * @generated from message cosmos.auth.v1beta1.Params

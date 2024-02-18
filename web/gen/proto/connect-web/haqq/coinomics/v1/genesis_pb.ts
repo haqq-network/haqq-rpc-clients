@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
 
 /**
@@ -21,44 +21,16 @@ export class GenesisState extends Message<GenesisState> {
   params?: Params;
 
   /**
-   * current inflation rate
+   * prev block block ts
    *
-   * @generated from field: string inflation = 2;
+   * @generated from field: string prev_block_ts = 2;
    */
-  inflation = "";
-
-  /**
-   * current era number
-   *
-   * @generated from field: uint64 era = 3;
-   */
-  era = protoInt64.zero;
-
-  /**
-   * era started block number
-   *
-   * @generated from field: uint64 era_started_at_block = 4;
-   */
-  eraStartedAtBlock = protoInt64.zero;
-
-  /**
-   * target mint for current era
-   *
-   * @generated from field: cosmos.base.v1beta1.Coin era_target_mint = 5;
-   */
-  eraTargetMint?: Coin;
-
-  /**
-   * closing supply for current era
-   *
-   * @generated from field: cosmos.base.v1beta1.Coin era_closing_supply = 6;
-   */
-  eraClosingSupply?: Coin;
+  prevBlockTs = "";
 
   /**
    * max supply
    *
-   * @generated from field: cosmos.base.v1beta1.Coin max_supply = 7;
+   * @generated from field: cosmos.base.v1beta1.Coin max_supply = 3;
    */
   maxSupply?: Coin;
 
@@ -71,12 +43,8 @@ export class GenesisState extends Message<GenesisState> {
   static readonly typeName = "haqq.coinomics.v1.GenesisState";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "inflation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "era", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "era_started_at_block", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "era_target_mint", kind: "message", T: Coin },
-    { no: 6, name: "era_closing_supply", kind: "message", T: Coin },
-    { no: 7, name: "max_supply", kind: "message", T: Coin },
+    { no: 2, name: "prev_block_ts", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "max_supply", kind: "message", T: Coin },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -110,18 +78,18 @@ export class Params extends Message<Params> {
   mintDenom = "";
 
   /**
-   * number of blocks per era
-   *
-   * @generated from field: uint64 blocks_per_era = 2;
-   */
-  blocksPerEra = protoInt64.zero;
-
-  /**
    * parameter to enable coinmoics
    *
-   * @generated from field: bool enable_coinomics = 3;
+   * @generated from field: bool enable_coinomics = 2;
    */
   enableCoinomics = false;
+
+  /**
+   * current staking reward coefficient
+   *
+   * @generated from field: string reward_coefficient = 3;
+   */
+  rewardCoefficient = "";
 
   constructor(data?: PartialMessage<Params>) {
     super();
@@ -132,8 +100,8 @@ export class Params extends Message<Params> {
   static readonly typeName = "haqq.coinomics.v1.Params";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "mint_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "blocks_per_era", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "enable_coinomics", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "enable_coinomics", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "reward_coefficient", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {

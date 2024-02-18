@@ -7,21 +7,20 @@ managed:
     except:
       - buf.build/googleapis/googleapis
 plugins:
-  - plugin: buf.build/community/neoeinstein-prost:v0.2.3
+  - plugin: buf.build/community/neoeinstein-prost:v0.3.1
     out: src/gen
     opt:
       - message_attribute=.=#[derive(::derive_builder::Builder)]
       - bytes=.
       # - extern_path=.=::cosmos_sdk_proto::cosmos
-      # https://github.com/tokio-rs/prost/issues/672
-      - extern_path=.google.protobuf=::prost-wkt-types
+      - extern_path=.google.protobuf=::pbjson_types
       - compile_well_known_types
 
-  - plugin: buf.build/community/neoeinstein-prost-serde:v0.2.3
+  - plugin: buf.build/community/neoeinstein-prost-serde:v0.3.0
     out: src/gen
     opt:
   
-  - plugin: buf.build/community/neoeinstein-tonic:v0.3.0
+  - plugin: buf.build/community/neoeinstein-tonic:v0.4.0
     out: src/gen
     opt:
       - no_server=true

@@ -86,32 +86,32 @@ impl<'de> serde::Deserialize<'de> for AuthInfo {
                 formatter.write_str("struct cosmos.tx.v1beta1.AuthInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AuthInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AuthInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut signer_infos__ = None;
                 let mut fee__ = None;
                 let mut tip__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SignerInfos => {
                             if signer_infos__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signerInfos"));
                             }
-                            signer_infos__ = Some(map.next_value()?);
+                            signer_infos__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Fee => {
                             if fee__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fee"));
                             }
-                            fee__ = map.next_value()?;
+                            fee__ = map_.next_value()?;
                         }
                         GeneratedField::Tip => {
                             if tip__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tip"));
                             }
-                            tip__ = map.next_value()?;
+                            tip__ = map_.next_value()?;
                         }
                     }
                 }
@@ -153,11 +153,12 @@ impl serde::Serialize for AuxSignerData {
             struct_ser.serialize_field("signDoc", v)?;
         }
         if self.mode != 0 {
-            let v = super::signing::v1beta1::SignMode::from_i32(self.mode)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
+            let v = super::signing::v1beta1::SignMode::try_from(self.mode)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
             struct_ser.serialize_field("mode", &v)?;
         }
         if !self.sig.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sig", pbjson::private::base64::encode(&self.sig).as_str())?;
         }
         struct_ser.end()
@@ -223,7 +224,7 @@ impl<'de> serde::Deserialize<'de> for AuxSignerData {
                 formatter.write_str("struct cosmos.tx.v1beta1.AuxSignerData")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<AuxSignerData, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<AuxSignerData, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -231,32 +232,32 @@ impl<'de> serde::Deserialize<'de> for AuxSignerData {
                 let mut sign_doc__ = None;
                 let mut mode__ = None;
                 let mut sig__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::SignDoc => {
                             if sign_doc__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signDoc"));
                             }
-                            sign_doc__ = map.next_value()?;
+                            sign_doc__ = map_.next_value()?;
                         }
                         GeneratedField::Mode => {
                             if mode__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("mode"));
                             }
-                            mode__ = Some(map.next_value::<super::signing::v1beta1::SignMode>()? as i32);
+                            mode__ = Some(map_.next_value::<super::signing::v1beta1::SignMode>()? as i32);
                         }
                         GeneratedField::Sig => {
                             if sig__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sig"));
                             }
                             sig__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -313,10 +314,9 @@ impl<'de> serde::Deserialize<'de> for BroadcastMode {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(BroadcastMode::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -326,10 +326,9 @@ impl<'de> serde::Deserialize<'de> for BroadcastMode {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(BroadcastMode::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -367,11 +366,12 @@ impl serde::Serialize for BroadcastTxRequest {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.BroadcastTxRequest", len)?;
         if !self.tx_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("txBytes", pbjson::private::base64::encode(&self.tx_bytes).as_str())?;
         }
         if self.mode != 0 {
-            let v = BroadcastMode::from_i32(self.mode)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
+            let v = BroadcastMode::try_from(self.mode)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
             struct_ser.serialize_field("mode", &v)?;
         }
         struct_ser.end()
@@ -431,27 +431,27 @@ impl<'de> serde::Deserialize<'de> for BroadcastTxRequest {
                 formatter.write_str("struct cosmos.tx.v1beta1.BroadcastTxRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BroadcastTxRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BroadcastTxRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tx_bytes__ = None;
                 let mut mode__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TxBytes => {
                             if tx_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txBytes"));
                             }
                             tx_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Mode => {
                             if mode__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("mode"));
                             }
-                            mode__ = Some(map.next_value::<BroadcastMode>()? as i32);
+                            mode__ = Some(map_.next_value::<BroadcastMode>()? as i32);
                         }
                     }
                 }
@@ -533,18 +533,18 @@ impl<'de> serde::Deserialize<'de> for BroadcastTxResponse {
                 formatter.write_str("struct cosmos.tx.v1beta1.BroadcastTxResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BroadcastTxResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BroadcastTxResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tx_response__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TxResponse => {
                             if tx_response__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txResponse"));
                             }
-                            tx_response__ = map.next_value()?;
+                            tx_response__ = map_.next_value()?;
                         }
                     }
                 }
@@ -581,6 +581,7 @@ impl serde::Serialize for Fee {
             struct_ser.serialize_field("amount", &self.amount)?;
         }
         if self.gas_limit != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("gasLimit", ToString::to_string(&self.gas_limit).as_str())?;
         }
         if !self.payer.is_empty() {
@@ -652,7 +653,7 @@ impl<'de> serde::Deserialize<'de> for Fee {
                 formatter.write_str("struct cosmos.tx.v1beta1.Fee")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Fee, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Fee, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -660,33 +661,33 @@ impl<'de> serde::Deserialize<'de> for Fee {
                 let mut gas_limit__ = None;
                 let mut payer__ = None;
                 let mut granter__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::GasLimit => {
                             if gas_limit__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("gasLimit"));
                             }
                             gas_limit__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Payer => {
                             if payer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("payer"));
                             }
-                            payer__ = Some(map.next_value()?);
+                            payer__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Granter => {
                             if granter__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("granter"));
                             }
-                            granter__ = Some(map.next_value()?);
+                            granter__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -717,6 +718,7 @@ impl serde::Serialize for GetBlockWithTxsRequest {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.GetBlockWithTxsRequest", len)?;
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if let Some(v) = self.pagination.as_ref() {
@@ -778,27 +780,27 @@ impl<'de> serde::Deserialize<'de> for GetBlockWithTxsRequest {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetBlockWithTxsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetBlockWithTxsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetBlockWithTxsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut height__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -907,7 +909,7 @@ impl<'de> serde::Deserialize<'de> for GetBlockWithTxsResponse {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetBlockWithTxsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetBlockWithTxsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetBlockWithTxsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -915,31 +917,31 @@ impl<'de> serde::Deserialize<'de> for GetBlockWithTxsResponse {
                 let mut block_id__ = None;
                 let mut block__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Txs => {
                             if txs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txs"));
                             }
-                            txs__ = Some(map.next_value()?);
+                            txs__ = Some(map_.next_value()?);
                         }
                         GeneratedField::BlockId => {
                             if block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockId"));
                             }
-                            block_id__ = map.next_value()?;
+                            block_id__ = map_.next_value()?;
                         }
                         GeneratedField::Block => {
                             if block__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("block"));
                             }
-                            block__ = map.next_value()?;
+                            block__ = map_.next_value()?;
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1022,18 +1024,18 @@ impl<'de> serde::Deserialize<'de> for GetTxRequest {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetTxRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetTxRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetTxRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut hash__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Hash => {
                             if hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("hash"));
                             }
-                            hash__ = Some(map.next_value()?);
+                            hash__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1123,25 +1125,25 @@ impl<'de> serde::Deserialize<'de> for GetTxResponse {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetTxResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetTxResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetTxResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tx__ = None;
                 let mut tx_response__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Tx => {
                             if tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tx"));
                             }
-                            tx__ = map.next_value()?;
+                            tx__ = map_.next_value()?;
                         }
                         GeneratedField::TxResponse => {
                             if tx_response__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txResponse"));
                             }
-                            tx_response__ = map.next_value()?;
+                            tx_response__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1185,14 +1187,16 @@ impl serde::Serialize for GetTxsEventRequest {
             struct_ser.serialize_field("pagination", v)?;
         }
         if self.order_by != 0 {
-            let v = OrderBy::from_i32(self.order_by)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.order_by)))?;
+            let v = OrderBy::try_from(self.order_by)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.order_by)))?;
             struct_ser.serialize_field("orderBy", &v)?;
         }
         if self.page != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("page", ToString::to_string(&self.page).as_str())?;
         }
         if self.limit != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("limit", ToString::to_string(&self.limit).as_str())?;
         }
         struct_ser.end()
@@ -1261,7 +1265,7 @@ impl<'de> serde::Deserialize<'de> for GetTxsEventRequest {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetTxsEventRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetTxsEventRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetTxsEventRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1270,32 +1274,32 @@ impl<'de> serde::Deserialize<'de> for GetTxsEventRequest {
                 let mut order_by__ = None;
                 let mut page__ = None;
                 let mut limit__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Events => {
                             if events__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("events"));
                             }
-                            events__ = Some(map.next_value()?);
+                            events__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                         GeneratedField::OrderBy => {
                             if order_by__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("orderBy"));
                             }
-                            order_by__ = Some(map.next_value::<OrderBy>()? as i32);
+                            order_by__ = Some(map_.next_value::<OrderBy>()? as i32);
                         }
                         GeneratedField::Page => {
                             if page__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("page"));
                             }
                             page__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Limit => {
@@ -1303,7 +1307,7 @@ impl<'de> serde::Deserialize<'de> for GetTxsEventRequest {
                                 return Err(serde::de::Error::duplicate_field("limit"));
                             }
                             limit__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1351,6 +1355,7 @@ impl serde::Serialize for GetTxsEventResponse {
             struct_ser.serialize_field("pagination", v)?;
         }
         if self.total != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("total", ToString::to_string(&self.total).as_str())?;
         }
         struct_ser.end()
@@ -1416,7 +1421,7 @@ impl<'de> serde::Deserialize<'de> for GetTxsEventResponse {
                 formatter.write_str("struct cosmos.tx.v1beta1.GetTxsEventResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GetTxsEventResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GetTxsEventResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1424,32 +1429,32 @@ impl<'de> serde::Deserialize<'de> for GetTxsEventResponse {
                 let mut tx_responses__ = None;
                 let mut pagination__ = None;
                 let mut total__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Txs => {
                             if txs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txs"));
                             }
-                            txs__ = Some(map.next_value()?);
+                            txs__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TxResponses => {
                             if tx_responses__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txResponses"));
                             }
-                            tx_responses__ = Some(map.next_value()?);
+                            tx_responses__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                         GeneratedField::Total => {
                             if total__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("total"));
                             }
                             total__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1543,25 +1548,25 @@ impl<'de> serde::Deserialize<'de> for ModeInfo {
                 formatter.write_str("struct cosmos.tx.v1beta1.ModeInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ModeInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ModeInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sum__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Single => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("single"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<_>>()?.map(mode_info::Sum::Single)
+                            sum__ = map_.next_value::<::std::option::Option<_>>()?.map(mode_info::Sum::Single)
 ;
                         }
                         GeneratedField::Multi => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("multi"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<_>>()?.map(mode_info::Sum::Multi)
+                            sum__ = map_.next_value::<::std::option::Option<_>>()?.map(mode_info::Sum::Multi)
 ;
                         }
                     }
@@ -1652,25 +1657,25 @@ impl<'de> serde::Deserialize<'de> for mode_info::Multi {
                 formatter.write_str("struct cosmos.tx.v1beta1.ModeInfo.Multi")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<mode_info::Multi, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<mode_info::Multi, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut bitarray__ = None;
                 let mut mode_infos__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Bitarray => {
                             if bitarray__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bitarray"));
                             }
-                            bitarray__ = map.next_value()?;
+                            bitarray__ = map_.next_value()?;
                         }
                         GeneratedField::ModeInfos => {
                             if mode_infos__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("modeInfos"));
                             }
-                            mode_infos__ = Some(map.next_value()?);
+                            mode_infos__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1696,8 +1701,8 @@ impl serde::Serialize for mode_info::Single {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.ModeInfo.Single", len)?;
         if self.mode != 0 {
-            let v = super::signing::v1beta1::SignMode::from_i32(self.mode)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
+            let v = super::signing::v1beta1::SignMode::try_from(self.mode)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.mode)))?;
             struct_ser.serialize_field("mode", &v)?;
         }
         struct_ser.end()
@@ -1753,18 +1758,18 @@ impl<'de> serde::Deserialize<'de> for mode_info::Single {
                 formatter.write_str("struct cosmos.tx.v1beta1.ModeInfo.Single")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<mode_info::Single, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<mode_info::Single, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut mode__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Mode => {
                             if mode__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("mode"));
                             }
-                            mode__ = Some(map.next_value::<super::signing::v1beta1::SignMode>()? as i32);
+                            mode__ = Some(map_.next_value::<super::signing::v1beta1::SignMode>()? as i32);
                         }
                     }
                 }
@@ -1815,10 +1820,9 @@ impl<'de> serde::Deserialize<'de> for OrderBy {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(OrderBy::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -1828,10 +1832,9 @@ impl<'de> serde::Deserialize<'de> for OrderBy {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(OrderBy::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -1874,15 +1877,18 @@ impl serde::Serialize for SignDoc {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.SignDoc", len)?;
         if !self.body_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("bodyBytes", pbjson::private::base64::encode(&self.body_bytes).as_str())?;
         }
         if !self.auth_info_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("authInfoBytes", pbjson::private::base64::encode(&self.auth_info_bytes).as_str())?;
         }
         if !self.chain_id.is_empty() {
             struct_ser.serialize_field("chainId", &self.chain_id)?;
         }
         if self.account_number != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("accountNumber", ToString::to_string(&self.account_number).as_str())?;
         }
         struct_ser.end()
@@ -1951,7 +1957,7 @@ impl<'de> serde::Deserialize<'de> for SignDoc {
                 formatter.write_str("struct cosmos.tx.v1beta1.SignDoc")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SignDoc, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SignDoc, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1959,14 +1965,14 @@ impl<'de> serde::Deserialize<'de> for SignDoc {
                 let mut auth_info_bytes__ = None;
                 let mut chain_id__ = None;
                 let mut account_number__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BodyBytes => {
                             if body_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bodyBytes"));
                             }
                             body_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::AuthInfoBytes => {
@@ -1974,21 +1980,21 @@ impl<'de> serde::Deserialize<'de> for SignDoc {
                                 return Err(serde::de::Error::duplicate_field("authInfoBytes"));
                             }
                             auth_info_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ChainId => {
                             if chain_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainId"));
                             }
-                            chain_id__ = Some(map.next_value()?);
+                            chain_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AccountNumber => {
                             if account_number__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("accountNumber"));
                             }
                             account_number__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2032,6 +2038,7 @@ impl serde::Serialize for SignDocDirectAux {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.SignDocDirectAux", len)?;
         if !self.body_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("bodyBytes", pbjson::private::base64::encode(&self.body_bytes).as_str())?;
         }
         if let Some(v) = self.public_key.as_ref() {
@@ -2041,9 +2048,11 @@ impl serde::Serialize for SignDocDirectAux {
             struct_ser.serialize_field("chainId", &self.chain_id)?;
         }
         if self.account_number != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("accountNumber", ToString::to_string(&self.account_number).as_str())?;
         }
         if self.sequence != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sequence", ToString::to_string(&self.sequence).as_str())?;
         }
         if let Some(v) = self.tip.as_ref() {
@@ -2121,7 +2130,7 @@ impl<'de> serde::Deserialize<'de> for SignDocDirectAux {
                 formatter.write_str("struct cosmos.tx.v1beta1.SignDocDirectAux")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SignDocDirectAux, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SignDocDirectAux, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2131,34 +2140,34 @@ impl<'de> serde::Deserialize<'de> for SignDocDirectAux {
                 let mut account_number__ = None;
                 let mut sequence__ = None;
                 let mut tip__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BodyBytes => {
                             if body_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bodyBytes"));
                             }
                             body_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::PublicKey => {
                             if public_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("publicKey"));
                             }
-                            public_key__ = map.next_value()?;
+                            public_key__ = map_.next_value()?;
                         }
                         GeneratedField::ChainId => {
                             if chain_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainId"));
                             }
-                            chain_id__ = Some(map.next_value()?);
+                            chain_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AccountNumber => {
                             if account_number__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("accountNumber"));
                             }
                             account_number__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Sequence => {
@@ -2166,14 +2175,14 @@ impl<'de> serde::Deserialize<'de> for SignDocDirectAux {
                                 return Err(serde::de::Error::duplicate_field("sequence"));
                             }
                             sequence__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Tip => {
                             if tip__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tip"));
                             }
-                            tip__ = map.next_value()?;
+                            tip__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2215,6 +2224,7 @@ impl serde::Serialize for SignerInfo {
             struct_ser.serialize_field("modeInfo", v)?;
         }
         if self.sequence != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("sequence", ToString::to_string(&self.sequence).as_str())?;
         }
         struct_ser.end()
@@ -2278,33 +2288,33 @@ impl<'de> serde::Deserialize<'de> for SignerInfo {
                 formatter.write_str("struct cosmos.tx.v1beta1.SignerInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SignerInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SignerInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut public_key__ = None;
                 let mut mode_info__ = None;
                 let mut sequence__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::PublicKey => {
                             if public_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("publicKey"));
                             }
-                            public_key__ = map.next_value()?;
+                            public_key__ = map_.next_value()?;
                         }
                         GeneratedField::ModeInfo => {
                             if mode_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("modeInfo"));
                             }
-                            mode_info__ = map.next_value()?;
+                            mode_info__ = map_.next_value()?;
                         }
                         GeneratedField::Sequence => {
                             if sequence__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sequence"));
                             }
                             sequence__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2338,6 +2348,7 @@ impl serde::Serialize for SimulateRequest {
             struct_ser.serialize_field("tx", v)?;
         }
         if !self.tx_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("txBytes", pbjson::private::base64::encode(&self.tx_bytes).as_str())?;
         }
         struct_ser.end()
@@ -2397,26 +2408,26 @@ impl<'de> serde::Deserialize<'de> for SimulateRequest {
                 formatter.write_str("struct cosmos.tx.v1beta1.SimulateRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SimulateRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SimulateRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tx__ = None;
                 let mut tx_bytes__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Tx => {
                             if tx__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tx"));
                             }
-                            tx__ = map.next_value()?;
+                            tx__ = map_.next_value()?;
                         }
                         GeneratedField::TxBytes => {
                             if tx_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txBytes"));
                             }
                             tx_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2508,25 +2519,25 @@ impl<'de> serde::Deserialize<'de> for SimulateResponse {
                 formatter.write_str("struct cosmos.tx.v1beta1.SimulateResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SimulateResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SimulateResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut gas_info__ = None;
                 let mut result__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::GasInfo => {
                             if gas_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("gasInfo"));
                             }
-                            gas_info__ = map.next_value()?;
+                            gas_info__ = map_.next_value()?;
                         }
                         GeneratedField::Result => {
                             if result__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("result"));
                             }
-                            result__ = map.next_value()?;
+                            result__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2616,25 +2627,25 @@ impl<'de> serde::Deserialize<'de> for Tip {
                 formatter.write_str("struct cosmos.tx.v1beta1.Tip")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Tip, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Tip, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut amount__ = None;
                 let mut tipper__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Amount => {
                             if amount__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("amount"));
                             }
-                            amount__ = Some(map.next_value()?);
+                            amount__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Tipper => {
                             if tipper__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tipper"));
                             }
-                            tipper__ = Some(map.next_value()?);
+                            tipper__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2734,33 +2745,33 @@ impl<'de> serde::Deserialize<'de> for Tx {
                 formatter.write_str("struct cosmos.tx.v1beta1.Tx")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Tx, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Tx, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut body__ = None;
                 let mut auth_info__ = None;
                 let mut signatures__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Body => {
                             if body__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("body"));
                             }
-                            body__ = map.next_value()?;
+                            body__ = map_.next_value()?;
                         }
                         GeneratedField::AuthInfo => {
                             if auth_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authInfo"));
                             }
-                            auth_info__ = map.next_value()?;
+                            auth_info__ = map_.next_value()?;
                         }
                         GeneratedField::Signatures => {
                             if signatures__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signatures"));
                             }
                             signatures__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }
@@ -2807,6 +2818,7 @@ impl serde::Serialize for TxBody {
             struct_ser.serialize_field("memo", &self.memo)?;
         }
         if self.timeout_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("timeoutHeight", ToString::to_string(&self.timeout_height).as_str())?;
         }
         if !self.extension_options.is_empty() {
@@ -2883,7 +2895,7 @@ impl<'de> serde::Deserialize<'de> for TxBody {
                 formatter.write_str("struct cosmos.tx.v1beta1.TxBody")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<TxBody, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxBody, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2892,39 +2904,39 @@ impl<'de> serde::Deserialize<'de> for TxBody {
                 let mut timeout_height__ = None;
                 let mut extension_options__ = None;
                 let mut non_critical_extension_options__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Messages => {
                             if messages__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("messages"));
                             }
-                            messages__ = Some(map.next_value()?);
+                            messages__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Memo => {
                             if memo__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("memo"));
                             }
-                            memo__ = Some(map.next_value()?);
+                            memo__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TimeoutHeight => {
                             if timeout_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timeoutHeight"));
                             }
                             timeout_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ExtensionOptions => {
                             if extension_options__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("extensionOptions"));
                             }
-                            extension_options__ = Some(map.next_value()?);
+                            extension_options__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NonCriticalExtensionOptions => {
                             if non_critical_extension_options__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("nonCriticalExtensionOptions"));
                             }
-                            non_critical_extension_options__ = Some(map.next_value()?);
+                            non_critical_extension_options__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -2938,6 +2950,752 @@ impl<'de> serde::Deserialize<'de> for TxBody {
             }
         }
         deserializer.deserialize_struct("cosmos.tx.v1beta1.TxBody", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxDecodeAminoRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.amino_binary.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxDecodeAminoRequest", len)?;
+        if !self.amino_binary.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("aminoBinary", pbjson::private::base64::encode(&self.amino_binary).as_str())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxDecodeAminoRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "amino_binary",
+            "aminoBinary",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            AminoBinary,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "aminoBinary" | "amino_binary" => Ok(GeneratedField::AminoBinary),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxDecodeAminoRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxDecodeAminoRequest")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxDecodeAminoRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut amino_binary__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::AminoBinary => {
+                            if amino_binary__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("aminoBinary"));
+                            }
+                            amino_binary__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(TxDecodeAminoRequest {
+                    amino_binary: amino_binary__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxDecodeAminoRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxDecodeAminoResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.amino_json.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxDecodeAminoResponse", len)?;
+        if !self.amino_json.is_empty() {
+            struct_ser.serialize_field("aminoJson", &self.amino_json)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxDecodeAminoResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "amino_json",
+            "aminoJson",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            AminoJson,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "aminoJson" | "amino_json" => Ok(GeneratedField::AminoJson),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxDecodeAminoResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxDecodeAminoResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxDecodeAminoResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut amino_json__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::AminoJson => {
+                            if amino_json__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("aminoJson"));
+                            }
+                            amino_json__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(TxDecodeAminoResponse {
+                    amino_json: amino_json__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxDecodeAminoResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxDecodeRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.tx_bytes.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxDecodeRequest", len)?;
+        if !self.tx_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("txBytes", pbjson::private::base64::encode(&self.tx_bytes).as_str())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxDecodeRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "tx_bytes",
+            "txBytes",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            TxBytes,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "txBytes" | "tx_bytes" => Ok(GeneratedField::TxBytes),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxDecodeRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxDecodeRequest")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxDecodeRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut tx_bytes__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::TxBytes => {
+                            if tx_bytes__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("txBytes"));
+                            }
+                            tx_bytes__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(TxDecodeRequest {
+                    tx_bytes: tx_bytes__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxDecodeRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxDecodeResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.tx.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxDecodeResponse", len)?;
+        if let Some(v) = self.tx.as_ref() {
+            struct_ser.serialize_field("tx", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxDecodeResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "tx",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Tx,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "tx" => Ok(GeneratedField::Tx),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxDecodeResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxDecodeResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxDecodeResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut tx__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Tx => {
+                            if tx__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("tx"));
+                            }
+                            tx__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(TxDecodeResponse {
+                    tx: tx__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxDecodeResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxEncodeAminoRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.amino_json.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxEncodeAminoRequest", len)?;
+        if !self.amino_json.is_empty() {
+            struct_ser.serialize_field("aminoJson", &self.amino_json)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxEncodeAminoRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "amino_json",
+            "aminoJson",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            AminoJson,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "aminoJson" | "amino_json" => Ok(GeneratedField::AminoJson),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxEncodeAminoRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxEncodeAminoRequest")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxEncodeAminoRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut amino_json__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::AminoJson => {
+                            if amino_json__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("aminoJson"));
+                            }
+                            amino_json__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(TxEncodeAminoRequest {
+                    amino_json: amino_json__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxEncodeAminoRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxEncodeAminoResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.amino_binary.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxEncodeAminoResponse", len)?;
+        if !self.amino_binary.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("aminoBinary", pbjson::private::base64::encode(&self.amino_binary).as_str())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxEncodeAminoResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "amino_binary",
+            "aminoBinary",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            AminoBinary,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "aminoBinary" | "amino_binary" => Ok(GeneratedField::AminoBinary),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxEncodeAminoResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxEncodeAminoResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxEncodeAminoResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut amino_binary__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::AminoBinary => {
+                            if amino_binary__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("aminoBinary"));
+                            }
+                            amino_binary__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(TxEncodeAminoResponse {
+                    amino_binary: amino_binary__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxEncodeAminoResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxEncodeRequest {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.tx.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxEncodeRequest", len)?;
+        if let Some(v) = self.tx.as_ref() {
+            struct_ser.serialize_field("tx", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxEncodeRequest {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "tx",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Tx,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "tx" => Ok(GeneratedField::Tx),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxEncodeRequest;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxEncodeRequest")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxEncodeRequest, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut tx__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Tx => {
+                            if tx__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("tx"));
+                            }
+                            tx__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(TxEncodeRequest {
+                    tx: tx__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxEncodeRequest", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for TxEncodeResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.tx_bytes.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxEncodeResponse", len)?;
+        if !self.tx_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("txBytes", pbjson::private::base64::encode(&self.tx_bytes).as_str())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TxEncodeResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "tx_bytes",
+            "txBytes",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            TxBytes,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "txBytes" | "tx_bytes" => Ok(GeneratedField::TxBytes),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TxEncodeResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.tx.v1beta1.TxEncodeResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxEncodeResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut tx_bytes__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::TxBytes => {
+                            if tx_bytes__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("txBytes"));
+                            }
+                            tx_bytes__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(TxEncodeResponse {
+                    tx_bytes: tx_bytes__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.tx.v1beta1.TxEncodeResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for TxRaw {
@@ -2959,9 +3717,11 @@ impl serde::Serialize for TxRaw {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.tx.v1beta1.TxRaw", len)?;
         if !self.body_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("bodyBytes", pbjson::private::base64::encode(&self.body_bytes).as_str())?;
         }
         if !self.auth_info_bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("authInfoBytes", pbjson::private::base64::encode(&self.auth_info_bytes).as_str())?;
         }
         if !self.signatures.is_empty() {
@@ -3028,21 +3788,21 @@ impl<'de> serde::Deserialize<'de> for TxRaw {
                 formatter.write_str("struct cosmos.tx.v1beta1.TxRaw")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<TxRaw, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxRaw, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut body_bytes__ = None;
                 let mut auth_info_bytes__ = None;
                 let mut signatures__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BodyBytes => {
                             if body_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bodyBytes"));
                             }
                             body_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::AuthInfoBytes => {
@@ -3050,7 +3810,7 @@ impl<'de> serde::Deserialize<'de> for TxRaw {
                                 return Err(serde::de::Error::duplicate_field("authInfoBytes"));
                             }
                             auth_info_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Signatures => {
@@ -3058,7 +3818,7 @@ impl<'de> serde::Deserialize<'de> for TxRaw {
                                 return Err(serde::de::Error::duplicate_field("signatures"));
                             }
                             signatures__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }

@@ -7,7 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Coin } from "../../base/v1beta1/coin_pb.js";
 import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination_pb.js";
-import { Metadata, Params } from "./bank_pb.js";
+import { Metadata, Params, SendEnabled } from "./bank_pb.js";
 
 /**
  * QueryBalanceRequest is the request type for the Query/Balance RPC method.
@@ -299,6 +299,102 @@ export class QuerySpendableBalancesResponse extends Message<QuerySpendableBalanc
 
   static equals(a: QuerySpendableBalancesResponse | PlainMessage<QuerySpendableBalancesResponse> | undefined, b: QuerySpendableBalancesResponse | PlainMessage<QuerySpendableBalancesResponse> | undefined): boolean {
     return proto3.util.equals(QuerySpendableBalancesResponse, a, b);
+  }
+}
+
+/**
+ * QuerySpendableBalanceByDenomRequest defines the gRPC request structure for
+ * querying an account's spendable balance for a specific denom.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.bank.v1beta1.QuerySpendableBalanceByDenomRequest
+ */
+export class QuerySpendableBalanceByDenomRequest extends Message<QuerySpendableBalanceByDenomRequest> {
+  /**
+   * address is the address to query balances for.
+   *
+   * @generated from field: string address = 1;
+   */
+  address = "";
+
+  /**
+   * denom is the coin denom to query balances for.
+   *
+   * @generated from field: string denom = 2;
+   */
+  denom = "";
+
+  constructor(data?: PartialMessage<QuerySpendableBalanceByDenomRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.bank.v1beta1.QuerySpendableBalanceByDenomRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySpendableBalanceByDenomRequest {
+    return new QuerySpendableBalanceByDenomRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QuerySpendableBalanceByDenomRequest {
+    return new QuerySpendableBalanceByDenomRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySpendableBalanceByDenomRequest {
+    return new QuerySpendableBalanceByDenomRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QuerySpendableBalanceByDenomRequest | PlainMessage<QuerySpendableBalanceByDenomRequest> | undefined, b: QuerySpendableBalanceByDenomRequest | PlainMessage<QuerySpendableBalanceByDenomRequest> | undefined): boolean {
+    return proto3.util.equals(QuerySpendableBalanceByDenomRequest, a, b);
+  }
+}
+
+/**
+ * QuerySpendableBalanceByDenomResponse defines the gRPC response structure for
+ * querying an account's spendable balance for a specific denom.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.bank.v1beta1.QuerySpendableBalanceByDenomResponse
+ */
+export class QuerySpendableBalanceByDenomResponse extends Message<QuerySpendableBalanceByDenomResponse> {
+  /**
+   * balance is the balance of the coin.
+   *
+   * @generated from field: cosmos.base.v1beta1.Coin balance = 1;
+   */
+  balance?: Coin;
+
+  constructor(data?: PartialMessage<QuerySpendableBalanceByDenomResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.bank.v1beta1.QuerySpendableBalanceByDenomResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "balance", kind: "message", T: Coin },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySpendableBalanceByDenomResponse {
+    return new QuerySpendableBalanceByDenomResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QuerySpendableBalanceByDenomResponse {
+    return new QuerySpendableBalanceByDenomResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySpendableBalanceByDenomResponse {
+    return new QuerySpendableBalanceByDenomResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QuerySpendableBalanceByDenomResponse | PlainMessage<QuerySpendableBalanceByDenomResponse> | undefined, b: QuerySpendableBalanceByDenomResponse | PlainMessage<QuerySpendableBalanceByDenomResponse> | undefined): boolean {
+    return proto3.util.equals(QuerySpendableBalanceByDenomResponse, a, b);
   }
 }
 
@@ -876,6 +972,108 @@ export class QueryDenomOwnersResponse extends Message<QueryDenomOwnersResponse> 
 
   static equals(a: QueryDenomOwnersResponse | PlainMessage<QueryDenomOwnersResponse> | undefined, b: QueryDenomOwnersResponse | PlainMessage<QueryDenomOwnersResponse> | undefined): boolean {
     return proto3.util.equals(QueryDenomOwnersResponse, a, b);
+  }
+}
+
+/**
+ * QuerySendEnabledRequest defines the RPC request for looking up SendEnabled entries.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.bank.v1beta1.QuerySendEnabledRequest
+ */
+export class QuerySendEnabledRequest extends Message<QuerySendEnabledRequest> {
+  /**
+   * denoms is the specific denoms you want look up. Leave empty to get all entries.
+   *
+   * @generated from field: repeated string denoms = 1;
+   */
+  denoms: string[] = [];
+
+  /**
+   * pagination defines an optional pagination for the request. This field is
+   * only read if the denoms field is empty.
+   *
+   * @generated from field: cosmos.base.query.v1beta1.PageRequest pagination = 99;
+   */
+  pagination?: PageRequest;
+
+  constructor(data?: PartialMessage<QuerySendEnabledRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.bank.v1beta1.QuerySendEnabledRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 99, name: "pagination", kind: "message", T: PageRequest },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySendEnabledRequest {
+    return new QuerySendEnabledRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QuerySendEnabledRequest {
+    return new QuerySendEnabledRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySendEnabledRequest {
+    return new QuerySendEnabledRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QuerySendEnabledRequest | PlainMessage<QuerySendEnabledRequest> | undefined, b: QuerySendEnabledRequest | PlainMessage<QuerySendEnabledRequest> | undefined): boolean {
+    return proto3.util.equals(QuerySendEnabledRequest, a, b);
+  }
+}
+
+/**
+ * QuerySendEnabledResponse defines the RPC response of a SendEnable query.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.bank.v1beta1.QuerySendEnabledResponse
+ */
+export class QuerySendEnabledResponse extends Message<QuerySendEnabledResponse> {
+  /**
+   * @generated from field: repeated cosmos.bank.v1beta1.SendEnabled send_enabled = 1;
+   */
+  sendEnabled: SendEnabled[] = [];
+
+  /**
+   * pagination defines the pagination in the response. This field is only
+   * populated if the denoms field in the request is empty.
+   *
+   * @generated from field: cosmos.base.query.v1beta1.PageResponse pagination = 99;
+   */
+  pagination?: PageResponse;
+
+  constructor(data?: PartialMessage<QuerySendEnabledResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.bank.v1beta1.QuerySendEnabledResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "send_enabled", kind: "message", T: SendEnabled, repeated: true },
+    { no: 99, name: "pagination", kind: "message", T: PageResponse },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySendEnabledResponse {
+    return new QuerySendEnabledResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QuerySendEnabledResponse {
+    return new QuerySendEnabledResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySendEnabledResponse {
+    return new QuerySendEnabledResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QuerySendEnabledResponse | PlainMessage<QuerySendEnabledResponse> | undefined, b: QuerySendEnabledResponse | PlainMessage<QuerySendEnabledResponse> | undefined): boolean {
+    return proto3.util.equals(QuerySendEnabledResponse, a, b);
   }
 }
 

@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { Metadata, Params } from "./bank_pb.js";
+import { Metadata, Params, SendEnabled } from "./bank_pb.js";
 import { Coin } from "../../base/v1beta1/coin_pb.js";
 
 /**
@@ -15,7 +15,7 @@ import { Coin } from "../../base/v1beta1/coin_pb.js";
  */
 export class GenesisState extends Message<GenesisState> {
   /**
-   * params defines all the paramaters of the module.
+   * params defines all the parameters of the module.
    *
    * @generated from field: cosmos.bank.v1beta1.Params params = 1;
    */
@@ -37,11 +37,20 @@ export class GenesisState extends Message<GenesisState> {
   supply: Coin[] = [];
 
   /**
-   * denom_metadata defines the metadata of the differents coins.
+   * denom_metadata defines the metadata of the different coins.
    *
    * @generated from field: repeated cosmos.bank.v1beta1.Metadata denom_metadata = 4;
    */
   denomMetadata: Metadata[] = [];
+
+  /**
+   * send_enabled defines the denoms where send is enabled or disabled.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: repeated cosmos.bank.v1beta1.SendEnabled send_enabled = 5;
+   */
+  sendEnabled: SendEnabled[] = [];
 
   constructor(data?: PartialMessage<GenesisState>) {
     super();
@@ -55,6 +64,7 @@ export class GenesisState extends Message<GenesisState> {
     { no: 2, name: "balances", kind: "message", T: Balance, repeated: true },
     { no: 3, name: "supply", kind: "message", T: Coin, repeated: true },
     { no: 4, name: "denom_metadata", kind: "message", T: Metadata, repeated: true },
+    { no: 5, name: "send_enabled", kind: "message", T: SendEnabled, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {

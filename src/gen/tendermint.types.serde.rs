@@ -95,7 +95,7 @@ impl<'de> serde::Deserialize<'de> for Block {
                 formatter.write_str("struct tendermint.types.Block")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Block, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Block, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -103,31 +103,31 @@ impl<'de> serde::Deserialize<'de> for Block {
                 let mut data__ = None;
                 let mut evidence__ = None;
                 let mut last_commit__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Header => {
                             if header__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("header"));
                             }
-                            header__ = map.next_value()?;
+                            header__ = map_.next_value()?;
                         }
                         GeneratedField::Data => {
                             if data__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("data"));
                             }
-                            data__ = map.next_value()?;
+                            data__ = map_.next_value()?;
                         }
                         GeneratedField::Evidence => {
                             if evidence__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("evidence"));
                             }
-                            evidence__ = map.next_value()?;
+                            evidence__ = map_.next_value()?;
                         }
                         GeneratedField::LastCommit => {
                             if last_commit__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lastCommit"));
                             }
-                            last_commit__ = map.next_value()?;
+                            last_commit__ = map_.next_value()?;
                         }
                     }
                 }
@@ -158,6 +158,7 @@ impl serde::Serialize for BlockId {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.BlockID", len)?;
         if !self.hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("hash", pbjson::private::base64::encode(&self.hash).as_str())?;
         }
         if let Some(v) = self.part_set_header.as_ref() {
@@ -220,27 +221,27 @@ impl<'de> serde::Deserialize<'de> for BlockId {
                 formatter.write_str("struct tendermint.types.BlockID")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BlockId, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BlockId, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut hash__ = None;
                 let mut part_set_header__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Hash => {
                             if hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("hash"));
                             }
                             hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::PartSetHeader => {
                             if part_set_header__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("partSetHeader"));
                             }
-                            part_set_header__ = map.next_value()?;
+                            part_set_header__ = map_.next_value()?;
                         }
                     }
                 }
@@ -294,10 +295,9 @@ impl<'de> serde::Deserialize<'de> for BlockIdFlag {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(BlockIdFlag::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -307,10 +307,9 @@ impl<'de> serde::Deserialize<'de> for BlockIdFlag {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(BlockIdFlag::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -357,12 +356,14 @@ impl serde::Serialize for BlockMeta {
             struct_ser.serialize_field("blockId", v)?;
         }
         if self.block_size != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("blockSize", ToString::to_string(&self.block_size).as_str())?;
         }
         if let Some(v) = self.header.as_ref() {
             struct_ser.serialize_field("header", v)?;
         }
         if self.num_txs != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("numTxs", ToString::to_string(&self.num_txs).as_str())?;
         }
         struct_ser.end()
@@ -430,7 +431,7 @@ impl<'de> serde::Deserialize<'de> for BlockMeta {
                 formatter.write_str("struct tendermint.types.BlockMeta")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BlockMeta, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BlockMeta, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -438,34 +439,34 @@ impl<'de> serde::Deserialize<'de> for BlockMeta {
                 let mut block_size__ = None;
                 let mut header__ = None;
                 let mut num_txs__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BlockId => {
                             if block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockId"));
                             }
-                            block_id__ = map.next_value()?;
+                            block_id__ = map_.next_value()?;
                         }
                         GeneratedField::BlockSize => {
                             if block_size__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockSize"));
                             }
                             block_size__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Header => {
                             if header__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("header"));
                             }
-                            header__ = map.next_value()?;
+                            header__ = map_.next_value()?;
                         }
                         GeneratedField::NumTxs => {
                             if num_txs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("numTxs"));
                             }
                             num_txs__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -495,18 +496,14 @@ impl serde::Serialize for BlockParams {
         if self.max_gas != 0 {
             len += 1;
         }
-        if self.time_iota_ms != 0 {
-            len += 1;
-        }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.BlockParams", len)?;
         if self.max_bytes != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("maxBytes", ToString::to_string(&self.max_bytes).as_str())?;
         }
         if self.max_gas != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("maxGas", ToString::to_string(&self.max_gas).as_str())?;
-        }
-        if self.time_iota_ms != 0 {
-            struct_ser.serialize_field("timeIotaMs", ToString::to_string(&self.time_iota_ms).as_str())?;
         }
         struct_ser.end()
     }
@@ -522,15 +519,12 @@ impl<'de> serde::Deserialize<'de> for BlockParams {
             "maxBytes",
             "max_gas",
             "maxGas",
-            "time_iota_ms",
-            "timeIotaMs",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             MaxBytes,
             MaxGas,
-            TimeIotaMs,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -554,7 +548,6 @@ impl<'de> serde::Deserialize<'de> for BlockParams {
                         match value {
                             "maxBytes" | "max_bytes" => Ok(GeneratedField::MaxBytes),
                             "maxGas" | "max_gas" => Ok(GeneratedField::MaxGas),
-                            "timeIotaMs" | "time_iota_ms" => Ok(GeneratedField::TimeIotaMs),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -570,21 +563,20 @@ impl<'de> serde::Deserialize<'de> for BlockParams {
                 formatter.write_str("struct tendermint.types.BlockParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BlockParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BlockParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut max_bytes__ = None;
                 let mut max_gas__ = None;
-                let mut time_iota_ms__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::MaxBytes => {
                             if max_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxBytes"));
                             }
                             max_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::MaxGas => {
@@ -592,15 +584,7 @@ impl<'de> serde::Deserialize<'de> for BlockParams {
                                 return Err(serde::de::Error::duplicate_field("maxGas"));
                             }
                             max_gas__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
-                            ;
-                        }
-                        GeneratedField::TimeIotaMs => {
-                            if time_iota_ms__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("timeIotaMs"));
-                            }
-                            time_iota_ms__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -608,7 +592,6 @@ impl<'de> serde::Deserialize<'de> for BlockParams {
                 Ok(BlockParams {
                     max_bytes: max_bytes__.unwrap_or_default(),
                     max_gas: max_gas__.unwrap_or_default(),
-                    time_iota_ms: time_iota_ms__.unwrap_or_default(),
                 })
             }
         }
@@ -637,6 +620,7 @@ impl serde::Serialize for Commit {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.Commit", len)?;
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if self.round != 0 {
@@ -711,7 +695,7 @@ impl<'de> serde::Deserialize<'de> for Commit {
                 formatter.write_str("struct tendermint.types.Commit")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Commit, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Commit, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -719,14 +703,14 @@ impl<'de> serde::Deserialize<'de> for Commit {
                 let mut round__ = None;
                 let mut block_id__ = None;
                 let mut signatures__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Round => {
@@ -734,20 +718,20 @@ impl<'de> serde::Deserialize<'de> for Commit {
                                 return Err(serde::de::Error::duplicate_field("round"));
                             }
                             round__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BlockId => {
                             if block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockId"));
                             }
-                            block_id__ = map.next_value()?;
+                            block_id__ = map_.next_value()?;
                         }
                         GeneratedField::Signatures => {
                             if signatures__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signatures"));
                             }
-                            signatures__ = Some(map.next_value()?);
+                            signatures__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -784,17 +768,19 @@ impl serde::Serialize for CommitSig {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.CommitSig", len)?;
         if self.block_id_flag != 0 {
-            let v = BlockIdFlag::from_i32(self.block_id_flag)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.block_id_flag)))?;
+            let v = BlockIdFlag::try_from(self.block_id_flag)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.block_id_flag)))?;
             struct_ser.serialize_field("blockIdFlag", &v)?;
         }
         if !self.validator_address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("validatorAddress", pbjson::private::base64::encode(&self.validator_address).as_str())?;
         }
         if let Some(v) = self.timestamp.as_ref() {
             struct_ser.serialize_field("timestamp", v)?;
         }
         if !self.signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("signature", pbjson::private::base64::encode(&self.signature).as_str())?;
         }
         struct_ser.end()
@@ -861,7 +847,7 @@ impl<'de> serde::Deserialize<'de> for CommitSig {
                 formatter.write_str("struct tendermint.types.CommitSig")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CommitSig, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CommitSig, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -869,34 +855,34 @@ impl<'de> serde::Deserialize<'de> for CommitSig {
                 let mut validator_address__ = None;
                 let mut timestamp__ = None;
                 let mut signature__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BlockIdFlag => {
                             if block_id_flag__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockIdFlag"));
                             }
-                            block_id_flag__ = Some(map.next_value::<BlockIdFlag>()? as i32);
+                            block_id_flag__ = Some(map_.next_value::<BlockIdFlag>()? as i32);
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
                             validator_address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Timestamp => {
                             if timestamp__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timestamp"));
                             }
-                            timestamp__ = map.next_value()?;
+                            timestamp__ = map_.next_value()?;
                         }
                         GeneratedField::Signature => {
                             if signature__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signature"));
                             }
                             signature__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1007,7 +993,7 @@ impl<'de> serde::Deserialize<'de> for ConsensusParams {
                 formatter.write_str("struct tendermint.types.ConsensusParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ConsensusParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ConsensusParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1015,31 +1001,31 @@ impl<'de> serde::Deserialize<'de> for ConsensusParams {
                 let mut evidence__ = None;
                 let mut validator__ = None;
                 let mut version__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Block => {
                             if block__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("block"));
                             }
-                            block__ = map.next_value()?;
+                            block__ = map_.next_value()?;
                         }
                         GeneratedField::Evidence => {
                             if evidence__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("evidence"));
                             }
-                            evidence__ = map.next_value()?;
+                            evidence__ = map_.next_value()?;
                         }
                         GeneratedField::Validator => {
                             if validator__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validator"));
                             }
-                            validator__ = map.next_value()?;
+                            validator__ = map_.next_value()?;
                         }
                         GeneratedField::Version => {
                             if version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("version"));
                             }
-                            version__ = map.next_value()?;
+                            version__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1122,19 +1108,19 @@ impl<'de> serde::Deserialize<'de> for Data {
                 formatter.write_str("struct tendermint.types.Data")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Data, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Data, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut txs__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Txs => {
                             if txs__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txs"));
                             }
                             txs__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }
@@ -1179,9 +1165,11 @@ impl serde::Serialize for DuplicateVoteEvidence {
             struct_ser.serialize_field("voteB", v)?;
         }
         if self.total_voting_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("totalVotingPower", ToString::to_string(&self.total_voting_power).as_str())?;
         }
         if self.validator_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("validatorPower", ToString::to_string(&self.validator_power).as_str())?;
         }
         if let Some(v) = self.timestamp.as_ref() {
@@ -1256,7 +1244,7 @@ impl<'de> serde::Deserialize<'de> for DuplicateVoteEvidence {
                 formatter.write_str("struct tendermint.types.DuplicateVoteEvidence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DuplicateVoteEvidence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DuplicateVoteEvidence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1265,26 +1253,26 @@ impl<'de> serde::Deserialize<'de> for DuplicateVoteEvidence {
                 let mut total_voting_power__ = None;
                 let mut validator_power__ = None;
                 let mut timestamp__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::VoteA => {
                             if vote_a__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("voteA"));
                             }
-                            vote_a__ = map.next_value()?;
+                            vote_a__ = map_.next_value()?;
                         }
                         GeneratedField::VoteB => {
                             if vote_b__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("voteB"));
                             }
-                            vote_b__ = map.next_value()?;
+                            vote_b__ = map_.next_value()?;
                         }
                         GeneratedField::TotalVotingPower => {
                             if total_voting_power__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("totalVotingPower"));
                             }
                             total_voting_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ValidatorPower => {
@@ -1292,14 +1280,14 @@ impl<'de> serde::Deserialize<'de> for DuplicateVoteEvidence {
                                 return Err(serde::de::Error::duplicate_field("validatorPower"));
                             }
                             validator_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Timestamp => {
                             if timestamp__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timestamp"));
                             }
-                            timestamp__ = map.next_value()?;
+                            timestamp__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1395,25 +1383,25 @@ impl<'de> serde::Deserialize<'de> for Evidence {
                 formatter.write_str("struct tendermint.types.Evidence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Evidence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Evidence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sum__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::DuplicateVoteEvidence => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("duplicateVoteEvidence"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<_>>()?.map(evidence::Sum::DuplicateVoteEvidence)
+                            sum__ = map_.next_value::<::std::option::Option<_>>()?.map(evidence::Sum::DuplicateVoteEvidence)
 ;
                         }
                         GeneratedField::LightClientAttackEvidence => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lightClientAttackEvidence"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<_>>()?.map(evidence::Sum::LightClientAttackEvidence)
+                            sum__ = map_.next_value::<::std::option::Option<_>>()?.map(evidence::Sum::LightClientAttackEvidence)
 ;
                         }
                     }
@@ -1494,18 +1482,18 @@ impl<'de> serde::Deserialize<'de> for EvidenceList {
                 formatter.write_str("struct tendermint.types.EvidenceList")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EvidenceList, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EvidenceList, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut evidence__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Evidence => {
                             if evidence__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("evidence"));
                             }
-                            evidence__ = Some(map.next_value()?);
+                            evidence__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1536,12 +1524,14 @@ impl serde::Serialize for EvidenceParams {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.EvidenceParams", len)?;
         if self.max_age_num_blocks != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("maxAgeNumBlocks", ToString::to_string(&self.max_age_num_blocks).as_str())?;
         }
         if let Some(v) = self.max_age_duration.as_ref() {
             struct_ser.serialize_field("maxAgeDuration", v)?;
         }
         if self.max_bytes != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("maxBytes", ToString::to_string(&self.max_bytes).as_str())?;
         }
         struct_ser.end()
@@ -1606,35 +1596,35 @@ impl<'de> serde::Deserialize<'de> for EvidenceParams {
                 formatter.write_str("struct tendermint.types.EvidenceParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EvidenceParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EvidenceParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut max_age_num_blocks__ = None;
                 let mut max_age_duration__ = None;
                 let mut max_bytes__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::MaxAgeNumBlocks => {
                             if max_age_num_blocks__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxAgeNumBlocks"));
                             }
                             max_age_num_blocks__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::MaxAgeDuration => {
                             if max_age_duration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxAgeDuration"));
                             }
-                            max_age_duration__ = map.next_value()?;
+                            max_age_duration__ = map_.next_value()?;
                         }
                         GeneratedField::MaxBytes => {
                             if max_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("maxBytes"));
                             }
                             max_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1647,6 +1637,348 @@ impl<'de> serde::Deserialize<'de> for EvidenceParams {
             }
         }
         deserializer.deserialize_struct("tendermint.types.EvidenceParams", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for ExtendedCommit {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.height != 0 {
+            len += 1;
+        }
+        if self.round != 0 {
+            len += 1;
+        }
+        if self.block_id.is_some() {
+            len += 1;
+        }
+        if !self.extended_signatures.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("tendermint.types.ExtendedCommit", len)?;
+        if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
+        }
+        if self.round != 0 {
+            struct_ser.serialize_field("round", &self.round)?;
+        }
+        if let Some(v) = self.block_id.as_ref() {
+            struct_ser.serialize_field("blockId", v)?;
+        }
+        if !self.extended_signatures.is_empty() {
+            struct_ser.serialize_field("extendedSignatures", &self.extended_signatures)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for ExtendedCommit {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "height",
+            "round",
+            "block_id",
+            "blockId",
+            "extended_signatures",
+            "extendedSignatures",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Height,
+            Round,
+            BlockId,
+            ExtendedSignatures,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "height" => Ok(GeneratedField::Height),
+                            "round" => Ok(GeneratedField::Round),
+                            "blockId" | "block_id" => Ok(GeneratedField::BlockId),
+                            "extendedSignatures" | "extended_signatures" => Ok(GeneratedField::ExtendedSignatures),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = ExtendedCommit;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct tendermint.types.ExtendedCommit")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ExtendedCommit, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut height__ = None;
+                let mut round__ = None;
+                let mut block_id__ = None;
+                let mut extended_signatures__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Height => {
+                            if height__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("height"));
+                            }
+                            height__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Round => {
+                            if round__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("round"));
+                            }
+                            round__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::BlockId => {
+                            if block_id__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("blockId"));
+                            }
+                            block_id__ = map_.next_value()?;
+                        }
+                        GeneratedField::ExtendedSignatures => {
+                            if extended_signatures__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("extendedSignatures"));
+                            }
+                            extended_signatures__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(ExtendedCommit {
+                    height: height__.unwrap_or_default(),
+                    round: round__.unwrap_or_default(),
+                    block_id: block_id__,
+                    extended_signatures: extended_signatures__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("tendermint.types.ExtendedCommit", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for ExtendedCommitSig {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if self.block_id_flag != 0 {
+            len += 1;
+        }
+        if !self.validator_address.is_empty() {
+            len += 1;
+        }
+        if self.timestamp.is_some() {
+            len += 1;
+        }
+        if !self.signature.is_empty() {
+            len += 1;
+        }
+        if !self.extension.is_empty() {
+            len += 1;
+        }
+        if !self.extension_signature.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("tendermint.types.ExtendedCommitSig", len)?;
+        if self.block_id_flag != 0 {
+            let v = BlockIdFlag::try_from(self.block_id_flag)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.block_id_flag)))?;
+            struct_ser.serialize_field("blockIdFlag", &v)?;
+        }
+        if !self.validator_address.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("validatorAddress", pbjson::private::base64::encode(&self.validator_address).as_str())?;
+        }
+        if let Some(v) = self.timestamp.as_ref() {
+            struct_ser.serialize_field("timestamp", v)?;
+        }
+        if !self.signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("signature", pbjson::private::base64::encode(&self.signature).as_str())?;
+        }
+        if !self.extension.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("extension", pbjson::private::base64::encode(&self.extension).as_str())?;
+        }
+        if !self.extension_signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("extensionSignature", pbjson::private::base64::encode(&self.extension_signature).as_str())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for ExtendedCommitSig {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "block_id_flag",
+            "blockIdFlag",
+            "validator_address",
+            "validatorAddress",
+            "timestamp",
+            "signature",
+            "extension",
+            "extension_signature",
+            "extensionSignature",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            BlockIdFlag,
+            ValidatorAddress,
+            Timestamp,
+            Signature,
+            Extension,
+            ExtensionSignature,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "blockIdFlag" | "block_id_flag" => Ok(GeneratedField::BlockIdFlag),
+                            "validatorAddress" | "validator_address" => Ok(GeneratedField::ValidatorAddress),
+                            "timestamp" => Ok(GeneratedField::Timestamp),
+                            "signature" => Ok(GeneratedField::Signature),
+                            "extension" => Ok(GeneratedField::Extension),
+                            "extensionSignature" | "extension_signature" => Ok(GeneratedField::ExtensionSignature),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = ExtendedCommitSig;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct tendermint.types.ExtendedCommitSig")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ExtendedCommitSig, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut block_id_flag__ = None;
+                let mut validator_address__ = None;
+                let mut timestamp__ = None;
+                let mut signature__ = None;
+                let mut extension__ = None;
+                let mut extension_signature__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::BlockIdFlag => {
+                            if block_id_flag__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("blockIdFlag"));
+                            }
+                            block_id_flag__ = Some(map_.next_value::<BlockIdFlag>()? as i32);
+                        }
+                        GeneratedField::ValidatorAddress => {
+                            if validator_address__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("validatorAddress"));
+                            }
+                            validator_address__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Timestamp => {
+                            if timestamp__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("timestamp"));
+                            }
+                            timestamp__ = map_.next_value()?;
+                        }
+                        GeneratedField::Signature => {
+                            if signature__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("signature"));
+                            }
+                            signature__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Extension => {
+                            if extension__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("extension"));
+                            }
+                            extension__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::ExtensionSignature => {
+                            if extension_signature__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("extensionSignature"));
+                            }
+                            extension_signature__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(ExtendedCommitSig {
+                    block_id_flag: block_id_flag__.unwrap_or_default(),
+                    validator_address: validator_address__.unwrap_or_default(),
+                    timestamp: timestamp__,
+                    signature: signature__.unwrap_or_default(),
+                    extension: extension__.unwrap_or_default(),
+                    extension_signature: extension_signature__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("tendermint.types.ExtendedCommitSig", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for HashedParams {
@@ -1665,9 +1997,11 @@ impl serde::Serialize for HashedParams {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.HashedParams", len)?;
         if self.block_max_bytes != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("blockMaxBytes", ToString::to_string(&self.block_max_bytes).as_str())?;
         }
         if self.block_max_gas != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("blockMaxGas", ToString::to_string(&self.block_max_gas).as_str())?;
         }
         struct_ser.end()
@@ -1728,20 +2062,20 @@ impl<'de> serde::Deserialize<'de> for HashedParams {
                 formatter.write_str("struct tendermint.types.HashedParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<HashedParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<HashedParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut block_max_bytes__ = None;
                 let mut block_max_gas__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BlockMaxBytes => {
                             if block_max_bytes__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockMaxBytes"));
                             }
                             block_max_bytes__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BlockMaxGas => {
@@ -1749,7 +2083,7 @@ impl<'de> serde::Deserialize<'de> for HashedParams {
                                 return Err(serde::de::Error::duplicate_field("blockMaxGas"));
                             }
                             block_max_gas__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1821,6 +2155,7 @@ impl serde::Serialize for Header {
             struct_ser.serialize_field("chainId", &self.chain_id)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if let Some(v) = self.time.as_ref() {
@@ -1830,30 +2165,39 @@ impl serde::Serialize for Header {
             struct_ser.serialize_field("lastBlockId", v)?;
         }
         if !self.last_commit_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("lastCommitHash", pbjson::private::base64::encode(&self.last_commit_hash).as_str())?;
         }
         if !self.data_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("dataHash", pbjson::private::base64::encode(&self.data_hash).as_str())?;
         }
         if !self.validators_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("validatorsHash", pbjson::private::base64::encode(&self.validators_hash).as_str())?;
         }
         if !self.next_validators_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("nextValidatorsHash", pbjson::private::base64::encode(&self.next_validators_hash).as_str())?;
         }
         if !self.consensus_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("consensusHash", pbjson::private::base64::encode(&self.consensus_hash).as_str())?;
         }
         if !self.app_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("appHash", pbjson::private::base64::encode(&self.app_hash).as_str())?;
         }
         if !self.last_results_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("lastResultsHash", pbjson::private::base64::encode(&self.last_results_hash).as_str())?;
         }
         if !self.evidence_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("evidenceHash", pbjson::private::base64::encode(&self.evidence_hash).as_str())?;
         }
         if !self.proposer_address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("proposerAddress", pbjson::private::base64::encode(&self.proposer_address).as_str())?;
         }
         struct_ser.end()
@@ -1959,7 +2303,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                 formatter.write_str("struct tendermint.types.Header")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Header, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Header, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1977,46 +2321,46 @@ impl<'de> serde::Deserialize<'de> for Header {
                 let mut last_results_hash__ = None;
                 let mut evidence_hash__ = None;
                 let mut proposer_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Version => {
                             if version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("version"));
                             }
-                            version__ = map.next_value()?;
+                            version__ = map_.next_value()?;
                         }
                         GeneratedField::ChainId => {
                             if chain_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("chainId"));
                             }
-                            chain_id__ = Some(map.next_value()?);
+                            chain_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Time => {
                             if time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("time"));
                             }
-                            time__ = map.next_value()?;
+                            time__ = map_.next_value()?;
                         }
                         GeneratedField::LastBlockId => {
                             if last_block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lastBlockId"));
                             }
-                            last_block_id__ = map.next_value()?;
+                            last_block_id__ = map_.next_value()?;
                         }
                         GeneratedField::LastCommitHash => {
                             if last_commit_hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lastCommitHash"));
                             }
                             last_commit_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::DataHash => {
@@ -2024,7 +2368,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("dataHash"));
                             }
                             data_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ValidatorsHash => {
@@ -2032,7 +2376,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("validatorsHash"));
                             }
                             validators_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::NextValidatorsHash => {
@@ -2040,7 +2384,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("nextValidatorsHash"));
                             }
                             next_validators_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ConsensusHash => {
@@ -2048,7 +2392,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("consensusHash"));
                             }
                             consensus_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::AppHash => {
@@ -2056,7 +2400,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("appHash"));
                             }
                             app_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::LastResultsHash => {
@@ -2064,7 +2408,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("lastResultsHash"));
                             }
                             last_results_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::EvidenceHash => {
@@ -2072,7 +2416,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("evidenceHash"));
                             }
                             evidence_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ProposerAddress => {
@@ -2080,7 +2424,7 @@ impl<'de> serde::Deserialize<'de> for Header {
                                 return Err(serde::de::Error::duplicate_field("proposerAddress"));
                             }
                             proposer_address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2185,25 +2529,25 @@ impl<'de> serde::Deserialize<'de> for LightBlock {
                 formatter.write_str("struct tendermint.types.LightBlock")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<LightBlock, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<LightBlock, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut signed_header__ = None;
                 let mut validator_set__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SignedHeader => {
                             if signed_header__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signedHeader"));
                             }
-                            signed_header__ = map.next_value()?;
+                            signed_header__ = map_.next_value()?;
                         }
                         GeneratedField::ValidatorSet => {
                             if validator_set__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorSet"));
                             }
-                            validator_set__ = map.next_value()?;
+                            validator_set__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2244,12 +2588,14 @@ impl serde::Serialize for LightClientAttackEvidence {
             struct_ser.serialize_field("conflictingBlock", v)?;
         }
         if self.common_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("commonHeight", ToString::to_string(&self.common_height).as_str())?;
         }
         if !self.byzantine_validators.is_empty() {
             struct_ser.serialize_field("byzantineValidators", &self.byzantine_validators)?;
         }
         if self.total_voting_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("totalVotingPower", ToString::to_string(&self.total_voting_power).as_str())?;
         }
         if let Some(v) = self.timestamp.as_ref() {
@@ -2324,7 +2670,7 @@ impl<'de> serde::Deserialize<'de> for LightClientAttackEvidence {
                 formatter.write_str("struct tendermint.types.LightClientAttackEvidence")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<LightClientAttackEvidence, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<LightClientAttackEvidence, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2333,41 +2679,41 @@ impl<'de> serde::Deserialize<'de> for LightClientAttackEvidence {
                 let mut byzantine_validators__ = None;
                 let mut total_voting_power__ = None;
                 let mut timestamp__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ConflictingBlock => {
                             if conflicting_block__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("conflictingBlock"));
                             }
-                            conflicting_block__ = map.next_value()?;
+                            conflicting_block__ = map_.next_value()?;
                         }
                         GeneratedField::CommonHeight => {
                             if common_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("commonHeight"));
                             }
                             common_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ByzantineValidators => {
                             if byzantine_validators__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("byzantineValidators"));
                             }
-                            byzantine_validators__ = Some(map.next_value()?);
+                            byzantine_validators__ = Some(map_.next_value()?);
                         }
                         GeneratedField::TotalVotingPower => {
                             if total_voting_power__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("totalVotingPower"));
                             }
                             total_voting_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Timestamp => {
                             if timestamp__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timestamp"));
                             }
-                            timestamp__ = map.next_value()?;
+                            timestamp__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2405,6 +2751,7 @@ impl serde::Serialize for Part {
             struct_ser.serialize_field("index", &self.index)?;
         }
         if !self.bytes.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("bytes", pbjson::private::base64::encode(&self.bytes).as_str())?;
         }
         if let Some(v) = self.proof.as_ref() {
@@ -2469,21 +2816,21 @@ impl<'de> serde::Deserialize<'de> for Part {
                 formatter.write_str("struct tendermint.types.Part")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Part, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Part, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut index__ = None;
                 let mut bytes__ = None;
                 let mut proof__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Index => {
                             if index__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("index"));
                             }
                             index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Bytes => {
@@ -2491,14 +2838,14 @@ impl<'de> serde::Deserialize<'de> for Part {
                                 return Err(serde::de::Error::duplicate_field("bytes"));
                             }
                             bytes__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Proof => {
                             if proof__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("proof"));
                             }
-                            proof__ = map.next_value()?;
+                            proof__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2531,6 +2878,7 @@ impl serde::Serialize for PartSetHeader {
             struct_ser.serialize_field("total", &self.total)?;
         }
         if !self.hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("hash", pbjson::private::base64::encode(&self.hash).as_str())?;
         }
         struct_ser.end()
@@ -2589,20 +2937,20 @@ impl<'de> serde::Deserialize<'de> for PartSetHeader {
                 formatter.write_str("struct tendermint.types.PartSetHeader")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PartSetHeader, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PartSetHeader, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut total__ = None;
                 let mut hash__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Total => {
                             if total__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("total"));
                             }
                             total__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Hash => {
@@ -2610,7 +2958,7 @@ impl<'de> serde::Deserialize<'de> for PartSetHeader {
                                 return Err(serde::de::Error::duplicate_field("hash"));
                             }
                             hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2655,11 +3003,12 @@ impl serde::Serialize for Proposal {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.Proposal", len)?;
         if self.r#type != 0 {
-            let v = SignedMsgType::from_i32(self.r#type)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.r#type)))?;
+            let v = SignedMsgType::try_from(self.r#type)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.r#type)))?;
             struct_ser.serialize_field("type", &v)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if self.round != 0 {
@@ -2675,6 +3024,7 @@ impl serde::Serialize for Proposal {
             struct_ser.serialize_field("timestamp", v)?;
         }
         if !self.signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("signature", pbjson::private::base64::encode(&self.signature).as_str())?;
         }
         struct_ser.end()
@@ -2750,7 +3100,7 @@ impl<'de> serde::Deserialize<'de> for Proposal {
                 formatter.write_str("struct tendermint.types.Proposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Proposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Proposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -2761,20 +3111,20 @@ impl<'de> serde::Deserialize<'de> for Proposal {
                 let mut block_id__ = None;
                 let mut timestamp__ = None;
                 let mut signature__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Type => {
                             if r#type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("type"));
                             }
-                            r#type__ = Some(map.next_value::<SignedMsgType>()? as i32);
+                            r#type__ = Some(map_.next_value::<SignedMsgType>()? as i32);
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Round => {
@@ -2782,7 +3132,7 @@ impl<'de> serde::Deserialize<'de> for Proposal {
                                 return Err(serde::de::Error::duplicate_field("round"));
                             }
                             round__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::PolRound => {
@@ -2790,27 +3140,27 @@ impl<'de> serde::Deserialize<'de> for Proposal {
                                 return Err(serde::de::Error::duplicate_field("polRound"));
                             }
                             pol_round__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BlockId => {
                             if block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockId"));
                             }
-                            block_id__ = map.next_value()?;
+                            block_id__ = map_.next_value()?;
                         }
                         GeneratedField::Timestamp => {
                             if timestamp__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timestamp"));
                             }
-                            timestamp__ = map.next_value()?;
+                            timestamp__ = map_.next_value()?;
                         }
                         GeneratedField::Signature => {
                             if signature__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signature"));
                             }
                             signature__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -2906,25 +3256,25 @@ impl<'de> serde::Deserialize<'de> for SignedHeader {
                 formatter.write_str("struct tendermint.types.SignedHeader")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SignedHeader, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SignedHeader, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut header__ = None;
                 let mut commit__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Header => {
                             if header__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("header"));
                             }
-                            header__ = map.next_value()?;
+                            header__ = map_.next_value()?;
                         }
                         GeneratedField::Commit => {
                             if commit__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("commit"));
                             }
-                            commit__ = map.next_value()?;
+                            commit__ = map_.next_value()?;
                         }
                     }
                 }
@@ -2978,10 +3328,9 @@ impl<'de> serde::Deserialize<'de> for SignedMsgType {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(SignedMsgType::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
                     })
@@ -2991,10 +3340,9 @@ impl<'de> serde::Deserialize<'de> for SignedMsgType {
             where
                 E: serde::de::Error,
             {
-                use std::convert::TryFrom;
                 i32::try_from(v)
                     .ok()
-                    .and_then(SignedMsgType::from_i32)
+                    .and_then(|x| x.try_into().ok())
                     .ok_or_else(|| {
                         serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
                     })
@@ -3035,6 +3383,7 @@ impl serde::Serialize for SimpleValidator {
             struct_ser.serialize_field("pubKey", v)?;
         }
         if self.voting_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("votingPower", ToString::to_string(&self.voting_power).as_str())?;
         }
         struct_ser.end()
@@ -3095,26 +3444,26 @@ impl<'de> serde::Deserialize<'de> for SimpleValidator {
                 formatter.write_str("struct tendermint.types.SimpleValidator")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SimpleValidator, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SimpleValidator, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pub_key__ = None;
                 let mut voting_power__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::PubKey => {
                             if pub_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pubKey"));
                             }
-                            pub_key__ = map.next_value()?;
+                            pub_key__ = map_.next_value()?;
                         }
                         GeneratedField::VotingPower => {
                             if voting_power__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("votingPower"));
                             }
                             voting_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -3147,9 +3496,11 @@ impl serde::Serialize for TxProof {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.TxProof", len)?;
         if !self.root_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("rootHash", pbjson::private::base64::encode(&self.root_hash).as_str())?;
         }
         if !self.data.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("data", pbjson::private::base64::encode(&self.data).as_str())?;
         }
         if let Some(v) = self.proof.as_ref() {
@@ -3215,21 +3566,21 @@ impl<'de> serde::Deserialize<'de> for TxProof {
                 formatter.write_str("struct tendermint.types.TxProof")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<TxProof, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TxProof, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut root_hash__ = None;
                 let mut data__ = None;
                 let mut proof__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::RootHash => {
                             if root_hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rootHash"));
                             }
                             root_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Data => {
@@ -3237,14 +3588,14 @@ impl<'de> serde::Deserialize<'de> for TxProof {
                                 return Err(serde::de::Error::duplicate_field("data"));
                             }
                             data__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Proof => {
                             if proof__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("proof"));
                             }
-                            proof__ = map.next_value()?;
+                            proof__ = map_.next_value()?;
                         }
                     }
                 }
@@ -3280,15 +3631,18 @@ impl serde::Serialize for Validator {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.Validator", len)?;
         if !self.address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("address", pbjson::private::base64::encode(&self.address).as_str())?;
         }
         if let Some(v) = self.pub_key.as_ref() {
             struct_ser.serialize_field("pubKey", v)?;
         }
         if self.voting_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("votingPower", ToString::to_string(&self.voting_power).as_str())?;
         }
         if self.proposer_priority != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("proposerPriority", ToString::to_string(&self.proposer_priority).as_str())?;
         }
         struct_ser.end()
@@ -3356,7 +3710,7 @@ impl<'de> serde::Deserialize<'de> for Validator {
                 formatter.write_str("struct tendermint.types.Validator")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Validator, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Validator, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3364,28 +3718,28 @@ impl<'de> serde::Deserialize<'de> for Validator {
                 let mut pub_key__ = None;
                 let mut voting_power__ = None;
                 let mut proposer_priority__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
                             address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::PubKey => {
                             if pub_key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pubKey"));
                             }
-                            pub_key__ = map.next_value()?;
+                            pub_key__ = map_.next_value()?;
                         }
                         GeneratedField::VotingPower => {
                             if voting_power__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("votingPower"));
                             }
                             voting_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ProposerPriority => {
@@ -3393,7 +3747,7 @@ impl<'de> serde::Deserialize<'de> for Validator {
                                 return Err(serde::de::Error::duplicate_field("proposerPriority"));
                             }
                             proposer_priority__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -3478,18 +3832,18 @@ impl<'de> serde::Deserialize<'de> for ValidatorParams {
                 formatter.write_str("struct tendermint.types.ValidatorParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pub_key_types__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::PubKeyTypes => {
                             if pub_key_types__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pubKeyTypes"));
                             }
-                            pub_key_types__ = Some(map.next_value()?);
+                            pub_key_types__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -3526,6 +3880,7 @@ impl serde::Serialize for ValidatorSet {
             struct_ser.serialize_field("proposer", v)?;
         }
         if self.total_voting_power != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("totalVotingPower", ToString::to_string(&self.total_voting_power).as_str())?;
         }
         struct_ser.end()
@@ -3588,33 +3943,33 @@ impl<'de> serde::Deserialize<'de> for ValidatorSet {
                 formatter.write_str("struct tendermint.types.ValidatorSet")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorSet, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorSet, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validators__ = None;
                 let mut proposer__ = None;
                 let mut total_voting_power__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Validators => {
                             if validators__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validators"));
                             }
-                            validators__ = Some(map.next_value()?);
+                            validators__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Proposer => {
                             if proposer__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("proposer"));
                             }
-                            proposer__ = map.next_value()?;
+                            proposer__ = map_.next_value()?;
                         }
                         GeneratedField::TotalVotingPower => {
                             if total_voting_power__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("totalVotingPower"));
                             }
                             total_voting_power__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -3637,12 +3992,13 @@ impl serde::Serialize for VersionParams {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
-        if self.app_version != 0 {
+        if self.app != 0 {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.VersionParams", len)?;
-        if self.app_version != 0 {
-            struct_ser.serialize_field("appVersion", ToString::to_string(&self.app_version).as_str())?;
+        if self.app != 0 {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("app", ToString::to_string(&self.app).as_str())?;
         }
         struct_ser.end()
     }
@@ -3654,13 +4010,12 @@ impl<'de> serde::Deserialize<'de> for VersionParams {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
-            "app_version",
-            "appVersion",
+            "app",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
-            AppVersion,
+            App,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -3682,7 +4037,7 @@ impl<'de> serde::Deserialize<'de> for VersionParams {
                         E: serde::de::Error,
                     {
                         match value {
-                            "appVersion" | "app_version" => Ok(GeneratedField::AppVersion),
+                            "app" => Ok(GeneratedField::App),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -3698,25 +4053,25 @@ impl<'de> serde::Deserialize<'de> for VersionParams {
                 formatter.write_str("struct tendermint.types.VersionParams")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<VersionParams, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<VersionParams, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                let mut app_version__ = None;
-                while let Some(k) = map.next_key()? {
+                let mut app__ = None;
+                while let Some(k) = map_.next_key()? {
                     match k {
-                        GeneratedField::AppVersion => {
-                            if app_version__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("appVersion"));
+                        GeneratedField::App => {
+                            if app__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("app"));
                             }
-                            app_version__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            app__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
                 }
                 Ok(VersionParams {
-                    app_version: app_version__.unwrap_or_default(),
+                    app: app__.unwrap_or_default(),
                 })
             }
         }
@@ -3755,13 +4110,20 @@ impl serde::Serialize for Vote {
         if !self.signature.is_empty() {
             len += 1;
         }
+        if !self.extension.is_empty() {
+            len += 1;
+        }
+        if !self.extension_signature.is_empty() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("tendermint.types.Vote", len)?;
         if self.r#type != 0 {
-            let v = SignedMsgType::from_i32(self.r#type)
-                .ok_or_else(|| serde::ser::Error::custom(format!("Invalid variant {}", self.r#type)))?;
+            let v = SignedMsgType::try_from(self.r#type)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.r#type)))?;
             struct_ser.serialize_field("type", &v)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if self.round != 0 {
@@ -3774,13 +4136,23 @@ impl serde::Serialize for Vote {
             struct_ser.serialize_field("timestamp", v)?;
         }
         if !self.validator_address.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("validatorAddress", pbjson::private::base64::encode(&self.validator_address).as_str())?;
         }
         if self.validator_index != 0 {
             struct_ser.serialize_field("validatorIndex", &self.validator_index)?;
         }
         if !self.signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("signature", pbjson::private::base64::encode(&self.signature).as_str())?;
+        }
+        if !self.extension.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("extension", pbjson::private::base64::encode(&self.extension).as_str())?;
+        }
+        if !self.extension_signature.is_empty() {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("extensionSignature", pbjson::private::base64::encode(&self.extension_signature).as_str())?;
         }
         struct_ser.end()
     }
@@ -3803,6 +4175,9 @@ impl<'de> serde::Deserialize<'de> for Vote {
             "validator_index",
             "validatorIndex",
             "signature",
+            "extension",
+            "extension_signature",
+            "extensionSignature",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -3815,6 +4190,8 @@ impl<'de> serde::Deserialize<'de> for Vote {
             ValidatorAddress,
             ValidatorIndex,
             Signature,
+            Extension,
+            ExtensionSignature,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -3844,6 +4221,8 @@ impl<'de> serde::Deserialize<'de> for Vote {
                             "validatorAddress" | "validator_address" => Ok(GeneratedField::ValidatorAddress),
                             "validatorIndex" | "validator_index" => Ok(GeneratedField::ValidatorIndex),
                             "signature" => Ok(GeneratedField::Signature),
+                            "extension" => Ok(GeneratedField::Extension),
+                            "extensionSignature" | "extension_signature" => Ok(GeneratedField::ExtensionSignature),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -3859,7 +4238,7 @@ impl<'de> serde::Deserialize<'de> for Vote {
                 formatter.write_str("struct tendermint.types.Vote")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Vote, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Vote, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -3871,20 +4250,22 @@ impl<'de> serde::Deserialize<'de> for Vote {
                 let mut validator_address__ = None;
                 let mut validator_index__ = None;
                 let mut signature__ = None;
-                while let Some(k) = map.next_key()? {
+                let mut extension__ = None;
+                let mut extension_signature__ = None;
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Type => {
                             if r#type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("type"));
                             }
-                            r#type__ = Some(map.next_value::<SignedMsgType>()? as i32);
+                            r#type__ = Some(map_.next_value::<SignedMsgType>()? as i32);
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Round => {
@@ -3892,27 +4273,27 @@ impl<'de> serde::Deserialize<'de> for Vote {
                                 return Err(serde::de::Error::duplicate_field("round"));
                             }
                             round__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::BlockId => {
                             if block_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("blockId"));
                             }
-                            block_id__ = map.next_value()?;
+                            block_id__ = map_.next_value()?;
                         }
                         GeneratedField::Timestamp => {
                             if timestamp__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("timestamp"));
                             }
-                            timestamp__ = map.next_value()?;
+                            timestamp__ = map_.next_value()?;
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
                             validator_address__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::ValidatorIndex => {
@@ -3920,7 +4301,7 @@ impl<'de> serde::Deserialize<'de> for Vote {
                                 return Err(serde::de::Error::duplicate_field("validatorIndex"));
                             }
                             validator_index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Signature => {
@@ -3928,7 +4309,23 @@ impl<'de> serde::Deserialize<'de> for Vote {
                                 return Err(serde::de::Error::duplicate_field("signature"));
                             }
                             signature__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Extension => {
+                            if extension__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("extension"));
+                            }
+                            extension__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::ExtensionSignature => {
+                            if extension_signature__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("extensionSignature"));
+                            }
+                            extension_signature__ = 
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -3942,6 +4339,8 @@ impl<'de> serde::Deserialize<'de> for Vote {
                     validator_address: validator_address__.unwrap_or_default(),
                     validator_index: validator_index__.unwrap_or_default(),
                     signature: signature__.unwrap_or_default(),
+                    extension: extension__.unwrap_or_default(),
+                    extension_signature: extension_signature__.unwrap_or_default(),
                 })
             }
         }

@@ -87,32 +87,32 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 formatter.write_str("struct cosmos.slashing.v1beta1.GenesisState")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<GenesisState, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
                 let mut signing_infos__ = None;
                 let mut missed_blocks__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                         GeneratedField::SigningInfos => {
                             if signing_infos__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signingInfos"));
                             }
-                            signing_infos__ = Some(map.next_value()?);
+                            signing_infos__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MissedBlocks => {
                             if missed_blocks__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("missedBlocks"));
                             }
-                            missed_blocks__ = Some(map.next_value()?);
+                            missed_blocks__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -142,6 +142,7 @@ impl serde::Serialize for MissedBlock {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.slashing.v1beta1.MissedBlock", len)?;
         if self.index != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("index", ToString::to_string(&self.index).as_str())?;
         }
         if self.missed {
@@ -203,27 +204,27 @@ impl<'de> serde::Deserialize<'de> for MissedBlock {
                 formatter.write_str("struct cosmos.slashing.v1beta1.MissedBlock")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MissedBlock, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MissedBlock, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut index__ = None;
                 let mut missed__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Index => {
                             if index__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("index"));
                             }
                             index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Missed => {
                             if missed__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("missed"));
                             }
-                            missed__ = Some(map.next_value()?);
+                            missed__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -305,18 +306,18 @@ impl<'de> serde::Deserialize<'de> for MsgUnjail {
                 formatter.write_str("struct cosmos.slashing.v1beta1.MsgUnjail")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUnjail, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUnjail, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut validator_addr__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValidatorAddr => {
                             if validator_addr__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddr"));
                             }
-                            validator_addr__ = Some(map.next_value()?);
+                            validator_addr__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -385,18 +386,197 @@ impl<'de> serde::Deserialize<'de> for MsgUnjailResponse {
                 formatter.write_str("struct cosmos.slashing.v1beta1.MsgUnjailResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUnjailResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUnjailResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUnjailResponse {
                 })
             }
         }
         deserializer.deserialize_struct("cosmos.slashing.v1beta1.MsgUnjailResponse", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgUpdateParams {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.authority.is_empty() {
+            len += 1;
+        }
+        if self.params.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("cosmos.slashing.v1beta1.MsgUpdateParams", len)?;
+        if !self.authority.is_empty() {
+            struct_ser.serialize_field("authority", &self.authority)?;
+        }
+        if let Some(v) = self.params.as_ref() {
+            struct_ser.serialize_field("params", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgUpdateParams {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "authority",
+            "params",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Authority,
+            Params,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "authority" => Ok(GeneratedField::Authority),
+                            "params" => Ok(GeneratedField::Params),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateParams;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.slashing.v1beta1.MsgUpdateParams")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParams, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut authority__ = None;
+                let mut params__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Authority => {
+                            if authority__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("authority"));
+                            }
+                            authority__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Params => {
+                            if params__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("params"));
+                            }
+                            params__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(MsgUpdateParams {
+                    authority: authority__.unwrap_or_default(),
+                    params: params__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.slashing.v1beta1.MsgUpdateParams", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for MsgUpdateParamsResponse {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let len = 0;
+        let struct_ser = serializer.serialize_struct("cosmos.slashing.v1beta1.MsgUpdateParamsResponse", len)?;
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for MsgUpdateParamsResponse {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                            Err(serde::de::Error::unknown_field(value, FIELDS))
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = MsgUpdateParamsResponse;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct cosmos.slashing.v1beta1.MsgUpdateParamsResponse")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateParamsResponse, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                }
+                Ok(MsgUpdateParamsResponse {
+                })
+            }
+        }
+        deserializer.deserialize_struct("cosmos.slashing.v1beta1.MsgUpdateParamsResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for Params {
@@ -424,18 +604,22 @@ impl serde::Serialize for Params {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.slashing.v1beta1.Params", len)?;
         if self.signed_blocks_window != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("signedBlocksWindow", ToString::to_string(&self.signed_blocks_window).as_str())?;
         }
         if !self.min_signed_per_window.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("minSignedPerWindow", pbjson::private::base64::encode(&self.min_signed_per_window).as_str())?;
         }
         if let Some(v) = self.downtime_jail_duration.as_ref() {
             struct_ser.serialize_field("downtimeJailDuration", v)?;
         }
         if !self.slash_fraction_double_sign.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("slashFractionDoubleSign", pbjson::private::base64::encode(&self.slash_fraction_double_sign).as_str())?;
         }
         if !self.slash_fraction_downtime.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("slashFractionDowntime", pbjson::private::base64::encode(&self.slash_fraction_downtime).as_str())?;
         }
         struct_ser.end()
@@ -508,7 +692,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 formatter.write_str("struct cosmos.slashing.v1beta1.Params")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Params, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -517,14 +701,14 @@ impl<'de> serde::Deserialize<'de> for Params {
                 let mut downtime_jail_duration__ = None;
                 let mut slash_fraction_double_sign__ = None;
                 let mut slash_fraction_downtime__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::SignedBlocksWindow => {
                             if signed_blocks_window__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("signedBlocksWindow"));
                             }
                             signed_blocks_window__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::MinSignedPerWindow => {
@@ -532,21 +716,21 @@ impl<'de> serde::Deserialize<'de> for Params {
                                 return Err(serde::de::Error::duplicate_field("minSignedPerWindow"));
                             }
                             min_signed_per_window__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::DowntimeJailDuration => {
                             if downtime_jail_duration__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("downtimeJailDuration"));
                             }
-                            downtime_jail_duration__ = map.next_value()?;
+                            downtime_jail_duration__ = map_.next_value()?;
                         }
                         GeneratedField::SlashFractionDoubleSign => {
                             if slash_fraction_double_sign__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("slashFractionDoubleSign"));
                             }
                             slash_fraction_double_sign__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::SlashFractionDowntime => {
@@ -554,7 +738,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                                 return Err(serde::de::Error::duplicate_field("slashFractionDowntime"));
                             }
                             slash_fraction_downtime__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -628,12 +812,12 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QueryParamsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryParamsRequest {
                 })
@@ -710,18 +894,18 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QueryParamsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryParamsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
                             if params__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("params"));
                             }
-                            params__ = map.next_value()?;
+                            params__ = map_.next_value()?;
                         }
                     }
                 }
@@ -802,18 +986,18 @@ impl<'de> serde::Deserialize<'de> for QuerySigningInfoRequest {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QuerySigningInfoRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySigningInfoRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySigningInfoRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut cons_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ConsAddress => {
                             if cons_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("consAddress"));
                             }
-                            cons_address__ = Some(map.next_value()?);
+                            cons_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -894,18 +1078,18 @@ impl<'de> serde::Deserialize<'de> for QuerySigningInfoResponse {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QuerySigningInfoResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySigningInfoResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySigningInfoResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut val_signing_info__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ValSigningInfo => {
                             if val_signing_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("valSigningInfo"));
                             }
-                            val_signing_info__ = map.next_value()?;
+                            val_signing_info__ = map_.next_value()?;
                         }
                     }
                 }
@@ -985,18 +1169,18 @@ impl<'de> serde::Deserialize<'de> for QuerySigningInfosRequest {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QuerySigningInfosRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySigningInfosRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySigningInfosRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1085,25 +1269,25 @@ impl<'de> serde::Deserialize<'de> for QuerySigningInfosResponse {
                 formatter.write_str("struct cosmos.slashing.v1beta1.QuerySigningInfosResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QuerySigningInfosResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QuerySigningInfosResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut info__ = None;
                 let mut pagination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Info => {
                             if info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("info"));
                             }
-                            info__ = Some(map.next_value()?);
+                            info__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Pagination => {
                             if pagination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("pagination"));
                             }
-                            pagination__ = map.next_value()?;
+                            pagination__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1194,25 +1378,25 @@ impl<'de> serde::Deserialize<'de> for SigningInfo {
                 formatter.write_str("struct cosmos.slashing.v1beta1.SigningInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SigningInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SigningInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
                 let mut validator_signing_info__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorSigningInfo => {
                             if validator_signing_info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorSigningInfo"));
                             }
-                            validator_signing_info__ = map.next_value()?;
+                            validator_signing_info__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1303,25 +1487,25 @@ impl<'de> serde::Deserialize<'de> for ValidatorMissedBlocks {
                 formatter.write_str("struct cosmos.slashing.v1beta1.ValidatorMissedBlocks")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorMissedBlocks, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorMissedBlocks, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
                 let mut missed_blocks__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MissedBlocks => {
                             if missed_blocks__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("missedBlocks"));
                             }
-                            missed_blocks__ = Some(map.next_value()?);
+                            missed_blocks__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1365,9 +1549,11 @@ impl serde::Serialize for ValidatorSigningInfo {
             struct_ser.serialize_field("address", &self.address)?;
         }
         if self.start_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("startHeight", ToString::to_string(&self.start_height).as_str())?;
         }
         if self.index_offset != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("indexOffset", ToString::to_string(&self.index_offset).as_str())?;
         }
         if let Some(v) = self.jailed_until.as_ref() {
@@ -1377,6 +1563,7 @@ impl serde::Serialize for ValidatorSigningInfo {
             struct_ser.serialize_field("tombstoned", &self.tombstoned)?;
         }
         if self.missed_blocks_counter != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("missedBlocksCounter", ToString::to_string(&self.missed_blocks_counter).as_str())?;
         }
         struct_ser.end()
@@ -1451,7 +1638,7 @@ impl<'de> serde::Deserialize<'de> for ValidatorSigningInfo {
                 formatter.write_str("struct cosmos.slashing.v1beta1.ValidatorSigningInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValidatorSigningInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValidatorSigningInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1461,20 +1648,20 @@ impl<'de> serde::Deserialize<'de> for ValidatorSigningInfo {
                 let mut jailed_until__ = None;
                 let mut tombstoned__ = None;
                 let mut missed_blocks_counter__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartHeight => {
                             if start_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startHeight"));
                             }
                             start_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::IndexOffset => {
@@ -1482,27 +1669,27 @@ impl<'de> serde::Deserialize<'de> for ValidatorSigningInfo {
                                 return Err(serde::de::Error::duplicate_field("indexOffset"));
                             }
                             index_offset__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::JailedUntil => {
                             if jailed_until__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("jailedUntil"));
                             }
-                            jailed_until__ = map.next_value()?;
+                            jailed_until__ = map_.next_value()?;
                         }
                         GeneratedField::Tombstoned => {
                             if tombstoned__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("tombstoned"));
                             }
-                            tombstoned__ = Some(map.next_value()?);
+                            tombstoned__ = Some(map_.next_value()?);
                         }
                         GeneratedField::MissedBlocksCounter => {
                             if missed_blocks_counter__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("missedBlocksCounter"));
                             }
                             missed_blocks_counter__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }

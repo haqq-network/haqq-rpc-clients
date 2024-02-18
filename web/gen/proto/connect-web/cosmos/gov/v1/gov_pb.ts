@@ -129,11 +129,15 @@ proto3.util.setEnumType(ProposalStatus, "cosmos.gov.v1.ProposalStatus", [
  */
 export class WeightedVoteOption extends Message<WeightedVoteOption> {
   /**
+   * option defines the valid vote options, it must not contain duplicate vote options.
+   *
    * @generated from field: cosmos.gov.v1.VoteOption option = 1;
    */
   option = VoteOption.UNSPECIFIED;
 
   /**
+   * weight is the vote weight associated with the vote option.
+   *
    * @generated from field: string weight = 2;
    */
   weight = "";
@@ -175,16 +179,22 @@ export class WeightedVoteOption extends Message<WeightedVoteOption> {
  */
 export class Deposit extends Message<Deposit> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * depositor defines the deposit addresses from the proposals.
+   *
    * @generated from field: string depositor = 2;
    */
   depositor = "";
 
   /**
+   * amount to be deposited by depositor.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin amount = 3;
    */
   amount: Coin[] = [];
@@ -226,16 +236,22 @@ export class Deposit extends Message<Deposit> {
  */
 export class Proposal extends Message<Proposal> {
   /**
+   * id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 id = 1;
    */
   id = protoInt64.zero;
 
   /**
+   * messages are the arbitrary messages to be executed if the proposal passes.
+   *
    * @generated from field: repeated google.protobuf.Any messages = 2;
    */
   messages: Any[] = [];
 
   /**
+   * status defines the proposal status.
+   *
    * @generated from field: cosmos.gov.v1.ProposalStatus status = 3;
    */
   status = ProposalStatus.UNSPECIFIED;
@@ -250,26 +266,36 @@ export class Proposal extends Message<Proposal> {
   finalTallyResult?: TallyResult;
 
   /**
+   * submit_time is the time of proposal submission.
+   *
    * @generated from field: google.protobuf.Timestamp submit_time = 5;
    */
   submitTime?: Timestamp;
 
   /**
+   * deposit_end_time is the end time for deposition.
+   *
    * @generated from field: google.protobuf.Timestamp deposit_end_time = 6;
    */
   depositEndTime?: Timestamp;
 
   /**
+   * total_deposit is the total deposit on the proposal.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin total_deposit = 7;
    */
   totalDeposit: Coin[] = [];
 
   /**
+   * voting_start_time is the starting time to vote on a proposal.
+   *
    * @generated from field: google.protobuf.Timestamp voting_start_time = 8;
    */
   votingStartTime?: Timestamp;
 
   /**
+   * voting_end_time is the end time of voting on a proposal.
+   *
    * @generated from field: google.protobuf.Timestamp voting_end_time = 9;
    */
   votingEndTime?: Timestamp;
@@ -280,6 +306,33 @@ export class Proposal extends Message<Proposal> {
    * @generated from field: string metadata = 10;
    */
   metadata = "";
+
+  /**
+   * title is the title of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string title = 11;
+   */
+  title = "";
+
+  /**
+   * summary is a short summary of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string summary = 12;
+   */
+  summary = "";
+
+  /**
+   * Proposer is the address of the proposal sumbitter
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string proposer = 13;
+   */
+  proposer = "";
 
   constructor(data?: PartialMessage<Proposal>) {
     super();
@@ -299,6 +352,9 @@ export class Proposal extends Message<Proposal> {
     { no: 8, name: "voting_start_time", kind: "message", T: Timestamp },
     { no: 9, name: "voting_end_time", kind: "message", T: Timestamp },
     { no: 10, name: "metadata", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: "proposer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proposal {
@@ -325,21 +381,29 @@ export class Proposal extends Message<Proposal> {
  */
 export class TallyResult extends Message<TallyResult> {
   /**
+   * yes_count is the number of yes votes on a proposal.
+   *
    * @generated from field: string yes_count = 1;
    */
   yesCount = "";
 
   /**
+   * abstain_count is the number of abstain votes on a proposal.
+   *
    * @generated from field: string abstain_count = 2;
    */
   abstainCount = "";
 
   /**
+   * no_count is the number of no votes on a proposal.
+   *
    * @generated from field: string no_count = 3;
    */
   noCount = "";
 
   /**
+   * no_with_veto_count is the number of no with veto votes on a proposal.
+   *
    * @generated from field: string no_with_veto_count = 4;
    */
   noWithVetoCount = "";
@@ -383,16 +447,22 @@ export class TallyResult extends Message<TallyResult> {
  */
 export class Vote extends Message<Vote> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address of the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
 
   /**
+   * options is the weighted vote options.
+   *
    * @generated from field: repeated cosmos.gov.v1.WeightedVoteOption options = 4;
    */
   options: WeightedVoteOption[] = [];
@@ -442,15 +512,15 @@ export class Vote extends Message<Vote> {
  */
 export class DepositParams extends Message<DepositParams> {
   /**
-   *  Minimum deposit for a proposal to enter voting period.
+   * Minimum deposit for a proposal to enter voting period.
    *
    * @generated from field: repeated cosmos.base.v1beta1.Coin min_deposit = 1;
    */
   minDeposit: Coin[] = [];
 
   /**
-   *  Maximum period for Atom holders to deposit on a proposal. Initial value: 2
-   *  months.
+   * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
+   * months.
    *
    * @generated from field: google.protobuf.Duration max_deposit_period = 2;
    */
@@ -492,7 +562,7 @@ export class DepositParams extends Message<DepositParams> {
  */
 export class VotingParams extends Message<VotingParams> {
   /**
-   *  Length of the voting period.
+   * Duration of the voting period.
    *
    * @generated from field: google.protobuf.Duration voting_period = 1;
    */
@@ -533,23 +603,23 @@ export class VotingParams extends Message<VotingParams> {
  */
 export class TallyParams extends Message<TallyParams> {
   /**
-   *  Minimum percentage of total stake needed to vote for a result to be
-   *  considered valid.
+   * Minimum percentage of total stake needed to vote for a result to be
+   * considered valid.
    *
    * @generated from field: string quorum = 1;
    */
   quorum = "";
 
   /**
-   *  Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
+   * Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
    *
    * @generated from field: string threshold = 2;
    */
   threshold = "";
 
   /**
-   *  Minimum value of Veto votes to Total votes ratio for proposal to be
-   *  vetoed. Default value: 1/3.
+   * Minimum value of Veto votes to Total votes ratio for proposal to be
+   * vetoed. Default value: 1/3.
    *
    * @generated from field: string veto_threshold = 3;
    */
@@ -582,6 +652,124 @@ export class TallyParams extends Message<TallyParams> {
 
   static equals(a: TallyParams | PlainMessage<TallyParams> | undefined, b: TallyParams | PlainMessage<TallyParams> | undefined): boolean {
     return proto3.util.equals(TallyParams, a, b);
+  }
+}
+
+/**
+ * Params defines the parameters for the x/gov module.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.gov.v1.Params
+ */
+export class Params extends Message<Params> {
+  /**
+   * Minimum deposit for a proposal to enter voting period.
+   *
+   * @generated from field: repeated cosmos.base.v1beta1.Coin min_deposit = 1;
+   */
+  minDeposit: Coin[] = [];
+
+  /**
+   * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
+   * months.
+   *
+   * @generated from field: google.protobuf.Duration max_deposit_period = 2;
+   */
+  maxDepositPeriod?: Duration;
+
+  /**
+   * Duration of the voting period.
+   *
+   * @generated from field: google.protobuf.Duration voting_period = 3;
+   */
+  votingPeriod?: Duration;
+
+  /**
+   *  Minimum percentage of total stake needed to vote for a result to be
+   *  considered valid.
+   *
+   * @generated from field: string quorum = 4;
+   */
+  quorum = "";
+
+  /**
+   *  Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
+   *
+   * @generated from field: string threshold = 5;
+   */
+  threshold = "";
+
+  /**
+   *  Minimum value of Veto votes to Total votes ratio for proposal to be
+   *  vetoed. Default value: 1/3.
+   *
+   * @generated from field: string veto_threshold = 6;
+   */
+  vetoThreshold = "";
+
+  /**
+   *  The ratio representing the proportion of the deposit value that must be paid at proposal submission.
+   *
+   * @generated from field: string min_initial_deposit_ratio = 7;
+   */
+  minInitialDepositRatio = "";
+
+  /**
+   * burn deposits if a proposal does not meet quorum
+   *
+   * @generated from field: bool burn_vote_quorum = 13;
+   */
+  burnVoteQuorum = false;
+
+  /**
+   * burn deposits if the proposal does not enter voting period
+   *
+   * @generated from field: bool burn_proposal_deposit_prevote = 14;
+   */
+  burnProposalDepositPrevote = false;
+
+  /**
+   * burn deposits if quorum with vote type no_veto is met
+   *
+   * @generated from field: bool burn_vote_veto = 15;
+   */
+  burnVoteVeto = false;
+
+  constructor(data?: PartialMessage<Params>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.gov.v1.Params";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "min_deposit", kind: "message", T: Coin, repeated: true },
+    { no: 2, name: "max_deposit_period", kind: "message", T: Duration },
+    { no: 3, name: "voting_period", kind: "message", T: Duration },
+    { no: 4, name: "quorum", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "veto_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "min_initial_deposit_ratio", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: "burn_vote_quorum", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "burn_proposal_deposit_prevote", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 15, name: "burn_vote_veto", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
+    return new Params().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Params {
+    return new Params().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Params {
+    return new Params().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+    return proto3.util.equals(Params, a, b);
   }
 }
 

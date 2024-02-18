@@ -115,7 +115,7 @@ pub struct MsgCreateClawbackVestingAccount {
     pub to_address: ::prost::alloc::string::String,
     /// start_time defines the time at which the vesting period begins
     #[prost(message, optional, tag="3")]
-    pub start_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// lockup_periods defines the unlocking schedule relative to the start_time
     #[prost(message, repeated, tag="4")]
     pub lockup_periods: ::prost::alloc::vec::Vec<super::super::super::cosmos::vesting::v1beta1::Period>,
@@ -218,7 +218,7 @@ pub struct MsgConvertIntoVestingAccount {
     pub to_address: ::prost::alloc::string::String,
     /// start_time defines the time at which the vesting period begins
     #[prost(message, optional, tag="3")]
-    pub start_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// lockup_periods defines the unlocking schedule relative to the start_time
     #[prost(message, repeated, tag="4")]
     pub lockup_periods: ::prost::alloc::vec::Vec<super::super::super::cosmos::vesting::v1beta1::Period>,
@@ -264,7 +264,7 @@ pub struct ClawbackVestingAccount {
     pub funder_address: ::prost::alloc::string::String,
     /// start_time defines the time at which the vesting period begins
     #[prost(message, optional, tag="3")]
-    pub start_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub start_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// lockup_periods defines the unlocking schedule relative to the start_time
     #[prost(message, repeated, tag="4")]
     pub lockup_periods: ::prost::alloc::vec::Vec<super::super::super::cosmos::vesting::v1beta1::Period>,

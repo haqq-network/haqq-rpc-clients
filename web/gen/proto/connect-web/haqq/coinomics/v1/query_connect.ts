@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryEraClosingSupplyRequest, QueryEraClosingSupplyResponse, QueryEraRequest, QueryEraResponse, QueryInflationRateRequest, QueryInflationRateResponse, QueryMaxSupplyRequest, QueryMaxSupplyResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import { QueryMaxSupplyRequest, QueryMaxSupplyResponse, QueryParamsRequest, QueryParamsResponse, QueryRewardCoefficientRequest, QueryRewardCoefficientResponse } from "./query_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,28 +14,6 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const Query = {
   typeName: "haqq.coinomics.v1.Query",
   methods: {
-    /**
-     * Era retrieves current era.
-     *
-     * @generated from rpc haqq.coinomics.v1.Query.Era
-     */
-    era: {
-      name: "Era",
-      I: QueryEraRequest,
-      O: QueryEraResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * EraTargetSupply retrieves current era target supply.
-     *
-     * @generated from rpc haqq.coinomics.v1.Query.EraClosingSupply
-     */
-    eraClosingSupply: {
-      name: "EraClosingSupply",
-      I: QueryEraClosingSupplyRequest,
-      O: QueryEraClosingSupplyResponse,
-      kind: MethodKind.Unary,
-    },
     /**
      * MaxSupply retrieves total coins of all eras and when mint ended.
      *
@@ -48,14 +26,14 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * InflationRate retrieves current era inflation rate.
+     * InflationRewardCoefficientRate APY rate for staking rewards
      *
-     * @generated from rpc haqq.coinomics.v1.Query.InflationRate
+     * @generated from rpc haqq.coinomics.v1.Query.RewardCoefficient
      */
-    inflationRate: {
-      name: "InflationRate",
-      I: QueryInflationRateRequest,
-      O: QueryInflationRateResponse,
+    rewardCoefficient: {
+      name: "RewardCoefficient",
+      I: QueryRewardCoefficientRequest,
+      O: QueryRewardCoefficientResponse,
       kind: MethodKind.Unary,
     },
     /**

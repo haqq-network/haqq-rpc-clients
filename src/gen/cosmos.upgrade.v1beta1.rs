@@ -18,9 +18,8 @@ pub struct Plan {
     /// If this field is not empty, an error will be thrown.
     #[deprecated]
     #[prost(message, optional, tag="2")]
-    pub time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// The height at which the upgrade must be performed.
-    /// Only used if Time is not set.
     #[prost(int64, tag="3")]
     pub height: i64,
     /// Any application specific upgrade info to be included on-chain
@@ -32,7 +31,7 @@ pub struct Plan {
     /// If this field is not empty, an error will be thrown.
     #[deprecated]
     #[prost(message, optional, tag="5")]
-    pub upgraded_client_state: ::core::option::Option<::prost_wkt_types::Any>,
+    pub upgraded_client_state: ::core::option::Option<::pbjson_types::Any>,
 }
 /// SoftwareUpgradeProposal is a gov Content type for initiating a software
 /// upgrade.
@@ -42,10 +41,13 @@ pub struct Plan {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SoftwareUpgradeProposal {
+    /// title of the proposal
     #[prost(string, tag="1")]
     pub title: ::prost::alloc::string::String,
+    /// description of the proposal
     #[prost(string, tag="2")]
     pub description: ::prost::alloc::string::String,
+    /// plan of the proposal
     #[prost(message, optional, tag="3")]
     pub plan: ::core::option::Option<Plan>,
 }
@@ -57,8 +59,10 @@ pub struct SoftwareUpgradeProposal {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CancelSoftwareUpgradeProposal {
+    /// title of the proposal
     #[prost(string, tag="1")]
     pub title: ::prost::alloc::string::String,
+    /// description of the proposal
     #[prost(string, tag="2")]
     pub description: ::prost::alloc::string::String,
 }
@@ -185,7 +189,7 @@ pub struct QueryAuthorityResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgSoftwareUpgrade {
-    /// authority is the address of the governance account.
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
     #[prost(string, tag="1")]
     pub authority: ::prost::alloc::string::String,
     /// plan is the upgrade plan.
@@ -207,7 +211,7 @@ pub struct MsgSoftwareUpgradeResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgCancelUpgrade {
-    /// authority is the address of the governance account.
+    /// authority is the address that controls the module (defaults to x/gov unless overwritten).
     #[prost(string, tag="1")]
     pub authority: ::prost::alloc::string::String,
 }

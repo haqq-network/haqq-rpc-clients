@@ -14,7 +14,7 @@ import { Params } from "./auth_pb.js";
  */
 export class GenesisState extends Message<GenesisState> {
   /**
-   * params defines all the paramaters of the module.
+   * params defines all the parameters of the module.
    *
    * @generated from field: cosmos.auth.v1beta1.Params params = 1;
    */

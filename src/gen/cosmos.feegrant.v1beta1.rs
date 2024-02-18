@@ -12,7 +12,7 @@ pub struct BasicAllowance {
     pub spend_limit: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
     /// expiration specifies an optional time when this allowance expires
     #[prost(message, optional, tag="2")]
-    pub expiration: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub expiration: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// PeriodicAllowance extends Allowance to allow for both a maximum cap,
 /// as well as a limit per time period.
@@ -26,7 +26,7 @@ pub struct PeriodicAllowance {
     /// period specifies the time duration in which period_spend_limit coins can
     /// be spent before that allowance is reset
     #[prost(message, optional, tag="2")]
-    pub period: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub period: ::core::option::Option<::pbjson_types::Duration>,
     /// period_spend_limit specifies the maximum number of coins that can be spent
     /// in the period
     #[prost(message, repeated, tag="3")]
@@ -38,7 +38,7 @@ pub struct PeriodicAllowance {
     /// it is calculated from the start time of the first transaction after the
     /// last period ended
     #[prost(message, optional, tag="5")]
-    pub period_reset: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub period_reset: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// AllowedMsgAllowance creates allowance only for specified message types.
 #[derive(::derive_builder::Builder)]
@@ -47,7 +47,7 @@ pub struct PeriodicAllowance {
 pub struct AllowedMsgAllowance {
     /// allowance can be any of basic and periodic fee allowance.
     #[prost(message, optional, tag="1")]
-    pub allowance: ::core::option::Option<::prost_wkt_types::Any>,
+    pub allowance: ::core::option::Option<::pbjson_types::Any>,
     /// allowed_messages are the messages for which the grantee has the access.
     #[prost(string, repeated, tag="2")]
     pub allowed_messages: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
@@ -65,7 +65,7 @@ pub struct Grant {
     pub grantee: ::prost::alloc::string::String,
     /// allowance can be any of basic, periodic, allowed fee allowance.
     #[prost(message, optional, tag="3")]
-    pub allowance: ::core::option::Option<::prost_wkt_types::Any>,
+    pub allowance: ::core::option::Option<::pbjson_types::Any>,
 }
 /// GenesisState contains a set of fee allowances, persisted from the store
 #[derive(::derive_builder::Builder)]
@@ -160,7 +160,7 @@ pub struct MsgGrantAllowance {
     pub grantee: ::prost::alloc::string::String,
     /// allowance can be any of basic, periodic, allowed fee allowance.
     #[prost(message, optional, tag="3")]
-    pub allowance: ::core::option::Option<::prost_wkt_types::Any>,
+    pub allowance: ::core::option::Option<::pbjson_types::Any>,
 }
 /// MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type.
 #[derive(::derive_builder::Builder)]

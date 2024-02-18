@@ -340,7 +340,7 @@ pub struct GenesisAccount {
 pub struct MsgEthereumTx {
     /// data is inner transaction data of the Ethereum transaction
     #[prost(message, optional, tag="1")]
-    pub data: ::core::option::Option<::prost_wkt_types::Any>,
+    pub data: ::core::option::Option<::pbjson_types::Any>,
     /// size is the encoded storage size of the transaction (DEPRECATED)
     #[prost(double, tag="2")]
     pub size: f64,
@@ -744,7 +744,7 @@ pub struct QueryTraceTxRequest {
     pub block_hash: ::prost::alloc::string::String,
     /// block_time of requested transaction
     #[prost(message, optional, tag="7")]
-    pub block_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub block_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// proposer_address is the proposer of the requested block
     #[prost(bytes="bytes", tag="8")]
     pub proposer_address: ::prost::bytes::Bytes,
@@ -780,7 +780,7 @@ pub struct QueryTraceBlockRequest {
     pub block_hash: ::prost::alloc::string::String,
     /// block_time of the traced block
     #[prost(message, optional, tag="7")]
-    pub block_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub block_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// proposer_address is the address of the requested block
     #[prost(bytes="bytes", tag="8")]
     pub proposer_address: ::prost::bytes::Bytes,

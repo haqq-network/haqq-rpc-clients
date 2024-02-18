@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse } from "./tx_pb.js";
+import { MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -60,6 +60,36 @@ export const Msg = {
       name: "FundCommunityPool",
       I: MsgFundCommunityPool,
       O: MsgFundCommunityPoolResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UpdateParams defines a governance operation for updating the x/distribution
+     * module parameters. The authority is defined in the keeper.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.distribution.v1beta1.Msg.UpdateParams
+     */
+    updateParams: {
+      name: "UpdateParams",
+      I: MsgUpdateParams,
+      O: MsgUpdateParamsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * CommunityPoolSpend defines a governance operation for sending tokens from
+     * the community pool in the x/distribution module to another account, which
+     * could be the governance module itself. The authority is defined in the
+     * keeper.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.distribution.v1beta1.Msg.CommunityPoolSpend
+     */
+    communityPoolSpend: {
+      name: "CommunityPoolSpend",
+      I: MsgCommunityPoolSpend,
+      O: MsgCommunityPoolSpendResponse,
       kind: MethodKind.Unary,
     },
   }

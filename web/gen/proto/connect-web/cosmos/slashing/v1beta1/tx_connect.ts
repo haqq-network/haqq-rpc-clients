@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgUnjail, MsgUnjailResponse } from "./tx_pb.js";
+import { MsgUnjail, MsgUnjailResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -25,6 +25,20 @@ export const Msg = {
       name: "Unjail",
       I: MsgUnjail,
       O: MsgUnjailResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UpdateParams defines a governance operation for updating the x/slashing module
+     * parameters. The authority defaults to the x/gov module account.
+     *
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.slashing.v1beta1.Msg.UpdateParams
+     */
+    updateParams: {
+      name: "UpdateParams",
+      I: MsgUpdateParams,
+      O: MsgUpdateParamsResponse,
       kind: MethodKind.Unary,
     },
   }

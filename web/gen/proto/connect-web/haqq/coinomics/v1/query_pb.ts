@@ -4,145 +4,9 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
 import { Params } from "./genesis_pb.js";
-
-/**
- * @generated from message haqq.coinomics.v1.QueryEraRequest
- */
-export class QueryEraRequest extends Message<QueryEraRequest> {
-  constructor(data?: PartialMessage<QueryEraRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryEraRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEraRequest {
-    return new QueryEraRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEraRequest {
-    return new QueryEraRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEraRequest {
-    return new QueryEraRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryEraRequest | PlainMessage<QueryEraRequest> | undefined, b: QueryEraRequest | PlainMessage<QueryEraRequest> | undefined): boolean {
-    return proto3.util.equals(QueryEraRequest, a, b);
-  }
-}
-
-/**
- * @generated from message haqq.coinomics.v1.QueryEraResponse
- */
-export class QueryEraResponse extends Message<QueryEraResponse> {
-  /**
-   * @generated from field: uint64 era = 1;
-   */
-  era = protoInt64.zero;
-
-  constructor(data?: PartialMessage<QueryEraResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryEraResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "era", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEraResponse {
-    return new QueryEraResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEraResponse {
-    return new QueryEraResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEraResponse {
-    return new QueryEraResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryEraResponse | PlainMessage<QueryEraResponse> | undefined, b: QueryEraResponse | PlainMessage<QueryEraResponse> | undefined): boolean {
-    return proto3.util.equals(QueryEraResponse, a, b);
-  }
-}
-
-/**
- * @generated from message haqq.coinomics.v1.QueryEraClosingSupplyRequest
- */
-export class QueryEraClosingSupplyRequest extends Message<QueryEraClosingSupplyRequest> {
-  constructor(data?: PartialMessage<QueryEraClosingSupplyRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryEraClosingSupplyRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEraClosingSupplyRequest {
-    return new QueryEraClosingSupplyRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEraClosingSupplyRequest {
-    return new QueryEraClosingSupplyRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEraClosingSupplyRequest {
-    return new QueryEraClosingSupplyRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryEraClosingSupplyRequest | PlainMessage<QueryEraClosingSupplyRequest> | undefined, b: QueryEraClosingSupplyRequest | PlainMessage<QueryEraClosingSupplyRequest> | undefined): boolean {
-    return proto3.util.equals(QueryEraClosingSupplyRequest, a, b);
-  }
-}
-
-/**
- * @generated from message haqq.coinomics.v1.QueryEraClosingSupplyResponse
- */
-export class QueryEraClosingSupplyResponse extends Message<QueryEraClosingSupplyResponse> {
-  /**
-   * @generated from field: cosmos.base.v1beta1.Coin era_closing_supply = 1;
-   */
-  eraClosingSupply?: Coin;
-
-  constructor(data?: PartialMessage<QueryEraClosingSupplyResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryEraClosingSupplyResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "era_closing_supply", kind: "message", T: Coin },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEraClosingSupplyResponse {
-    return new QueryEraClosingSupplyResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEraClosingSupplyResponse {
-    return new QueryEraClosingSupplyResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEraClosingSupplyResponse {
-    return new QueryEraClosingSupplyResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryEraClosingSupplyResponse | PlainMessage<QueryEraClosingSupplyResponse> | undefined, b: QueryEraClosingSupplyResponse | PlainMessage<QueryEraClosingSupplyResponse> | undefined): boolean {
-    return proto3.util.equals(QueryEraClosingSupplyResponse, a, b);
-  }
-}
 
 /**
  * @generated from message haqq.coinomics.v1.QueryMaxSupplyRequest
@@ -213,72 +77,72 @@ export class QueryMaxSupplyResponse extends Message<QueryMaxSupplyResponse> {
 }
 
 /**
- * @generated from message haqq.coinomics.v1.QueryInflationRateRequest
+ * @generated from message haqq.coinomics.v1.QueryRewardCoefficientRequest
  */
-export class QueryInflationRateRequest extends Message<QueryInflationRateRequest> {
-  constructor(data?: PartialMessage<QueryInflationRateRequest>) {
+export class QueryRewardCoefficientRequest extends Message<QueryRewardCoefficientRequest> {
+  constructor(data?: PartialMessage<QueryRewardCoefficientRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryInflationRateRequest";
+  static readonly typeName = "haqq.coinomics.v1.QueryRewardCoefficientRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryInflationRateRequest {
-    return new QueryInflationRateRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRewardCoefficientRequest {
+    return new QueryRewardCoefficientRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryInflationRateRequest {
-    return new QueryInflationRateRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRewardCoefficientRequest {
+    return new QueryRewardCoefficientRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryInflationRateRequest {
-    return new QueryInflationRateRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRewardCoefficientRequest {
+    return new QueryRewardCoefficientRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryInflationRateRequest | PlainMessage<QueryInflationRateRequest> | undefined, b: QueryInflationRateRequest | PlainMessage<QueryInflationRateRequest> | undefined): boolean {
-    return proto3.util.equals(QueryInflationRateRequest, a, b);
+  static equals(a: QueryRewardCoefficientRequest | PlainMessage<QueryRewardCoefficientRequest> | undefined, b: QueryRewardCoefficientRequest | PlainMessage<QueryRewardCoefficientRequest> | undefined): boolean {
+    return proto3.util.equals(QueryRewardCoefficientRequest, a, b);
   }
 }
 
 /**
- * @generated from message haqq.coinomics.v1.QueryInflationRateResponse
+ * @generated from message haqq.coinomics.v1.QueryRewardCoefficientResponse
  */
-export class QueryInflationRateResponse extends Message<QueryInflationRateResponse> {
+export class QueryRewardCoefficientResponse extends Message<QueryRewardCoefficientResponse> {
   /**
    * rate by which the total supply increases within one era
    *
-   * @generated from field: string inflation_rate = 1;
+   * @generated from field: string reward_coefficient = 1;
    */
-  inflationRate = "";
+  rewardCoefficient = "";
 
-  constructor(data?: PartialMessage<QueryInflationRateResponse>) {
+  constructor(data?: PartialMessage<QueryRewardCoefficientResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "haqq.coinomics.v1.QueryInflationRateResponse";
+  static readonly typeName = "haqq.coinomics.v1.QueryRewardCoefficientResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "inflation_rate", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "reward_coefficient", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryInflationRateResponse {
-    return new QueryInflationRateResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRewardCoefficientResponse {
+    return new QueryRewardCoefficientResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryInflationRateResponse {
-    return new QueryInflationRateResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRewardCoefficientResponse {
+    return new QueryRewardCoefficientResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryInflationRateResponse {
-    return new QueryInflationRateResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRewardCoefficientResponse {
+    return new QueryRewardCoefficientResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryInflationRateResponse | PlainMessage<QueryInflationRateResponse> | undefined, b: QueryInflationRateResponse | PlainMessage<QueryInflationRateResponse> | undefined): boolean {
-    return proto3.util.equals(QueryInflationRateResponse, a, b);
+  static equals(a: QueryRewardCoefficientResponse | PlainMessage<QueryRewardCoefficientResponse> | undefined, b: QueryRewardCoefficientResponse | PlainMessage<QueryRewardCoefficientResponse> | undefined): boolean {
+    return proto3.util.equals(QueryRewardCoefficientResponse, a, b);
   }
 }
 

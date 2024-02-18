@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse, MsgCreateValidator, MsgCreateValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgEditValidator, MsgEditValidatorResponse, MsgUndelegate, MsgUndelegateResponse } from "./tx_pb.js";
+import { MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse, MsgCreateValidator, MsgCreateValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgEditValidator, MsgEditValidatorResponse, MsgUndelegate, MsgUndelegateResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -84,6 +84,19 @@ export const Msg = {
       name: "CancelUnbondingDelegation",
       I: MsgCancelUnbondingDelegation,
       O: MsgCancelUnbondingDelegationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * UpdateParams defines an operation for updating the x/staking module
+     * parameters.
+     * Since: cosmos-sdk 0.47
+     *
+     * @generated from rpc cosmos.staking.v1beta1.Msg.UpdateParams
+     */
+    updateParams: {
+      name: "UpdateParams",
+      I: MsgUpdateParams,
+      O: MsgUpdateParamsResponse,
       kind: MethodKind.Unary,
     },
   }

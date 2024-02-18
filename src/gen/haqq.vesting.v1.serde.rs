@@ -118,7 +118,7 @@ impl<'de> serde::Deserialize<'de> for ClawbackVestingAccount {
                 formatter.write_str("struct haqq.vesting.v1.ClawbackVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ClawbackVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ClawbackVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -128,43 +128,43 @@ impl<'de> serde::Deserialize<'de> for ClawbackVestingAccount {
                 let mut lockup_periods__ = None;
                 let mut vesting_periods__ = None;
                 let mut code_hash__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::BaseVestingAccount => {
                             if base_vesting_account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("baseVestingAccount"));
                             }
-                            base_vesting_account__ = map.next_value()?;
+                            base_vesting_account__ = map_.next_value()?;
                         }
                         GeneratedField::FunderAddress => {
                             if funder_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("funderAddress"));
                             }
-                            funder_address__ = Some(map.next_value()?);
+                            funder_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
-                            start_time__ = map.next_value()?;
+                            start_time__ = map_.next_value()?;
                         }
                         GeneratedField::LockupPeriods => {
                             if lockup_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lockupPeriods"));
                             }
-                            lockup_periods__ = Some(map.next_value()?);
+                            lockup_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::VestingPeriods => {
                             if vesting_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingPeriods"));
                             }
-                            vesting_periods__ = Some(map.next_value()?);
+                            vesting_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::CodeHash => {
                             if code_hash__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("codeHash"));
                             }
-                            code_hash__ = Some(map.next_value()?);
+                            code_hash__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -267,32 +267,32 @@ impl<'de> serde::Deserialize<'de> for EventClawback {
                 formatter.write_str("struct haqq.vesting.v1.EventClawback")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventClawback, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventClawback, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut funder__ = None;
                 let mut account__ = None;
                 let mut destination__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Funder => {
                             if funder__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("funder"));
                             }
-                            funder__ = Some(map.next_value()?);
+                            funder__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Account => {
                             if account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("account"));
                             }
-                            account__ = Some(map.next_value()?);
+                            account__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Destination => {
                             if destination__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("destination"));
                             }
-                            destination__ = Some(map.next_value()?);
+                            destination__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -411,7 +411,7 @@ impl<'de> serde::Deserialize<'de> for EventCreateClawbackVestingAccount {
                 formatter.write_str("struct haqq.vesting.v1.EventCreateClawbackVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventCreateClawbackVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventCreateClawbackVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -420,37 +420,37 @@ impl<'de> serde::Deserialize<'de> for EventCreateClawbackVestingAccount {
                 let mut start_time__ = None;
                 let mut merge__ = None;
                 let mut account__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Sender => {
                             if sender__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("sender"));
                             }
-                            sender__ = Some(map.next_value()?);
+                            sender__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Coins => {
                             if coins__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("coins"));
                             }
-                            coins__ = Some(map.next_value()?);
+                            coins__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
-                            start_time__ = Some(map.next_value()?);
+                            start_time__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Merge => {
                             if merge__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("merge"));
                             }
-                            merge__ = Some(map.next_value()?);
+                            merge__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Account => {
                             if account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("account"));
                             }
-                            account__ = Some(map.next_value()?);
+                            account__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -553,32 +553,32 @@ impl<'de> serde::Deserialize<'de> for EventUpdateVestingFunder {
                 formatter.write_str("struct haqq.vesting.v1.EventUpdateVestingFunder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<EventUpdateVestingFunder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<EventUpdateVestingFunder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut funder__ = None;
                 let mut account__ = None;
                 let mut new_funder__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Funder => {
                             if funder__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("funder"));
                             }
-                            funder__ = Some(map.next_value()?);
+                            funder__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Account => {
                             if account__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("account"));
                             }
-                            account__ = Some(map.next_value()?);
+                            account__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewFunder => {
                             if new_funder__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newFunder"));
                             }
-                            new_funder__ = Some(map.next_value()?);
+                            new_funder__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -681,32 +681,32 @@ impl<'de> serde::Deserialize<'de> for MsgClawback {
                 formatter.write_str("struct haqq.vesting.v1.MsgClawback")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgClawback, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgClawback, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut funder_address__ = None;
                 let mut account_address__ = None;
                 let mut dest_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FunderAddress => {
                             if funder_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("funderAddress"));
                             }
-                            funder_address__ = Some(map.next_value()?);
+                            funder_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::AccountAddress => {
                             if account_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("accountAddress"));
                             }
-                            account_address__ = Some(map.next_value()?);
+                            account_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::DestAddress => {
                             if dest_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("destAddress"));
                             }
-                            dest_address__ = Some(map.next_value()?);
+                            dest_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -777,12 +777,12 @@ impl<'de> serde::Deserialize<'de> for MsgClawbackResponse {
                 formatter.write_str("struct haqq.vesting.v1.MsgClawbackResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgClawbackResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgClawbackResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgClawbackResponse {
                 })
@@ -928,7 +928,7 @@ impl<'de> serde::Deserialize<'de> for MsgConvertIntoVestingAccount {
                 formatter.write_str("struct haqq.vesting.v1.MsgConvertIntoVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertIntoVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertIntoVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -940,55 +940,55 @@ impl<'de> serde::Deserialize<'de> for MsgConvertIntoVestingAccount {
                 let mut merge__ = None;
                 let mut stake__ = None;
                 let mut validator_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FromAddress => {
                             if from_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fromAddress"));
                             }
-                            from_address__ = Some(map.next_value()?);
+                            from_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ToAddress => {
                             if to_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("toAddress"));
                             }
-                            to_address__ = Some(map.next_value()?);
+                            to_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
-                            start_time__ = map.next_value()?;
+                            start_time__ = map_.next_value()?;
                         }
                         GeneratedField::LockupPeriods => {
                             if lockup_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lockupPeriods"));
                             }
-                            lockup_periods__ = Some(map.next_value()?);
+                            lockup_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::VestingPeriods => {
                             if vesting_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingPeriods"));
                             }
-                            vesting_periods__ = Some(map.next_value()?);
+                            vesting_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Merge => {
                             if merge__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("merge"));
                             }
-                            merge__ = Some(map.next_value()?);
+                            merge__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Stake => {
                             if stake__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("stake"));
                             }
-                            stake__ = Some(map.next_value()?);
+                            stake__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ValidatorAddress => {
                             if validator_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("validatorAddress"));
                             }
-                            validator_address__ = Some(map.next_value()?);
+                            validator_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1064,12 +1064,12 @@ impl<'de> serde::Deserialize<'de> for MsgConvertIntoVestingAccountResponse {
                 formatter.write_str("struct haqq.vesting.v1.MsgConvertIntoVestingAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertIntoVestingAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertIntoVestingAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgConvertIntoVestingAccountResponse {
                 })
@@ -1147,18 +1147,18 @@ impl<'de> serde::Deserialize<'de> for MsgConvertVestingAccount {
                 formatter.write_str("struct haqq.vesting.v1.MsgConvertVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut vesting_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::VestingAddress => {
                             if vesting_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingAddress"));
                             }
-                            vesting_address__ = Some(map.next_value()?);
+                            vesting_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1227,12 +1227,12 @@ impl<'de> serde::Deserialize<'de> for MsgConvertVestingAccountResponse {
                 formatter.write_str("struct haqq.vesting.v1.MsgConvertVestingAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgConvertVestingAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgConvertVestingAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgConvertVestingAccountResponse {
                 })
@@ -1359,7 +1359,7 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClawbackVestingAccount {
                 formatter.write_str("struct haqq.vesting.v1.MsgCreateClawbackVestingAccount")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateClawbackVestingAccount, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateClawbackVestingAccount, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -1369,43 +1369,43 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClawbackVestingAccount {
                 let mut lockup_periods__ = None;
                 let mut vesting_periods__ = None;
                 let mut merge__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FromAddress => {
                             if from_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("fromAddress"));
                             }
-                            from_address__ = Some(map.next_value()?);
+                            from_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ToAddress => {
                             if to_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("toAddress"));
                             }
-                            to_address__ = Some(map.next_value()?);
+                            to_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StartTime => {
                             if start_time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("startTime"));
                             }
-                            start_time__ = map.next_value()?;
+                            start_time__ = map_.next_value()?;
                         }
                         GeneratedField::LockupPeriods => {
                             if lockup_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lockupPeriods"));
                             }
-                            lockup_periods__ = Some(map.next_value()?);
+                            lockup_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::VestingPeriods => {
                             if vesting_periods__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingPeriods"));
                             }
-                            vesting_periods__ = Some(map.next_value()?);
+                            vesting_periods__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Merge => {
                             if merge__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("merge"));
                             }
-                            merge__ = Some(map.next_value()?);
+                            merge__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1479,12 +1479,12 @@ impl<'de> serde::Deserialize<'de> for MsgCreateClawbackVestingAccountResponse {
                 formatter.write_str("struct haqq.vesting.v1.MsgCreateClawbackVestingAccountResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCreateClawbackVestingAccountResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCreateClawbackVestingAccountResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCreateClawbackVestingAccountResponse {
                 })
@@ -1582,32 +1582,32 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateVestingFunder {
                 formatter.write_str("struct haqq.vesting.v1.MsgUpdateVestingFunder")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateVestingFunder, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateVestingFunder, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut funder_address__ = None;
                 let mut new_funder_address__ = None;
                 let mut vesting_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::FunderAddress => {
                             if funder_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("funderAddress"));
                             }
-                            funder_address__ = Some(map.next_value()?);
+                            funder_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::NewFunderAddress => {
                             if new_funder_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("newFunderAddress"));
                             }
-                            new_funder_address__ = Some(map.next_value()?);
+                            new_funder_address__ = Some(map_.next_value()?);
                         }
                         GeneratedField::VestingAddress => {
                             if vesting_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vestingAddress"));
                             }
-                            vesting_address__ = Some(map.next_value()?);
+                            vesting_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1678,12 +1678,12 @@ impl<'de> serde::Deserialize<'de> for MsgUpdateVestingFunderResponse {
                 formatter.write_str("struct haqq.vesting.v1.MsgUpdateVestingFunderResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgUpdateVestingFunderResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgUpdateVestingFunderResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgUpdateVestingFunderResponse {
                 })
@@ -1760,18 +1760,18 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesRequest {
                 formatter.write_str("struct haqq.vesting.v1.QueryBalancesRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1869,32 +1869,32 @@ impl<'de> serde::Deserialize<'de> for QueryBalancesResponse {
                 formatter.write_str("struct haqq.vesting.v1.QueryBalancesResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryBalancesResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalancesResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut locked__ = None;
                 let mut unvested__ = None;
                 let mut vested__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Locked => {
                             if locked__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("locked"));
                             }
-                            locked__ = Some(map.next_value()?);
+                            locked__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Unvested => {
                             if unvested__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("unvested"));
                             }
-                            unvested__ = Some(map.next_value()?);
+                            unvested__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Vested => {
                             if vested__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vested"));
                             }
-                            vested__ = Some(map.next_value()?);
+                            vested__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1965,12 +1965,12 @@ impl<'de> serde::Deserialize<'de> for QueryTotalLockedRequest {
                 formatter.write_str("struct haqq.vesting.v1.QueryTotalLockedRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTotalLockedRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTotalLockedRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryTotalLockedRequest {
                 })
@@ -2065,32 +2065,32 @@ impl<'de> serde::Deserialize<'de> for QueryTotalLockedResponse {
                 formatter.write_str("struct haqq.vesting.v1.QueryTotalLockedResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryTotalLockedResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTotalLockedResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut locked__ = None;
                 let mut unvested__ = None;
                 let mut vested__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Locked => {
                             if locked__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("locked"));
                             }
-                            locked__ = Some(map.next_value()?);
+                            locked__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Unvested => {
                             if unvested__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("unvested"));
                             }
-                            unvested__ = Some(map.next_value()?);
+                            unvested__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Vested => {
                             if vested__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("vested"));
                             }
-                            vested__ = Some(map.next_value()?);
+                            vested__ = Some(map_.next_value()?);
                         }
                     }
                 }

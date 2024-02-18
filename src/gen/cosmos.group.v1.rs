@@ -16,7 +16,7 @@ pub struct Member {
     pub metadata: ::prost::alloc::string::String,
     /// added_at is a timestamp specifying when a member was added.
     #[prost(message, optional, tag="4")]
-    pub added_at: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub added_at: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// MemberRequest represents a group member to be used in Msg server requests.
 /// Contrary to `Member`, it doesn't have any `added_at` field
@@ -37,7 +37,7 @@ pub struct MemberRequest {
 }
 /// ThresholdDecisionPolicy is a decision policy where a proposal passes when it
 /// satisfies the two following conditions:
-/// 1. The sum of all `YES` voters' weights is greater or equal than the defined
+/// 1. The sum of all `YES` voter's weights is greater or equal than the defined
 ///     `threshold`.
 /// 2. The voting and execution periods of the proposal respect the parameters
 ///     given by `windows`.
@@ -63,7 +63,7 @@ pub struct ThresholdDecisionPolicy {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PercentageDecisionPolicy {
-    /// percentage is the minimum percentage the weighted sum of `YES` votes must
+    /// percentage is the minimum percentage of the weighted sum of `YES` votes must
     /// meet for a proposal to succeed.
     #[prost(string, tag="1")]
     pub percentage: ::prost::alloc::string::String,
@@ -79,11 +79,11 @@ pub struct DecisionPolicyWindows {
     /// voting_period is the duration from submission of a proposal to the end of voting period
     /// Within this times votes can be submitted with MsgVote.
     #[prost(message, optional, tag="1")]
-    pub voting_period: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub voting_period: ::core::option::Option<::pbjson_types::Duration>,
     /// min_execution_period is the minimum duration after the proposal submission
     /// where members can start sending MsgExec. This means that the window for
     /// sending a MsgExec transaction is:
-    /// `[ submission + min_execution_period ; submission + voting_period + max_execution_period]`
+    /// `\[ submission + min_execution_period ; submission + voting_period + max_execution_period\]`
     /// where max_execution_period is a app-specific config, defined in the keeper.
     /// If not set, min_execution_period will default to 0.
     ///
@@ -92,7 +92,7 @@ pub struct DecisionPolicyWindows {
     /// is empty, meaning that all proposals created with this decision policy
     /// won't be able to be executed.
     #[prost(message, optional, tag="2")]
-    pub min_execution_period: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub min_execution_period: ::core::option::Option<::pbjson_types::Duration>,
 }
 //
 // State
@@ -123,7 +123,7 @@ pub struct GroupInfo {
     pub total_weight: ::prost::alloc::string::String,
     /// created_at is a timestamp specifying when a group was created.
     #[prost(message, optional, tag="6")]
-    pub created_at: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub created_at: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// GroupMember represents the relationship between a group and a member.
 #[derive(::derive_builder::Builder)]
@@ -151,7 +151,7 @@ pub struct GroupPolicyInfo {
     /// admin is the account address of the group admin.
     #[prost(string, tag="3")]
     pub admin: ::prost::alloc::string::String,
-    /// metadata is any arbitrary metadata to attached to the group policy.
+    /// metadata is any arbitrary metadata attached to the group policy.
     #[prost(string, tag="4")]
     pub metadata: ::prost::alloc::string::String,
     /// version is used to track changes to a group's GroupPolicyInfo structure that
@@ -160,10 +160,10 @@ pub struct GroupPolicyInfo {
     pub version: u64,
     /// decision_policy specifies the group policy's decision policy.
     #[prost(message, optional, tag="6")]
-    pub decision_policy: ::core::option::Option<::prost_wkt_types::Any>,
+    pub decision_policy: ::core::option::Option<::pbjson_types::Any>,
     /// created_at is a timestamp specifying when a group policy was created.
     #[prost(message, optional, tag="7")]
-    pub created_at: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub created_at: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// Proposal defines a group proposal. Any member of a group can submit a proposal
 /// for a group policy to decide upon.
@@ -179,7 +179,7 @@ pub struct Proposal {
     /// group_policy_address is the account address of group policy.
     #[prost(string, tag="2")]
     pub group_policy_address: ::prost::alloc::string::String,
-    /// metadata is any arbitrary metadata to attached to the proposal.
+    /// metadata is any arbitrary metadata attached to the proposal.
     #[prost(string, tag="3")]
     pub metadata: ::prost::alloc::string::String,
     /// proposers are the account addresses of the proposers.
@@ -187,7 +187,7 @@ pub struct Proposal {
     pub proposers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// submit_time is a timestamp specifying when a proposal was submitted.
     #[prost(message, optional, tag="5")]
-    pub submit_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub submit_time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// group_version tracks the version of the group at proposal submission.
     /// This field is here for informational purposes only.
     #[prost(uint64, tag="6")]
@@ -208,18 +208,28 @@ pub struct Proposal {
     #[prost(message, optional, tag="9")]
     pub final_tally_result: ::core::option::Option<TallyResult>,
     /// voting_period_end is the timestamp before which voting must be done.
-    /// Unless a successfull MsgExec is called before (to execute a proposal whose
+    /// Unless a successful MsgExec is called before (to execute a proposal whose
     /// tally is successful before the voting period ends), tallying will be done
     /// at this point, and the `final_tally_result`and `status` fields will be
     /// accordingly updated.
     #[prost(message, optional, tag="10")]
-    pub voting_period_end: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub voting_period_end: ::core::option::Option<::pbjson_types::Timestamp>,
     /// executor_result is the final result of the proposal execution. Initial value is NotRun.
     #[prost(enumeration="ProposalExecutorResult", tag="11")]
     pub executor_result: i32,
     /// messages is a list of `sdk.Msg`s that will be executed if the proposal passes.
     #[prost(message, repeated, tag="12")]
-    pub messages: ::prost::alloc::vec::Vec<::prost_wkt_types::Any>,
+    pub messages: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
+    /// title is the title of the proposal
+    ///
+    /// Since: cosmos-sdk 0.47
+    #[prost(string, tag="13")]
+    pub title: ::prost::alloc::string::String,
+    /// summary is a short summary of the proposal
+    ///
+    /// Since: cosmos-sdk 0.47
+    #[prost(string, tag="14")]
+    pub summary: ::prost::alloc::string::String,
 }
 /// TallyResult represents the sum of weighted votes for each vote option.
 #[derive(::derive_builder::Builder)]
@@ -253,12 +263,12 @@ pub struct Vote {
     /// option is the voter's choice on the proposal.
     #[prost(enumeration="VoteOption", tag="3")]
     pub option: i32,
-    /// metadata is any arbitrary metadata to attached to the vote.
+    /// metadata is any arbitrary metadata attached to the vote.
     #[prost(string, tag="4")]
     pub metadata: ::prost::alloc::string::String,
     /// submit_time is the timestamp when the vote was submitted.
     #[prost(message, optional, tag="5")]
-    pub submit_time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub submit_time: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// VoteOption enumerates the valid vote options for a given proposal.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -525,7 +535,7 @@ pub struct QueryGroupInfoRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGroupInfoResponse {
-    /// info is the GroupInfo for the group.
+    /// info is the GroupInfo of the group.
     #[prost(message, optional, tag="1")]
     pub info: ::core::option::Option<GroupInfo>,
 }
@@ -543,7 +553,7 @@ pub struct QueryGroupPolicyInfoRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryGroupPolicyInfoResponse {
-    /// info is the GroupPolicyInfo for the group policy.
+    /// info is the GroupPolicyInfo of the group policy.
     #[prost(message, optional, tag="1")]
     pub info: ::core::option::Option<GroupPolicyInfo>,
 }
@@ -908,7 +918,7 @@ pub struct MsgCreateGroupPolicy {
     pub metadata: ::prost::alloc::string::String,
     /// decision_policy specifies the group policy's decision policy.
     #[prost(message, optional, tag="4")]
-    pub decision_policy: ::core::option::Option<::prost_wkt_types::Any>,
+    pub decision_policy: ::core::option::Option<::pbjson_types::Any>,
 }
 /// MsgCreateGroupPolicyResponse is the Msg/CreateGroupPolicy response type.
 #[derive(::derive_builder::Builder)]
@@ -934,6 +944,12 @@ pub struct MsgUpdateGroupPolicyAdmin {
     #[prost(string, tag="3")]
     pub new_admin: ::prost::alloc::string::String,
 }
+/// MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgUpdateGroupPolicyAdminResponse {
+}
 /// MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -957,7 +973,7 @@ pub struct MsgCreateGroupWithPolicy {
     pub group_policy_as_admin: bool,
     /// decision_policy specifies the group policy's decision policy.
     #[prost(message, optional, tag="6")]
-    pub decision_policy: ::core::option::Option<::prost_wkt_types::Any>,
+    pub decision_policy: ::core::option::Option<::pbjson_types::Any>,
 }
 /// MsgCreateGroupWithPolicyResponse is the Msg/CreateGroupWithPolicy response type.
 #[derive(::derive_builder::Builder)]
@@ -970,12 +986,6 @@ pub struct MsgCreateGroupWithPolicyResponse {
     /// group_policy_address is the account address of the newly created group policy.
     #[prost(string, tag="2")]
     pub group_policy_address: ::prost::alloc::string::String,
-}
-/// MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgUpdateGroupPolicyAdminResponse {
 }
 /// MsgUpdateGroupPolicyDecisionPolicy is the Msg/UpdateGroupPolicyDecisionPolicy request type.
 #[derive(::derive_builder::Builder)]
@@ -990,7 +1000,7 @@ pub struct MsgUpdateGroupPolicyDecisionPolicy {
     pub group_policy_address: ::prost::alloc::string::String,
     /// decision_policy is the updated group policy's decision policy.
     #[prost(message, optional, tag="3")]
-    pub decision_policy: ::core::option::Option<::prost_wkt_types::Any>,
+    pub decision_policy: ::core::option::Option<::pbjson_types::Any>,
 }
 /// MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type.
 #[derive(::derive_builder::Builder)]
@@ -1009,7 +1019,7 @@ pub struct MsgUpdateGroupPolicyMetadata {
     /// group_policy_address is the account address of group policy.
     #[prost(string, tag="2")]
     pub group_policy_address: ::prost::alloc::string::String,
-    /// metadata is the updated group policy metadata.
+    /// metadata is the group policy metadata to be updated.
     #[prost(string, tag="3")]
     pub metadata: ::prost::alloc::string::String,
 }
@@ -1031,17 +1041,27 @@ pub struct MsgSubmitProposal {
     /// Proposers signatures will be counted as yes votes.
     #[prost(string, repeated, tag="2")]
     pub proposers: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    /// metadata is any arbitrary metadata to attached to the proposal.
+    /// metadata is any arbitrary metadata attached to the proposal.
     #[prost(string, tag="3")]
     pub metadata: ::prost::alloc::string::String,
     /// messages is a list of `sdk.Msg`s that will be executed if the proposal passes.
     #[prost(message, repeated, tag="4")]
-    pub messages: ::prost::alloc::vec::Vec<::prost_wkt_types::Any>,
+    pub messages: ::prost::alloc::vec::Vec<::pbjson_types::Any>,
     /// exec defines the mode of execution of the proposal,
     /// whether it should be executed immediately on creation or not.
     /// If so, proposers signatures are considered as Yes votes.
     #[prost(enumeration="Exec", tag="5")]
     pub exec: i32,
+    /// title is the title of the proposal.
+    ///
+    /// Since: cosmos-sdk 0.47
+    #[prost(string, tag="6")]
+    pub title: ::prost::alloc::string::String,
+    /// summary is the summary of the proposal.
+    ///
+    /// Since: cosmos-sdk 0.47
+    #[prost(string, tag="7")]
+    pub summary: ::prost::alloc::string::String,
 }
 /// MsgSubmitProposalResponse is the Msg/SubmitProposal response type.
 #[derive(::derive_builder::Builder)]
@@ -1084,7 +1104,7 @@ pub struct MsgVote {
     /// option is the voter's choice on the proposal.
     #[prost(enumeration="VoteOption", tag="3")]
     pub option: i32,
-    /// metadata is any arbitrary metadata to attached to the vote.
+    /// metadata is any arbitrary metadata attached to the vote.
     #[prost(string, tag="4")]
     pub metadata: ::prost::alloc::string::String,
     /// exec defines whether the proposal should be executed

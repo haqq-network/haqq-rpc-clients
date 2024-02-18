@@ -110,6 +110,38 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmos.distribution.v1beta1.Query", "Params"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn validator_distribution_info(
+            &mut self,
+            request: impl tonic::IntoRequest<
+                super::QueryValidatorDistributionInfoRequest,
+            >,
+        ) -> std::result::Result<
+            tonic::Response<super::QueryValidatorDistributionInfoResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "cosmos.distribution.v1beta1.Query",
+                        "ValidatorDistributionInfo",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn validator_outstanding_rewards(
             &mut self,
             request: impl tonic::IntoRequest<
@@ -553,6 +585,63 @@ pub mod msg_client {
                     GrpcMethod::new(
                         "cosmos.distribution.v1beta1.Msg",
                         "FundCommunityPool",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgUpdateParamsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/UpdateParams",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("cosmos.distribution.v1beta1.Msg", "UpdateParams"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn community_pool_spend(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgCommunityPoolSpend>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgCommunityPoolSpendResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "cosmos.distribution.v1beta1.Msg",
+                        "CommunityPoolSpend",
                     ),
                 );
             self.inner.unary(req, path, codec).await
