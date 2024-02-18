@@ -14,7 +14,7 @@ import { Delegation, Params, Redelegation, UnbondingDelegation, Validator } from
  */
 export class GenesisState extends Message<GenesisState> {
   /**
-   * params defines all the paramaters of related to deposit.
+   * params defines all the parameters of related to deposit.
    *
    * @generated from field: cosmos.staking.v1beta1.Params params = 1;
    */

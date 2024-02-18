@@ -59,10 +59,11 @@ export enum BroadcastMode {
   UNSPECIFIED = 0,
 
   /**
-   * BROADCAST_MODE_BLOCK defines a tx broadcasting mode where the client waits for
-   * the tx to be committed in a block.
+   * DEPRECATED: use BROADCAST_MODE_SYNC instead,
+   * BROADCAST_MODE_BLOCK is not supported by the SDK from v0.47.x onwards.
    *
-   * @generated from enum value: BROADCAST_MODE_BLOCK = 1;
+   * @generated from enum value: BROADCAST_MODE_BLOCK = 1 [deprecated = true];
+   * @deprecated
    */
   BLOCK = 1,
 
@@ -630,6 +631,350 @@ export class GetBlockWithTxsResponse extends Message<GetBlockWithTxsResponse> {
 
   static equals(a: GetBlockWithTxsResponse | PlainMessage<GetBlockWithTxsResponse> | undefined, b: GetBlockWithTxsResponse | PlainMessage<GetBlockWithTxsResponse> | undefined): boolean {
     return proto3.util.equals(GetBlockWithTxsResponse, a, b);
+  }
+}
+
+/**
+ * TxDecodeRequest is the request type for the Service.TxDecode
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxDecodeRequest
+ */
+export class TxDecodeRequest extends Message<TxDecodeRequest> {
+  /**
+   * tx_bytes is the raw transaction.
+   *
+   * @generated from field: bytes tx_bytes = 1;
+   */
+  txBytes = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<TxDecodeRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxDecodeRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tx_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxDecodeRequest {
+    return new TxDecodeRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxDecodeRequest {
+    return new TxDecodeRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxDecodeRequest {
+    return new TxDecodeRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxDecodeRequest | PlainMessage<TxDecodeRequest> | undefined, b: TxDecodeRequest | PlainMessage<TxDecodeRequest> | undefined): boolean {
+    return proto3.util.equals(TxDecodeRequest, a, b);
+  }
+}
+
+/**
+ * TxDecodeResponse is the response type for the
+ * Service.TxDecode method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxDecodeResponse
+ */
+export class TxDecodeResponse extends Message<TxDecodeResponse> {
+  /**
+   * tx is the decoded transaction.
+   *
+   * @generated from field: cosmos.tx.v1beta1.Tx tx = 1;
+   */
+  tx?: Tx;
+
+  constructor(data?: PartialMessage<TxDecodeResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxDecodeResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tx", kind: "message", T: Tx },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxDecodeResponse {
+    return new TxDecodeResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxDecodeResponse {
+    return new TxDecodeResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxDecodeResponse {
+    return new TxDecodeResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxDecodeResponse | PlainMessage<TxDecodeResponse> | undefined, b: TxDecodeResponse | PlainMessage<TxDecodeResponse> | undefined): boolean {
+    return proto3.util.equals(TxDecodeResponse, a, b);
+  }
+}
+
+/**
+ * TxEncodeRequest is the request type for the Service.TxEncode
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxEncodeRequest
+ */
+export class TxEncodeRequest extends Message<TxEncodeRequest> {
+  /**
+   * tx is the transaction to encode.
+   *
+   * @generated from field: cosmos.tx.v1beta1.Tx tx = 1;
+   */
+  tx?: Tx;
+
+  constructor(data?: PartialMessage<TxEncodeRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxEncodeRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tx", kind: "message", T: Tx },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxEncodeRequest {
+    return new TxEncodeRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxEncodeRequest {
+    return new TxEncodeRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxEncodeRequest {
+    return new TxEncodeRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxEncodeRequest | PlainMessage<TxEncodeRequest> | undefined, b: TxEncodeRequest | PlainMessage<TxEncodeRequest> | undefined): boolean {
+    return proto3.util.equals(TxEncodeRequest, a, b);
+  }
+}
+
+/**
+ * TxEncodeResponse is the response type for the
+ * Service.TxEncode method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxEncodeResponse
+ */
+export class TxEncodeResponse extends Message<TxEncodeResponse> {
+  /**
+   * tx_bytes is the encoded transaction bytes.
+   *
+   * @generated from field: bytes tx_bytes = 1;
+   */
+  txBytes = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<TxEncodeResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxEncodeResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tx_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxEncodeResponse {
+    return new TxEncodeResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxEncodeResponse {
+    return new TxEncodeResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxEncodeResponse {
+    return new TxEncodeResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxEncodeResponse | PlainMessage<TxEncodeResponse> | undefined, b: TxEncodeResponse | PlainMessage<TxEncodeResponse> | undefined): boolean {
+    return proto3.util.equals(TxEncodeResponse, a, b);
+  }
+}
+
+/**
+ * TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxEncodeAminoRequest
+ */
+export class TxEncodeAminoRequest extends Message<TxEncodeAminoRequest> {
+  /**
+   * @generated from field: string amino_json = 1;
+   */
+  aminoJson = "";
+
+  constructor(data?: PartialMessage<TxEncodeAminoRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxEncodeAminoRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "amino_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxEncodeAminoRequest {
+    return new TxEncodeAminoRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxEncodeAminoRequest {
+    return new TxEncodeAminoRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxEncodeAminoRequest {
+    return new TxEncodeAminoRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxEncodeAminoRequest | PlainMessage<TxEncodeAminoRequest> | undefined, b: TxEncodeAminoRequest | PlainMessage<TxEncodeAminoRequest> | undefined): boolean {
+    return proto3.util.equals(TxEncodeAminoRequest, a, b);
+  }
+}
+
+/**
+ * TxEncodeAminoResponse is the response type for the Service.TxEncodeAmino
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxEncodeAminoResponse
+ */
+export class TxEncodeAminoResponse extends Message<TxEncodeAminoResponse> {
+  /**
+   * @generated from field: bytes amino_binary = 1;
+   */
+  aminoBinary = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<TxEncodeAminoResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxEncodeAminoResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "amino_binary", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxEncodeAminoResponse {
+    return new TxEncodeAminoResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxEncodeAminoResponse {
+    return new TxEncodeAminoResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxEncodeAminoResponse {
+    return new TxEncodeAminoResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxEncodeAminoResponse | PlainMessage<TxEncodeAminoResponse> | undefined, b: TxEncodeAminoResponse | PlainMessage<TxEncodeAminoResponse> | undefined): boolean {
+    return proto3.util.equals(TxEncodeAminoResponse, a, b);
+  }
+}
+
+/**
+ * TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxDecodeAminoRequest
+ */
+export class TxDecodeAminoRequest extends Message<TxDecodeAminoRequest> {
+  /**
+   * @generated from field: bytes amino_binary = 1;
+   */
+  aminoBinary = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<TxDecodeAminoRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxDecodeAminoRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "amino_binary", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxDecodeAminoRequest {
+    return new TxDecodeAminoRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxDecodeAminoRequest {
+    return new TxDecodeAminoRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxDecodeAminoRequest {
+    return new TxDecodeAminoRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxDecodeAminoRequest | PlainMessage<TxDecodeAminoRequest> | undefined, b: TxDecodeAminoRequest | PlainMessage<TxDecodeAminoRequest> | undefined): boolean {
+    return proto3.util.equals(TxDecodeAminoRequest, a, b);
+  }
+}
+
+/**
+ * TxDecodeAminoResponse is the response type for the Service.TxDecodeAmino
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.tx.v1beta1.TxDecodeAminoResponse
+ */
+export class TxDecodeAminoResponse extends Message<TxDecodeAminoResponse> {
+  /**
+   * @generated from field: string amino_json = 1;
+   */
+  aminoJson = "";
+
+  constructor(data?: PartialMessage<TxDecodeAminoResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.tx.v1beta1.TxDecodeAminoResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "amino_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxDecodeAminoResponse {
+    return new TxDecodeAminoResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TxDecodeAminoResponse {
+    return new TxDecodeAminoResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TxDecodeAminoResponse {
+    return new TxDecodeAminoResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TxDecodeAminoResponse | PlainMessage<TxDecodeAminoResponse> | undefined, b: TxDecodeAminoResponse | PlainMessage<TxDecodeAminoResponse> | undefined): boolean {
+    return proto3.util.equals(TxDecodeAminoResponse, a, b);
   }
 }
 

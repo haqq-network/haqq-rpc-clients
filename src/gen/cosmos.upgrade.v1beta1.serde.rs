@@ -76,25 +76,25 @@ impl<'de> serde::Deserialize<'de> for CancelSoftwareUpgradeProposal {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<CancelSoftwareUpgradeProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<CancelSoftwareUpgradeProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -126,6 +126,7 @@ impl serde::Serialize for ModuleVersion {
             struct_ser.serialize_field("name", &self.name)?;
         }
         if self.version != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("version", ToString::to_string(&self.version).as_str())?;
         }
         struct_ser.end()
@@ -184,26 +185,26 @@ impl<'de> serde::Deserialize<'de> for ModuleVersion {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.ModuleVersion")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ModuleVersion, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ModuleVersion, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut name__ = None;
                 let mut version__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Version => {
                             if version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("version"));
                             }
                             version__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -285,18 +286,18 @@ impl<'de> serde::Deserialize<'de> for MsgCancelUpgrade {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.MsgCancelUpgrade")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancelUpgrade, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancelUpgrade, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -365,12 +366,12 @@ impl<'de> serde::Deserialize<'de> for MsgCancelUpgradeResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgCancelUpgradeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgCancelUpgradeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgCancelUpgradeResponse {
                 })
@@ -456,25 +457,25 @@ impl<'de> serde::Deserialize<'de> for MsgSoftwareUpgrade {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.MsgSoftwareUpgrade")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSoftwareUpgrade, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSoftwareUpgrade, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut authority__ = None;
                 let mut plan__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Authority => {
                             if authority__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("authority"));
                             }
-                            authority__ = Some(map.next_value()?);
+                            authority__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Plan => {
                             if plan__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("plan"));
                             }
-                            plan__ = map.next_value()?;
+                            plan__ = map_.next_value()?;
                         }
                     }
                 }
@@ -544,12 +545,12 @@ impl<'de> serde::Deserialize<'de> for MsgSoftwareUpgradeResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<MsgSoftwareUpgradeResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgSoftwareUpgradeResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(MsgSoftwareUpgradeResponse {
                 })
@@ -589,6 +590,7 @@ impl serde::Serialize for Plan {
             struct_ser.serialize_field("time", v)?;
         }
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         if !self.info.is_empty() {
@@ -663,7 +665,7 @@ impl<'de> serde::Deserialize<'de> for Plan {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.Plan")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Plan, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Plan, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -672,39 +674,39 @@ impl<'de> serde::Deserialize<'de> for Plan {
                 let mut height__ = None;
                 let mut info__ = None;
                 let mut upgraded_client_state__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Time => {
                             if time__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("time"));
                             }
-                            time__ = map.next_value()?;
+                            time__ = map_.next_value()?;
                         }
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Info => {
                             if info__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("info"));
                             }
-                            info__ = Some(map.next_value()?);
+                            info__ = Some(map_.next_value()?);
                         }
                         GeneratedField::UpgradedClientState => {
                             if upgraded_client_state__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("upgradedClientState"));
                             }
-                            upgraded_client_state__ = map.next_value()?;
+                            upgraded_client_state__ = map_.next_value()?;
                         }
                     }
                 }
@@ -788,18 +790,18 @@ impl<'de> serde::Deserialize<'de> for QueryAppliedPlanRequest {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryAppliedPlanRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAppliedPlanRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAppliedPlanRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut name__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Name => {
                             if name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
-                            name__ = Some(map.next_value()?);
+                            name__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -824,6 +826,7 @@ impl serde::Serialize for QueryAppliedPlanResponse {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.upgrade.v1beta1.QueryAppliedPlanResponse", len)?;
         if self.height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("height", ToString::to_string(&self.height).as_str())?;
         }
         struct_ser.end()
@@ -879,19 +882,19 @@ impl<'de> serde::Deserialize<'de> for QueryAppliedPlanResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryAppliedPlanResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAppliedPlanResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAppliedPlanResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut height__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Height => {
                             if height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("height"));
                             }
                             height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -961,12 +964,12 @@ impl<'de> serde::Deserialize<'de> for QueryAuthorityRequest {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryAuthorityRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAuthorityRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAuthorityRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryAuthorityRequest {
                 })
@@ -1043,18 +1046,18 @@ impl<'de> serde::Deserialize<'de> for QueryAuthorityResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryAuthorityResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryAuthorityResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAuthorityResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Address => {
                             if address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("address"));
                             }
-                            address__ = Some(map.next_value()?);
+                            address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1123,12 +1126,12 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentPlanRequest {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryCurrentPlanRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCurrentPlanRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCurrentPlanRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map.next_value::<serde::de::IgnoredAny>()?;
+                while map_.next_key::<GeneratedField>()?.is_some() {
+                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
                 }
                 Ok(QueryCurrentPlanRequest {
                 })
@@ -1205,18 +1208,18 @@ impl<'de> serde::Deserialize<'de> for QueryCurrentPlanResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryCurrentPlanResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryCurrentPlanResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryCurrentPlanResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut plan__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Plan => {
                             if plan__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("plan"));
                             }
-                            plan__ = map.next_value()?;
+                            plan__ = map_.next_value()?;
                         }
                     }
                 }
@@ -1297,18 +1300,18 @@ impl<'de> serde::Deserialize<'de> for QueryModuleVersionsRequest {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryModuleVersionsRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryModuleVersionsRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryModuleVersionsRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut module_name__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ModuleName => {
                             if module_name__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("moduleName"));
                             }
-                            module_name__ = Some(map.next_value()?);
+                            module_name__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1389,18 +1392,18 @@ impl<'de> serde::Deserialize<'de> for QueryModuleVersionsResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryModuleVersionsResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryModuleVersionsResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryModuleVersionsResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut module_versions__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ModuleVersions => {
                             if module_versions__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("moduleVersions"));
                             }
-                            module_versions__ = Some(map.next_value()?);
+                            module_versions__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -1425,6 +1428,7 @@ impl serde::Serialize for QueryUpgradedConsensusStateRequest {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest", len)?;
         if self.last_height != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("lastHeight", ToString::to_string(&self.last_height).as_str())?;
         }
         struct_ser.end()
@@ -1481,19 +1485,19 @@ impl<'de> serde::Deserialize<'de> for QueryUpgradedConsensusStateRequest {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryUpgradedConsensusStateRequest, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryUpgradedConsensusStateRequest, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut last_height__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::LastHeight => {
                             if last_height__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("lastHeight"));
                             }
                             last_height__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1519,6 +1523,7 @@ impl serde::Serialize for QueryUpgradedConsensusStateResponse {
         }
         let mut struct_ser = serializer.serialize_struct("cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse", len)?;
         if !self.upgraded_consensus_state.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("upgradedConsensusState", pbjson::private::base64::encode(&self.upgraded_consensus_state).as_str())?;
         }
         struct_ser.end()
@@ -1575,19 +1580,19 @@ impl<'de> serde::Deserialize<'de> for QueryUpgradedConsensusStateResponse {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<QueryUpgradedConsensusStateResponse, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryUpgradedConsensusStateResponse, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut upgraded_consensus_state__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::UpgradedConsensusState => {
                             if upgraded_consensus_state__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("upgradedConsensusState"));
                             }
                             upgraded_consensus_state__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -1686,32 +1691,32 @@ impl<'de> serde::Deserialize<'de> for SoftwareUpgradeProposal {
                 formatter.write_str("struct cosmos.upgrade.v1beta1.SoftwareUpgradeProposal")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<SoftwareUpgradeProposal, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<SoftwareUpgradeProposal, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut title__ = None;
                 let mut description__ = None;
                 let mut plan__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Title => {
                             if title__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("title"));
                             }
-                            title__ = Some(map.next_value()?);
+                            title__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("description"));
                             }
-                            description__ = Some(map.next_value()?);
+                            description__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Plan => {
                             if plan__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("plan"));
                             }
-                            plan__ = map.next_value()?;
+                            plan__ = map_.next_value()?;
                         }
                     }
                 }

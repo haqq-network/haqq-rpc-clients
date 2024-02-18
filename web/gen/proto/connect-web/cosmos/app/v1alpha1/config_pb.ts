@@ -25,6 +25,15 @@ export class Config extends Message<Config> {
    */
   modules: ModuleConfig[] = [];
 
+  /**
+   * golang_bindings specifies explicit interface to implementation type bindings which
+   * depinject uses to resolve interface inputs to provider functions.  The scope of this
+   * field's configuration is global (not module specific).
+   *
+   * @generated from field: repeated cosmos.app.v1alpha1.GolangBinding golang_bindings = 2;
+   */
+  golangBindings: GolangBinding[] = [];
+
   constructor(data?: PartialMessage<Config>) {
     super();
     proto3.util.initPartial(data, this);
@@ -34,6 +43,7 @@ export class Config extends Message<Config> {
   static readonly typeName = "cosmos.app.v1alpha1.Config";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "modules", kind: "message", T: ModuleConfig, repeated: true },
+    { no: 2, name: "golang_bindings", kind: "message", T: GolangBinding, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Config {
@@ -83,6 +93,15 @@ export class ModuleConfig extends Message<ModuleConfig> {
    */
   config?: Any;
 
+  /**
+   * golang_bindings specifies explicit interface to implementation type bindings which
+   * depinject uses to resolve interface inputs to provider functions.  The scope of this
+   * field's configuration is module specific.
+   *
+   * @generated from field: repeated cosmos.app.v1alpha1.GolangBinding golang_bindings = 3;
+   */
+  golangBindings: GolangBinding[] = [];
+
   constructor(data?: PartialMessage<ModuleConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -93,6 +112,7 @@ export class ModuleConfig extends Message<ModuleConfig> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "config", kind: "message", T: Any },
+    { no: 3, name: "golang_bindings", kind: "message", T: GolangBinding, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleConfig {
@@ -109,6 +129,55 @@ export class ModuleConfig extends Message<ModuleConfig> {
 
   static equals(a: ModuleConfig | PlainMessage<ModuleConfig> | undefined, b: ModuleConfig | PlainMessage<ModuleConfig> | undefined): boolean {
     return proto3.util.equals(ModuleConfig, a, b);
+  }
+}
+
+/**
+ * GolangBinding is an explicit interface type to implementing type binding for dependency injection.
+ *
+ * @generated from message cosmos.app.v1alpha1.GolangBinding
+ */
+export class GolangBinding extends Message<GolangBinding> {
+  /**
+   * interface_type is the interface type which will be bound to a specific implementation type
+   *
+   * @generated from field: string interface_type = 1;
+   */
+  interfaceType = "";
+
+  /**
+   * implementation is the implementing type which will be supplied when an input of type interface is requested
+   *
+   * @generated from field: string implementation = 2;
+   */
+  implementation = "";
+
+  constructor(data?: PartialMessage<GolangBinding>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.app.v1alpha1.GolangBinding";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "interface_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "implementation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GolangBinding {
+    return new GolangBinding().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GolangBinding {
+    return new GolangBinding().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GolangBinding {
+    return new GolangBinding().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GolangBinding | PlainMessage<GolangBinding> | undefined, b: GolangBinding | PlainMessage<GolangBinding> | undefined): boolean {
+    return proto3.util.equals(GolangBinding, a, b);
   }
 }
 

@@ -129,11 +129,15 @@ proto3.util.setEnumType(ProposalStatus, "cosmos.gov.v1beta1.ProposalStatus", [
  */
 export class WeightedVoteOption extends Message<WeightedVoteOption> {
   /**
+   * option defines the valid vote options, it must not contain duplicate vote options.
+   *
    * @generated from field: cosmos.gov.v1beta1.VoteOption option = 1;
    */
   option = VoteOption.UNSPECIFIED;
 
   /**
+   * weight is the vote weight associated with the vote option. 
+   *
    * @generated from field: string weight = 2;
    */
   weight = "";
@@ -175,11 +179,15 @@ export class WeightedVoteOption extends Message<WeightedVoteOption> {
  */
 export class TextProposal extends Message<TextProposal> {
   /**
+   * title of the proposal.
+   *
    * @generated from field: string title = 1;
    */
   title = "";
 
   /**
+   * description associated with the proposal.
+   *
    * @generated from field: string description = 2;
    */
   description = "";
@@ -221,16 +229,22 @@ export class TextProposal extends Message<TextProposal> {
  */
 export class Deposit extends Message<Deposit> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * depositor defines the deposit addresses from the proposals.
+   *
    * @generated from field: string depositor = 2;
    */
   depositor = "";
 
   /**
+   * amount to be deposited by depositor.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin amount = 3;
    */
   amount: Coin[] = [];
@@ -272,16 +286,22 @@ export class Deposit extends Message<Deposit> {
  */
 export class Proposal extends Message<Proposal> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * content is the proposal's content.
+   *
    * @generated from field: google.protobuf.Any content = 2;
    */
   content?: Any;
 
   /**
+   * status defines the proposal status.
+   *
    * @generated from field: cosmos.gov.v1beta1.ProposalStatus status = 3;
    */
   status = ProposalStatus.UNSPECIFIED;
@@ -296,26 +316,36 @@ export class Proposal extends Message<Proposal> {
   finalTallyResult?: TallyResult;
 
   /**
+   * submit_time is the time of proposal submission.
+   *
    * @generated from field: google.protobuf.Timestamp submit_time = 5;
    */
   submitTime?: Timestamp;
 
   /**
+   * deposit_end_time is the end time for deposition.
+   *
    * @generated from field: google.protobuf.Timestamp deposit_end_time = 6;
    */
   depositEndTime?: Timestamp;
 
   /**
+   * total_deposit is the total deposit on the proposal.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin total_deposit = 7;
    */
   totalDeposit: Coin[] = [];
 
   /**
+   * voting_start_time is the starting time to vote on a proposal.
+   *
    * @generated from field: google.protobuf.Timestamp voting_start_time = 8;
    */
   votingStartTime?: Timestamp;
 
   /**
+   * voting_end_time is the end time of voting on a proposal.
+   *
    * @generated from field: google.protobuf.Timestamp voting_end_time = 9;
    */
   votingEndTime?: Timestamp;
@@ -363,21 +393,29 @@ export class Proposal extends Message<Proposal> {
  */
 export class TallyResult extends Message<TallyResult> {
   /**
+   * yes is the number of yes votes on a proposal.
+   *
    * @generated from field: string yes = 1;
    */
   yes = "";
 
   /**
+   * abstain is the number of abstain votes on a proposal.
+   *
    * @generated from field: string abstain = 2;
    */
   abstain = "";
 
   /**
+   * no is the number of no votes on a proposal.
+   *
    * @generated from field: string no = 3;
    */
   no = "";
 
   /**
+   * no_with_veto is the number of no with veto votes on a proposal.
+   *
    * @generated from field: string no_with_veto = 4;
    */
   noWithVeto = "";
@@ -421,11 +459,15 @@ export class TallyResult extends Message<TallyResult> {
  */
 export class Vote extends Message<Vote> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address of the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
@@ -441,6 +483,8 @@ export class Vote extends Message<Vote> {
   option = VoteOption.UNSPECIFIED;
 
   /**
+   * options is the weighted vote options.
+   *
    * Since: cosmos-sdk 0.43
    *
    * @generated from field: repeated cosmos.gov.v1beta1.WeightedVoteOption options = 4;
@@ -485,15 +529,15 @@ export class Vote extends Message<Vote> {
  */
 export class DepositParams extends Message<DepositParams> {
   /**
-   *  Minimum deposit for a proposal to enter voting period.
+   * Minimum deposit for a proposal to enter voting period.
    *
    * @generated from field: repeated cosmos.base.v1beta1.Coin min_deposit = 1;
    */
   minDeposit: Coin[] = [];
 
   /**
-   *  Maximum period for Atom holders to deposit on a proposal. Initial value: 2
-   *  months.
+   * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
+   * months.
    *
    * @generated from field: google.protobuf.Duration max_deposit_period = 2;
    */
@@ -535,7 +579,7 @@ export class DepositParams extends Message<DepositParams> {
  */
 export class VotingParams extends Message<VotingParams> {
   /**
-   *  Length of the voting period.
+   * Duration of the voting period.
    *
    * @generated from field: google.protobuf.Duration voting_period = 1;
    */
@@ -576,23 +620,23 @@ export class VotingParams extends Message<VotingParams> {
  */
 export class TallyParams extends Message<TallyParams> {
   /**
-   *  Minimum percentage of total stake needed to vote for a result to be
-   *  considered valid.
+   * Minimum percentage of total stake needed to vote for a result to be
+   * considered valid.
    *
    * @generated from field: bytes quorum = 1;
    */
   quorum = new Uint8Array(0);
 
   /**
-   *  Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
+   * Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
    *
    * @generated from field: bytes threshold = 2;
    */
   threshold = new Uint8Array(0);
 
   /**
-   *  Minimum value of Veto votes to Total votes ratio for proposal to be
-   *  vetoed. Default value: 1/3.
+   * Minimum value of Veto votes to Total votes ratio for proposal to be
+   * vetoed. Default value: 1/3.
    *
    * @generated from field: bytes veto_threshold = 3;
    */

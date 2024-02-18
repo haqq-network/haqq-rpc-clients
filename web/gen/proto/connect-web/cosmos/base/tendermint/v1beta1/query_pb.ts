@@ -12,8 +12,7 @@ import { Block as Block$1 } from "./types_pb.js";
 import { DefaultNodeInfo } from "../../../../tendermint/p2p/types_pb.js";
 
 /**
- * GetValidatorSetByHeightRequest is the request type for the
- * Query/GetValidatorSetByHeight RPC method.
+ * GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest
  */
@@ -60,8 +59,7 @@ export class GetValidatorSetByHeightRequest extends Message<GetValidatorSetByHei
 }
 
 /**
- * GetValidatorSetByHeightResponse is the response type for the
- * Query/GetValidatorSetByHeight RPC method.
+ * GetValidatorSetByHeightResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse
  */
@@ -114,8 +112,7 @@ export class GetValidatorSetByHeightResponse extends Message<GetValidatorSetByHe
 }
 
 /**
- * GetLatestValidatorSetRequest is the request type for the
- * Query/GetValidatorSetByHeight RPC method.
+ * GetLatestValidatorSetRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequest
  */
@@ -156,8 +153,7 @@ export class GetLatestValidatorSetRequest extends Message<GetLatestValidatorSetR
 }
 
 /**
- * GetLatestValidatorSetResponse is the response type for the
- * Query/GetValidatorSetByHeight RPC method.
+ * GetLatestValidatorSetResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse
  */
@@ -267,8 +263,7 @@ export class Validator extends Message<Validator> {
 }
 
 /**
- * GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight
- * RPC method.
+ * GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest
  */
@@ -307,8 +302,7 @@ export class GetBlockByHeightRequest extends Message<GetBlockByHeightRequest> {
 }
 
 /**
- * GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight
- * RPC method.
+ * GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse
  */
@@ -363,8 +357,7 @@ export class GetBlockByHeightResponse extends Message<GetBlockByHeightResponse> 
 }
 
 /**
- * GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC
- * method.
+ * GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetLatestBlockRequest
  */
@@ -397,8 +390,7 @@ export class GetLatestBlockRequest extends Message<GetLatestBlockRequest> {
 }
 
 /**
- * GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC
- * method.
+ * GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetLatestBlockResponse
  */
@@ -558,8 +550,7 @@ export class GetNodeInfoRequest extends Message<GetNodeInfoRequest> {
 }
 
 /**
- * GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC
- * method.
+ * GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.GetNodeInfoResponse
  */
@@ -801,8 +792,7 @@ export class ABCIQueryRequest extends Message<ABCIQueryRequest> {
 }
 
 /**
- * ABCIQueryResponse defines the response structure for the ABCIQuery gRPC
- * query.
+ * ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
  *
  * Note: This type is a duplicate of the ResponseQuery proto type defined in
  * Tendermint.
@@ -897,11 +887,10 @@ export class ABCIQueryResponse extends Message<ABCIQueryResponse> {
 
 /**
  * ProofOp defines an operation used for calculating Merkle root. The data could
- * be arbitrary format, providing nessecary data for example neighbouring node
+ * be arbitrary format, providing necessary data for example neighbouring node
  * hash.
  *
- * Note: This type is a duplicate of the ProofOp proto type defined in
- * Tendermint.
+ * Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.ProofOp
  */
@@ -954,8 +943,7 @@ export class ProofOp extends Message<ProofOp> {
 /**
  * ProofOps is Merkle proof defined by the list of ProofOps.
  *
- * Note: This type is a duplicate of the ProofOps proto type defined in
- * Tendermint.
+ * Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
  *
  * @generated from message cosmos.base.tendermint.v1beta1.ProofOps
  */

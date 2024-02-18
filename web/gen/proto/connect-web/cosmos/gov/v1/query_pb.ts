@@ -7,7 +7,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Deposit, DepositParams, Proposal, ProposalStatus, TallyParams, TallyResult, Vote, VotingParams } from "./gov_pb.js";
+import { Deposit, DepositParams, Params, Proposal, ProposalStatus, TallyParams, TallyResult, Vote, VotingParams } from "./gov_pb.js";
 import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination_pb.js";
 
 /**
@@ -58,6 +58,8 @@ export class QueryProposalRequest extends Message<QueryProposalRequest> {
  */
 export class QueryProposalResponse extends Message<QueryProposalResponse> {
   /**
+   * proposal is the requested governance proposal.
+   *
    * @generated from field: cosmos.gov.v1.Proposal proposal = 1;
    */
   proposal?: Proposal;
@@ -163,6 +165,8 @@ export class QueryProposalsRequest extends Message<QueryProposalsRequest> {
  */
 export class QueryProposalsResponse extends Message<QueryProposalsResponse> {
   /**
+   * proposals defines all the requested governance proposals.
+   *
    * @generated from field: repeated cosmos.gov.v1.Proposal proposals = 1;
    */
   proposals: Proposal[] = [];
@@ -259,7 +263,7 @@ export class QueryVoteRequest extends Message<QueryVoteRequest> {
  */
 export class QueryVoteResponse extends Message<QueryVoteResponse> {
   /**
-   * vote defined the queried vote.
+   * vote defines the queried vote.
    *
    * @generated from field: cosmos.gov.v1.Vote vote = 1;
    */
@@ -349,7 +353,7 @@ export class QueryVotesRequest extends Message<QueryVotesRequest> {
  */
 export class QueryVotesResponse extends Message<QueryVotesResponse> {
   /**
-   * votes defined the queried votes.
+   * votes defines the queried votes.
    *
    * @generated from field: repeated cosmos.gov.v1.Vote votes = 1;
    */
@@ -440,25 +444,40 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
  */
 export class QueryParamsResponse extends Message<QueryParamsResponse> {
   /**
+   * Deprecated: Prefer to use `params` instead.
    * voting_params defines the parameters related to voting.
    *
-   * @generated from field: cosmos.gov.v1.VotingParams voting_params = 1;
+   * @generated from field: cosmos.gov.v1.VotingParams voting_params = 1 [deprecated = true];
+   * @deprecated
    */
   votingParams?: VotingParams;
 
   /**
+   * Deprecated: Prefer to use `params` instead.
    * deposit_params defines the parameters related to deposit.
    *
-   * @generated from field: cosmos.gov.v1.DepositParams deposit_params = 2;
+   * @generated from field: cosmos.gov.v1.DepositParams deposit_params = 2 [deprecated = true];
+   * @deprecated
    */
   depositParams?: DepositParams;
 
   /**
+   * Deprecated: Prefer to use `params` instead.
    * tally_params defines the parameters related to tally.
    *
-   * @generated from field: cosmos.gov.v1.TallyParams tally_params = 3;
+   * @generated from field: cosmos.gov.v1.TallyParams tally_params = 3 [deprecated = true];
+   * @deprecated
    */
   tallyParams?: TallyParams;
+
+  /**
+   * params defines all the paramaters of x/gov module.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: cosmos.gov.v1.Params params = 4;
+   */
+  params?: Params;
 
   constructor(data?: PartialMessage<QueryParamsResponse>) {
     super();
@@ -471,6 +490,7 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     { no: 1, name: "voting_params", kind: "message", T: VotingParams },
     { no: 2, name: "deposit_params", kind: "message", T: DepositParams },
     { no: 3, name: "tally_params", kind: "message", T: TallyParams },
+    { no: 4, name: "params", kind: "message", T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -636,6 +656,8 @@ export class QueryDepositsRequest extends Message<QueryDepositsRequest> {
  */
 export class QueryDepositsResponse extends Message<QueryDepositsResponse> {
   /**
+   * deposits defines the requested deposits.
+   *
    * @generated from field: repeated cosmos.gov.v1.Deposit deposits = 1;
    */
   deposits: Deposit[] = [];

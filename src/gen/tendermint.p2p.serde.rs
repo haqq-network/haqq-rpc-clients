@@ -48,6 +48,7 @@ impl serde::Serialize for DefaultNodeInfo {
             struct_ser.serialize_field("version", &self.version)?;
         }
         if !self.channels.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("channels", pbjson::private::base64::encode(&self.channels).as_str())?;
         }
         if !self.moniker.is_empty() {
@@ -133,7 +134,7 @@ impl<'de> serde::Deserialize<'de> for DefaultNodeInfo {
                 formatter.write_str("struct tendermint.p2p.DefaultNodeInfo")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DefaultNodeInfo, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DefaultNodeInfo, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -145,57 +146,57 @@ impl<'de> serde::Deserialize<'de> for DefaultNodeInfo {
                 let mut channels__ = None;
                 let mut moniker__ = None;
                 let mut other__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::ProtocolVersion => {
                             if protocol_version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("protocolVersion"));
                             }
-                            protocol_version__ = map.next_value()?;
+                            protocol_version__ = map_.next_value()?;
                         }
                         GeneratedField::DefaultNodeId => {
                             if default_node_id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("defaultNodeId"));
                             }
-                            default_node_id__ = Some(map.next_value()?);
+                            default_node_id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::ListenAddr => {
                             if listen_addr__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("listenAddr"));
                             }
-                            listen_addr__ = Some(map.next_value()?);
+                            listen_addr__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Network => {
                             if network__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("network"));
                             }
-                            network__ = Some(map.next_value()?);
+                            network__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Version => {
                             if version__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("version"));
                             }
-                            version__ = Some(map.next_value()?);
+                            version__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Channels => {
                             if channels__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("channels"));
                             }
                             channels__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Moniker => {
                             if moniker__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("moniker"));
                             }
-                            moniker__ = Some(map.next_value()?);
+                            moniker__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Other => {
                             if other__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("other"));
                             }
-                            other__ = map.next_value()?;
+                            other__ = map_.next_value()?;
                         }
                     }
                 }
@@ -293,25 +294,25 @@ impl<'de> serde::Deserialize<'de> for DefaultNodeInfoOther {
                 formatter.write_str("struct tendermint.p2p.DefaultNodeInfoOther")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DefaultNodeInfoOther, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DefaultNodeInfoOther, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut tx_index__ = None;
                 let mut rpc_address__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::TxIndex => {
                             if tx_index__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("txIndex"));
                             }
-                            tx_index__ = Some(map.next_value()?);
+                            tx_index__ = Some(map_.next_value()?);
                         }
                         GeneratedField::RpcAddress => {
                             if rpc_address__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("rpcAddress"));
                             }
-                            rpc_address__ = Some(map.next_value()?);
+                            rpc_address__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -410,33 +411,33 @@ impl<'de> serde::Deserialize<'de> for NetAddress {
                 formatter.write_str("struct tendermint.p2p.NetAddress")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<NetAddress, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<NetAddress, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut id__ = None;
                 let mut ip__ = None;
                 let mut port__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Id => {
                             if id__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("id"));
                             }
-                            id__ = Some(map.next_value()?);
+                            id__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Ip => {
                             if ip__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ip"));
                             }
-                            ip__ = Some(map.next_value()?);
+                            ip__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Port => {
                             if port__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("port"));
                             }
                             port__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -470,12 +471,15 @@ impl serde::Serialize for ProtocolVersion {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.p2p.ProtocolVersion", len)?;
         if self.p2p != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("p2p", ToString::to_string(&self.p2p).as_str())?;
         }
         if self.block != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("block", ToString::to_string(&self.block).as_str())?;
         }
         if self.app != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("app", ToString::to_string(&self.app).as_str())?;
         }
         struct_ser.end()
@@ -537,21 +541,21 @@ impl<'de> serde::Deserialize<'de> for ProtocolVersion {
                 formatter.write_str("struct tendermint.p2p.ProtocolVersion")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProtocolVersion, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProtocolVersion, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut p2p__ = None;
                 let mut block__ = None;
                 let mut app__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::P2p => {
                             if p2p__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("p2p"));
                             }
                             p2p__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Block => {
@@ -559,7 +563,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolVersion {
                                 return Err(serde::de::Error::duplicate_field("block"));
                             }
                             block__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::App => {
@@ -567,7 +571,7 @@ impl<'de> serde::Deserialize<'de> for ProtocolVersion {
                                 return Err(serde::de::Error::duplicate_field("app"));
                             }
                             app__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }

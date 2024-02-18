@@ -56,7 +56,7 @@ export class Minter extends Message<Minter> {
 }
 
 /**
- * Params holds parameters for the mint module.
+ * Params defines the parameters for the x/mint module.
  *
  * @generated from message cosmos.mint.v1beta1.Params
  */

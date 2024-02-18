@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { RequestApplySnapshotChunk, RequestBeginBlock, RequestCheckTx, RequestCommit, RequestDeliverTx, RequestEcho, RequestEndBlock, RequestFlush, RequestInfo, RequestInitChain, RequestListSnapshots, RequestLoadSnapshotChunk, RequestOfferSnapshot, RequestQuery, RequestSetOption, ResponseApplySnapshotChunk, ResponseBeginBlock, ResponseCheckTx, ResponseCommit, ResponseDeliverTx, ResponseEcho, ResponseEndBlock, ResponseFlush, ResponseInfo, ResponseInitChain, ResponseListSnapshots, ResponseLoadSnapshotChunk, ResponseOfferSnapshot, ResponseQuery, ResponseSetOption } from "./types_pb.js";
+import { RequestApplySnapshotChunk, RequestBeginBlock, RequestCheckTx, RequestCommit, RequestDeliverTx, RequestEcho, RequestEndBlock, RequestFlush, RequestInfo, RequestInitChain, RequestListSnapshots, RequestLoadSnapshotChunk, RequestOfferSnapshot, RequestPrepareProposal, RequestProcessProposal, RequestQuery, ResponseApplySnapshotChunk, ResponseBeginBlock, ResponseCheckTx, ResponseCommit, ResponseDeliverTx, ResponseEcho, ResponseEndBlock, ResponseFlush, ResponseInfo, ResponseInitChain, ResponseListSnapshots, ResponseLoadSnapshotChunk, ResponseOfferSnapshot, ResponsePrepareProposal, ResponseProcessProposal, ResponseQuery } from "./types_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -37,15 +37,6 @@ export const ABCIApplication = {
       name: "Info",
       I: RequestInfo,
       O: ResponseInfo,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc tendermint.abci.ABCIApplication.SetOption
-     */
-    setOption: {
-      name: "SetOption",
-      I: RequestSetOption,
-      O: ResponseSetOption,
       kind: MethodKind.Unary,
     },
     /**
@@ -145,6 +136,24 @@ export const ABCIApplication = {
       name: "ApplySnapshotChunk",
       I: RequestApplySnapshotChunk,
       O: ResponseApplySnapshotChunk,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tendermint.abci.ABCIApplication.PrepareProposal
+     */
+    prepareProposal: {
+      name: "PrepareProposal",
+      I: RequestPrepareProposal,
+      O: ResponsePrepareProposal,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc tendermint.abci.ABCIApplication.ProcessProposal
+     */
+    processProposal: {
+      name: "ProcessProposal",
+      I: RequestProcessProposal,
+      O: ResponseProcessProposal,
       kind: MethodKind.Unary,
     },
   }

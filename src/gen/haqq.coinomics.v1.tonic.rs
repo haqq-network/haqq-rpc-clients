@@ -85,56 +85,6 @@ pub mod query_client {
             self.inner = self.inner.max_encoding_message_size(limit);
             self
         }
-        pub async fn era(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryEraRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryEraResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/haqq.coinomics.v1.Query/Era",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.coinomics.v1.Query", "Era"));
-            self.inner.unary(req, path, codec).await
-        }
-        pub async fn era_closing_supply(
-            &mut self,
-            request: impl tonic::IntoRequest<super::QueryEraClosingSupplyRequest>,
-        ) -> std::result::Result<
-            tonic::Response<super::QueryEraClosingSupplyResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/haqq.coinomics.v1.Query/EraClosingSupply",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.coinomics.v1.Query", "EraClosingSupply"));
-            self.inner.unary(req, path, codec).await
-        }
         pub async fn max_supply(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryMaxSupplyRequest>,
@@ -160,11 +110,11 @@ pub mod query_client {
                 .insert(GrpcMethod::new("haqq.coinomics.v1.Query", "MaxSupply"));
             self.inner.unary(req, path, codec).await
         }
-        pub async fn inflation_rate(
+        pub async fn reward_coefficient(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryInflationRateRequest>,
+            request: impl tonic::IntoRequest<super::QueryRewardCoefficientRequest>,
         ) -> std::result::Result<
-            tonic::Response<super::QueryInflationRateResponse>,
+            tonic::Response<super::QueryRewardCoefficientResponse>,
             tonic::Status,
         > {
             self.inner
@@ -178,11 +128,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/haqq.coinomics.v1.Query/InflationRate",
+                "/haqq.coinomics.v1.Query/RewardCoefficient",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.coinomics.v1.Query", "InflationRate"));
+                .insert(GrpcMethod::new("haqq.coinomics.v1.Query", "RewardCoefficient"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn params(

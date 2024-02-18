@@ -8,7 +8,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Coin } from "../../base/v1beta1/coin_pb.js";
-import { VoteOption, WeightedVoteOption } from "./gov_pb.js";
+import { Params, VoteOption, WeightedVoteOption } from "./gov_pb.js";
 
 /**
  * MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
@@ -18,16 +18,22 @@ import { VoteOption, WeightedVoteOption } from "./gov_pb.js";
  */
 export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
   /**
+   * messages are the arbitrary messages to be executed if proposal passes.
+   *
    * @generated from field: repeated google.protobuf.Any messages = 1;
    */
   messages: Any[] = [];
 
   /**
+   * initial_deposit is the deposit value that must be paid at proposal submission.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin initial_deposit = 2;
    */
   initialDeposit: Coin[] = [];
 
   /**
+   * proposer is the account address of the proposer.
+   *
    * @generated from field: string proposer = 3;
    */
   proposer = "";
@@ -38,6 +44,24 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
    * @generated from field: string metadata = 4;
    */
   metadata = "";
+
+  /**
+   * title is the title of the proposal.
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string title = 5;
+   */
+  title = "";
+
+  /**
+   * summary is the summary of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string summary = 6;
+   */
+  summary = "";
 
   constructor(data?: PartialMessage<MsgSubmitProposal>) {
     super();
@@ -51,6 +75,8 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
     { no: 2, name: "initial_deposit", kind: "message", T: Coin, repeated: true },
     { no: 3, name: "proposer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "metadata", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSubmitProposal {
@@ -77,6 +103,8 @@ export class MsgSubmitProposal extends Message<MsgSubmitProposal> {
  */
 export class MsgSubmitProposalResponse extends Message<MsgSubmitProposalResponse> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
@@ -199,21 +227,29 @@ export class MsgExecLegacyContentResponse extends Message<MsgExecLegacyContentRe
  */
 export class MsgVote extends Message<MsgVote> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address for the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
 
   /**
+   * option defines the vote option.
+   *
    * @generated from field: cosmos.gov.v1.VoteOption option = 3;
    */
   option = VoteOption.UNSPECIFIED;
 
   /**
+   * metadata is any arbitrary metadata attached to the Vote.
+   *
    * @generated from field: string metadata = 4;
    */
   metadata = "";
@@ -289,21 +325,29 @@ export class MsgVoteResponse extends Message<MsgVoteResponse> {
  */
 export class MsgVoteWeighted extends Message<MsgVoteWeighted> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * voter is the voter address for the proposal.
+   *
    * @generated from field: string voter = 2;
    */
   voter = "";
 
   /**
+   * options defines the weighted vote options.
+   *
    * @generated from field: repeated cosmos.gov.v1.WeightedVoteOption options = 3;
    */
   options: WeightedVoteOption[] = [];
 
   /**
+   * metadata is any arbitrary metadata attached to the VoteWeighted.
+   *
    * @generated from field: string metadata = 4;
    */
   metadata = "";
@@ -379,16 +423,22 @@ export class MsgVoteWeightedResponse extends Message<MsgVoteWeightedResponse> {
  */
 export class MsgDeposit extends Message<MsgDeposit> {
   /**
+   * proposal_id defines the unique id of the proposal.
+   *
    * @generated from field: uint64 proposal_id = 1;
    */
   proposalId = protoInt64.zero;
 
   /**
+   * depositor defines the deposit addresses from the proposals.
+   *
    * @generated from field: string depositor = 2;
    */
   depositor = "";
 
   /**
+   * amount to be deposited by depositor.
+   *
    * @generated from field: repeated cosmos.base.v1beta1.Coin amount = 3;
    */
   amount: Coin[] = [];
@@ -453,6 +503,95 @@ export class MsgDepositResponse extends Message<MsgDepositResponse> {
 
   static equals(a: MsgDepositResponse | PlainMessage<MsgDepositResponse> | undefined, b: MsgDepositResponse | PlainMessage<MsgDepositResponse> | undefined): boolean {
     return proto3.util.equals(MsgDepositResponse, a, b);
+  }
+}
+
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.gov.v1.MsgUpdateParams
+ */
+export class MsgUpdateParams extends Message<MsgUpdateParams> {
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   *
+   * @generated from field: string authority = 1;
+   */
+  authority = "";
+
+  /**
+   * params defines the x/gov parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   *
+   * @generated from field: cosmos.gov.v1.Params params = 2;
+   */
+  params?: Params;
+
+  constructor(data?: PartialMessage<MsgUpdateParams>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.gov.v1.MsgUpdateParams";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "params", kind: "message", T: Params },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+    return proto3.util.equals(MsgUpdateParams, a, b);
+  }
+}
+
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.gov.v1.MsgUpdateParamsResponse
+ */
+export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
+  constructor(data?: PartialMessage<MsgUpdateParamsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.gov.v1.MsgUpdateParamsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+    return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
 

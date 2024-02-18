@@ -18,7 +18,7 @@ import { Plan } from "./upgrade_pb.js";
  */
 export class MsgSoftwareUpgrade extends Message<MsgSoftwareUpgrade> {
   /**
-   * authority is the address of the governance account.
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
    *
    * @generated from field: string authority = 1;
    */
@@ -104,7 +104,7 @@ export class MsgSoftwareUpgradeResponse extends Message<MsgSoftwareUpgradeRespon
  */
 export class MsgCancelUpgrade extends Message<MsgCancelUpgrade> {
   /**
-   * authority is the address of the governance account.
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
    *
    * @generated from field: string authority = 1;
    */

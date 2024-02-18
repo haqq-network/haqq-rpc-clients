@@ -14,11 +14,15 @@ import { Any, Message, proto3 } from "@bufbuild/protobuf";
  */
 export class MsgSubmitEvidence extends Message<MsgSubmitEvidence> {
   /**
+   * submitter is the signer account address of evidence.
+   *
    * @generated from field: string submitter = 1;
    */
   submitter = "";
 
   /**
+   * evidence defines the evidence of misbehavior.
+   *
    * @generated from field: google.protobuf.Any evidence = 2;
    */
   evidence?: Any;

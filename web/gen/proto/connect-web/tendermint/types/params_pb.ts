@@ -86,16 +86,6 @@ export class BlockParams extends Message<BlockParams> {
    */
   maxGas = protoInt64.zero;
 
-  /**
-   * Minimum time increment between consecutive blocks (in milliseconds) If the
-   * block header timestamp is ahead of the system clock, decrease this value.
-   *
-   * Not exposed to the application.
-   *
-   * @generated from field: int64 time_iota_ms = 3;
-   */
-  timeIotaMs = protoInt64.zero;
-
   constructor(data?: PartialMessage<BlockParams>) {
     super();
     proto3.util.initPartial(data, this);
@@ -106,7 +96,6 @@ export class BlockParams extends Message<BlockParams> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "max_bytes", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "max_gas", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "time_iota_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BlockParams {
@@ -239,9 +228,9 @@ export class ValidatorParams extends Message<ValidatorParams> {
  */
 export class VersionParams extends Message<VersionParams> {
   /**
-   * @generated from field: uint64 app_version = 1;
+   * @generated from field: uint64 app = 1;
    */
-  appVersion = protoInt64.zero;
+  app = protoInt64.zero;
 
   constructor(data?: PartialMessage<VersionParams>) {
     super();
@@ -251,7 +240,7 @@ export class VersionParams extends Message<VersionParams> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "tendermint.types.VersionParams";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "app_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "app", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VersionParams {

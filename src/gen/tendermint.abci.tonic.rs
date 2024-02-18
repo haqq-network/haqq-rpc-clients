@@ -156,32 +156,6 @@ pub mod abci_application_client {
             self.inner.unary(req, path, codec).await
         }
         ///
-        pub async fn set_option(
-            &mut self,
-            request: impl tonic::IntoRequest<super::RequestSetOption>,
-        ) -> std::result::Result<
-            tonic::Response<super::ResponseSetOption>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/SetOption",
-            );
-            let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("tendermint.abci.ABCIApplication", "SetOption"));
-            self.inner.unary(req, path, codec).await
-        }
-        ///
         pub async fn deliver_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestDeliverTx>,
@@ -474,6 +448,62 @@ pub mod abci_application_client {
                         "tendermint.abci.ABCIApplication",
                         "ApplySnapshotChunk",
                     ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        ///
+        pub async fn prepare_proposal(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RequestPrepareProposal>,
+        ) -> std::result::Result<
+            tonic::Response<super::ResponsePrepareProposal>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/tendermint.abci.ABCIApplication/PrepareProposal",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("tendermint.abci.ABCIApplication", "PrepareProposal"),
+                );
+            self.inner.unary(req, path, codec).await
+        }
+        ///
+        pub async fn process_proposal(
+            &mut self,
+            request: impl tonic::IntoRequest<super::RequestProcessProposal>,
+        ) -> std::result::Result<
+            tonic::Response<super::ResponseProcessProposal>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/tendermint.abci.ABCIApplication/ProcessProposal",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new("tendermint.abci.ABCIApplication", "ProcessProposal"),
                 );
             self.inner.unary(req, path, codec).await
         }

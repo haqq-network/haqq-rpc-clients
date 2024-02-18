@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Coin } from "../../base/v1beta1/coin_pb.js";
+import { Params } from "./distribution_pb.js";
 
 /**
  * MsgSetWithdrawAddress sets the withdraw address for
@@ -54,7 +55,8 @@ export class MsgSetWithdrawAddress extends Message<MsgSetWithdrawAddress> {
 }
 
 /**
- * MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response type.
+ * MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response
+ * type.
  *
  * @generated from message cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse
  */
@@ -133,7 +135,8 @@ export class MsgWithdrawDelegatorReward extends Message<MsgWithdrawDelegatorRewa
 }
 
 /**
- * MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response type.
+ * MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward
+ * response type.
  *
  * @generated from message cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse
  */
@@ -214,7 +217,8 @@ export class MsgWithdrawValidatorCommission extends Message<MsgWithdrawValidator
 }
 
 /**
- * MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type.
+ * MsgWithdrawValidatorCommissionResponse defines the
+ * Msg/WithdrawValidatorCommission response type.
  *
  * @generated from message cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse
  */
@@ -330,6 +334,188 @@ export class MsgFundCommunityPoolResponse extends Message<MsgFundCommunityPoolRe
 
   static equals(a: MsgFundCommunityPoolResponse | PlainMessage<MsgFundCommunityPoolResponse> | undefined, b: MsgFundCommunityPoolResponse | PlainMessage<MsgFundCommunityPoolResponse> | undefined): boolean {
     return proto3.util.equals(MsgFundCommunityPoolResponse, a, b);
+  }
+}
+
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.distribution.v1beta1.MsgUpdateParams
+ */
+export class MsgUpdateParams extends Message<MsgUpdateParams> {
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   *
+   * @generated from field: string authority = 1;
+   */
+  authority = "";
+
+  /**
+   * params defines the x/distribution parameters to update.
+   *
+   * NOTE: All parameters must be supplied.
+   *
+   * @generated from field: cosmos.distribution.v1beta1.Params params = 2;
+   */
+  params?: Params;
+
+  constructor(data?: PartialMessage<MsgUpdateParams>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.MsgUpdateParams";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "params", kind: "message", T: Params },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParams {
+    return new MsgUpdateParams().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+    return proto3.util.equals(MsgUpdateParams, a, b);
+  }
+}
+
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.distribution.v1beta1.MsgUpdateParamsResponse
+ */
+export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
+  constructor(data?: PartialMessage<MsgUpdateParamsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.MsgUpdateParamsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+    return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+    return proto3.util.equals(MsgUpdateParamsResponse, a, b);
+  }
+}
+
+/**
+ * MsgCommunityPoolSpend defines a message for sending tokens from the community
+ * pool to another account. This message is typically executed via a governance
+ * proposal with the governance module being the executing authority.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.distribution.v1beta1.MsgCommunityPoolSpend
+ */
+export class MsgCommunityPoolSpend extends Message<MsgCommunityPoolSpend> {
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   *
+   * @generated from field: string authority = 1;
+   */
+  authority = "";
+
+  /**
+   * @generated from field: string recipient = 2;
+   */
+  recipient = "";
+
+  /**
+   * @generated from field: repeated cosmos.base.v1beta1.Coin amount = 3;
+   */
+  amount: Coin[] = [];
+
+  constructor(data?: PartialMessage<MsgCommunityPoolSpend>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.MsgCommunityPoolSpend";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "recipient", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "amount", kind: "message", T: Coin, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCommunityPoolSpend {
+    return new MsgCommunityPoolSpend().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCommunityPoolSpend {
+    return new MsgCommunityPoolSpend().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCommunityPoolSpend {
+    return new MsgCommunityPoolSpend().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgCommunityPoolSpend | PlainMessage<MsgCommunityPoolSpend> | undefined, b: MsgCommunityPoolSpend | PlainMessage<MsgCommunityPoolSpend> | undefined): boolean {
+    return proto3.util.equals(MsgCommunityPoolSpend, a, b);
+  }
+}
+
+/**
+ * MsgCommunityPoolSpendResponse defines the response to executing a
+ * MsgCommunityPoolSpend message.
+ *
+ * Since: cosmos-sdk 0.47
+ *
+ * @generated from message cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse
+ */
+export class MsgCommunityPoolSpendResponse extends Message<MsgCommunityPoolSpendResponse> {
+  constructor(data?: PartialMessage<MsgCommunityPoolSpendResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCommunityPoolSpendResponse {
+    return new MsgCommunityPoolSpendResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCommunityPoolSpendResponse {
+    return new MsgCommunityPoolSpendResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCommunityPoolSpendResponse {
+    return new MsgCommunityPoolSpendResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgCommunityPoolSpendResponse | PlainMessage<MsgCommunityPoolSpendResponse> | undefined, b: MsgCommunityPoolSpendResponse | PlainMessage<MsgCommunityPoolSpendResponse> | undefined): boolean {
+    return proto3.util.equals(MsgCommunityPoolSpendResponse, a, b);
   }
 }
 

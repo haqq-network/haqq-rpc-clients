@@ -19,12 +19,20 @@ export class Params extends Message<Params> {
   communityTax = "";
 
   /**
-   * @generated from field: string base_proposer_reward = 2;
+   * Deprecated: The base_proposer_reward field is deprecated and is no longer used
+   * in the x/distribution module's reward mechanism.
+   *
+   * @generated from field: string base_proposer_reward = 2 [deprecated = true];
+   * @deprecated
    */
   baseProposerReward = "";
 
   /**
-   * @generated from field: string bonus_proposer_reward = 3;
+   * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+   * in the x/distribution module's reward mechanism.
+   *
+   * @generated from field: string bonus_proposer_reward = 3 [deprecated = true];
+   * @deprecated
    */
   bonusProposerReward = "";
 
@@ -378,7 +386,13 @@ export class FeePool extends Message<FeePool> {
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
  *
+ * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+ * longer a need for an explicit CommunityPoolSpendProposal. To spend community
+ * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+ * module via a v1 governance proposal.
+ *
  * @generated from message cosmos.distribution.v1beta1.CommunityPoolSpendProposal
+ * @deprecated
  */
 export class CommunityPoolSpendProposal extends Message<CommunityPoolSpendProposal> {
   /**

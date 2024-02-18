@@ -85,32 +85,32 @@ impl<'de> serde::Deserialize<'de> for DominoOp {
                 formatter.write_str("struct tendermint.crypto.DominoOp")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<DominoOp, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<DominoOp, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut key__ = None;
                 let mut input__ = None;
                 let mut output__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
-                            key__ = Some(map.next_value()?);
+                            key__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Input => {
                             if input__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("input"));
                             }
-                            input__ = Some(map.next_value()?);
+                            input__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Output => {
                             if output__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("output"));
                             }
-                            output__ = Some(map.next_value()?);
+                            output__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -146,12 +146,15 @@ impl serde::Serialize for Proof {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.crypto.Proof", len)?;
         if self.total != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("total", ToString::to_string(&self.total).as_str())?;
         }
         if self.index != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("index", ToString::to_string(&self.index).as_str())?;
         }
         if !self.leaf_hash.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("leafHash", pbjson::private::base64::encode(&self.leaf_hash).as_str())?;
         }
         if !self.aunts.is_empty() {
@@ -220,7 +223,7 @@ impl<'de> serde::Deserialize<'de> for Proof {
                 formatter.write_str("struct tendermint.crypto.Proof")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Proof, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Proof, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -228,14 +231,14 @@ impl<'de> serde::Deserialize<'de> for Proof {
                 let mut index__ = None;
                 let mut leaf_hash__ = None;
                 let mut aunts__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Total => {
                             if total__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("total"));
                             }
                             total__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Index => {
@@ -243,7 +246,7 @@ impl<'de> serde::Deserialize<'de> for Proof {
                                 return Err(serde::de::Error::duplicate_field("index"));
                             }
                             index__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::LeafHash => {
@@ -251,7 +254,7 @@ impl<'de> serde::Deserialize<'de> for Proof {
                                 return Err(serde::de::Error::duplicate_field("leafHash"));
                             }
                             leaf_hash__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Aunts => {
@@ -259,7 +262,7 @@ impl<'de> serde::Deserialize<'de> for Proof {
                                 return Err(serde::de::Error::duplicate_field("aunts"));
                             }
                             aunts__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::BytesDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }
@@ -298,9 +301,11 @@ impl serde::Serialize for ProofOp {
             struct_ser.serialize_field("type", &self.r#type)?;
         }
         if !self.key.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", pbjson::private::base64::encode(&self.key).as_str())?;
         }
         if !self.data.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("data", pbjson::private::base64::encode(&self.data).as_str())?;
         }
         struct_ser.end()
@@ -362,27 +367,27 @@ impl<'de> serde::Deserialize<'de> for ProofOp {
                 formatter.write_str("struct tendermint.crypto.ProofOp")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProofOp, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProofOp, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut r#type__ = None;
                 let mut key__ = None;
                 let mut data__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Type => {
                             if r#type__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("type"));
                             }
-                            r#type__ = Some(map.next_value()?);
+                            r#type__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Data => {
@@ -390,7 +395,7 @@ impl<'de> serde::Deserialize<'de> for ProofOp {
                                 return Err(serde::de::Error::duplicate_field("data"));
                             }
                             data__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                     }
@@ -473,18 +478,18 @@ impl<'de> serde::Deserialize<'de> for ProofOps {
                 formatter.write_str("struct tendermint.crypto.ProofOps")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ProofOps, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ProofOps, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut ops__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Ops => {
                             if ops__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ops"));
                             }
-                            ops__ = Some(map.next_value()?);
+                            ops__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -511,9 +516,11 @@ impl serde::Serialize for PublicKey {
         if let Some(v) = self.sum.as_ref() {
             match v {
                 public_key::Sum::Ed25519(v) => {
+                    #[allow(clippy::needless_borrow)]
                     struct_ser.serialize_field("ed25519", pbjson::private::base64::encode(&v).as_str())?;
                 }
                 public_key::Sum::Secp256k1(v) => {
+                    #[allow(clippy::needless_borrow)]
                     struct_ser.serialize_field("secp256k1", pbjson::private::base64::encode(&v).as_str())?;
                 }
             }
@@ -574,24 +581,24 @@ impl<'de> serde::Deserialize<'de> for PublicKey {
                 formatter.write_str("struct tendermint.crypto.PublicKey")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<PublicKey, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<PublicKey, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut sum__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Ed25519 => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("ed25519"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<::pbjson::private::BytesDeserialize<_>>>()?.map(|x| public_key::Sum::Ed25519(x.0));
+                            sum__ = map_.next_value::<::std::option::Option<::pbjson::private::BytesDeserialize<_>>>()?.map(|x| public_key::Sum::Ed25519(x.0));
                         }
                         GeneratedField::Secp256k1 => {
                             if sum__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("secp256k1"));
                             }
-                            sum__ = map.next_value::<::std::option::Option<::pbjson::private::BytesDeserialize<_>>>()?.map(|x| public_key::Sum::Secp256k1(x.0));
+                            sum__ = map_.next_value::<::std::option::Option<::pbjson::private::BytesDeserialize<_>>>()?.map(|x| public_key::Sum::Secp256k1(x.0));
                         }
                     }
                 }
@@ -619,6 +626,7 @@ impl serde::Serialize for ValueOp {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.crypto.ValueOp", len)?;
         if !self.key.is_empty() {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("key", pbjson::private::base64::encode(&self.key).as_str())?;
         }
         if let Some(v) = self.proof.as_ref() {
@@ -680,27 +688,27 @@ impl<'de> serde::Deserialize<'de> for ValueOp {
                 formatter.write_str("struct tendermint.crypto.ValueOp")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<ValueOp, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<ValueOp, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut key__ = None;
                 let mut proof__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Key => {
                             if key__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("key"));
                             }
                             key__ = 
-                                Some(map.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::BytesDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Proof => {
                             if proof__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("proof"));
                             }
-                            proof__ = map.next_value()?;
+                            proof__ = map_.next_value()?;
                         }
                     }
                 }

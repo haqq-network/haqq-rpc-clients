@@ -6,8 +6,8 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { DelegationDelegatorReward, Params, ValidatorAccumulatedCommission, ValidatorOutstandingRewards, ValidatorSlashEvent } from "./distribution_pb.js";
-import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination_pb.js";
 import { DecCoin } from "../../base/v1beta1/coin_pb.js";
+import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination_pb.js";
 
 /**
  * QueryParamsRequest is the request type for the Query/Params RPC method.
@@ -80,6 +80,104 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
 
   static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
+  }
+}
+
+/**
+ * QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method.
+ *
+ * @generated from message cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest
+ */
+export class QueryValidatorDistributionInfoRequest extends Message<QueryValidatorDistributionInfoRequest> {
+  /**
+   * validator_address defines the validator address to query for.
+   *
+   * @generated from field: string validator_address = 1;
+   */
+  validatorAddress = "";
+
+  constructor(data?: PartialMessage<QueryValidatorDistributionInfoRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "validator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryValidatorDistributionInfoRequest {
+    return new QueryValidatorDistributionInfoRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryValidatorDistributionInfoRequest {
+    return new QueryValidatorDistributionInfoRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryValidatorDistributionInfoRequest {
+    return new QueryValidatorDistributionInfoRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryValidatorDistributionInfoRequest | PlainMessage<QueryValidatorDistributionInfoRequest> | undefined, b: QueryValidatorDistributionInfoRequest | PlainMessage<QueryValidatorDistributionInfoRequest> | undefined): boolean {
+    return proto3.util.equals(QueryValidatorDistributionInfoRequest, a, b);
+  }
+}
+
+/**
+ * QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method.
+ *
+ * @generated from message cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse
+ */
+export class QueryValidatorDistributionInfoResponse extends Message<QueryValidatorDistributionInfoResponse> {
+  /**
+   * operator_address defines the validator operator address.
+   *
+   * @generated from field: string operator_address = 1;
+   */
+  operatorAddress = "";
+
+  /**
+   * self_bond_rewards defines the self delegations rewards.
+   *
+   * @generated from field: repeated cosmos.base.v1beta1.DecCoin self_bond_rewards = 2;
+   */
+  selfBondRewards: DecCoin[] = [];
+
+  /**
+   * commission defines the commission the validator received.
+   *
+   * @generated from field: repeated cosmos.base.v1beta1.DecCoin commission = 3;
+   */
+  commission: DecCoin[] = [];
+
+  constructor(data?: PartialMessage<QueryValidatorDistributionInfoResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "operator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "self_bond_rewards", kind: "message", T: DecCoin, repeated: true },
+    { no: 3, name: "commission", kind: "message", T: DecCoin, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryValidatorDistributionInfoResponse {
+    return new QueryValidatorDistributionInfoResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryValidatorDistributionInfoResponse {
+    return new QueryValidatorDistributionInfoResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryValidatorDistributionInfoResponse {
+    return new QueryValidatorDistributionInfoResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryValidatorDistributionInfoResponse | PlainMessage<QueryValidatorDistributionInfoResponse> | undefined, b: QueryValidatorDistributionInfoResponse | PlainMessage<QueryValidatorDistributionInfoResponse> | undefined): boolean {
+    return proto3.util.equals(QueryValidatorDistributionInfoResponse, a, b);
   }
 }
 
@@ -215,7 +313,7 @@ export class QueryValidatorCommissionRequest extends Message<QueryValidatorCommi
  */
 export class QueryValidatorCommissionResponse extends Message<QueryValidatorCommissionResponse> {
   /**
-   * commission defines the commision the validator received.
+   * commission defines the commission the validator received.
    *
    * @generated from field: cosmos.distribution.v1beta1.ValidatorAccumulatedCommission commission = 1;
    */

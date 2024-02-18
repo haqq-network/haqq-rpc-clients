@@ -58,7 +58,7 @@ export class QueryGroupInfoRequest extends Message<QueryGroupInfoRequest> {
  */
 export class QueryGroupInfoResponse extends Message<QueryGroupInfoResponse> {
   /**
-   * info is the GroupInfo for the group.
+   * info is the GroupInfo of the group.
    *
    * @generated from field: cosmos.group.v1.GroupInfo info = 1;
    */
@@ -140,7 +140,7 @@ export class QueryGroupPolicyInfoRequest extends Message<QueryGroupPolicyInfoReq
  */
 export class QueryGroupPolicyInfoResponse extends Message<QueryGroupPolicyInfoResponse> {
   /**
-   * info is the GroupPolicyInfo for the group policy.
+   * info is the GroupPolicyInfo of the group policy.
    *
    * @generated from field: cosmos.group.v1.GroupPolicyInfo info = 1;
    */

@@ -44,14 +44,17 @@ fn main() {
         ],
     );
 
-    let mut f = std::fs::OpenOptions::new()
-        .create(true)
-        .write(true)
-        .open(format!("{}/cosmos.msg.v1.rs", PROTO_GEN_DIR))
-        .unwrap();
+    gen_stub("cosmos.msg.v1.rs".to_owned()).unwrap();
+    gen_stub("cosmos.query.v1.rs".to_owned()).unwrap();
+    gen_stub("amino.rs".to_owned()).unwrap();
+    // let mut f = std::fs::OpenOptions::new()
+    //     .create(true)
+    //     .write(true)
+    //     .open(format!("{}/cosmos.msg.v1.rs", PROTO_GEN_DIR))
+    //     .unwrap();
 
-    f.write_all(b"// an empty stub, needed because prost-crate expects it to be there while prost doesn't generate the file").unwrap();
-    std::mem::drop(f);
+    // f.write_all(b"// an empty stub, needed because prost-crate expects it to be there while prost doesn't generate the file").unwrap();
+    // std::mem::drop(f);
 
     apply_proto_patches(Path::new(PROTO_GEN_DIR));
 
@@ -88,6 +91,16 @@ fn patch_file(path: impl AsRef<Path>, pattern: &Regex, replacement: &str) -> io:
     let mut contents = fs::read_to_string(&path)?;
     contents = pattern.replace_all(&contents, replacement).to_string();
     fs::write(&path, &contents)
+}
+
+fn gen_stub(filename: String) -> io::Result<()> {
+    let mut f = std::fs::OpenOptions::new()
+        .create(true)
+        .write(true)
+        .open(format!("{}/{}", PROTO_GEN_DIR, &filename))
+        .unwrap();
+
+    f.write_all(b"// an empty stub, needed because prost-crate expects it to be there while prost doesn't generate the file")
 }
 
 // fn patch_files(paths: Vec<impl AsRef<Path>>, pattern: &Regex, replacement: &str) -> io::Result<()> {
@@ -142,6 +155,7 @@ fn apply_proto_patches(proto_dir: &Path) {
         .expect("error patching cosmos.staking.v1beta1.rs");
     }
 
+    // FIXME: uncomment after serde support is fixed
     for (pattern, replacement) in [
         (
             "stake_authorization::Validators::Allow",

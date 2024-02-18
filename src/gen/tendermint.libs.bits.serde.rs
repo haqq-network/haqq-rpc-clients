@@ -15,6 +15,7 @@ impl serde::Serialize for BitArray {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.libs.bits.BitArray", len)?;
         if self.bits != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("bits", ToString::to_string(&self.bits).as_str())?;
         }
         if !self.elems.is_empty() {
@@ -76,20 +77,20 @@ impl<'de> serde::Deserialize<'de> for BitArray {
                 formatter.write_str("struct tendermint.libs.bits.BitArray")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<BitArray, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BitArray, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut bits__ = None;
                 let mut elems__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Bits => {
                             if bits__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("bits"));
                             }
                             bits__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Elems => {
@@ -97,7 +98,7 @@ impl<'de> serde::Deserialize<'de> for BitArray {
                                 return Err(serde::de::Error::duplicate_field("elems"));
                             }
                             elems__ = 
-                                Some(map.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
+                                Some(map_.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
                                     .into_iter().map(|x| x.0).collect())
                             ;
                         }

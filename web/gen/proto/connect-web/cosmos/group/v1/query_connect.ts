@@ -39,7 +39,7 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * GroupMembers queries members of a group
+     * GroupMembers queries members of a group by group id.
      *
      * @generated from rpc cosmos.group.v1.Query.GroupMembers
      */
@@ -72,7 +72,7 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * GroupsByAdmin queries group policies by admin address.
+     * GroupPoliciesByAdmin queries group policies by admin address.
      *
      * @generated from rpc cosmos.group.v1.Query.GroupPoliciesByAdmin
      */
@@ -116,7 +116,7 @@ export const Query = {
       kind: MethodKind.Unary,
     },
     /**
-     * VotesByProposal queries a vote by proposal.
+     * VotesByProposal queries a vote by proposal id.
      *
      * @generated from rpc cosmos.group.v1.Query.VotesByProposal
      */

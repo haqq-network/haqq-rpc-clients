@@ -291,7 +291,7 @@ export class MemberRequest extends Message<MemberRequest> {
 /**
  * ThresholdDecisionPolicy is a decision policy where a proposal passes when it
  * satisfies the two following conditions:
- * 1. The sum of all `YES` voters' weights is greater or equal than the defined
+ * 1. The sum of all `YES` voter's weights is greater or equal than the defined
  *    `threshold`.
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
@@ -355,7 +355,7 @@ export class ThresholdDecisionPolicy extends Message<ThresholdDecisionPolicy> {
  */
 export class PercentageDecisionPolicy extends Message<PercentageDecisionPolicy> {
   /**
-   * percentage is the minimum percentage the weighted sum of `YES` votes must
+   * percentage is the minimum percentage of the weighted sum of `YES` votes must
    * meet for a proposal to succeed.
    *
    * @generated from field: string percentage = 1;
@@ -619,7 +619,7 @@ export class GroupPolicyInfo extends Message<GroupPolicyInfo> {
   admin = "";
 
   /**
-   * metadata is any arbitrary metadata to attached to the group policy.
+   * metadata is any arbitrary metadata attached to the group policy.
    *
    * @generated from field: string metadata = 4;
    */
@@ -705,7 +705,7 @@ export class Proposal extends Message<Proposal> {
   groupPolicyAddress = "";
 
   /**
-   * metadata is any arbitrary metadata to attached to the proposal.
+   * metadata is any arbitrary metadata attached to the proposal.
    *
    * @generated from field: string metadata = 3;
    */
@@ -762,7 +762,7 @@ export class Proposal extends Message<Proposal> {
 
   /**
    * voting_period_end is the timestamp before which voting must be done.
-   * Unless a successfull MsgExec is called before (to execute a proposal whose
+   * Unless a successful MsgExec is called before (to execute a proposal whose
    * tally is successful before the voting period ends), tallying will be done
    * at this point, and the `final_tally_result`and `status` fields will be
    * accordingly updated.
@@ -785,6 +785,24 @@ export class Proposal extends Message<Proposal> {
    */
   messages: Any[] = [];
 
+  /**
+   * title is the title of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string title = 13;
+   */
+  title = "";
+
+  /**
+   * summary is a short summary of the proposal
+   *
+   * Since: cosmos-sdk 0.47
+   *
+   * @generated from field: string summary = 14;
+   */
+  summary = "";
+
   constructor(data?: PartialMessage<Proposal>) {
     super();
     proto3.util.initPartial(data, this);
@@ -805,6 +823,8 @@ export class Proposal extends Message<Proposal> {
     { no: 10, name: "voting_period_end", kind: "message", T: Timestamp },
     { no: 11, name: "executor_result", kind: "enum", T: proto3.getEnumType(ProposalExecutorResult) },
     { no: 12, name: "messages", kind: "message", T: Any, repeated: true },
+    { no: 13, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "summary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proposal {
@@ -917,7 +937,7 @@ export class Vote extends Message<Vote> {
   option = VoteOption.UNSPECIFIED;
 
   /**
-   * metadata is any arbitrary metadata to attached to the vote.
+   * metadata is any arbitrary metadata attached to the vote.
    *
    * @generated from field: string metadata = 4;
    */

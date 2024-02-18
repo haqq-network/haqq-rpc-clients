@@ -73,7 +73,7 @@ export class ValidatorOutstandingRewardsRecord extends Message<ValidatorOutstand
   validatorAddress = "";
 
   /**
-   * outstanding_rewards represents the oustanding rewards of a validator.
+   * outstanding_rewards represents the outstanding rewards of a validator.
    *
    * @generated from field: repeated cosmos.base.v1beta1.DecCoin outstanding_rewards = 2;
    */
@@ -336,7 +336,7 @@ export class ValidatorSlashEventRecord extends Message<ValidatorSlashEventRecord
   validatorAddress = "";
 
   /**
-   * height defines the block height at which the slash event occured.
+   * height defines the block height at which the slash event occurred.
    *
    * @generated from field: uint64 height = 2;
    */
@@ -394,7 +394,7 @@ export class ValidatorSlashEventRecord extends Message<ValidatorSlashEventRecord
  */
 export class GenesisState extends Message<GenesisState> {
   /**
-   * params defines all the paramaters of the module.
+   * params defines all the parameters of the module.
    *
    * @generated from field: cosmos.distribution.v1beta1.Params params = 1;
    */
@@ -429,7 +429,7 @@ export class GenesisState extends Message<GenesisState> {
   outstandingRewards: ValidatorOutstandingRewardsRecord[] = [];
 
   /**
-   * fee_pool defines the accumulated commisions of all validators at genesis.
+   * fee_pool defines the accumulated commissions of all validators at genesis.
    *
    * @generated from field: repeated cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord validator_accumulated_commissions = 6;
    */

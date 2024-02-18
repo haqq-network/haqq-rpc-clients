@@ -32,6 +32,43 @@ pub struct SimpleValidator {
     #[prost(int64, tag="2")]
     pub voting_power: i64,
 }
+/// BlockIdFlag indicates which BlockID the signature is for
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum BlockIdFlag {
+    /// indicates an error condition
+    Unknown = 0,
+    /// the vote was not received
+    Absent = 1,
+    /// voted for the block that received the majority
+    Commit = 2,
+    /// voted for nil
+    Nil = 3,
+}
+impl BlockIdFlag {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            BlockIdFlag::Unknown => "BLOCK_ID_FLAG_UNKNOWN",
+            BlockIdFlag::Absent => "BLOCK_ID_FLAG_ABSENT",
+            BlockIdFlag::Commit => "BLOCK_ID_FLAG_COMMIT",
+            BlockIdFlag::Nil => "BLOCK_ID_FLAG_NIL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "BLOCK_ID_FLAG_UNKNOWN" => Some(Self::Unknown),
+            "BLOCK_ID_FLAG_ABSENT" => Some(Self::Absent),
+            "BLOCK_ID_FLAG_COMMIT" => Some(Self::Commit),
+            "BLOCK_ID_FLAG_NIL" => Some(Self::Nil),
+            _ => None,
+        }
+    }
+}
 /// PartsetHeader
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -65,7 +102,7 @@ pub struct BlockId {
 }
 // --------------------------------
 
-/// Header defines the structure of a Tendermint block header.
+/// Header defines the structure of a block header.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -78,7 +115,7 @@ pub struct Header {
     #[prost(int64, tag="3")]
     pub height: i64,
     #[prost(message, optional, tag="4")]
-    pub time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// prev block info
     #[prost(message, optional, tag="5")]
     pub last_block_id: ::core::option::Option<BlockId>,
@@ -127,7 +164,7 @@ pub struct Data {
     #[prost(bytes="bytes", repeated, tag="1")]
     pub txs: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
-/// Vote represents a prevote, precommit, or commit vote from validators for
+/// Vote represents a prevote or precommit vote from validators for
 /// consensus.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -143,13 +180,24 @@ pub struct Vote {
     #[prost(message, optional, tag="4")]
     pub block_id: ::core::option::Option<BlockId>,
     #[prost(message, optional, tag="5")]
-    pub timestamp: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
     #[prost(bytes="bytes", tag="6")]
     pub validator_address: ::prost::bytes::Bytes,
     #[prost(int32, tag="7")]
     pub validator_index: i32,
+    /// Vote signature by the validator if they participated in consensus for the
+    /// associated block.
     #[prost(bytes="bytes", tag="8")]
     pub signature: ::prost::bytes::Bytes,
+    /// Vote extension provided by the application. Only valid for precommit
+    /// messages.
+    #[prost(bytes="bytes", tag="9")]
+    pub extension: ::prost::bytes::Bytes,
+    /// Vote extension signature by the validator if they participated in
+    /// consensus for the associated block.
+    /// Only valid for precommit messages.
+    #[prost(bytes="bytes", tag="10")]
+    pub extension_signature: ::prost::bytes::Bytes,
 }
 /// Commit contains the evidence that a block was committed by a set of validators.
 #[derive(::derive_builder::Builder)]
@@ -175,9 +223,44 @@ pub struct CommitSig {
     #[prost(bytes="bytes", tag="2")]
     pub validator_address: ::prost::bytes::Bytes,
     #[prost(message, optional, tag="3")]
-    pub timestamp: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
     #[prost(bytes="bytes", tag="4")]
     pub signature: ::prost::bytes::Bytes,
+}
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExtendedCommit {
+    #[prost(int64, tag="1")]
+    pub height: i64,
+    #[prost(int32, tag="2")]
+    pub round: i32,
+    #[prost(message, optional, tag="3")]
+    pub block_id: ::core::option::Option<BlockId>,
+    #[prost(message, repeated, tag="4")]
+    pub extended_signatures: ::prost::alloc::vec::Vec<ExtendedCommitSig>,
+}
+/// ExtendedCommitSig retains all the same fields as CommitSig but adds vote
+/// extension-related fields. We use two signatures to ensure backwards compatibility.
+/// That is the digest of the original signature is still the same in prior versions
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ExtendedCommitSig {
+    #[prost(enumeration="BlockIdFlag", tag="1")]
+    pub block_id_flag: i32,
+    #[prost(bytes="bytes", tag="2")]
+    pub validator_address: ::prost::bytes::Bytes,
+    #[prost(message, optional, tag="3")]
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
+    #[prost(bytes="bytes", tag="4")]
+    pub signature: ::prost::bytes::Bytes,
+    /// Vote extension data
+    #[prost(bytes="bytes", tag="5")]
+    pub extension: ::prost::bytes::Bytes,
+    /// Vote extension signature
+    #[prost(bytes="bytes", tag="6")]
+    pub extension_signature: ::prost::bytes::Bytes,
 }
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -194,7 +277,7 @@ pub struct Proposal {
     #[prost(message, optional, tag="5")]
     pub block_id: ::core::option::Option<BlockId>,
     #[prost(message, optional, tag="6")]
-    pub timestamp: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
     #[prost(bytes="bytes", tag="7")]
     pub signature: ::prost::bytes::Bytes,
 }
@@ -240,39 +323,6 @@ pub struct TxProof {
     pub data: ::prost::bytes::Bytes,
     #[prost(message, optional, tag="3")]
     pub proof: ::core::option::Option<super::crypto::Proof>,
-}
-/// BlockIdFlag indicates which BlcokID the signature is for
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum BlockIdFlag {
-    Unknown = 0,
-    Absent = 1,
-    Commit = 2,
-    Nil = 3,
-}
-impl BlockIdFlag {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            BlockIdFlag::Unknown => "BLOCK_ID_FLAG_UNKNOWN",
-            BlockIdFlag::Absent => "BLOCK_ID_FLAG_ABSENT",
-            BlockIdFlag::Commit => "BLOCK_ID_FLAG_COMMIT",
-            BlockIdFlag::Nil => "BLOCK_ID_FLAG_NIL",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "BLOCK_ID_FLAG_UNKNOWN" => Some(Self::Unknown),
-            "BLOCK_ID_FLAG_ABSENT" => Some(Self::Absent),
-            "BLOCK_ID_FLAG_COMMIT" => Some(Self::Commit),
-            "BLOCK_ID_FLAG_NIL" => Some(Self::Nil),
-            _ => None,
-        }
-    }
 }
 /// SignedMsgType is a type of signed message in the consensus.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -337,12 +387,6 @@ pub struct BlockParams {
     /// Note: must be greater or equal to -1
     #[prost(int64, tag="2")]
     pub max_gas: i64,
-    /// Minimum time increment between consecutive blocks (in milliseconds) If the
-    /// block header timestamp is ahead of the system clock, decrease this value.
-    ///
-    /// Not exposed to the application.
-    #[prost(int64, tag="3")]
-    pub time_iota_ms: i64,
 }
 /// EvidenceParams determine how we handle evidence of malfeasance.
 #[derive(::derive_builder::Builder)]
@@ -361,7 +405,7 @@ pub struct EvidenceParams {
     /// mechanism for handling [Nothing-At-Stake
     /// attacks](<https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed>).
     #[prost(message, optional, tag="2")]
-    pub max_age_duration: ::core::option::Option<::prost_wkt_types::Duration>,
+    pub max_age_duration: ::core::option::Option<::pbjson_types::Duration>,
     /// This sets the maximum size of total evidence in bytes that can be committed in a single block.
     /// and should fall comfortably under the max block bytes.
     /// Default is 1048576 or 1MB
@@ -383,7 +427,7 @@ pub struct ValidatorParams {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct VersionParams {
     #[prost(uint64, tag="1")]
-    pub app_version: u64,
+    pub app: u64,
 }
 /// HashedParams is a subset of ConsensusParams.
 ///
@@ -429,7 +473,7 @@ pub struct DuplicateVoteEvidence {
     #[prost(int64, tag="4")]
     pub validator_power: i64,
     #[prost(message, optional, tag="5")]
-    pub timestamp: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 /// LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client.
 #[derive(::derive_builder::Builder)]
@@ -445,7 +489,7 @@ pub struct LightClientAttackEvidence {
     #[prost(int64, tag="4")]
     pub total_voting_power: i64,
     #[prost(message, optional, tag="5")]
-    pub timestamp: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub timestamp: ::core::option::Option<::pbjson_types::Timestamp>,
 }
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]

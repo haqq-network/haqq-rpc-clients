@@ -162,6 +162,36 @@ pub mod query_client {
                 );
             self.inner.unary(req, path, codec).await
         }
+        pub async fn spendable_balance_by_denom(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QuerySpendableBalanceByDenomRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QuerySpendableBalanceByDenomResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.bank.v1beta1.Query/SpendableBalanceByDenom",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(
+                    GrpcMethod::new(
+                        "cosmos.bank.v1beta1.Query",
+                        "SpendableBalanceByDenom",
+                    ),
+                );
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn total_supply(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTotalSupplyRequest>,
@@ -312,6 +342,31 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmos.bank.v1beta1.Query", "DenomOwners"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn send_enabled(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QuerySendEnabledRequest>,
+        ) -> std::result::Result<
+            tonic::Response<super::QuerySendEnabledResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.bank.v1beta1.Query/SendEnabled",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.bank.v1beta1.Query", "SendEnabled"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }
 /// Generated client implementations.
@@ -448,6 +503,56 @@ pub mod msg_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("cosmos.bank.v1beta1.Msg", "MultiSend"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn update_params(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUpdateParams>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgUpdateParamsResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.bank.v1beta1.Msg/UpdateParams",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.bank.v1beta1.Msg", "UpdateParams"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn set_send_enabled(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetSendEnabled>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgSetSendEnabledResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmos.bank.v1beta1.Msg/SetSendEnabled",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmos.bank.v1beta1.Msg", "SetSendEnabled"));
             self.inner.unary(req, path, codec).await
         }
     }

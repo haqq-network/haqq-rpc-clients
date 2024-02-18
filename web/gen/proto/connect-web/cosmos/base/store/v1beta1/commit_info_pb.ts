@@ -99,7 +99,7 @@ export class StoreInfo extends Message<StoreInfo> {
 }
 
 /**
- * CommitID defines the committment information when a specific store is
+ * CommitID defines the commitment information when a specific store is
  * committed.
  *
  * @generated from message cosmos.base.store.v1beta1.CommitID

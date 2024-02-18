@@ -1,0 +1,1 @@
+// an empty stub, needed because prost-crate expects it to be there while prost doesn't generate the file

@@ -27,7 +27,7 @@ pub struct Header {
     #[prost(int64, tag="3")]
     pub height: i64,
     #[prost(message, optional, tag="4")]
-    pub time: ::core::option::Option<::prost_wkt_types::Timestamp>,
+    pub time: ::core::option::Option<::pbjson_types::Timestamp>,
     /// prev block info
     #[prost(message, optional, tag="5")]
     pub last_block_id: ::core::option::Option<super::super::super::super::tendermint::types::BlockId>,
@@ -69,8 +69,7 @@ pub struct Header {
     #[prost(string, tag="14")]
     pub proposer_address: ::prost::alloc::string::String,
 }
-/// GetValidatorSetByHeightRequest is the request type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -81,8 +80,7 @@ pub struct GetValidatorSetByHeightRequest {
     #[prost(message, optional, tag="2")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageRequest>,
 }
-/// GetValidatorSetByHeightResponse is the response type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetValidatorSetByHeightResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -95,8 +93,7 @@ pub struct GetValidatorSetByHeightResponse {
     #[prost(message, optional, tag="3")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageResponse>,
 }
-/// GetLatestValidatorSetRequest is the request type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetLatestValidatorSetRequest is the request type for the Query/GetValidatorSetByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -105,8 +102,7 @@ pub struct GetLatestValidatorSetRequest {
     #[prost(message, optional, tag="1")]
     pub pagination: ::core::option::Option<super::super::query::v1beta1::PageRequest>,
 }
-/// GetLatestValidatorSetResponse is the response type for the
-/// Query/GetValidatorSetByHeight RPC method.
+/// GetLatestValidatorSetResponse is the response type for the Query/GetValidatorSetByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -127,14 +123,13 @@ pub struct Validator {
     #[prost(string, tag="1")]
     pub address: ::prost::alloc::string::String,
     #[prost(message, optional, tag="2")]
-    pub pub_key: ::core::option::Option<::prost_wkt_types::Any>,
+    pub pub_key: ::core::option::Option<::pbjson_types::Any>,
     #[prost(int64, tag="3")]
     pub voting_power: i64,
     #[prost(int64, tag="4")]
     pub proposer_priority: i64,
 }
-/// GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight
-/// RPC method.
+/// GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -142,8 +137,7 @@ pub struct GetBlockByHeightRequest {
     #[prost(int64, tag="1")]
     pub height: i64,
 }
-/// GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight
-/// RPC method.
+/// GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -157,15 +151,13 @@ pub struct GetBlockByHeightResponse {
     #[prost(message, optional, tag="3")]
     pub sdk_block: ::core::option::Option<Block>,
 }
-/// GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC
-/// method.
+/// GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetLatestBlockRequest {
 }
-/// GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC
-/// method.
+/// GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -199,8 +191,7 @@ pub struct GetSyncingResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeInfoRequest {
 }
-/// GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC
-/// method.
+/// GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -262,8 +253,7 @@ pub struct AbciQueryRequest {
     #[prost(bool, tag="4")]
     pub prove: bool,
 }
-/// ABCIQueryResponse defines the response structure for the ABCIQuery gRPC
-/// query.
+/// ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
 ///
 /// Note: This type is a duplicate of the ResponseQuery proto type defined in
 /// Tendermint.
@@ -293,11 +283,10 @@ pub struct AbciQueryResponse {
     pub codespace: ::prost::alloc::string::String,
 }
 /// ProofOp defines an operation used for calculating Merkle root. The data could
-/// be arbitrary format, providing nessecary data for example neighbouring node
+/// be arbitrary format, providing necessary data for example neighbouring node
 /// hash.
 ///
-/// Note: This type is a duplicate of the ProofOp proto type defined in
-/// Tendermint.
+/// Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -311,8 +300,7 @@ pub struct ProofOp {
 }
 /// ProofOps is Merkle proof defined by the list of ProofOps.
 ///
-/// Note: This type is a duplicate of the ProofOps proto type defined in
-/// Tendermint.
+/// Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

@@ -3,7 +3,8 @@
 {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
-  env.RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
+  # FIXME: trows error, uncomment when fixed
+  # env.RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
   # don't clash with rust-analyzer
   env.CARGO_TARGET_DIR = "target/t";
 

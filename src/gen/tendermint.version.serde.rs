@@ -15,6 +15,7 @@ impl serde::Serialize for App {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.version.App", len)?;
         if self.protocol != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("protocol", ToString::to_string(&self.protocol).as_str())?;
         }
         if !self.software.is_empty() {
@@ -76,27 +77,27 @@ impl<'de> serde::Deserialize<'de> for App {
                 formatter.write_str("struct tendermint.version.App")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<App, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<App, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut protocol__ = None;
                 let mut software__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Protocol => {
                             if protocol__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("protocol"));
                             }
                             protocol__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::Software => {
                             if software__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("software"));
                             }
-                            software__ = Some(map.next_value()?);
+                            software__ = Some(map_.next_value()?);
                         }
                     }
                 }
@@ -125,9 +126,11 @@ impl serde::Serialize for Consensus {
         }
         let mut struct_ser = serializer.serialize_struct("tendermint.version.Consensus", len)?;
         if self.block != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("block", ToString::to_string(&self.block).as_str())?;
         }
         if self.app != 0 {
+            #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("app", ToString::to_string(&self.app).as_str())?;
         }
         struct_ser.end()
@@ -186,20 +189,20 @@ impl<'de> serde::Deserialize<'de> for Consensus {
                 formatter.write_str("struct tendermint.version.Consensus")
             }
 
-            fn visit_map<V>(self, mut map: V) -> std::result::Result<Consensus, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<Consensus, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
                 let mut block__ = None;
                 let mut app__ = None;
-                while let Some(k) = map.next_key()? {
+                while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Block => {
                             if block__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("block"));
                             }
                             block__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                         GeneratedField::App => {
@@ -207,7 +210,7 @@ impl<'de> serde::Deserialize<'de> for Consensus {
                                 return Err(serde::de::Error::duplicate_field("app"));
                             }
                             app__ = 
-                                Some(map.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
                             ;
                         }
                     }
