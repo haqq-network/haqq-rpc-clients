@@ -8,3 +8,7 @@ name = "haqq-grpc"
 publish = true
 changelog_update = true
 git_release_enable = true
+
+[[package]]
+name = "haqq-build"
+release = false
