@@ -36,7 +36,7 @@ pub mod prelude {
         fn get_denom(&'a self, denom: impl Into<String>) -> Option<&'a str> {
             self.as_ref()
                 .filter(|c| c.denom == denom.into())
-                .map(|c| c.denom.as_str())
+                .map(|c| c.amount.as_str())
         }
     }
 
@@ -168,7 +168,7 @@ mod test {
         };
 
         assert!(vec![coin.clone()].get_denom("aISLM").is_some());
-        assert!(Some(coin).get_denom("aISLM").is_some());
+        assert_eq!(Some(coin).get_denom("aISLM"), Some("0"));
     }
 
     #[test]
