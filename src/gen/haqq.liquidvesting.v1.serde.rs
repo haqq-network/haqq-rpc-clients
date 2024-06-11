@@ -192,9 +192,22 @@ impl serde::Serialize for GenesisState {
         if self.params.is_some() {
             len += 1;
         }
+        if self.denom_counter != 0 {
+            len += 1;
+        }
+        if !self.denoms.is_empty() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("haqq.liquidvesting.v1.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
+        }
+        if self.denom_counter != 0 {
+            #[allow(clippy::needless_borrow)]
+            struct_ser.serialize_field("denomCounter", ToString::to_string(&self.denom_counter).as_str())?;
+        }
+        if !self.denoms.is_empty() {
+            struct_ser.serialize_field("denoms", &self.denoms)?;
         }
         struct_ser.end()
     }
@@ -207,11 +220,16 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
     {
         const FIELDS: &[&str] = &[
             "params",
+            "denom_counter",
+            "denomCounter",
+            "denoms",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Params,
+            DenomCounter,
+            Denoms,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -234,6 +252,8 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                     {
                         match value {
                             "params" => Ok(GeneratedField::Params),
+                            "denomCounter" | "denom_counter" => Ok(GeneratedField::DenomCounter),
+                            "denoms" => Ok(GeneratedField::Denoms),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -254,6 +274,8 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                     V: serde::de::MapAccess<'de>,
             {
                 let mut params__ = None;
+                let mut denom_counter__ = None;
+                let mut denoms__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Params => {
@@ -262,10 +284,26 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                             }
                             params__ = map_.next_value()?;
                         }
+                        GeneratedField::DenomCounter => {
+                            if denom_counter__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("denomCounter"));
+                            }
+                            denom_counter__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Denoms => {
+                            if denoms__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("denoms"));
+                            }
+                            denoms__ = Some(map_.next_value()?);
+                        }
                     }
                 }
                 Ok(GenesisState {
                     params: params__,
+                    denom_counter: denom_counter__.unwrap_or_default(),
+                    denoms: denoms__.unwrap_or_default(),
                 })
             }
         }
@@ -406,8 +444,20 @@ impl serde::Serialize for MsgLiquidateResponse {
         S: serde::Serializer,
     {
         use serde::ser::SerializeStruct;
-        let len = 0;
-        let struct_ser = serializer.serialize_struct("haqq.liquidvesting.v1.MsgLiquidateResponse", len)?;
+        let mut len = 0;
+        if self.minted.is_some() {
+            len += 1;
+        }
+        if !self.contract_addr.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("haqq.liquidvesting.v1.MsgLiquidateResponse", len)?;
+        if let Some(v) = self.minted.as_ref() {
+            struct_ser.serialize_field("minted", v)?;
+        }
+        if !self.contract_addr.is_empty() {
+            struct_ser.serialize_field("contractAddr", &self.contract_addr)?;
+        }
         struct_ser.end()
     }
 }
@@ -418,10 +468,15 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidateResponse {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "minted",
+            "contract_addr",
+            "contractAddr",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
+            Minted,
+            ContractAddr,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -442,7 +497,11 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidateResponse {
                     where
                         E: serde::de::Error,
                     {
-                            Err(serde::de::Error::unknown_field(value, FIELDS))
+                        match value {
+                            "minted" => Ok(GeneratedField::Minted),
+                            "contractAddr" | "contract_addr" => Ok(GeneratedField::ContractAddr),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
                     }
                 }
                 deserializer.deserialize_identifier(GeneratedVisitor)
@@ -460,10 +519,27 @@ impl<'de> serde::Deserialize<'de> for MsgLiquidateResponse {
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map_.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                let mut minted__ = None;
+                let mut contract_addr__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Minted => {
+                            if minted__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("minted"));
+                            }
+                            minted__ = map_.next_value()?;
+                        }
+                        GeneratedField::ContractAddr => {
+                            if contract_addr__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("contractAddr"));
+                            }
+                            contract_addr__ = Some(map_.next_value()?);
+                        }
+                    }
                 }
                 Ok(MsgLiquidateResponse {
+                    minted: minted__,
+                    contract_addr: contract_addr__.unwrap_or_default(),
                 })
             }
         }
@@ -679,9 +755,15 @@ impl serde::Serialize for Params {
         if !self.minimum_liquidation_amount.is_empty() {
             len += 1;
         }
+        if self.enable_liquid_vesting {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("haqq.liquidvesting.v1.Params", len)?;
         if !self.minimum_liquidation_amount.is_empty() {
             struct_ser.serialize_field("minimumLiquidationAmount", &self.minimum_liquidation_amount)?;
+        }
+        if self.enable_liquid_vesting {
+            struct_ser.serialize_field("enableLiquidVesting", &self.enable_liquid_vesting)?;
         }
         struct_ser.end()
     }
@@ -695,11 +777,14 @@ impl<'de> serde::Deserialize<'de> for Params {
         const FIELDS: &[&str] = &[
             "minimum_liquidation_amount",
             "minimumLiquidationAmount",
+            "enable_liquid_vesting",
+            "enableLiquidVesting",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             MinimumLiquidationAmount,
+            EnableLiquidVesting,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -722,6 +807,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                     {
                         match value {
                             "minimumLiquidationAmount" | "minimum_liquidation_amount" => Ok(GeneratedField::MinimumLiquidationAmount),
+                            "enableLiquidVesting" | "enable_liquid_vesting" => Ok(GeneratedField::EnableLiquidVesting),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -742,6 +828,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                     V: serde::de::MapAccess<'de>,
             {
                 let mut minimum_liquidation_amount__ = None;
+                let mut enable_liquid_vesting__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::MinimumLiquidationAmount => {
@@ -750,10 +837,17 @@ impl<'de> serde::Deserialize<'de> for Params {
                             }
                             minimum_liquidation_amount__ = Some(map_.next_value()?);
                         }
+                        GeneratedField::EnableLiquidVesting => {
+                            if enable_liquid_vesting__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("enableLiquidVesting"));
+                            }
+                            enable_liquid_vesting__ = Some(map_.next_value()?);
+                        }
                     }
                 }
                 Ok(Params {
                     minimum_liquidation_amount: minimum_liquidation_amount__.unwrap_or_default(),
+                    enable_liquid_vesting: enable_liquid_vesting__.unwrap_or_default(),
                 })
             }
         }

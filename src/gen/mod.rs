@@ -614,6 +614,22 @@ pub mod haqq {
             // @@protoc_insertion_point(haqq.coinomics.v1)
         }
     }
+    pub mod dao {
+        pub mod module {
+            #[cfg(feature = "haqq_dao_module_v1")]
+            // @@protoc_insertion_point(attribute:haqq.dao.module.v1)
+            pub mod v1 {
+                include!("haqq.dao.module.v1.rs");
+                // @@protoc_insertion_point(haqq.dao.module.v1)
+            }
+        }
+        #[cfg(feature = "haqq_dao_v1")]
+        // @@protoc_insertion_point(attribute:haqq.dao.v1)
+        pub mod v1 {
+            include!("haqq.dao.v1.rs");
+            // @@protoc_insertion_point(haqq.dao.v1)
+        }
+    }
     pub mod liquidvesting {
         #[cfg(feature = "haqq_liquidvesting_v1")]
         // @@protoc_insertion_point(attribute:haqq.liquidvesting.v1)

@@ -1,21 +1,4 @@
 // @generated
-/// GenesisState defines the liquidvesting module's genesis state.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// params defines all the paramaters of the module.
-    #[prost(message, optional, tag="1")]
-    pub params: ::core::option::Option<Params>,
-}
-/// Params holds parameters for the liquidvesting module.
-#[derive(::derive_builder::Builder)]
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Params {
-    #[prost(string, tag="1")]
-    pub minimum_liquidation_amount: ::prost::alloc::string::String,
-}
 /// Denom represents liquid token bonded to some specific vesting schedule
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -39,6 +22,30 @@ pub struct Denom {
     /// lockup periods
     #[prost(message, repeated, tag="6")]
     pub lockup_periods: ::prost::alloc::vec::Vec<super::super::super::cosmos::vesting::v1beta1::Period>,
+}
+/// GenesisState defines the liquidvesting module's genesis state.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// params defines all the paramaters of the module.
+    #[prost(message, optional, tag="1")]
+    pub params: ::core::option::Option<Params>,
+    #[prost(uint64, tag="2")]
+    pub denom_counter: u64,
+    #[prost(message, repeated, tag="3")]
+    pub denoms: ::prost::alloc::vec::Vec<Denom>,
+}
+/// Params holds parameters for the liquidvesting module.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Params {
+    #[prost(string, tag="1")]
+    pub minimum_liquidation_amount: ::prost::alloc::string::String,
+    /// parameter to enable liquid vesting
+    #[prost(bool, tag="2")]
+    pub enable_liquid_vesting: bool,
 }
 /// QueryDenomRequest is request fo Denom rpc method
 #[derive(::derive_builder::Builder)]
@@ -79,7 +86,8 @@ pub struct QueryDenomsResponse {
     #[prost(message, optional, tag="2")]
     pub pagination: ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
-/// MsgLiquidate represents message to liquidate arbitrary amount of tokens locked in vesting
+/// MsgLiquidate represents message to liquidate arbitrary amount of tokens
+/// locked in vesting
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -99,8 +107,15 @@ pub struct MsgLiquidate {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgLiquidateResponse {
+    /// amount of liquid tokens minted
+    #[prost(message, optional, tag="1")]
+    pub minted: ::core::option::Option<super::super::super::cosmos::base::v1beta1::Coin>,
+    /// address of erc20 the liquidation denom contract
+    #[prost(string, tag="2")]
+    pub contract_addr: ::prost::alloc::string::String,
 }
-/// MsgLiquidate represents message to redeem arbitrary amount of liquid vesting tokens
+/// MsgLiquidate represents message to redeem arbitrary amount of liquid vesting
+/// tokens
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
