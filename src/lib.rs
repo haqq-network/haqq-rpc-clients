@@ -123,6 +123,14 @@ pub mod prelude {
             req.metadata_mut().insert(HEIGHT_METADATA_KEY, height);
             req
         }
+
+	fn with_height_num(self, height: u64) -> tonic::Request<Self>
+		where
+			Self: Sized,
+		{
+			let height = MetadataValue::from_str(&height.to_string()).unwrap();
+			self.with_height(height)
+		}
     }
 
     impl<T> CosmosMessage for T {}
