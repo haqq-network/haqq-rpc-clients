@@ -6,12 +6,12 @@ pub use gen::*;
 
 pub mod prelude {
     use core::fmt;
-    use std::{num::ParseIntError, str::FromStr};
+    use std::str::FromStr;
 
     use crate::cosmos::base::v1beta1::DecCoin;
 
     use super::*;
-    use ethnum::U256;
+    use alloy_primitives::U256;
 
     use cosmos::base::v1beta1::Coin;
     use tonic::metadata::{Ascii, MetadataValue};
@@ -65,23 +65,23 @@ pub mod prelude {
     }
 
     pub trait AmountExt {
-        fn to_u256(&self) -> Result<U256, ParseIntError>;
+        fn to_u256(&self) -> Result<U256, alloy_primitives::ruint::ParseError>;
     }
 
     impl AmountExt for String {
-        fn to_u256(&self) -> Result<U256, ParseIntError> {
+        fn to_u256(&self) -> Result<U256, alloy_primitives::ruint::ParseError> {
             U256::from_str(self)
         }
     }
 
     impl<'a> AmountExt for &'a str {
-        fn to_u256(&self) -> Result<U256, ParseIntError> {
+        fn to_u256(&self) -> Result<U256, alloy_primitives::ruint::ParseError> {
             U256::from_str(self)
         }
     }
 
     impl AmountExt for Coin {
-        fn to_u256(&self) -> Result<U256, ParseIntError> {
+        fn to_u256(&self) -> Result<U256, alloy_primitives::ruint::ParseError> {
             self.amount.to_u256()
         }
     }
@@ -97,8 +97,16 @@ pub mod prelude {
     impl Denom {
         pub fn conversion_pair(&self) -> Option<(Self, U256, U256)> {
             match self {
-                Self::aISLM => Some((Self::ISLM, U256::new(1), U256::pow(U256::new(10), 18))),
-                Self::ISLM => Some((Self::aISLM, U256::pow(U256::new(10), 18), U256::new(1))),
+                Self::aISLM => Some((
+                    Self::ISLM,
+                    U256::from(1),
+                    U256::pow(U256::from(10), U256::from(18)),
+                )),
+                Self::ISLM => Some((
+                    Self::aISLM,
+                    U256::pow(U256::from(10), U256::from(18)),
+                    U256::from(1),
+                )),
                 Self::Other(_) => None,
             }
         }
@@ -124,13 +132,13 @@ pub mod prelude {
             req
         }
 
-	fn with_height_num(self, height: u64) -> tonic::Request<Self>
-		where
-			Self: Sized,
-		{
-			let height = MetadataValue::from_str(&height.to_string()).unwrap();
-			self.with_height(height)
-		}
+        fn with_height_num(self, height: u64) -> tonic::Request<Self>
+        where
+            Self: Sized,
+        {
+            let height = MetadataValue::from_str(&height.to_string()).unwrap();
+            self.with_height(height)
+        }
     }
 
     impl<T> CosmosMessage for T {}
@@ -150,7 +158,7 @@ pub mod prelude {
 mod test {
     use super::cosmos::base::v1beta1::Coin;
     use super::prelude::*;
-    use ethnum::U256;
+    use alloy_primitives::U256;
     use std::str::FromStr;
 
     #[test]
