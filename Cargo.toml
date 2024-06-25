@@ -13,7 +13,7 @@ homepage = "https://haqq.network"
 
 [dependencies]
 # ethnum = {version = "~1.5", features = ["serde"]}
-alloy-primitives = "~0.1"
+alloy-primitives = "~0.7"
 derive_builder = "~0.20"
 pbjson = "~0.6"
 prost = "~0.12"
