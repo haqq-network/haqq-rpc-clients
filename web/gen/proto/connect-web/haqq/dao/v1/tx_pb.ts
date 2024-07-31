@@ -85,3 +85,85 @@ export class MsgFundResponse extends Message<MsgFundResponse> {
   }
 }
 
+/**
+ * MsgTransferOwnership allows an account transfer the ownership of shares to another account.
+ *
+ * @generated from message haqq.dao.v1.MsgTransferOwnership
+ */
+export class MsgTransferOwnership extends Message<MsgTransferOwnership> {
+  /**
+   * owner is a current owner of the shares in dao.
+   *
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
+
+  /**
+   * new_owner is a new owner of the shares in dao.
+   *
+   * @generated from field: string new_owner = 2;
+   */
+  newOwner = "";
+
+  constructor(data?: PartialMessage<MsgTransferOwnership>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "haqq.dao.v1.MsgTransferOwnership";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "new_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTransferOwnership {
+    return new MsgTransferOwnership().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgTransferOwnership {
+    return new MsgTransferOwnership().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgTransferOwnership {
+    return new MsgTransferOwnership().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgTransferOwnership | PlainMessage<MsgTransferOwnership> | undefined, b: MsgTransferOwnership | PlainMessage<MsgTransferOwnership> | undefined): boolean {
+    return proto3.util.equals(MsgTransferOwnership, a, b);
+  }
+}
+
+/**
+ * MsgTransferOwnershipResponse defines the Msg/TransferOwnership response type.
+ *
+ * @generated from message haqq.dao.v1.MsgTransferOwnershipResponse
+ */
+export class MsgTransferOwnershipResponse extends Message<MsgTransferOwnershipResponse> {
+  constructor(data?: PartialMessage<MsgTransferOwnershipResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "haqq.dao.v1.MsgTransferOwnershipResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTransferOwnershipResponse {
+    return new MsgTransferOwnershipResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgTransferOwnershipResponse {
+    return new MsgTransferOwnershipResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgTransferOwnershipResponse {
+    return new MsgTransferOwnershipResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MsgTransferOwnershipResponse | PlainMessage<MsgTransferOwnershipResponse> | undefined, b: MsgTransferOwnershipResponse | PlainMessage<MsgTransferOwnershipResponse> | undefined): boolean {
+    return proto3.util.equals(MsgTransferOwnershipResponse, a, b);
+  }
+}
+
