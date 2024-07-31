@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgFund, MsgFundResponse } from "./tx_pb.js";
+import { MsgFund, MsgFundResponse, MsgTransferOwnership, MsgTransferOwnershipResponse } from "./tx_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -23,6 +23,17 @@ export const Msg = {
       name: "Fund",
       I: MsgFund,
       O: MsgFundResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * TransferOwnership defines a method to allow an account to transfer the ownership of shares to another account.
+     *
+     * @generated from rpc haqq.dao.v1.Msg.TransferOwnership
+     */
+    transferOwnership: {
+      name: "TransferOwnership",
+      I: MsgTransferOwnership,
+      O: MsgTransferOwnershipResponse,
       kind: MethodKind.Unary,
     },
   }

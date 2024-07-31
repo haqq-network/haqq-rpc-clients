@@ -291,5 +291,30 @@ pub mod msg_client {
             req.extensions_mut().insert(GrpcMethod::new("haqq.dao.v1.Msg", "Fund"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn transfer_ownership(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgTransferOwnership>,
+        ) -> std::result::Result<
+            tonic::Response<super::MsgTransferOwnershipResponse>,
+            tonic::Status,
+        > {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/haqq.dao.v1.Msg/TransferOwnership",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("haqq.dao.v1.Msg", "TransferOwnership"));
+            self.inner.unary(req, path, codec).await
+        }
     }
 }

@@ -187,6 +187,24 @@ pub struct MsgFund {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgFundResponse {
 }
+/// MsgTransferOwnership allows an account transfer the ownership of shares to another account.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgTransferOwnership {
+    /// owner is a current owner of the shares in dao.
+    #[prost(string, tag="1")]
+    pub owner: ::prost::alloc::string::String,
+    /// new_owner is a new owner of the shares in dao.
+    #[prost(string, tag="2")]
+    pub new_owner: ::prost::alloc::string::String,
+}
+/// MsgTransferOwnershipResponse defines the Msg/TransferOwnership response type.
+#[derive(::derive_builder::Builder)]
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgTransferOwnershipResponse {
+}
 include!("haqq.dao.v1.serde.rs");
 include!("haqq.dao.v1.tonic.rs");
 // @@protoc_insertion_point(module)
