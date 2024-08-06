@@ -13,7 +13,7 @@ impl serde::Serialize for Module {
         if !self.authority.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.module.v1.Module", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.module.v1.Module", len)?;
         if self.max_metadata_len != 0 {
             #[allow(clippy::needless_borrow)]
             struct_ser.serialize_field("maxMetadataLen", ToString::to_string(&self.max_metadata_len).as_str())?;
@@ -75,7 +75,7 @@ impl<'de> serde::Deserialize<'de> for Module {
             type Value = Module;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.module.v1.Module")
+                formatter.write_str("struct haqq.ucdao.module.v1.Module")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<Module, V::Error>
@@ -108,6 +108,6 @@ impl<'de> serde::Deserialize<'de> for Module {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.module.v1.Module", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.module.v1.Module", FIELDS, GeneratedVisitor)
     }
 }

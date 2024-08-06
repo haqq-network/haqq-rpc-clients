@@ -8,9 +8,9 @@ pub struct Module {
     /// Defaults to 5000 if not explicitly set.
     #[prost(uint64, tag="1")]
     pub max_metadata_len: u64,
-    /// authority defines the custom module authority. If not set, defaults to the dao module.
+    /// authority defines the custom module authority. If not set, defaults to the ucdao module.
     #[prost(string, tag="2")]
     pub authority: ::prost::alloc::string::String,
 }
-include!("haqq.dao.module.v1.serde.rs");
+include!("haqq.ucdao.module.v1.serde.rs");
 // @@protoc_insertion_point(module)
