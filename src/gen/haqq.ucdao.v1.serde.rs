@@ -13,7 +13,7 @@ impl serde::Serialize for AllowedCollateral {
         if self.r#type != 0 {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.AllowedCollateral", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.AllowedCollateral", len)?;
         if !self.value.is_empty() {
             struct_ser.serialize_field("value", &self.value)?;
         }
@@ -75,7 +75,7 @@ impl<'de> serde::Deserialize<'de> for AllowedCollateral {
             type Value = AllowedCollateral;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.AllowedCollateral")
+                formatter.write_str("struct haqq.ucdao.v1.AllowedCollateral")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<AllowedCollateral, V::Error>
@@ -106,7 +106,7 @@ impl<'de> serde::Deserialize<'de> for AllowedCollateral {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.AllowedCollateral", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.AllowedCollateral", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for Balance {
@@ -123,7 +123,7 @@ impl serde::Serialize for Balance {
         if !self.coins.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.Balance", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.Balance", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -183,7 +183,7 @@ impl<'de> serde::Deserialize<'de> for Balance {
             type Value = Balance;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.Balance")
+                formatter.write_str("struct haqq.ucdao.v1.Balance")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<Balance, V::Error>
@@ -214,7 +214,7 @@ impl<'de> serde::Deserialize<'de> for Balance {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.Balance", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.Balance", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for CollateralValueType {
@@ -308,7 +308,7 @@ impl serde::Serialize for GenesisState {
         if !self.total_balance.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.GenesisState", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.GenesisState", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -375,7 +375,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
             type Value = GenesisState;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.GenesisState")
+                formatter.write_str("struct haqq.ucdao.v1.GenesisState")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<GenesisState, V::Error>
@@ -414,7 +414,7 @@ impl<'de> serde::Deserialize<'de> for GenesisState {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.GenesisState", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.GenesisState", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgFund {
@@ -431,7 +431,7 @@ impl serde::Serialize for MsgFund {
         if !self.depositor.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.MsgFund", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.MsgFund", len)?;
         if !self.amount.is_empty() {
             struct_ser.serialize_field("amount", &self.amount)?;
         }
@@ -491,7 +491,7 @@ impl<'de> serde::Deserialize<'de> for MsgFund {
             type Value = MsgFund;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.MsgFund")
+                formatter.write_str("struct haqq.ucdao.v1.MsgFund")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgFund, V::Error>
@@ -522,7 +522,7 @@ impl<'de> serde::Deserialize<'de> for MsgFund {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.MsgFund", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.MsgFund", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgFundResponse {
@@ -533,7 +533,7 @@ impl serde::Serialize for MsgFundResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("haqq.dao.v1.MsgFundResponse", len)?;
+        let struct_ser = serializer.serialize_struct("haqq.ucdao.v1.MsgFundResponse", len)?;
         struct_ser.end()
     }
 }
@@ -579,7 +579,7 @@ impl<'de> serde::Deserialize<'de> for MsgFundResponse {
             type Value = MsgFundResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.MsgFundResponse")
+                formatter.write_str("struct haqq.ucdao.v1.MsgFundResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgFundResponse, V::Error>
@@ -593,7 +593,7 @@ impl<'de> serde::Deserialize<'de> for MsgFundResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.MsgFundResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.MsgFundResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgTransferOwnership {
@@ -610,7 +610,7 @@ impl serde::Serialize for MsgTransferOwnership {
         if !self.new_owner.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.MsgTransferOwnership", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.MsgTransferOwnership", len)?;
         if !self.owner.is_empty() {
             struct_ser.serialize_field("owner", &self.owner)?;
         }
@@ -671,7 +671,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferOwnership {
             type Value = MsgTransferOwnership;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.MsgTransferOwnership")
+                formatter.write_str("struct haqq.ucdao.v1.MsgTransferOwnership")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgTransferOwnership, V::Error>
@@ -702,7 +702,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferOwnership {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.MsgTransferOwnership", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.MsgTransferOwnership", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for MsgTransferOwnershipResponse {
@@ -713,7 +713,7 @@ impl serde::Serialize for MsgTransferOwnershipResponse {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("haqq.dao.v1.MsgTransferOwnershipResponse", len)?;
+        let struct_ser = serializer.serialize_struct("haqq.ucdao.v1.MsgTransferOwnershipResponse", len)?;
         struct_ser.end()
     }
 }
@@ -759,7 +759,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferOwnershipResponse {
             type Value = MsgTransferOwnershipResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.MsgTransferOwnershipResponse")
+                formatter.write_str("struct haqq.ucdao.v1.MsgTransferOwnershipResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<MsgTransferOwnershipResponse, V::Error>
@@ -773,7 +773,7 @@ impl<'de> serde::Deserialize<'de> for MsgTransferOwnershipResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.MsgTransferOwnershipResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.MsgTransferOwnershipResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for Params {
@@ -790,7 +790,7 @@ impl serde::Serialize for Params {
         if !self.allowed_collaterals.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.Params", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.Params", len)?;
         if self.enable_dao {
             struct_ser.serialize_field("enableDao", &self.enable_dao)?;
         }
@@ -852,7 +852,7 @@ impl<'de> serde::Deserialize<'de> for Params {
             type Value = Params;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.Params")
+                formatter.write_str("struct haqq.ucdao.v1.Params")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<Params, V::Error>
@@ -883,7 +883,7 @@ impl<'de> serde::Deserialize<'de> for Params {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.Params", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.Params", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryAllBalancesRequest {
@@ -900,7 +900,7 @@ impl serde::Serialize for QueryAllBalancesRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryAllBalancesRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryAllBalancesRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -960,7 +960,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesRequest {
             type Value = QueryAllBalancesRequest;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryAllBalancesRequest")
+                formatter.write_str("struct haqq.ucdao.v1.QueryAllBalancesRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllBalancesRequest, V::Error>
@@ -991,7 +991,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryAllBalancesRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryAllBalancesRequest", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryAllBalancesResponse {
@@ -1008,7 +1008,7 @@ impl serde::Serialize for QueryAllBalancesResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryAllBalancesResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryAllBalancesResponse", len)?;
         if !self.balances.is_empty() {
             struct_ser.serialize_field("balances", &self.balances)?;
         }
@@ -1068,7 +1068,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesResponse {
             type Value = QueryAllBalancesResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryAllBalancesResponse")
+                formatter.write_str("struct haqq.ucdao.v1.QueryAllBalancesResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryAllBalancesResponse, V::Error>
@@ -1099,7 +1099,7 @@ impl<'de> serde::Deserialize<'de> for QueryAllBalancesResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryAllBalancesResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryAllBalancesResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryBalanceRequest {
@@ -1116,7 +1116,7 @@ impl serde::Serialize for QueryBalanceRequest {
         if !self.denom.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryBalanceRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryBalanceRequest", len)?;
         if !self.address.is_empty() {
             struct_ser.serialize_field("address", &self.address)?;
         }
@@ -1176,7 +1176,7 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceRequest {
             type Value = QueryBalanceRequest;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryBalanceRequest")
+                formatter.write_str("struct haqq.ucdao.v1.QueryBalanceRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalanceRequest, V::Error>
@@ -1207,7 +1207,7 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryBalanceRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryBalanceRequest", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryBalanceResponse {
@@ -1221,7 +1221,7 @@ impl serde::Serialize for QueryBalanceResponse {
         if self.balance.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryBalanceResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryBalanceResponse", len)?;
         if let Some(v) = self.balance.as_ref() {
             struct_ser.serialize_field("balance", v)?;
         }
@@ -1275,7 +1275,7 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceResponse {
             type Value = QueryBalanceResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryBalanceResponse")
+                formatter.write_str("struct haqq.ucdao.v1.QueryBalanceResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryBalanceResponse, V::Error>
@@ -1298,7 +1298,7 @@ impl<'de> serde::Deserialize<'de> for QueryBalanceResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryBalanceResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryBalanceResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryParamsRequest {
@@ -1309,7 +1309,7 @@ impl serde::Serialize for QueryParamsRequest {
     {
         use serde::ser::SerializeStruct;
         let len = 0;
-        let struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryParamsRequest", len)?;
+        let struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryParamsRequest", len)?;
         struct_ser.end()
     }
 }
@@ -1355,7 +1355,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
             type Value = QueryParamsRequest;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryParamsRequest")
+                formatter.write_str("struct haqq.ucdao.v1.QueryParamsRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsRequest, V::Error>
@@ -1369,7 +1369,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryParamsRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryParamsRequest", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryParamsResponse {
@@ -1383,7 +1383,7 @@ impl serde::Serialize for QueryParamsResponse {
         if self.params.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryParamsResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryParamsResponse", len)?;
         if let Some(v) = self.params.as_ref() {
             struct_ser.serialize_field("params", v)?;
         }
@@ -1437,7 +1437,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
             type Value = QueryParamsResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryParamsResponse")
+                formatter.write_str("struct haqq.ucdao.v1.QueryParamsResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryParamsResponse, V::Error>
@@ -1460,7 +1460,7 @@ impl<'de> serde::Deserialize<'de> for QueryParamsResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryParamsResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryParamsResponse", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryTotalBalanceRequest {
@@ -1474,7 +1474,7 @@ impl serde::Serialize for QueryTotalBalanceRequest {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryTotalBalanceRequest", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryTotalBalanceRequest", len)?;
         if let Some(v) = self.pagination.as_ref() {
             struct_ser.serialize_field("pagination", v)?;
         }
@@ -1528,7 +1528,7 @@ impl<'de> serde::Deserialize<'de> for QueryTotalBalanceRequest {
             type Value = QueryTotalBalanceRequest;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryTotalBalanceRequest")
+                formatter.write_str("struct haqq.ucdao.v1.QueryTotalBalanceRequest")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTotalBalanceRequest, V::Error>
@@ -1551,7 +1551,7 @@ impl<'de> serde::Deserialize<'de> for QueryTotalBalanceRequest {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryTotalBalanceRequest", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryTotalBalanceRequest", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for QueryTotalBalanceResponse {
@@ -1568,7 +1568,7 @@ impl serde::Serialize for QueryTotalBalanceResponse {
         if self.pagination.is_some() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("haqq.dao.v1.QueryTotalBalanceResponse", len)?;
+        let mut struct_ser = serializer.serialize_struct("haqq.ucdao.v1.QueryTotalBalanceResponse", len)?;
         if !self.total_balance.is_empty() {
             struct_ser.serialize_field("totalBalance", &self.total_balance)?;
         }
@@ -1629,7 +1629,7 @@ impl<'de> serde::Deserialize<'de> for QueryTotalBalanceResponse {
             type Value = QueryTotalBalanceResponse;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct haqq.dao.v1.QueryTotalBalanceResponse")
+                formatter.write_str("struct haqq.ucdao.v1.QueryTotalBalanceResponse")
             }
 
             fn visit_map<V>(self, mut map_: V) -> std::result::Result<QueryTotalBalanceResponse, V::Error>
@@ -1660,6 +1660,6 @@ impl<'de> serde::Deserialize<'de> for QueryTotalBalanceResponse {
                 })
             }
         }
-        deserializer.deserialize_struct("haqq.dao.v1.QueryTotalBalanceResponse", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("haqq.ucdao.v1.QueryTotalBalanceResponse", FIELDS, GeneratedVisitor)
     }
 }

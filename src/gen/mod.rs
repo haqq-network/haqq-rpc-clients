@@ -614,28 +614,28 @@ pub mod haqq {
             // @@protoc_insertion_point(haqq.coinomics.v1)
         }
     }
-    pub mod dao {
-        pub mod module {
-            #[cfg(feature = "haqq_dao_module_v1")]
-            // @@protoc_insertion_point(attribute:haqq.dao.module.v1)
-            pub mod v1 {
-                include!("haqq.dao.module.v1.rs");
-                // @@protoc_insertion_point(haqq.dao.module.v1)
-            }
-        }
-        #[cfg(feature = "haqq_dao_v1")]
-        // @@protoc_insertion_point(attribute:haqq.dao.v1)
-        pub mod v1 {
-            include!("haqq.dao.v1.rs");
-            // @@protoc_insertion_point(haqq.dao.v1)
-        }
-    }
     pub mod liquidvesting {
         #[cfg(feature = "haqq_liquidvesting_v1")]
         // @@protoc_insertion_point(attribute:haqq.liquidvesting.v1)
         pub mod v1 {
             include!("haqq.liquidvesting.v1.rs");
             // @@protoc_insertion_point(haqq.liquidvesting.v1)
+        }
+    }
+    pub mod ucdao {
+        pub mod module {
+            #[cfg(feature = "haqq_ucdao_module_v1")]
+            // @@protoc_insertion_point(attribute:haqq.ucdao.module.v1)
+            pub mod v1 {
+                include!("haqq.ucdao.module.v1.rs");
+                // @@protoc_insertion_point(haqq.ucdao.module.v1)
+            }
+        }
+        #[cfg(feature = "haqq_ucdao_v1")]
+        // @@protoc_insertion_point(attribute:haqq.ucdao.v1)
+        pub mod v1 {
+            include!("haqq.ucdao.v1.rs");
+            // @@protoc_insertion_point(haqq.ucdao.v1)
         }
     }
     pub mod vesting {

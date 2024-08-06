@@ -63,10 +63,10 @@ pub struct GenesisState {
     /// params defines all the parameters of the module.
     #[prost(message, optional, tag="1")]
     pub params: ::core::option::Option<Params>,
-    /// balances is an array containing the balances of all the dao members' accounts.
+    /// balances is an array containing the balances of all the ucdao members' accounts.
     #[prost(message, repeated, tag="2")]
     pub balances: ::prost::alloc::vec::Vec<Balance>,
-    /// total_balance represents the total balance of the dao module. If it is left empty, then supply will be calculated based on the provided
+    /// total_balance represents the total balance of the ucdao module. If it is left empty, then supply will be calculated based on the provided
     /// balances. Otherwise, it will be used to validate that the sum of the balances equals this amount.
     #[prost(message, repeated, tag="3")]
     pub total_balance: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
@@ -157,13 +157,13 @@ pub struct QueryTotalBalanceResponse {
     #[prost(message, optional, tag="2")]
     pub pagination: ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
-/// QueryParamsRequest defines the request type for querying x/dao parameters.
+/// QueryParamsRequest defines the request type for querying x/ucdao parameters.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryParamsRequest {
 }
-/// QueryParamsResponse defines the response type for querying x/dao parameters.
+/// QueryParamsResponse defines the response type for querying x/ucdao parameters.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -171,7 +171,7 @@ pub struct QueryParamsResponse {
     #[prost(message, optional, tag="1")]
     pub params: ::core::option::Option<Params>,
 }
-/// MsgFund allows an account to directly fund the dao.
+/// MsgFund allows an account to directly fund the ucdao.
 #[derive(::derive_builder::Builder)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -192,10 +192,10 @@ pub struct MsgFundResponse {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgTransferOwnership {
-    /// owner is a current owner of the shares in dao.
+    /// owner is a current owner of the shares in ucdao.
     #[prost(string, tag="1")]
     pub owner: ::prost::alloc::string::String,
-    /// new_owner is a new owner of the shares in dao.
+    /// new_owner is a new owner of the shares in ucdao.
     #[prost(string, tag="2")]
     pub new_owner: ::prost::alloc::string::String,
 }
@@ -205,6 +205,6 @@ pub struct MsgTransferOwnership {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgTransferOwnershipResponse {
 }
-include!("haqq.dao.v1.serde.rs");
-include!("haqq.dao.v1.tonic.rs");
+include!("haqq.ucdao.v1.serde.rs");
+include!("haqq.ucdao.v1.tonic.rs");
 // @@protoc_insertion_point(module)

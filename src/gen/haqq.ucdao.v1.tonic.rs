@@ -103,10 +103,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/haqq.dao.v1.Query/Balance",
+                "/haqq.ucdao.v1.Query/Balance",
             );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("haqq.dao.v1.Query", "Balance"));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("haqq.ucdao.v1.Query", "Balance"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn all_balances(
@@ -127,11 +128,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/haqq.dao.v1.Query/AllBalances",
+                "/haqq.ucdao.v1.Query/AllBalances",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.dao.v1.Query", "AllBalances"));
+                .insert(GrpcMethod::new("haqq.ucdao.v1.Query", "AllBalances"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn total_balance(
@@ -152,11 +153,11 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/haqq.dao.v1.Query/TotalBalance",
+                "/haqq.ucdao.v1.Query/TotalBalance",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.dao.v1.Query", "TotalBalance"));
+                .insert(GrpcMethod::new("haqq.ucdao.v1.Query", "TotalBalance"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn params(
@@ -176,9 +177,12 @@ pub mod query_client {
                     )
                 })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/haqq.dao.v1.Query/Params");
+            let path = http::uri::PathAndQuery::from_static(
+                "/haqq.ucdao.v1.Query/Params",
+            );
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("haqq.dao.v1.Query", "Params"));
+            req.extensions_mut()
+                .insert(GrpcMethod::new("haqq.ucdao.v1.Query", "Params"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -286,9 +290,9 @@ pub mod msg_client {
                     )
                 })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/haqq.dao.v1.Msg/Fund");
+            let path = http::uri::PathAndQuery::from_static("/haqq.ucdao.v1.Msg/Fund");
             let mut req = request.into_request();
-            req.extensions_mut().insert(GrpcMethod::new("haqq.dao.v1.Msg", "Fund"));
+            req.extensions_mut().insert(GrpcMethod::new("haqq.ucdao.v1.Msg", "Fund"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn transfer_ownership(
@@ -309,11 +313,11 @@ pub mod msg_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/haqq.dao.v1.Msg/TransferOwnership",
+                "/haqq.ucdao.v1.Msg/TransferOwnership",
             );
             let mut req = request.into_request();
             req.extensions_mut()
-                .insert(GrpcMethod::new("haqq.dao.v1.Msg", "TransferOwnership"));
+                .insert(GrpcMethod::new("haqq.ucdao.v1.Msg", "TransferOwnership"));
             self.inner.unary(req, path, codec).await
         }
     }
