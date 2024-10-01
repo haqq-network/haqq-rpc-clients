@@ -21,7 +21,7 @@ prost = "~0.12"
 prost-types = { version = "~0.12" }
 pbjson-types = "~0.6"
 rust_decimal = "~1.35"
-tonic = "~0.11"
+tonic = "~0.12"
 tracing = "~0.1"
 serde = "~1"
 
@@ -30,7 +30,7 @@ color-eyre = "~0.6"
 reqwest = { version = "~0.12", features = ["json"] }
 tokio = { version = "~1", features = ["macros"] }
 tracing-subscriber = { version = "~0.3", features = ["env-filter"] }
-tonic = { version = "~0.11", features = ["tls", "tls-roots"] }
+tonic = { version = "~0.12", features = ["tls", "tls-roots"] }
 # haqq-rest = {path = "./rest"}
 
 [workspace]
